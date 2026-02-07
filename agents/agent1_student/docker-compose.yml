@@ -6,6 +6,8 @@ services:
       - "8001:8000"
     networks:
       - ai_network
+    extra_hosts:
+      - "ollama:172.18.0.1"
     environment:
       - COLLECTION=agent1_student
       - NODERED_URL=http://node-red:1880
