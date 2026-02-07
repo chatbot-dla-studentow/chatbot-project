@@ -26,6 +26,13 @@ qdrant/backups/
 # VS Code
 .vscode/
 
+# VPN - klucze prywatne
+wg-client.conf
+*.conf
+
+# Stary projekt - nie używany
+old_mvp/
+
 # system Windows
 Thumbs.db
 Desktop.ini

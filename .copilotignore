@@ -1,0 +1,22 @@
+# GitHub Copilot ignore patterns
+# Copilot will not index these files/directories for context
+
+# Legacy/archived projects
+old_mvp/
+old_mvp/**
+
+# Build artifacts and dependencies
+**/node_modules/
+**/__pycache__/
+**/dist/
+**/build/
+
+# Data and model files
+qdrant/data/
+ollama/models/
+**/*.bin
+**/*.pt
+**/*.ckpt
+
+# Logs
+**/*.log
