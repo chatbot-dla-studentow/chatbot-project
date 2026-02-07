@@ -1,0 +1,53 @@
+{
+  "category": "stypendia",
+  "qa_pairs": [
+    {
+      "question": "Jakie rodzaje stypendiów są dostępne dla studentów?",
+      "answer": "Dostępne są następujące rodzaje stypendiów: stypendium rektora, stypendium socjalne, stypendium dla osób niepełnosprawnych, stypendium dla sportowców, program Erasmus, oraz stypendium dla kierunku drugiego.",
+      "category": "stypendia",
+      "type": "information",
+      "id": "3978af98-63a6-4dbb-89ed-22a16fc05eb4",
+      "metadata": {
+        "category": "stypendia",
+        "type": "information",
+        "source": "manually_created_qa_pair"
+      }
+    },
+    {
+      "question": "Jak ubiegać się o stypendium?",
+      "answer": "Aby ubiegać się o stypendium, należy złożyć wniosek w wyznaczonym terminie (zwykle przed sesją). Wniosek zawiera: dane osobowe, zaświadczenie o dochodach rodziny (dla stypendiów socjalnych), oraz wymagane dokumenty. Komisja rozpatruje wnioski i wydaje decyzję.",
+      "category": "stypendia",
+      "type": "procedure",
+      "id": "0c2b1362-ddcc-4feb-9896-89582d1e9064",
+      "metadata": {
+        "category": "stypendia",
+        "type": "procedure",
+        "source": "manually_created_qa_pair"
+      }
+    },
+    {
+      "question": "Jaka jest wysokość stypendiów w bieżącym semestrze?",
+      "answer": "Wysokość stypendiów zależy od rodzaju stypendium i sytuacji finansowej studenta. Stawki publikowane są na początku każdego semestru. Szczegółowe stawki dostępne są w informacji o funduszu stypendiów.",
+      "category": "stypendia",
+      "type": "information",
+      "id": "7e4033d8-7e42-4656-9ebb-791a004311d7",
+      "metadata": {
+        "category": "stypendia",
+        "type": "information",
+        "source": "manually_created_qa_pair"
+      }
+    },
+    {
+      "question": "Czy osoby niepełnosprawne mogą ubiegać się o wyższe stypendium?",
+      "answer": "Tak, dla osób z niepełnosprawnościami dostępne jest pełne stypendium socjalne niezależnie od statusu materialnego. Wymagane jest przedłożenie orzeczenia o niepełnosprawności wydanego przez PKWN.",
+      "category": "stypendia",
+      "type": "information",
+      "id": "e2c09e72-c5e6-4884-8cb8-841338689e6b",
+      "metadata": {
+        "category": "stypendia",
+        "type": "information",
+        "source": "manually_created_qa_pair"
+      }
+    }
+  ]
+}

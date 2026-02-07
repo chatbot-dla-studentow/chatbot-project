@@ -1,0 +1,626 @@
+[
+  {
+    "id": "bbc7ea23-5df3-4542-b8aa-834bc35ef3bb",
+    "category": "stypendia",
+    "source_file": "stypendia_dla_osob_z_niepelnosprawnosciami.txt",
+    "content": "Masz orzeczenie o niepełnosprawności lub niezdolności do pracy? Możesz ubiegać się o stypendium specjalne.\nStypendium przysługuje również osobom z przyznaną grupą inwalidzką.",
+    "metadata": {
+      "category": "stypendia",
+      "source": "stypendia_dla_osob_z_niepelnosprawnosciami.txt",
+      "file_type": ".txt"
+    }
+  },
+  {
+    "id": "a4aefcbc-2a2d-4d2c-9861-f56784c2e233",
+    "category": "stypendia",
+    "source_file": "stypendia_program_vis.txt",
+    "content": "Dla osób, które ukończyły szkołę średnią z wyróżnieniem osiągnięciami, przygotowaliśmy Program VIS – Very Important Student. To szansa na rozpoczęcie edukacji z pełnym wsparciem finansowym.\n\n \n\nCo zyskujesz w Programie VIS?\n\nPierwszy semestr za darmo – opłata wpisowa i czesne obniżone o 100%!\nSzansa na drugi semestr bez czesnego – jeśli utrzymasz wysoką średnią ocen.\n \n\nDla kogo?",
+    "metadata": {
+      "category": "stypendia",
+      "source": "stypendia_program_vis.txt",
+      "file_type": ".txt"
+    }
+  },
+  {
+    "id": "316bd5d2-aacb-437e-bcb6-3c0cff430df3",
+    "category": "stypendia",
+    "source_file": "stypendia_program_vis.txt",
+    "content": "Absolwenci szkół średnich z wyróżnieniem i wysokimi wynikami matury.\nFinaliści olimpiad krajowych i okręgowych (pełna lista w ustaleniach Rektora).\nLaureaci konkursów organizowanych przez Uniwersytet WSB Merito.\nStudenci Uniwersytetu WSB Merito z wyróżniającymi się wynikami nauki na pierwszym semestrze.",
+    "metadata": {
+      "category": "stypendia",
+      "source": "stypendia_program_vis.txt",
+      "file_type": ".txt"
+    }
+  },
+  {
+    "id": "e15fcc74-3248-456c-9753-b851011cc36f",
+    "category": "stypendia",
+    "source_file": "stypendia_erasmus.txt",
+    "content": "Uniwersytet WSB Merito współpracuje z wieloma z uczelniami zagranicznymi w ramach programu Erasmus+. Dlatego możesz kontynuować naukę w zaprzyjaźnionej uczelni.\n \n\nW tym czasie nie płacisz czesnego na Uniwersytecie WSB Merito i dodatkowo możesz otrzymać stypendium Erasmusa +, które pokryje różnicę kosztów utrzymania.",
+    "metadata": {
+      "category": "stypendia",
+      "source": "stypendia_erasmus.txt",
+      "file_type": ".txt"
+    }
+  },
+  {
+    "id": "087be1b0-fb31-4979-b673-474a1f6359cf",
+    "category": "stypendia",
+    "source_file": "Stawki stypendiów w semestrze zimowym 2025-2026.docx",
+    "content": "Stawki stypendiów w semestrze zimowym 2025/2026\nStypendium rektora\nZwiększenie z uwagi na osiągnięcia\n\nStypendium socjalne\n\nStypendium dla osób niepełnosprawnych",
+    "metadata": {
+      "category": "stypendia",
+      "source": "Stawki stypendiów w semestrze zimowym 2025-2026.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "add157ca-44ee-46c2-8ef8-eab172141d4e",
+    "category": "stypendia",
+    "source_file": "stypendia_absolwenci_zyskuja_wiecej.txt",
+    "content": "Jesteś naszym absolwentem? Masz dodatkowe zniżki na kontynuację nauki.\n\nTwoja zniżka będzie rozliczana w pierwszym roku na studiach I stopnia a każda rata czesnego zostanie proporcjonalnie obniżona.\nIm wcześniej zapiszesz się na studia, tym wyższą zniżkę otrzymasz!\n \n\nJesteś absolwentem szkół TEB Edukacja?\n\nPrzysługują Ci dokładnie takie same zniżki, jak absolwentom Uniwersytetów WSB Merito.\n\n \n\nO szczegóły pytaj w Biurze Rekrutacji.",
+    "metadata": {
+      "category": "stypendia",
+      "source": "stypendia_absolwenci_zyskuja_wiecej.txt",
+      "file_type": ".txt"
+    }
+  },
+  {
+    "id": "57ccc55b-933e-4a24-8f56-fec41c8f2e46",
+    "category": "stypendia",
+    "source_file": "stypendia_stypendium_rektora.txt",
+    "content": "Uzyskałeś wysoką średnią po pierwszym roku? \n\nMożesz ubiegać się o stypendium rektora za wyniki w nauce - poziom średniej objętej stypendium ustalany jest co roku.\nMasz na koncie wyjątkowe osiągnięcia?\n\nZa wybitne osiągnięcia w nauce możesz również starać się o stypendium od Ministra Nauki i Szkolnictwa Wyższego.\n\nO szczegóły zapytaj w dziale stypendiów. \n\nTwoje osiągnięcia są dla nas ważne!",
+    "metadata": {
+      "category": "stypendia",
+      "source": "stypendia_stypendium_rektora.txt",
+      "file_type": ".txt"
+    }
+  },
+  {
+    "id": "5cbdbe39-7eba-49f7-9077-1f7908eed87d",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "1. Do kiedy i gdzie można składać wniosek o stypendium?",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "da39bff4-7392-4bd3-8833-0ce73372bb2e",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "Termin składania wniosków w semestrze zimowym trwa od 1 sierpnia do 31 października, a w semestrze letnim od 1 lutego do 31 marca. Student, który nie złoży wniosku w terminie, może złożyć wniosek w każdej chwili, jednak ewentualna wypłata świadczenia jest uzależniona od dostępnych środków finansowych. Wysokość wypłacanego stypendium jest zależna od daty złożenia wniosku. Studentowi przysługuje stypendium licząc od miesiąca, w którym wniosek złożono.",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "28e73451-d87c-41e5-b853-0f6bc0b7e0d3",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "Wnioski o przyznanie stypendiów i zapomogi można złożyć na trzy sposoby:\n\n(w Gdyni)\n\nw Biurze Obsługi Studenta (parter, pokój nr 2),\numieszczając we wrzutni na podania znajdującej się przy wejściu do Biura Obsługi Studenta,\nwysyłając na adres uczelni z dopiskiem \"stypendia\" (ul. Śląska 35/37; 81-310 Gdynia).\n(w Gdańsku)",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "16b901a0-e5f7-4852-a0db-dff36b6d0a1b",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "w Biurze Obsługi Studenta (przestrzeń otwarta naprzeciwko głównego wejścia do auli w Budynku C),\nw skrzynce podawczej, znajdującej obok Biura Obsługi Studenta w budynku C,\nwysyłając na adres uczelni z dopiskiem „stypendia”: al. Grunwaldzka 238A,\n80-266 Gdańsk.\n2. Czy jeśli złożę wniosek po terminie to otrzymam stypendium?",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "e3b2db85-83ee-48ad-b81d-5a3c92423677",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "Twój wniosek zostanie rozpatrzony przez Komisję Stypendialną. Stypendium zostanie przyznane jeśli spełnione zostaną odpowiednie warunki oraz gdy środki otrzymane od Ministerstwa, przeznaczone na dane świadczenie/kierunek, nie zostaną wykorzystane.\n\n3. Skąd pobrać wniosek?\n\nWszystkie wzory wniosków znajdują się w Extranecie w zakładce „Stypendia\",\nw kartach dotyczących poszczególnych rodzajów świadczeń.\n\n4. Do kogo mogę się zwrócić z prośbą o pomoc w wypełnieniu wniosku stypendialnego?",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "704f766d-fe65-4e85-b1f1-0cb9837d5013",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "Ze swoimi pytaniami możesz zwrócić się do Biura Obsługi Studenta, które pełni rolę pośrednika w kontakcie z Komisją Stypendialną oraz Odwoławczą Komisją Stypendialną. Aby przedstawić Komisji nurtujące Ciebie zagadnienia warto wysłać je na adres: bos@gdansk.merito.pl Gdańsk,\nbos@wsb.gdynia.pl Gdynia.\n\n5. Czy mogę złożyć wniosek o stypendium w połowie roku akademickiego?",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "0d950187-ea2f-4de3-aba7-93d21862357b",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "Wniosek o stypendium socjalne i stypendium dla osób niepełnosprawnych możesz składać w dowolnym momencie roku akademickiego. Podobnie jest z wnioskiem o zapomogę.\n\nWniosek o stypendium rektora możesz złożyć tylko we wskazanych w Regulaminie świadczeń terminach. W semestrze zimowym wnioski można składać już od 1 sierpnia, aż do 31 października, a w semestrze letnim od 1 lutego do 31 marca.\n\n6. Na ile przyznawane jest stypendium ?\n\nW zależności od rodzaju świadczenia:",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "c9d3bca8-b136-46d2-97ef-a8c45816206f",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "- socjalne, dla osób niepełnosprawnych i naukowe na rok akademicki (z podziałem na: semestr zimowy 5 miesięcy oraz semestr letni 5 miesięcy),\n\n- zapomoga, jednorazowo.\n\n7. Czy mogę pobierać stypendia na innych kierunkach?",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "dcda97e4-8b97-4010-951e-575ffc11cc89",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "Nie. Student może pobierać świadczenia pomocy materialnej dla studentów tylko na jednym kierunku studiów i na jednej uczelni. Ministerstwo Nauki i Szkolnictwa Wyższego otrzymuje listę świadczeniobiorców na poszczególnych uczelniach, więc osoby pobierające stypendia na dwóch kierunkach będą pociągnięte do odpowiedzialności.\n\n8. Czy muszę ponownie złożyć wnioski o stypendia, jeśli od marca rozpoczynam studia II stopnia?",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "f402fabf-96b1-4d8f-8a99-a76a7011ff28",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "Tak. Jeśli w dalszym ciągu chcesz otrzymywać świadczenia. Rozpoczynając studia wyższego stopnia należy złożyć wnioski na semestr letni.\n\n9. Kiedy i w jaki sposób dowiem się czy otrzymałem stypendium?",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "02f14b01-c3d7-4323-a1a5-15c97735c360",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "Informacja o przyznaniu stypendiów będzie dostępna w Extranecie w zakładce „Moje wnioski stypendialne\". W przypadku stypendium socjalnego i dla osób niepełnosprawnych jeżeli status wniosku będzie „Zatwierdzony\" (pojawi się zielony ptaszek) oznacza to, że stypendium jest przyznane. Pojawić się może także informacja na temat ewentualnych dokumentów, które trzeba będzie donieść. Student ma 7 dni na uzupełnienie braków.\n\n10. Kiedy stypendium zostanie przelane na konto? W jakiej będzie wysokości?",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "7cf4c668-e318-4fec-b48e-b949eace8161",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "W semestrze zimowym pierwsza wypłata będzie dokonana do końca listopada\nz wyrównaniem za październik, w semestrze letnim do końca kwietnia z wyrównaniem\nza marzec. Każda kolejna wypłata będzie realizowana do końca miesiąca, za który przysługuje stypendium. Kwoty poszczególnych stypendiów będą opublikowane w Extranecie po zweryfikowaniu wszystkich wniosków i podzieleniu środków.\n\n11. W uwagach pojawił mi się zapis o tym, że mam jakieś brakujące dokumenty.\nCo mam zrobić?",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "70f64e89-ae88-4a90-8a5a-f822b7e34a38",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "Brakujące dokumenty należy złożyć niezwłocznie tj. w terminie do 7 dni od pojawienia się daty w komunikacie.\n\nDokumenty można przekazywać do BOS:\n\n- osobiście,\n\n- za pośrednictwem osoby trzeciej,\n\n- wrzucić do skrzynki znajdującej się obok Biura Obsługi Studenta,\n\n- wysłać pocztą tradycyjną lub kurierem.",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "5e867d48-f1ab-41d2-85ae-df105e07e37c",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "Dokumenty będące załącznikami do już złożonych wniosków wysłane mailowo będą brane pod uwagę tylko jeśli będą podpisane weryfikowalnym, kwalifikowanym podpisem elektronicznym. Same wnioski należy skłądać jedynie w formie papierowej.\n\n12. Jak zmienić numer rachunku bankowego, na które przelewane jest stypendium.\n\nNależy pobrać wniosek z zakładki Stypendia - Informacje ogólne na samym dole\ni wypełniony dostarczyć (zał. nr 11).\n\n\n\n \n\nDO SOCJALNEGO",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "fcd460eb-d5d9-405d-9010-a226760d78fb",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "13. Jakie dokumenty muszę dołączyć do wniosku o stypendium socjalne?\n\nDokumentami obowiązkowymi są:\n\n- zaświadczenie z US o wysokości uzyskanego dochodu (opodatkowany\ni nieopodatkowany) za 2024 rok,\n\n- zaświadczenie z ZUS o wysokości opłaconej składki na ubezpieczenie zdrowotne\nza 2024 rok,\n\n- zaświadczenie od pracodawcy/innej instytucji o okresie przez jaki uzyskiwany był dochód w 2024 roku,\n\n14. Jaki jest górny próg dochodu na członka rodziny netto, by móc otrzymać stypendium socjalne?",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "a80f61df-c6ae-42a3-8ffc-ca45122b09a8",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "Próg dochodowy w roku akademickim 2025/26 wynosi 1908,90 zł. Jest to maksymalny dochód przypadający\nna osobę w rodzinie, który uprawnia do ubiegania się o przyznanie stypendium.\n\n15. Jak policzyć dochód przypadający na członka rodziny?",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "585ec3d1-f738-43a6-9d6e-da734dd32aba",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "Od dochodu z zaświadczenia z Urzędu Skarbowego odejmuje się podatek dochodowy, składki na ubezpieczenie społeczne i zdrowotne (znajdujące się w zaświadczeniu\nz Zakładu Ubezpieczeń Społecznych). Potem obliczamy przeciętny miesięczny dochód, dzieląc dochód netto przez liczbę miesięcy przez jakie był uzyskiwany. Do dochodu wlicza się również m.in. przychód nieopodatkowany.\n\n16. Kiedy student jest samodzielny finansowo?",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "ea5287ce-2583-4fde-a9a9-3bab23d36015",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "Kiedy posiadał stałe źródło dochodu w poprzednim roku podatkowym i w obecnym,\na jego wynagrodzenie jest większe niż 40% minimalnego wynagrodzenia lub spełnia jeden z warunków:\nma ukończone 26 lat, jest w małżeństwie, ma dzieci na utrzymaniu lub osiągnął pełnoletniość w pieczy zastępczej.\n\n17. Czy jeśli utrzymuję się sam i rodzice mi nie pomagają, to otrzymam stypendium?",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "585cb21d-a506-4d0b-97c8-903be04ba5eb",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "Wobec studenta, który wyprowadził się z gospodarstwa rodziców i nie ukończył 26 roku życia zachodzi obowiązek alimentacyjny ze strony rodziców w związku z tym należy uwzględnić ich dochody we wniosku.\n\n18. Czy jeśli pobieram stypendium socjalne od października, a sytuacja materialna mojej rodziny uległa zmianie, to muszę zgłosić to do BOS?",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "9436d944-02c2-41e9-99ac-ef9a8d819503",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "Tak. Każdą zmianę w sytuacji materialnej czy w składzie rodziny, która ma wpływ\nna wysokość wypłacanego stypendium należy zgłosić w Biurze Obsługi Studenta. Jeśli któryś z członków rodziny rozpoczął pracę należy dostarczyć zaświadczenie od pracodawcy  o zarobkach za drugi  przepracowany miesiąc; jeśli stracił pracę – świadectwo pracy i zaświadczenie o wysokości wynagrodzenia (kwoty przedstawione miesięcznie), zaświadczenie z Urzędu Pracy. W przypadku jeśli praca świadczona była w oparciu o umowę cywilnoprawną to należy dostarczyć zaświadczenie od pracodawcy o uzyskanym dochodzie i okresie zatrudnienia.",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "ae9fe733-7469-471f-9174-8a72e7e02890",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "19. Czy jeżeli któreś z rodzeństwa jest samodzielne finansowo, czy trzeba je umieszczać je we wniosku\no stypendium socjalne? \n\nJeżeli Twoje rodzeństwo się nie uczy, a ma więcej niż 18 lat nie jest brane pod uwagę przy obliczaniu dochodu\nw rodzinie. Rodzeństwo włącza się do składu rodziny, gdy się uczy do 26 roku życia. Fakt nieuwzględnienia rodzeństwa w składzie rodziny należy wskazać w uzasadnieniu wniosku, podając tego przyczynę.\n\n20. Co to jest dochód uzyskany i utracony?",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "ff92d9d9-f7c4-42ff-bd63-0574dbdb7257",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "Dochód uzyskany i utracony to przypadki:\n\n- uzyskania / utraty prawa do urlopu wychowawczego\n\n- uzyskania / utraty prawa do zasiłku lub stypendium dla bezrobotnych\n\n- uzyskanie / utrata zatrudnienia lub innej pracy zarobkowej\n\n- uzyskanie / utrata zasiłku przedemerytalnego lub świadczenia przedemerytalnego, nauczycielskiego świadczenia kompensacyjnego, a także emerytury lub renty, renty rodzinnej lub renty socjalnej\n\n- wyrejestrowanie / rozpoczęcie pozarolniczej działalności gospodarczej",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "3945b99a-e112-4a06-be41-bf9e60fd7fd2",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "- zawieszenie działalności gospodarczej / wznowienie po zawieszeniu w celu opieki nad dzieckiem do lat 7\n\n- uzyskanie / utrata zasiłku chorobowego, świadczenia rehabilitacyjnego lub zasiłku macierzyńskiego przysługujących po utracie zatrudnienia lub innej pracy zarobkowej",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "671c400c-ffb4-414d-8d99-819a70fe6925",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "- utrata zasądzonych świadczeń alimentacyjnych w związku ze śmiercią osoby zobowiązanej do tych świadczeń lub utratą świadczeń pieniężnych wypłacanych\nw przypadku bezskuteczności egzekucji alimentów w związku  ze śmiercią osoby zobowiązanej do świadczeń alimentacyjnych\n\n- utrata / uzyskanie świadczenia rodzicielskiego\n\n- utrata / uzyskanie zasiłku macierzyńskiego z ustawy o ubezpieczeniu społecznych rolników",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "a413f9ad-edd2-4bdb-9f8a-62f2b429abfd",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "- utrata / uzyskanie stypendium doktoranckiego określonego w art. 200 ust 1 ustawy Prawo o szkolnictwie wyższym\n\n- utrata / uzyskanie zasiłku lub stypendium dla bezrobotnych\n\nW takich przypadkach należy skorygować dochód rodziny studenta.\n\nNp. pracowałeś w 2024 roku (co będzie widniało na zaświadczeniu z US) a w 2024 roku straciłeś pracę i jesteś bezrobotny z prawem do zasiłku na dzień złożenia wniosku. Dochód z 2024 jest dochodem utraconym, a zasiłek jest dochodem uzyskanym.",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "2a33415d-d715-42e0-a91c-e2c5e5a64fab",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "W zakładce Stypendia => Stypendium socjalne znajdują się załączniki dotyczące utraty\ni uzysku dochodu (zał. nr 8 i 9).",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "c3f808a5-a3ee-42b0-bf22-474eaa612a97",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "Utrata dochodu ma miejsce tylko na wniosek studenta. Aby utrata była wzięta pod uwagę przez Komisję Stypendialną, należy złożyć załącznik nr 8 ze wskazaniem daty utraty, miejsca pracy bądź instytucji wypłacającej świadczenie oraz okresu przez jaki dany dochód był uzyskiwany. Razem z zał. nr 8 należy dostarczyć zaświadczenia od pracodawcy/instytucji z informacją o okresie zatrudnienia/pobierania świadczenia oraz wysokości uzyskanego dochodu netto.",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "c4d173ad-3eba-45f6-a99e-a3d942eb44cd",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "21. Jak wypełnić tabelę we wniosku o stypendium socjalne?",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "64b5dae2-07f0-4731-ada6-14fdddbab7e1",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "Do wniosku należy wpisać członków rodziny wchodzących w skład gospodarstwa domowego, wskazując przy tym ich lata urodzenia, stopnie pokrewieństwa i miejsca pracy i nauki. W kolumnie 6 należy wpisać dochód z zaświadczenia z US poszczególnych osób po odjęciu podatku dochodowego, składek na ubezpieczenie społeczne i zdrowotne. Należy podać również liczbę miesięcy, przez które był uzyskiwany dochód. Nie zapomnij o podpisaniu oświadczenia dochodowego.",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "7ad61ed9-e5f1-4382-97c3-60bc627b8f49",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "22. Jestem obcokrajowcem, co muszę donieść do stypendium?\n\nOprócz wniosku i dokumentów takich samych jak obywatele polscy należy dodatkowo dostarczyć Kartę Polaka oraz kartę pobytu stałego lub kartę pobytu tymczasowego (wiza to za mało). Ponadto wszystkie dokumenty muszą być przetłumaczone na język polski przez tłumacza przysięgłego.\n\n\n \n\nDO NAUKOWEGO\n\n \n\n23. Za jaki okres liczona jest średnia ocen w przypadku osoby będącej na pierwszym semestrze studiów II stopnia?",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "f9d0e6d5-98d6-4af8-8e96-124cd76ea696",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "W przypadku osoby na pierwszym semestrze studiów II stopnia, średnia liczona jest z dwu ostatnich semestrów studiów I stopnia. Odpowiednio dla osoby, która jest na drugim semestrze studiów II stopnia bierze się pod uwagę średnią ocen z ostatniego semestru studiów I stopnia (potwierdzoną oryginalnym zaświadczeniem z poprzedniej uczelni) i średnią ocen z pierwszego semestru studiów II stopnia.\n\n\n24. Jak przyznawane jest stypendium naukowe?",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "82f0cc20-5ac1-4fc3-9779-6ab57efe7137",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "Po złożeniu wniosku weryfikowana jest średnia ocen studenta. Wniosek brany jest pod uwagę przy ustalaniu liczby osób, które mogą otrzymać stypendium (10% osób z danego kierunku).\n\n\n25. Jak oblicza się średnią do stypendiów?\n\nŚrednia ocen obliczana jest zgodnie z przepisami Regulaminu studiów wyższych Uniwersytetu WSB Merito w Gdańsku.\n\nJeśli przedmiot składa się z dwóch części – wykład i ćwiczenia, do średniej liczymy tylko ocenę z wykładu.",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "0441d4d3-ff77-4a4e-bd1d-519152e09134",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "Jeśli przedmiot ma wyłącznie ćwiczenia z oceną, wliczają się one do średniej,\nz wyjątkami określonymi w Regulaminie studiów.\n\nJeśli student w pierwszym terminie otrzymał 2 a w drugim terminie ocenę pozytywną\nto obie oceny wliczają się do średniej.\n\nJeśli student był nieobecny w pierwszym terminie i ocenę uzyskał w terminie drugim\nto nie pogarsza to jego średniej, liczy się tylko ocena z drugiego podejścia.",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "3256e058-b294-4221-a162-236e320b6e9a",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "Średnia ocen z dwóch ostatnich semestrów studiów obliczana jest zgodnie\nz Regulaminem studiów wyższych Uniwersytetu WSB Merito w Gdańsku.\n\n\n\n\n\n26. Czy zatwierdzony wniosek oznacza, że dostanę stypendium?\n\nPotwierdzeniem przyznania stypendium jest status wniosku „zatwierdzony”, który w Extranecie przedstawiony jest jako „zielony symbol ptaszka”. Natomiast o odmowie świadczy „czerwony symbol wykrzyknika”.",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "30cde403-2a9f-47f4-974a-c7847ae63722",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "Lista rankingowa publikowana jest w zakładce Stypendia i zniżki => Stypendium rektora na samym dole. Po sprawdzeniu wszystkich wniosków w drugiej połowie listopada.\n\n27. Jestem obcokrajowcem, co muszę donieść do stypendium?",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "33dd5e3b-c122-4df7-b901-b1098e97f99f",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "Ubiegając się o stypendium rektora należy dostarczyć takie same dokumenty, jakie dostarczają obywatele Polski.\nZ zastrzeżeniem, że zaświadczenia wydane w obcym języku powinny być dostarczone wraz z tłumaczeniem dokumentów przez tłumacza przysięgłego, a procedura prowadząca do ustalenia polskiego odpowiednika zagranicznego dyplomu nie stoi na przeszkodzie przyznania stypendium.\n\n \n\nDO STYPENDIUM DLA OSÓB NIEPEŁNOSPRAWNYCH",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "e419e0d7-286d-46dd-be07-52fd68d4c698",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "28. Co trzeba złożyć by otrzymać stypendium dla osób niepełnosprawnych?\n\nDo wniosku należy dołączyć ważne orzeczenie o stopniu niepełnosprawności (lub dokument równoważny) do wglądu wraz z jego kopią, w celu potwierdzenia jej zgodności z oryginałem przez pracownika UWSB Merito.\n\n29. Czy co roku trzeba złożyć nowy wniosek?",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "893f1f7d-3af1-47b7-85cb-1bd4d57b271b",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "Stypendium przyznawane jest na rok akademicki, z zastrzeżeniami Regulaminu świadczeń, dlatego w każdym roku akademickim należy złożyć nowy wniosek, aby otrzymać stypendium. Wymaganym załącznikiem jest aktualny dokument potwierdzający niepełnosprawność wnioskodawcy.\n\n \n\n\nDO ZAPOMOGI\n\n \n\n30. Kiedy złożyć wniosek o zapomogę i jakie dokumenty dołączyć?",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "6b947b0d-0a55-4d62-9194-c5cba1a6fa5c",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "W przypadku zaistnienia trudnej sytuacji życiowej, o której mowa w Regulaminie świadczeń należy w przeciągu 3 miesięcy od wydarzenia ją powodującego złożyć wniosek o przyznanie zapomogi ze szczegółowym opisem sytuacji oraz dokumentami ją potwierdzającymi.\n\n \n\n31. Gdzie można znaleźć informację o wysokości zapomogi?\n\nKażdy wniosek o przyznanie zapomogi jest rozpatrywany przez Komisję Stypendialną indywidualnie. Nie ma przewidzianych stawek zapomogi.",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "ae2300e2-4edf-4049-9bde-96c575dc4481",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "32. Ile razy w ciągu semestru mogę składać wniosek o zapomogę?\n\nZapomoga przysługuje studentowi dwukrotnie w roku akademickim. Na przykład możesz złożyć pierwszy wniosek w semestrze zimowym i kolejny w semestrze letnim.  Zapomoga nie może być przyznana dwa razy za takie samo zdarzenie. Przykład: wnioskując o zapomogę z tytułu utraty pracy, możesz otrzymać zapomogę z tego powodu tylko raz. Zapomogę można otrzymać tylko za utratę pracy przez wnioskodawcę.",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "a2565234-b41a-4b15-947e-0065ad19d764",
+    "category": "stypendia",
+    "source_file": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+    "content": "33. Jestem obcokrajowcem, co muszę donieść wraz z wnioskiem o przyznanie zapomogi?\n\nStudent z zagranicy, który chce ubiegać się o zapomogę powinien dostarczyć takie same dokumenty jak obywatele Polski. Ponadto wszystkie załączniki w obcym języku należy dostarczyć z tłumaczeniem sporządzonym przez tłumacza przysięgłego.",
+    "metadata": {
+      "category": "stypendia",
+      "source": "FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx",
+      "file_type": ".docx"
+    }
+  },
+  {
+    "id": "65ed6bba-406d-489d-a981-b18ec0d5058c",
+    "category": "stypendia",
+    "source_file": "stypendia_dane_kontaktowe.txt",
+    "content": "Link: https://www.merito.pl/gdansk/studia-i-szkolenia/studia-i-stopnia/stypendia-i-znizki\nBiuro Obsługi Studenta:\nTelefon: 58 3502070\nE-mail: bos@gdansk.merito.pl\nAdres: Al. Grunwaldzka 238A, Parter, strefa otwarta w budynku C, 80-266, Gdańsk\nGodziny otwarcia:\nponiedziałek:\n8:00-16:00\n\nwtorek:\n10:00-18:00\n\nśroda:\n8:00-16:00\n\nczwartek:\nZamknięte\n\npiątek:\n8:00-16:00\n\nsobota:\n8:00-16:00\n\nniedziela:\n8:00-12:00",
+    "metadata": {
+      "category": "stypendia",
+      "source": "stypendia_dane_kontaktowe.txt",
+      "file_type": ".txt"
+    }
+  },
+  {
+    "id": "b0b9df8a-340a-44db-a017-9f9d9dc79745",
+    "category": "stypendia",
+    "source_file": "stypendia_stypendium_dla_sportowcow.txt",
+    "content": "Po pierwszym roku studiów możesz uzyskać stypendium Rektora za wyniki w sporcie. Nagradzamy współzawodnictwo na arenie międzynarodowej i krajowej.\n\nZa wybitne osiągnięcia w sporcie możesz także starać się o przyznanie stypendium Ministra Zdrowia.",
+    "metadata": {
+      "category": "stypendia",
+      "source": "stypendia_stypendium_dla_sportowcow.txt",
+      "file_type": ".txt"
+    }
+  },
+  {
+    "id": "cf6a8906-8f00-442a-b050-c78a449fa326",
+    "category": "stypendia",
+    "source_file": "stypendia_drugi_kierunek.txt",
+    "content": "Chcesz zdobyć drugi zawód lub dodatkowe kompetencje?\n\nJeśli jesteś naszym studentem 1. lub 2. roku, możesz studiować drugi kierunek za połowę ceny!",
+    "metadata": {
+      "category": "stypendia",
+      "source": "stypendia_drugi_kierunek.txt",
+      "file_type": ".txt"
+    }
+  },
+  {
+    "id": "5954fc6f-0e75-4759-a08f-8295e6f40b18",
+    "category": "stypendia",
+    "source_file": "stypendia_jak_ubiegac_sie_o_stypendium.txt",
+    "content": "Jak ubiegać się o stypendium?\n \nZajrzyj do Extranetu (https://portal.wsb.pl/), w zakładce \"Druki i zniżki\"  znajdziesz tam:\n- szczegółowe informacje, \n- wzory wniosków, \n- informacje o terminach składania podań o wybrane stypendium.",
+    "metadata": {
+      "category": "stypendia",
+      "source": "stypendia_jak_ubiegac_sie_o_stypendium.txt",
+      "file_type": ".txt"
+    }
+  },
+  {
+    "id": "ed7891bb-90a3-4629-b97d-ba91555416fe",
+    "category": "stypendia",
+    "source_file": "stypendia_qa_pairs",
+    "content": "Pytanie: Jakie rodzaje stypendiów są dostępne dla studentów?\n\nOdpowiedź: Dostępne są następujące rodzaje stypendiów: stypendium rektora, stypendium socjalne, stypendium dla osób niepełnosprawnych, stypendium dla sportowców, program Erasmus, oraz stypendium dla kierunku drugiego.",
+    "metadata": {
+      "category": "stypendia",
+      "source": "qa_pair",
+      "question": "Jakie rodzaje stypendiów są dostępne dla studentów?",
+      "answer": "Dostępne są następujące rodzaje stypendiów: stypendium rektora, stypendium socjalne, stypendium dla osób niepełnosprawnych, stypendium dla sportowców, program Erasmus, oraz stypendium dla kierunku drugiego.",
+      "type": "information"
+    }
+  },
+  {
+    "id": "14448ff0-15d4-4e5b-9806-2d47f5ed08b7",
+    "category": "stypendia",
+    "source_file": "stypendia_qa_pairs",
+    "content": "Pytanie: Jak ubiegać się o stypendium?\n\nOdpowiedź: Aby ubiegać się o stypendium, należy złożyć wniosek w wyznaczonym terminie (zwykle przed sesją). Wniosek zawiera: dane osobowe, zaświadczenie o dochodach rodziny (dla stypendiów socjalnych), oraz wymagane dokumenty. Komisja rozpatruje wnioski i wydaje decyzję.",
+    "metadata": {
+      "category": "stypendia",
+      "source": "qa_pair",
+      "question": "Jak ubiegać się o stypendium?",
+      "answer": "Aby ubiegać się o stypendium, należy złożyć wniosek w wyznaczonym terminie (zwykle przed sesją). Wniosek zawiera: dane osobowe, zaświadczenie o dochodach rodziny (dla stypendiów socjalnych), oraz wymagane dokumenty. Komisja rozpatruje wnioski i wydaje decyzję.",
+      "type": "procedure"
+    }
+  },
+  {
+    "id": "7bb21cbb-1409-47ec-b528-615aac3d3fb2",
+    "category": "stypendia",
+    "source_file": "stypendia_qa_pairs",
+    "content": "Pytanie: Jaka jest wysokość stypendiów w bieżącym semestrze?\n\nOdpowiedź: Wysokość stypendiów zależy od rodzaju stypendium i sytuacji finansowej studenta. Stawki publikowane są na początku każdego semestru. Szczegółowe stawki dostępne są w informacji o funduszu stypendiów.",
+    "metadata": {
+      "category": "stypendia",
+      "source": "qa_pair",
+      "question": "Jaka jest wysokość stypendiów w bieżącym semestrze?",
+      "answer": "Wysokość stypendiów zależy od rodzaju stypendium i sytuacji finansowej studenta. Stawki publikowane są na początku każdego semestru. Szczegółowe stawki dostępne są w informacji o funduszu stypendiów.",
+      "type": "information"
+    }
+  },
+  {
+    "id": "4f3f32d7-9a2b-4a96-8485-494c392322a1",
+    "category": "stypendia",
+    "source_file": "stypendia_qa_pairs",
+    "content": "Pytanie: Czy osoby niepełnosprawne mogą ubiegać się o wyższe stypendium?\n\nOdpowiedź: Tak, dla osób z niepełnosprawnościami dostępne jest pełne stypendium socjalne niezależnie od statusu materialnego. Wymagane jest przedłożenie orzeczenia o niepełnosprawności wydanego przez PKWN.",
+    "metadata": {
+      "category": "stypendia",
+      "source": "qa_pair",
+      "question": "Czy osoby niepełnosprawne mogą ubiegać się o wyższe stypendium?",
+      "answer": "Tak, dla osób z niepełnosprawnościami dostępne jest pełne stypendium socjalne niezależnie od statusu materialnego. Wymagane jest przedłożenie orzeczenia o niepełnosprawności wydanego przez PKWN.",
+      "type": "information"
+    }
+  }
+]

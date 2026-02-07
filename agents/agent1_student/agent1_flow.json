@@ -1,0 +1,1673 @@
+{
+	"definitions": {
+		"collaboration": {
+			"participant": [
+				{
+					"_id": "Participant_13v2wvo",
+					"_name": "agent1_student",
+					"_processRef": "Process_00prx9s",
+					"__prefix": "bpmn"
+				},
+				{
+					"_id": "Participant_1u7eyox",
+					"_name": "agent5_security",
+					"_processRef": "Process_00sbkfa",
+					"__prefix": "bpmn"
+				},
+				{
+					"_id": "Participant_0hclpif",
+					"_name": "agent4_bos",
+					"_processRef": "Process_19ftoar",
+					"__prefix": "bpmn"
+				},
+				{
+					"_id": "Participant_1x8ga9i",
+					"_name": "agent3_analytics",
+					"_processRef": "Process_1r8vomp",
+					"__prefix": "bpmn"
+				},
+				{
+					"_id": "Participant_1l8vizt",
+					"_name": "agent2_ticket",
+					"_processRef": "Process_1x2yrq2",
+					"__prefix": "bpmn"
+				}
+			],
+			"messageFlow": [
+				{
+					"_id": "Flow_0jd6sdc",
+					"_sourceRef": "Activity_1v2ct6z",
+					"_targetRef": "Activity_0a6uqak",
+					"__prefix": "bpmn"
+				},
+				{
+					"_id": "Flow_0p2ctmn",
+					"_sourceRef": "Activity_1b3yr78",
+					"_targetRef": "Activity_0zvm1yn",
+					"__prefix": "bpmn"
+				},
+				{
+					"_id": "Flow_0frprs4",
+					"_sourceRef": "Activity_06mrnxh",
+					"_targetRef": "Activity_1b3yr78",
+					"__prefix": "bpmn"
+				},
+				{
+					"_id": "Flow_0grzt7q",
+					"_sourceRef": "Activity_033pd2k",
+					"_targetRef": "Activity_1d7svpw",
+					"__prefix": "bpmn"
+				},
+				{
+					"_id": "Flow_1wbecp4",
+					"_sourceRef": "Activity_1d7svpw",
+					"_targetRef": "Activity_02dpfvc",
+					"__prefix": "bpmn"
+				}
+			],
+			"_id": "Collaboration_1bphgl7",
+			"__prefix": "bpmn"
+		},
+		"process": [
+			{
+				"laneSet": {
+					"_id": "LaneSet_1yo7wzb",
+					"__prefix": "bpmn"
+				},
+				"startEvent": {
+					"outgoing": {
+						"__prefix": "bpmn",
+						"__text": "Flow_0ja9x70"
+					},
+					"_id": "StartEvent_0j6qdg0",
+					"_name": "Start nowa sesja Chatbota",
+					"__prefix": "bpmn"
+				},
+				"exclusiveGateway": [
+					{
+						"incoming": {
+							"__prefix": "bpmn",
+							"__text": "Flow_13erjc0"
+						},
+						"outgoing": [
+							{
+								"__prefix": "bpmn",
+								"__text": "Flow_04kxm4w"
+							},
+							{
+								"__prefix": "bpmn",
+								"__text": "Flow_1wrdikd"
+							}
+						],
+						"_id": "Gateway_0qbykuw",
+						"_name": "Czy zapytanie dotyczy dostępnych kategorii z bazy wiedzy?",
+						"__prefix": "bpmn"
+					},
+					{
+						"incoming": [
+							{
+								"__prefix": "bpmn",
+								"__text": "Flow_0qpisc7"
+							},
+							{
+								"__prefix": "bpmn",
+								"__text": "Flow_0063asb"
+							},
+							{
+								"__prefix": "bpmn",
+								"__text": "Flow_0bcwmqa"
+							}
+						],
+						"outgoing": [
+							{
+								"__prefix": "bpmn",
+								"__text": "Flow_17a6wmd"
+							},
+							{
+								"__prefix": "bpmn",
+								"__text": "Flow_14h0dsd"
+							}
+						],
+						"_id": "Gateway_1j6mgt1",
+						"_name": "Czy użytkownik ma kolejne pytania?",
+						"__prefix": "bpmn"
+					},
+					{
+						"incoming": {
+							"__prefix": "bpmn",
+							"__text": "Flow_14h0dsd"
+						},
+						"outgoing": [
+							{
+								"__prefix": "bpmn",
+								"__text": "Flow_0ja82b6"
+							},
+							{
+								"__prefix": "bpmn",
+								"__text": "Flow_12o9jqs"
+							}
+						],
+						"_id": "Gateway_1ytc9jm",
+						"_name": "Czy użytkownik chciałby wypełnić ankietę?",
+						"__prefix": "bpmn"
+					},
+					{
+						"incoming": {
+							"__prefix": "bpmn",
+							"__text": "Flow_1uerg36"
+						},
+						"outgoing": [
+							{
+								"__prefix": "bpmn",
+								"__text": "Flow_0qpisc7"
+							},
+							{
+								"__prefix": "bpmn",
+								"__text": "Flow_0ssbhxx"
+							}
+						],
+						"_id": "Gateway_0gmy85f",
+						"_name": "Czy użytkownik chciałby zrobić zgłoszenie do BOS",
+						"__prefix": "bpmn"
+					},
+					{
+						"incoming": {
+							"__prefix": "bpmn",
+							"__text": "Flow_00lz61s"
+						},
+						"outgoing": [
+							{
+								"__prefix": "bpmn",
+								"__text": "Flow_03u5hty"
+							},
+							{
+								"__prefix": "bpmn",
+								"__text": "Flow_0063asb"
+							}
+						],
+						"_id": "Gateway_1n75xir",
+						"_name": "Jeżeli jest zgoda RODO?",
+						"__prefix": "bpmn"
+					}
+				],
+				"userTask": [
+					{
+						"incoming": [
+							{
+								"__prefix": "bpmn",
+								"__text": "Flow_0ja9x70"
+							},
+							{
+								"__prefix": "bpmn",
+								"__text": "Flow_17a6wmd"
+							}
+						],
+						"outgoing": {
+							"__prefix": "bpmn",
+							"__text": "Flow_1ielou0"
+						},
+						"_id": "Activity_1gavgm4",
+						"_name": "Użytkownik zadaje zapytanie do chata",
+						"__prefix": "bpmn"
+					},
+					{
+						"incoming": {
+							"__prefix": "bpmn",
+							"__text": "Flow_12o9jqs"
+						},
+						"_id": "Activity_1v2ct6z",
+						"_name": "Wypełnienie ankiety",
+						"__prefix": "bpmn"
+					},
+					{
+						"incoming": {
+							"__prefix": "bpmn",
+							"__text": "Flow_0ssbhxx"
+						},
+						"outgoing": {
+							"__prefix": "bpmn",
+							"__text": "Flow_1442kvr"
+						},
+						"_id": "Activity_1h898n2",
+						"_name": "Wypełnienie formularza zgłoszenia do BOS",
+						"__prefix": "bpmn"
+					}
+				],
+				"serviceTask": [
+					{
+						"incoming": {
+							"__prefix": "bpmn",
+							"__text": "Flow_1ielou0"
+						},
+						"outgoing": {
+							"__prefix": "bpmn",
+							"__text": "Flow_13erjc0"
+						},
+						"_id": "Activity_19rpry4",
+						"_name": "Przetwarzanie zapytania przez model językowy",
+						"__prefix": "bpmn"
+					},
+					{
+						"incoming": {
+							"__prefix": "bpmn",
+							"__text": "Flow_04kxm4w"
+						},
+						"outgoing": {
+							"__prefix": "bpmn",
+							"__text": "Flow_0bcwmqa"
+						},
+						"_id": "Activity_0fnlt84",
+						"_name": "Wyświetl komunikat o braku wiedzy",
+						"__prefix": "bpmn"
+					},
+					{
+						"incoming": {
+							"__prefix": "bpmn",
+							"__text": "Flow_1wrdikd"
+						},
+						"outgoing": {
+							"__prefix": "bpmn",
+							"__text": "Flow_0iytbut"
+						},
+						"_id": "Activity_01noez8",
+						"_name": "Wyszukanie w bazie wiedzy",
+						"__prefix": "bpmn"
+					},
+					{
+						"incoming": {
+							"__prefix": "bpmn",
+							"__text": "Flow_0iytbut"
+						},
+						"outgoing": {
+							"__prefix": "bpmn",
+							"__text": "Flow_1uerg36"
+						},
+						"_id": "Activity_0cwbmwt",
+						"_name": "Chatbot generuje odpowiedź",
+						"__prefix": "bpmn"
+					},
+					{
+						"incoming": {
+							"__prefix": "bpmn",
+							"__text": "Flow_1442kvr"
+						},
+						"outgoing": {
+							"__prefix": "bpmn",
+							"__text": "Flow_00lz61s"
+						},
+						"_id": "Activity_1b3yr78",
+						"_name": "Wyślij żądanie weryfikacji RODO",
+						"__prefix": "bpmn"
+					}
+				],
+				"task": {
+					"incoming": {
+						"__prefix": "bpmn",
+						"__text": "Flow_03u5hty"
+					},
+					"_id": "Activity_033pd2k",
+					"_name": "Wysyłka zgłoszenia do BOS",
+					"__prefix": "bpmn"
+				},
+				"sequenceFlow": [
+					{
+						"_id": "Flow_0ja9x70",
+						"_sourceRef": "StartEvent_0j6qdg0",
+						"_targetRef": "Activity_1gavgm4",
+						"__prefix": "bpmn"
+					},
+					{
+						"_id": "Flow_0ja82b6",
+						"_name": "Nie",
+						"_sourceRef": "Gateway_1ytc9jm",
+						"_targetRef": "Event_0if1t0i",
+						"__prefix": "bpmn"
+					},
+					{
+						"_id": "Flow_13erjc0",
+						"_sourceRef": "Activity_19rpry4",
+						"_targetRef": "Gateway_0qbykuw",
+						"__prefix": "bpmn"
+					},
+					{
+						"_id": "Flow_04kxm4w",
+						"_name": "Nie",
+						"_sourceRef": "Gateway_0qbykuw",
+						"_targetRef": "Activity_0fnlt84",
+						"__prefix": "bpmn"
+					},
+					{
+						"_id": "Flow_1wrdikd",
+						"_name": "Tak",
+						"_sourceRef": "Gateway_0qbykuw",
+						"_targetRef": "Activity_01noez8",
+						"__prefix": "bpmn"
+					},
+					{
+						"_id": "Flow_17a6wmd",
+						"_name": "Tak",
+						"_sourceRef": "Gateway_1j6mgt1",
+						"_targetRef": "Activity_1gavgm4",
+						"__prefix": "bpmn"
+					},
+					{
+						"_id": "Flow_1ielou0",
+						"_sourceRef": "Activity_1gavgm4",
+						"_targetRef": "Activity_19rpry4",
+						"__prefix": "bpmn"
+					},
+					{
+						"_id": "Flow_0iytbut",
+						"_sourceRef": "Activity_01noez8",
+						"_targetRef": "Activity_0cwbmwt",
+						"__prefix": "bpmn"
+					},
+					{
+						"_id": "Flow_1uerg36",
+						"_sourceRef": "Activity_0cwbmwt",
+						"_targetRef": "Gateway_0gmy85f",
+						"__prefix": "bpmn"
+					},
+					{
+						"_id": "Flow_0qpisc7",
+						"_name": "Nie",
+						"_sourceRef": "Gateway_0gmy85f",
+						"_targetRef": "Gateway_1j6mgt1",
+						"__prefix": "bpmn"
+					},
+					{
+						"_id": "Flow_0063asb",
+						"_name": "Nie",
+						"_sourceRef": "Gateway_1n75xir",
+						"_targetRef": "Gateway_1j6mgt1",
+						"__prefix": "bpmn"
+					},
+					{
+						"_id": "Flow_14h0dsd",
+						"_name": "Nie",
+						"_sourceRef": "Gateway_1j6mgt1",
+						"_targetRef": "Gateway_1ytc9jm",
+						"__prefix": "bpmn"
+					},
+					{
+						"_id": "Flow_12o9jqs",
+						"_name": "Tak",
+						"_sourceRef": "Gateway_1ytc9jm",
+						"_targetRef": "Activity_1v2ct6z",
+						"__prefix": "bpmn"
+					},
+					{
+						"_id": "Flow_0ssbhxx",
+						"_name": "Tak",
+						"_sourceRef": "Gateway_0gmy85f",
+						"_targetRef": "Activity_1h898n2",
+						"__prefix": "bpmn"
+					},
+					{
+						"_id": "Flow_1442kvr",
+						"_sourceRef": "Activity_1h898n2",
+						"_targetRef": "Activity_1b3yr78",
+						"__prefix": "bpmn"
+					},
+					{
+						"_id": "Flow_00lz61s",
+						"_sourceRef": "Activity_1b3yr78",
+						"_targetRef": "Gateway_1n75xir",
+						"__prefix": "bpmn"
+					},
+					{
+						"_id": "Flow_03u5hty",
+						"_name": "Tak",
+						"_sourceRef": "Gateway_1n75xir",
+						"_targetRef": "Activity_033pd2k",
+						"__prefix": "bpmn"
+					},
+					{
+						"_id": "Flow_0bcwmqa",
+						"_sourceRef": "Activity_0fnlt84",
+						"_targetRef": "Gateway_1j6mgt1",
+						"__prefix": "bpmn"
+					}
+				],
+				"endEvent": {
+					"incoming": {
+						"__prefix": "bpmn",
+						"__text": "Flow_0ja82b6"
+					},
+					"_id": "Event_0if1t0i",
+					"_name": "Koniec sesji",
+					"__prefix": "bpmn"
+				},
+				"_id": "Process_00prx9s",
+				"_isExecutable": "false",
+				"__prefix": "bpmn"
+			},
+			{
+				"serviceTask": {
+					"outgoing": {
+						"__prefix": "bpmn",
+						"__text": "Flow_0eip024"
+					},
+					"_id": "Activity_0zvm1yn",
+					"_name": "Weryfikacja zgody RODO",
+					"__prefix": "bpmn"
+				},
+				"task": {
+					"incoming": {
+						"__prefix": "bpmn",
+						"__text": "Flow_0eip024"
+					},
+					"_id": "Activity_06mrnxh",
+					"_name": "Daj odpowiedź ze statusem zgody",
+					"__prefix": "bpmn"
+				},
+				"sequenceFlow": {
+					"_id": "Flow_0eip024",
+					"_sourceRef": "Activity_0zvm1yn",
+					"_targetRef": "Activity_06mrnxh",
+					"__prefix": "bpmn"
+				},
+				"_id": "Process_00sbkfa",
+				"__prefix": "bpmn"
+			},
+			{
+				"sequenceFlow": {
+					"_id": "Flow_1vpf5mq",
+					"_sourceRef": "Activity_02dpfvc",
+					"_targetRef": "Event_0ocfwwx",
+					"__prefix": "bpmn"
+				},
+				"task": {
+					"outgoing": {
+						"__prefix": "bpmn",
+						"__text": "Flow_1vpf5mq"
+					},
+					"_id": "Activity_02dpfvc",
+					"_name": "Realizacja zgłoszenia",
+					"__prefix": "bpmn"
+				},
+				"endEvent": {
+					"incoming": {
+						"__prefix": "bpmn",
+						"__text": "Flow_1vpf5mq"
+					},
+					"_id": "Event_0ocfwwx",
+					"_name": "Koniec procesu",
+					"__prefix": "bpmn"
+				},
+				"_id": "Process_19ftoar",
+				"__prefix": "bpmn"
+			},
+			{
+				"task": {
+					"outgoing": {
+						"__prefix": "bpmn",
+						"__text": "Flow_1kp5kyi"
+					},
+					"_id": "Activity_0a6uqak",
+					"_name": "Odbiór danych z ankiety",
+					"__prefix": "bpmn"
+				},
+				"endEvent": {
+					"incoming": {
+						"__prefix": "bpmn",
+						"__text": "Flow_1kp5kyi"
+					},
+					"_id": "Event_1pvgdgv",
+					"_name": "Koniec procesu",
+					"__prefix": "bpmn"
+				},
+				"sequenceFlow": {
+					"_id": "Flow_1kp5kyi",
+					"_sourceRef": "Activity_0a6uqak",
+					"_targetRef": "Event_1pvgdgv",
+					"__prefix": "bpmn"
+				},
+				"_id": "Process_1r8vomp",
+				"__prefix": "bpmn"
+			},
+			{
+				"task": {
+					"_id": "Activity_1d7svpw",
+					"_name": "Otrzymanie zgłoszenia",
+					"__prefix": "bpmn"
+				},
+				"_id": "Process_1x2yrq2",
+				"__prefix": "bpmn"
+			}
+		],
+		"BPMNDiagram": {
+			"BPMNPlane": {
+				"BPMNShape": [
+					{
+						"Bounds": {
+							"_x": "160",
+							"_y": "80",
+							"_width": "1180",
+							"_height": "510",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"__prefix": "bpmndi"
+						},
+						"_id": "Participant_13v2wvo_di",
+						"_bpmnElement": "Participant_13v2wvo",
+						"_isHorizontal": "true",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "259",
+							"_y": "192",
+							"_width": "36",
+							"_height": "36",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"Bounds": {
+								"_x": "237",
+								"_y": "235",
+								"_width": "82",
+								"_height": "27",
+								"__prefix": "dc"
+							},
+							"__prefix": "bpmndi"
+						},
+						"_id": "_BPMNShape_StartEvent_2",
+						"_bpmnElement": "StartEvent_0j6qdg0",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "682",
+							"_y": "185",
+							"_width": "50",
+							"_height": "50",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"Bounds": {
+								"_x": "669",
+								"_y": "242",
+								"_width": "77",
+								"_height": "66",
+								"__prefix": "dc"
+							},
+							"__prefix": "bpmndi"
+						},
+						"_id": "Gateway_0qbykuw_di",
+						"_bpmnElement": "Gateway_0qbykuw",
+						"_isMarkerVisible": "true",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "357",
+							"_y": "170",
+							"_width": "100",
+							"_height": "80",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"__prefix": "bpmndi"
+						},
+						"_id": "Activity_1gavgm4_di",
+						"_bpmnElement": "Activity_1gavgm4",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "517",
+							"_y": "170",
+							"_width": "100",
+							"_height": "80",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"__prefix": "bpmndi"
+						},
+						"_id": "Activity_19rpry4_di",
+						"_bpmnElement": "Activity_19rpry4",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "810",
+							"_y": "120",
+							"_width": "100",
+							"_height": "80",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"__prefix": "bpmndi"
+						},
+						"_id": "Activity_0fnlt84_di",
+						"_bpmnElement": "Activity_0fnlt84",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "810",
+							"_y": "210",
+							"_width": "100",
+							"_height": "80",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"__prefix": "bpmndi"
+						},
+						"_id": "Activity_01noez8_di",
+						"_bpmnElement": "Activity_01noez8",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "957",
+							"_y": "210",
+							"_width": "100",
+							"_height": "80",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"__prefix": "bpmndi"
+						},
+						"_id": "Activity_0cwbmwt_di",
+						"_bpmnElement": "Activity_0cwbmwt",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "762",
+							"_y": "345",
+							"_width": "50",
+							"_height": "50",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"Bounds": {
+								"_x": "788",
+								"_y": "390",
+								"_width": "77",
+								"_height": "40",
+								"__prefix": "dc"
+							},
+							"__prefix": "bpmndi"
+						},
+						"_id": "Gateway_1j6mgt1_di",
+						"_bpmnElement": "Gateway_1j6mgt1",
+						"_isMarkerVisible": "true",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "512",
+							"_y": "385",
+							"_width": "50",
+							"_height": "50",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"Bounds": {
+								"_x": "434",
+								"_y": "420",
+								"_width": "86",
+								"_height": "40",
+								"__prefix": "dc"
+							},
+							"__prefix": "bpmndi"
+						},
+						"_id": "Gateway_1ytc9jm_di",
+						"_bpmnElement": "Gateway_1ytc9jm",
+						"_isMarkerVisible": "true",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "1135",
+							"_y": "225",
+							"_width": "50",
+							"_height": "50",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"Bounds": {
+								"_x": "1121",
+								"_y": "173.5",
+								"_width": "77",
+								"_height": "53",
+								"__prefix": "dc"
+							},
+							"__prefix": "bpmndi"
+						},
+						"_id": "Gateway_0gmy85f_di",
+						"_bpmnElement": "Gateway_0gmy85f",
+						"_isMarkerVisible": "true",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "487",
+							"_y": "480",
+							"_width": "100",
+							"_height": "80",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"__prefix": "bpmndi"
+						},
+						"_id": "Activity_1v2ct6z_di",
+						"_bpmnElement": "Activity_1v2ct6z",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "1150",
+							"_y": "480",
+							"_width": "100",
+							"_height": "80",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"__prefix": "bpmndi"
+						},
+						"_id": "Activity_1h898n2_di",
+						"_bpmnElement": "Activity_1h898n2",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "920",
+							"_y": "480",
+							"_width": "100",
+							"_height": "80",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"__prefix": "bpmndi"
+						},
+						"_id": "Activity_1b3yr78_di",
+						"_bpmnElement": "Activity_1b3yr78",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "657",
+							"_y": "480",
+							"_width": "100",
+							"_height": "80",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"__prefix": "bpmndi"
+						},
+						"_id": "Activity_033pd2k_di",
+						"_bpmnElement": "Activity_033pd2k",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "815",
+							"_y": "495",
+							"_width": "50",
+							"_height": "50",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"Bounds": {
+								"_x": "804",
+								"_y": "552",
+								"_width": "72",
+								"_height": "27",
+								"__prefix": "dc"
+							},
+							"__prefix": "bpmndi"
+						},
+						"_id": "Gateway_1n75xir_di",
+						"_bpmnElement": "Gateway_1n75xir",
+						"_isMarkerVisible": "true",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "259",
+							"_y": "392",
+							"_width": "36",
+							"_height": "36",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"Bounds": {
+								"_x": "248",
+								"_y": "435",
+								"_width": "59",
+								"_height": "14",
+								"__prefix": "dc"
+							},
+							"__prefix": "bpmndi"
+						},
+						"_id": "Event_0if1t0i_di",
+						"_bpmnElement": "Event_0if1t0i",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "160",
+							"_y": "1210",
+							"_width": "1180",
+							"_height": "250",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"__prefix": "bpmndi"
+						},
+						"_id": "Participant_1u7eyox_di",
+						"_bpmnElement": "Participant_1u7eyox",
+						"_isHorizontal": "true",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "1000",
+							"_y": "1310",
+							"_width": "100",
+							"_height": "80",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"__prefix": "bpmndi"
+						},
+						"_id": "Activity_0zvm1yn_di",
+						"_bpmnElement": "Activity_0zvm1yn",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "850",
+							"_y": "1310",
+							"_width": "100",
+							"_height": "80",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"__prefix": "bpmndi"
+						},
+						"_id": "Activity_06mrnxh_di",
+						"_bpmnElement": "Activity_06mrnxh",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "160",
+							"_y": "960",
+							"_width": "1180",
+							"_height": "250",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"__prefix": "bpmndi"
+						},
+						"_id": "Participant_0hclpif_di",
+						"_bpmnElement": "Participant_0hclpif",
+						"_isHorizontal": "true",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "660",
+							"_y": "1010",
+							"_width": "100",
+							"_height": "80",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"__prefix": "bpmndi"
+						},
+						"_id": "Activity_02dpfvc_di",
+						"_bpmnElement": "Activity_02dpfvc",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "692",
+							"_y": "1132",
+							"_width": "36",
+							"_height": "36",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"Bounds": {
+								"_x": "672",
+								"_y": "1175",
+								"_width": "76",
+								"_height": "14",
+								"__prefix": "dc"
+							},
+							"__prefix": "bpmndi"
+						},
+						"_id": "Event_0ocfwwx_di",
+						"_bpmnElement": "Event_0ocfwwx",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "160",
+							"_y": "710",
+							"_width": "1180",
+							"_height": "250",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"__prefix": "bpmndi"
+						},
+						"_id": "Participant_1x8ga9i_di",
+						"_bpmnElement": "Participant_1x8ga9i",
+						"_isHorizontal": "true",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "490",
+							"_y": "780",
+							"_width": "100",
+							"_height": "80",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"__prefix": "bpmndi"
+						},
+						"_id": "Activity_0a6uqak_di",
+						"_bpmnElement": "Activity_0a6uqak",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "522",
+							"_y": "892",
+							"_width": "36",
+							"_height": "36",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"Bounds": {
+								"_x": "502",
+								"_y": "935",
+								"_width": "76",
+								"_height": "14",
+								"__prefix": "dc"
+							},
+							"__prefix": "bpmndi"
+						},
+						"_id": "Event_1pvgdgv_di",
+						"_bpmnElement": "Event_1pvgdgv",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "160",
+							"_y": "590",
+							"_width": "1180",
+							"_height": "120",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"__prefix": "bpmndi"
+						},
+						"_id": "Participant_1l8vizt_di",
+						"_bpmnElement": "Participant_1l8vizt",
+						"_isHorizontal": "true",
+						"__prefix": "bpmndi"
+					},
+					{
+						"Bounds": {
+							"_x": "660",
+							"_y": "610",
+							"_width": "100",
+							"_height": "80",
+							"__prefix": "dc"
+						},
+						"BPMNLabel": {
+							"__prefix": "bpmndi"
+						},
+						"_id": "Activity_1d7svpw_di",
+						"_bpmnElement": "Activity_1d7svpw",
+						"__prefix": "bpmndi"
+					}
+				],
+				"BPMNEdge": [
+					{
+						"waypoint": [
+							{
+								"_x": "295",
+								"_y": "210",
+								"__prefix": "di"
+							},
+							{
+								"_x": "357",
+								"_y": "210",
+								"__prefix": "di"
+							}
+						],
+						"_id": "Flow_0ja9x70_di",
+						"_bpmnElement": "Flow_0ja9x70",
+						"__prefix": "bpmndi"
+					},
+					{
+						"waypoint": [
+							{
+								"_x": "512",
+								"_y": "410",
+								"__prefix": "di"
+							},
+							{
+								"_x": "295",
+								"_y": "410",
+								"__prefix": "di"
+							}
+						],
+						"BPMNLabel": {
+							"Bounds": {
+								"_x": "334",
+								"_y": "397",
+								"_width": "17",
+								"_height": "14",
+								"__prefix": "dc"
+							},
+							"__prefix": "bpmndi"
+						},
+						"_id": "Flow_0ja82b6_di",
+						"_bpmnElement": "Flow_0ja82b6",
+						"__prefix": "bpmndi"
+					},
+					{
+						"waypoint": [
+							{
+								"_x": "617",
+								"_y": "210",
+								"__prefix": "di"
+							},
+							{
+								"_x": "682",
+								"_y": "210",
+								"__prefix": "di"
+							}
+						],
+						"_id": "Flow_13erjc0_di",
+						"_bpmnElement": "Flow_13erjc0",
+						"__prefix": "bpmndi"
+					},
+					{
+						"waypoint": [
+							{
+								"_x": "707",
+								"_y": "185",
+								"__prefix": "di"
+							},
+							{
+								"_x": "707",
+								"_y": "160",
+								"__prefix": "di"
+							},
+							{
+								"_x": "810",
+								"_y": "160",
+								"__prefix": "di"
+							}
+						],
+						"BPMNLabel": {
+							"Bounds": {
+								"_x": "748",
+								"_y": "142",
+								"_width": "17",
+								"_height": "14",
+								"__prefix": "dc"
+							},
+							"__prefix": "bpmndi"
+						},
+						"_id": "Flow_04kxm4w_di",
+						"_bpmnElement": "Flow_04kxm4w",
+						"__prefix": "bpmndi"
+					},
+					{
+						"waypoint": [
+							{
+								"_x": "712",
+								"_y": "230",
+								"__prefix": "di"
+							},
+							{
+								"_x": "771",
+								"_y": "230",
+								"__prefix": "di"
+							},
+							{
+								"_x": "771",
+								"_y": "250",
+								"__prefix": "di"
+							},
+							{
+								"_x": "810",
+								"_y": "250",
+								"__prefix": "di"
+							}
+						],
+						"BPMNLabel": {
+							"Bounds": {
+								"_x": "771",
+								"_y": "220",
+								"_width": "19",
+								"_height": "14",
+								"__prefix": "dc"
+							},
+							"__prefix": "bpmndi"
+						},
+						"_id": "Flow_1wrdikd_di",
+						"_bpmnElement": "Flow_1wrdikd",
+						"__prefix": "bpmndi"
+					},
+					{
+						"waypoint": [
+							{
+								"_x": "762",
+								"_y": "370",
+								"__prefix": "di"
+							},
+							{
+								"_x": "437",
+								"_y": "370",
+								"__prefix": "di"
+							},
+							{
+								"_x": "437",
+								"_y": "250",
+								"__prefix": "di"
+							}
+						],
+						"BPMNLabel": {
+							"Bounds": {
+								"_x": "636",
+								"_y": "352",
+								"_width": "19",
+								"_height": "14",
+								"__prefix": "dc"
+							},
+							"__prefix": "bpmndi"
+						},
+						"_id": "Flow_17a6wmd_di",
+						"_bpmnElement": "Flow_17a6wmd",
+						"__prefix": "bpmndi"
+					},
+					{
+						"waypoint": [
+							{
+								"_x": "457",
+								"_y": "210",
+								"__prefix": "di"
+							},
+							{
+								"_x": "517",
+								"_y": "210",
+								"__prefix": "di"
+							}
+						],
+						"_id": "Flow_1ielou0_di",
+						"_bpmnElement": "Flow_1ielou0",
+						"__prefix": "bpmndi"
+					},
+					{
+						"waypoint": [
+							{
+								"_x": "910",
+								"_y": "250",
+								"__prefix": "di"
+							},
+							{
+								"_x": "957",
+								"_y": "250",
+								"__prefix": "di"
+							}
+						],
+						"_id": "Flow_0iytbut_di",
+						"_bpmnElement": "Flow_0iytbut",
+						"__prefix": "bpmndi"
+					},
+					{
+						"waypoint": [
+							{
+								"_x": "1057",
+								"_y": "250",
+								"__prefix": "di"
+							},
+							{
+								"_x": "1135",
+								"_y": "250",
+								"__prefix": "di"
+							}
+						],
+						"_id": "Flow_1uerg36_di",
+						"_bpmnElement": "Flow_1uerg36",
+						"__prefix": "bpmndi"
+					},
+					{
+						"waypoint": [
+							{
+								"_x": "1160",
+								"_y": "275",
+								"__prefix": "di"
+							},
+							{
+								"_x": "1160",
+								"_y": "370",
+								"__prefix": "di"
+							},
+							{
+								"_x": "812",
+								"_y": "370",
+								"__prefix": "di"
+							}
+						],
+						"BPMNLabel": {
+							"Bounds": {
+								"_x": "1071",
+								"_y": "352",
+								"_width": "17",
+								"_height": "14",
+								"__prefix": "dc"
+							},
+							"__prefix": "bpmndi"
+						},
+						"_id": "Flow_0qpisc7_di",
+						"_bpmnElement": "Flow_0qpisc7",
+						"__prefix": "bpmndi"
+					},
+					{
+						"waypoint": [
+							{
+								"_x": "840",
+								"_y": "495",
+								"__prefix": "di"
+							},
+							{
+								"_x": "840",
+								"_y": "370",
+								"__prefix": "di"
+							},
+							{
+								"_x": "812",
+								"_y": "370",
+								"__prefix": "di"
+							}
+						],
+						"BPMNLabel": {
+							"Bounds": {
+								"_x": "847",
+								"_y": "430",
+								"_width": "17",
+								"_height": "14",
+								"__prefix": "dc"
+							},
+							"__prefix": "bpmndi"
+						},
+						"_id": "Flow_0063asb_di",
+						"_bpmnElement": "Flow_0063asb",
+						"__prefix": "bpmndi"
+					},
+					{
+						"waypoint": [
+							{
+								"_x": "787",
+								"_y": "395",
+								"__prefix": "di"
+							},
+							{
+								"_x": "787",
+								"_y": "410",
+								"__prefix": "di"
+							},
+							{
+								"_x": "562",
+								"_y": "410",
+								"__prefix": "di"
+							}
+						],
+						"BPMNLabel": {
+							"Bounds": {
+								"_x": "637",
+								"_y": "393",
+								"_width": "17",
+								"_height": "14",
+								"__prefix": "dc"
+							},
+							"__prefix": "bpmndi"
+						},
+						"_id": "Flow_14h0dsd_di",
+						"_bpmnElement": "Flow_14h0dsd",
+						"__prefix": "bpmndi"
+					},
+					{
+						"waypoint": [
+							{
+								"_x": "537",
+								"_y": "435",
+								"__prefix": "di"
+							},
+							{
+								"_x": "537",
+								"_y": "480",
+								"__prefix": "di"
+							}
+						],
+						"BPMNLabel": {
+							"Bounds": {
+								"_x": "543",
+								"_y": "455",
+								"_width": "18",
+								"_height": "14",
+								"__prefix": "dc"
+							},
+							"__prefix": "bpmndi"
+						},
+						"_id": "Flow_12o9jqs_di",
+						"_bpmnElement": "Flow_12o9jqs",
+						"__prefix": "bpmndi"
+					},
+					{
+						"waypoint": [
+							{
+								"_x": "1185",
+								"_y": "250",
+								"__prefix": "di"
+							},
+							{
+								"_x": "1200",
+								"_y": "250",
+								"__prefix": "di"
+							},
+							{
+								"_x": "1200",
+								"_y": "480",
+								"__prefix": "di"
+							}
+						],
+						"BPMNLabel": {
+							"Bounds": {
+								"_x": "1211",
+								"_y": "358",
+								"_width": "18",
+								"_height": "14",
+								"__prefix": "dc"
+							},
+							"__prefix": "bpmndi"
+						},
+						"_id": "Flow_0ssbhxx_di",
+						"_bpmnElement": "Flow_0ssbhxx",
+						"__prefix": "bpmndi"
+					},
+					{
+						"waypoint": [
+							{
+								"_x": "1150",
+								"_y": "520",
+								"__prefix": "di"
+							},
+							{
+								"_x": "1020",
+								"_y": "520",
+								"__prefix": "di"
+							}
+						],
+						"_id": "Flow_1442kvr_di",
+						"_bpmnElement": "Flow_1442kvr",
+						"__prefix": "bpmndi"
+					},
+					{
+						"waypoint": [
+							{
+								"_x": "920",
+								"_y": "520",
+								"__prefix": "di"
+							},
+							{
+								"_x": "865",
+								"_y": "520",
+								"__prefix": "di"
+							}
+						],
+						"_id": "Flow_00lz61s_di",
+						"_bpmnElement": "Flow_00lz61s",
+						"__prefix": "bpmndi"
+					},
+					{
+						"waypoint": [
+							{
+								"_x": "815",
+								"_y": "520",
+								"__prefix": "di"
+							},
+							{
+								"_x": "757",
+								"_y": "520",
+								"__prefix": "di"
+							}
+						],
+						"BPMNLabel": {
+							"Bounds": {
+								"_x": "777",
+								"_y": "502",
+								"_width": "18",
+								"_height": "14",
+								"__prefix": "dc"
+							},
+							"__prefix": "bpmndi"
+						},
+						"_id": "Flow_03u5hty_di",
+						"_bpmnElement": "Flow_03u5hty",
+						"__prefix": "bpmndi"
+					},
+					{
+						"waypoint": [
+							{
+								"_x": "910",
+								"_y": "160",
+								"__prefix": "di"
+							},
+							{
+								"_x": "930",
+								"_y": "160",
+								"__prefix": "di"
+							},
+							{
+								"_x": "930",
+								"_y": "320",
+								"__prefix": "di"
+							},
+							{
+								"_x": "787",
+								"_y": "320",
+								"__prefix": "di"
+							},
+							{
+								"_x": "787",
+								"_y": "345",
+								"__prefix": "di"
+							}
+						],
+						"_id": "Flow_0bcwmqa_di",
+						"_bpmnElement": "Flow_0bcwmqa",
+						"__prefix": "bpmndi"
+					},
+					{
+						"waypoint": [
+							{
+								"_x": "1000",
+								"_y": "1350",
+								"__prefix": "di"
+							},
+							{
+								"_x": "950",
+								"_y": "1350",
+								"__prefix": "di"
+							}
+						],
+						"_id": "Flow_0eip024_di",
+						"_bpmnElement": "Flow_0eip024",
+						"__prefix": "bpmndi"
+					},
+					{
+						"waypoint": [
+							{
+								"_x": "710",
+								"_y": "1090",
+								"__prefix": "di"
+							},
+							{
+								"_x": "710",
+								"_y": "1132",
+								"__prefix": "di"
+							}
+						],
+						"_id": "Flow_1vpf5mq_di",
+						"_bpmnElement": "Flow_1vpf5mq",
+						"__prefix": "bpmndi"
+					},
+					{
+						"waypoint": [
+							{
+								"_x": "540",
+								"_y": "860",
+								"__prefix": "di"
+							},
+							{
+								"_x": "540",
+								"_y": "892",
+								"__prefix": "di"
+							}
+						],
+						"_id": "Flow_1kp5kyi_di",
+						"_bpmnElement": "Flow_1kp5kyi",
+						"__prefix": "bpmndi"
+					},
+					{
+						"waypoint": [
+							{
+								"_x": "538",
+								"_y": "560",
+								"__prefix": "di"
+							},
+							{
+								"_x": "538",
+								"_y": "780",
+								"__prefix": "di"
+							}
+						],
+						"_id": "Flow_0jd6sdc_di",
+						"_bpmnElement": "Flow_0jd6sdc",
+						"__prefix": "bpmndi"
+					},
+					{
+						"waypoint": [
+							{
+								"_x": "990",
+								"_y": "560",
+								"__prefix": "di"
+							},
+							{
+								"_x": "990",
+								"_y": "935",
+								"__prefix": "di"
+							},
+							{
+								"_x": "1040",
+								"_y": "935",
+								"__prefix": "di"
+							},
+							{
+								"_x": "1040",
+								"_y": "1310",
+								"__prefix": "di"
+							}
+						],
+						"_id": "Flow_0p2ctmn_di",
+						"_bpmnElement": "Flow_0p2ctmn",
+						"__prefix": "bpmndi"
+					},
+					{
+						"waypoint": [
+							{
+								"_x": "900",
+								"_y": "1310",
+								"__prefix": "di"
+							},
+							{
+								"_x": "900",
+								"_y": "935",
+								"__prefix": "di"
+							},
+							{
+								"_x": "940",
+								"_y": "935",
+								"__prefix": "di"
+							},
+							{
+								"_x": "940",
+								"_y": "560",
+								"__prefix": "di"
+							}
+						],
+						"_id": "Flow_0frprs4_di",
+						"_bpmnElement": "Flow_0frprs4",
+						"__prefix": "bpmndi"
+					},
+					{
+						"waypoint": [
+							{
+								"_x": "705",
+								"_y": "560",
+								"__prefix": "di"
+							},
+							{
+								"_x": "705",
+								"_y": "610",
+								"__prefix": "di"
+							}
+						],
+						"_id": "Flow_0grzt7q_di",
+						"_bpmnElement": "Flow_0grzt7q",
+						"__prefix": "bpmndi"
+					},
+					{
+						"waypoint": [
+							{
+								"_x": "705",
+								"_y": "691",
+								"__prefix": "di"
+							},
+							{
+								"_x": "705",
+								"_y": "1010",
+								"__prefix": "di"
+							}
+						],
+						"_id": "Flow_1wbecp4_di",
+						"_bpmnElement": "Flow_1wbecp4",
+						"__prefix": "bpmndi"
+					}
+				],
+				"_id": "BPMNPlane_1",
+				"_bpmnElement": "Collaboration_1bphgl7",
+				"__prefix": "bpmndi"
+			},
+			"_id": "BPMNDiagram_1",
+			"__prefix": "bpmndi"
+		},
+		"_xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+		"_xmlns:bpmn": "http://www.omg.org/spec/BPMN/20100524/MODEL",
+		"_xmlns:bpmndi": "http://www.omg.org/spec/BPMN/20100524/DI",
+		"_xmlns:dc": "http://www.omg.org/spec/DD/20100524/DC",
+		"_xmlns:di": "http://www.omg.org/spec/DD/20100524/DI",
+		"_id": "Definitions_0yacmhq",
+		"_targetNamespace": "http://bpmn.io/schema/bpmn",
+		"_exporter": "bpmn-js (https://demo.bpmn.io)",
+		"_exporterVersion": "18.10.1",
+		"__prefix": "bpmn"
+	}
+}

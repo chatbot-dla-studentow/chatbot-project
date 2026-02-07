@@ -1,0 +1,29 @@
+{
+  "category": "urlopy_zwolnienia",
+  "qa_pairs": [
+    {
+      "question": "Kiedy mogę wziąć urlop dziekański?",
+      "answer": "Urlop dziekański (zwolnienie z zajęć) przyznawane jest ze względów zdrowotnych, osobistych lub zawodowych. Urlop na zwykle przyznawany na okres od kilku dni do kilku tygodni. Wniosek należy złożyć w dekanatcie.",
+      "category": "urlopy_zwolnienia",
+      "type": "procedure",
+      "id": "49878116-2f6c-4eb3-99ff-90c94d56182d",
+      "metadata": {
+        "category": "urlopy_zwolnienia",
+        "type": "procedure",
+        "source": "manually_created_qa_pair"
+      }
+    },
+    {
+      "question": "Czy mogę być zwolniony z zajęć z wychowania fizycznego?",
+      "answer": "Tak, zwolnienie z WF możliwe jest na podstawie zaświadczenia lekarskiego. Zaświadczenie powinno zawierać wskazania do zwolnienia z zajęć i okres jego ważności. Zwolnienie składa się u wyznaczonego pracownika dziekanatu.",
+      "category": "urlopy_zwolnienia",
+      "type": "procedure",
+      "id": "7ade5559-d61b-457b-8ea4-58dd51abb5d4",
+      "metadata": {
+        "category": "urlopy_zwolnienia",
+        "type": "procedure",
+        "source": "manually_created_qa_pair"
+      }
+    }
+  ]
+}

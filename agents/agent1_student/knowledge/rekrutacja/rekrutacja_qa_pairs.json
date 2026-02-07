@@ -1,0 +1,53 @@
+{
+  "category": "rekrutacja",
+  "qa_pairs": [
+    {
+      "question": "Jakie są warunki przyjęcia na studia?",
+      "answer": "Warunkami przyjęcia są: posiadanie świadectwa maturalności, spełnienie kryteriów punktowych, oraz przystąpienie do procesu rekrutacji. Szczegółowe warunki dla poszczególnych kierunków dostępne są w Regulaminie Rekrutacji.",
+      "category": "rekrutacja",
+      "type": "information",
+      "id": "9cdc285b-6da1-42a0-8d65-c3864cd3fd06",
+      "metadata": {
+        "category": "rekrutacja",
+        "type": "information",
+        "source": "manually_created_qa_pair"
+      }
+    },
+    {
+      "question": "Czy mogę zmienić kierunek studiów?",
+      "answer": "Tak, zmiana kierunku jest możliwa. Aby zmienić kierunek, należy złożyć odpowiednie podanie w dekanatcie. Zmiana wymagana przepisu do wykazania zgodności programów studiów i uwzględniania już zdobytych punktów ECTS.",
+      "category": "rekrutacja",
+      "type": "procedure",
+      "id": "3401aca1-cb00-475d-bad1-1bd9b00a38be",
+      "metadata": {
+        "category": "rekrutacja",
+        "type": "procedure",
+        "source": "manually_created_qa_pair"
+      }
+    },
+    {
+      "question": "Jak wznowić naukę po przerwaniu studiów?",
+      "answer": "Aby wznowić naukę, należy złożyć wniosek o wznowienie studiów. Wymagane jest zapoznanie się z aktualnym regulaminem studiów. Biuro weryfikuje warunki i wydaje decyzję w sprawie wznowienia.",
+      "category": "rekrutacja",
+      "type": "procedure",
+      "id": "f990900d-7e2e-4250-b6f8-07f9d49f82ca",
+      "metadata": {
+        "category": "rekrutacja",
+        "type": "procedure",
+        "source": "manually_created_qa_pair"
+      }
+    },
+    {
+      "question": "Czy mogę zrezygnować ze studiów?",
+      "answer": "Tak, rezygnacja ze studiów jest możliwa. Należy złożyć odpowiednie podanie o rezygnacji w dekanatcie. Po zatwierdzeniu wniosku student otrzymuje zaświadczenie o odbyciu studiów.",
+      "category": "rekrutacja",
+      "type": "procedure",
+      "id": "8fe096da-6466-462c-9030-e0e42e97d155",
+      "metadata": {
+        "category": "rekrutacja",
+        "type": "procedure",
+        "source": "manually_created_qa_pair"
+      }
+    }
+  ]
+}

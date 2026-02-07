@@ -1,0 +1,53 @@
+{
+  "category": "egzaminy",
+  "qa_pairs": [
+    {
+      "question": "Jak wygląda procedura obrony pracy dyplomowej?",
+      "answer": "Obrona pracy dyplomowej odbywa się przed komisją złożoną z promotora i recenzentów. Student prezentuje pracę, a następnie odpowiada na pytania komisji. Ostateczna ocena ustalana jest przez komisję na podstawie oceny pracy i przebiegu obrony.",
+      "category": "egzaminy",
+      "type": "procedure",
+      "id": "d8bf7a8d-60d0-4136-b033-13d15a718c84",
+      "metadata": {
+        "category": "egzaminy",
+        "type": "procedure",
+        "source": "manually_created_qa_pair"
+      }
+    },
+    {
+      "question": "Kiedy odbywa się harmonogram obron prac dyplomowych?",
+      "answer": "Harmonogram obron publikowany jest co semestr. Obiekcie dyplomowe odbywają się zazwyczaj w okresie egzaminacyjnym. Dokładne daty i godziny dostępne są w systemie i na stronie wydziału.",
+      "category": "egzaminy",
+      "type": "information",
+      "id": "648fecce-da46-45b9-97f3-661f434b10fe",
+      "metadata": {
+        "category": "egzaminy",
+        "type": "information",
+        "source": "manually_created_qa_pair"
+      }
+    },
+    {
+      "question": "Jak złożyć reklamację na ocenę z egzaminu?",
+      "answer": "Reklamację na ocenę egzaminu można złożyć w ciągu 5 dni od ogłoszenia wyniku. Formularz reklamacji dostępny jest w dekanatcie. Reklamacja powinna zawierać uzasadnienie i być złożona u prowadzącego zajęcia.",
+      "category": "egzaminy",
+      "type": "procedure",
+      "id": "ca5c0503-a669-4b09-87fe-8a256da2df04",
+      "metadata": {
+        "category": "egzaminy",
+        "type": "procedure",
+        "source": "manually_created_qa_pair"
+      }
+    },
+    {
+      "question": "Czy mogę poprosić o przedłużenie sesji egzaminacyjnej?",
+      "answer": "Tak, możliwe jest przedłużenie sesji egzaminacyjnej ze względów zdrowotnych lub innych ważnych powodów. Wniosek należy złożyć z załączonym uzasadnieniem i dokumentacją. Decyzję podejmuje dziekanat.",
+      "category": "egzaminy",
+      "type": "procedure",
+      "id": "a9dfab54-d83d-43c3-8613-d7fb3df07645",
+      "metadata": {
+        "category": "egzaminy",
+        "type": "procedure",
+        "source": "manually_created_qa_pair"
+      }
+    }
+  ]
+}

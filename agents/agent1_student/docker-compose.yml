@@ -1,0 +1,15 @@
+services:
+  agent1_student:
+    build: .
+    container_name: agent1_student
+    ports:
+      - "8001:8000"
+    networks:
+      - ai_network
+    environment:
+      - COLLECTION=agent1_student
+      - NODERED_URL=http://node-red:1880
+
+networks:
+  ai_network:
+    external: true
