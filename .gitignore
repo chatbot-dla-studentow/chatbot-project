@@ -30,9 +30,6 @@ qdrant/backups/
 wg-client.conf
 *.conf
 
-# Stary projekt - nie używany
-old_mvp/
-
 # system Windows
 Thumbs.db
 Desktop.ini

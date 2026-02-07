@@ -782,6 +782,76 @@ async def ollama_version_webui():
     return await ollama_version()
 
 
+@app.post("/api/pull")
+async def ollama_pull(payload: dict):
+    """
+    Endpoint /api/pull - pobieranie modelu z Ollama.
+    Proxy do Ollama dla Open WebUI.
+    """
+    try:
+        async with httpx.AsyncClient(timeout=600.0) as client:
+            response = await client.post(
+                "http://ollama:11434/api/pull",
+                json=payload
+            )
+            
+            if payload.get("stream", False):
+                from fastapi.responses import StreamingResponse
+                return StreamingResponse(
+                    response.iter_bytes(),
+                    media_type="application/x-ndjson"
+                )
+            else:
+                return response.json()
+    except Exception as e:
+        logger.error(f"Błąd w /api/pull: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/ollama/api/pull")
+async def ollama_pull_webui(payload: dict):
+    """Endpoint dla Open WebUI z prefixem /ollama/."""
+    return await ollama_pull(payload)
+
+
+@app.post("/api/push")
+async def ollama_push(payload: dict):
+    """Endpoint /api/push - publikowanie modelu."""
+    try:
+        async with httpx.AsyncClient(timeout=600.0) as client:
+            response = await client.post(
+                "http://ollama:11434/api/push",
+                json=payload
+            )
+            
+            if payload.get("stream", False):
+                from fastapi.responses import StreamingResponse
+                return StreamingResponse(
+                    response.iter_bytes(),
+                    media_type="application/x-ndjson"
+                )
+            else:
+                return response.json()
+    except Exception as e:
+        logger.error(f"Błąd w /api/push: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.delete("/api/delete")
+async def ollama_delete(payload: dict):
+    """Endpoint /api/delete - usuwanie modelu."""
+    try:
+        async with httpx.AsyncClient(timeout=30.0) as client:
+            response = await client.delete(
+                "http://ollama:11434/api/delete",
+                json=payload
+            )
+            return response.json()
+    except Exception as e:
+        logger.error(f"Błąd w /api/delete: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 # ============================================================================
 # ENDPOINTY ADMINISTRACYJNE DLA LOGÓW
 # ============================================================================
