@@ -180,7 +180,12 @@ done
 ### Główne Dokumenty
 - **[DEPLOYMENT.md](DEPLOYMENT.md)** - Instrukcja wdrożenia i dostępu
 - **[TEAM_TASKS.md](TEAM_TASKS.md)** - Podział zadań zespołu
-- **[agents/agent1_student/README.md](agents/agent1_student/README.md)** - Dokumentacja Agent1
+
+### Dokumentacja Agentów
+- **[docs_agent1/](docs_agent1/INDEX.md)** - Kompletna dokumentacja Agent1 Student
+  - Architektura RAG, API, Quick Start
+  - System logowania i kategoryzacji
+  - Raporty implementacji i testów
 
 ### API Endpoints
 
