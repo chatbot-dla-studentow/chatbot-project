@@ -173,8 +173,17 @@ python load_knowledge_base.py
 **Qdrant Dashboard:**
 - URL: http://localhost:6333/dashboard
 
-**Node-RED:**
+**Node-RED (Orkiestracja Workflow):**
 - URL: http://localhost:1880
+- Edytor flow: http://localhost:1880 (GUI w przeglądarce)
+- Funkcje:
+  - Wizualna orkiestracja przepływu danych między agentami
+  - Routing zapytań do odpowiednich agentów
+  - Automatyzacja procesów
+- Integracja z Agent1:
+  - Endpoint publikacji: POST /publish-workflow
+  - Plik flow: agent1_flow.json
+  - URL Node-RED: http://node-red:1880
 
 ### 6. Testowanie
 
@@ -296,6 +305,12 @@ Uruchomienie zadania.
 
 **POST /publish-workflow**
 Publikacja workflow do Node-RED.
+```bash
+curl -X POST http://localhost:8001/publish-workflow \
+  -H "Content-Type: application/json" \
+  -d @agent1_flow.json
+```
+Wysyła workflow z pliku agent1_flow.json do Node-RED. Workflow definiuje przepływ danych między agentami i logikę orkiestracji.
 
 ### Endpointy administracyjne
 

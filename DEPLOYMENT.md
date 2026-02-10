@@ -72,6 +72,13 @@ docker logs agent1_student --tail 50
 - URL: http://10.0.0.1:1880
 - Opis: Edytor workflow i orkiestracja agentów
 - Dostęp: Dashboard i edytor flow
+- Funkcje:
+  - Wizualna orkiestracja przepływu danych między 5 agentami
+  - Routing zapytań do odpowiednich agentów
+  - Automatyzacja procesów
+  - Edycja flow w czasie rzeczywistym
+- Restart: `cd /opt/chatbot-project/nodered && docker compose restart`
+- Logi: `docker logs node-red --tail 50`
 
 ### Infrastruktura
 

@@ -48,6 +48,12 @@ System chatbota składa się z 5 wyspecjalizowanych agentów:
 
 **Orkiestracja:**
 - Node-RED (workflow automation)
+  - Wizualna orkiestracja przepływu danych między agentami
+  - Editor flow dostępny przez przeglądarkę
+  - Port: 1880 (http://10.0.0.1:1880)
+  - Endpoint publikacji workflow w Agent1: POST /publish-workflow
+  - Flow testowy: nodered/flow_test.json
+  - Kontener: node-red (obraz nodered/node-red:latest)
 
 **Infrastruktura:**
 - Docker + Docker Compose
@@ -173,6 +179,45 @@ cd /opt/chatbot-project/nodered && docker compose restart
 for i in {1..5}; do
   cd /opt/chatbot-project/agents/agent${i}_* && docker compose restart
 done
+```
+
+## Node-RED - Orkiestracja Workflow
+
+**Orkiestrator:** Node-RED (nodered/node-red:latest)
+
+**Dostęp:**
+- Dashboard: http://10.0.0.1:1880 (VPN wymagane)
+- Edytor flow: http://10.0.0.1:1880
+
+**Funkcje:**
+- Wizualna orkiestracja przepływu danych między 5 agentami
+- Routing zapytań do odpowiednich agentów na podstawie kategorii
+- Automatyzacja procesów i workflow
+- Edycja flow w czasie rzeczywistym przez GUI
+- Logika warunkowa i transformacja danych
+
+**Konfiguracja:**
+- Katalog: `/opt/chatbot-project/nodered/`
+- Docker Compose: `nodered/docker-compose.yml`
+- Wolumen danych: `nodered_data`
+- Sieć: `ai_network`
+- Port: 1880
+
+**Integracja z agentami:**
+- Agent1: endpoint `POST /publish-workflow` do publikacji flow
+- Plik workflow: `agents/agent1_student/agent1_flow.json`
+- URL wewnętrzny: `http://node-red:1880`
+
+**Zarządzanie:**
+```bash
+# Restart
+cd /opt/chatbot-project/nodered && docker compose restart
+
+# Logi
+docker logs node-red --tail 50 -f
+
+# Status
+docker ps | grep node-red
 ```
 
 ## 📚 Dokumentacja
