@@ -205,22 +205,36 @@ Pełna dokumentacja API: http://10.0.0.1:8001/docs (po połączeniu VPN)
 
 ### Zasady Współpracy
 
+**Strategia Branchowania:**
+- **`beta`** - branch roboczy/deweloperski (domyślny dla pracy)
+- **`main`** - branch produkcyjny (stabilny, tylko działające funkcje)
+
+⚠️ **Zawsze pracuj na `beta`!** Branch `main` to zabezpieczenie - merge tylko gdy funkcja działa.
+
 **Git Workflow:**
 ```bash
-# Tworzenie brancha
+# 1. Upewnij się że jesteś na beta
+git checkout beta
+git pull origin beta
+
+# 2. Tworzenie feature brancha (opcjonalne, dla większych zmian)
 git checkout -b feature/nazwa-zadania
 
-# Commitowanie (Conventional Commits)
+# 3. Commitowanie (Conventional Commits)
 git commit -m "feat(agent1): opis funkcjonalności"
 git commit -m "fix(ollama): opis naprawy"
 git commit -m "docs: aktualizacja dokumentacji"
 
-# Pull Request
-# 1. Push brancha
+# 4. Push do beta (bezpośrednio lub przez PR)
+git push origin beta
+# LUB dla feature brancha:
 git push origin feature/nazwa-zadania
-# 2. Utwórz PR na GitHubie
-# 3. Poczekaj na Code Review (min. 1 osoba)
-# 4. Merge do main
+# -> Pull Request do beta -> Code Review -> Merge
+
+# 5. Merge beta -> main (TYLKO gdy funkcja działa na 100%)
+git checkout main
+git merge beta
+git push origin main
 ```
 
 **Typy commitów:**

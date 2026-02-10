@@ -248,3 +248,46 @@ curl http://10.0.0.1:6333/health
 - Serwer: 10.0.0.1
 - Klient: 10.0.0.2
 - Interface: wg0
+
+## Git Workflow (Strategia Branchowania)
+
+**Ważne:** Projekt używa dwóch głównych branchy:
+
+- **`beta`** - branch roboczy/deweloperski (domyślny dla pracy)
+  - Tutaj pracuje cały zespół równolegle
+  - Można commitować eksperymentalne zmiany
+  - W razie konfliktów lub błędów, `main` jest zabezpieczeniem
+
+- **`main`** - branch produkcyjny (stabilny)
+  - Tylko w pełni działające i przetestowane funkcje
+  - Merge z `beta` tylko po weryfikacji
+  - To jest wersja "ostatnia działająca"
+
+**Workflow dla pracy na serwerze:**
+```bash
+# 1. Przejdź do projektu
+cd /opt/chatbot-project
+
+# 2. Upewnij się że jesteś na beta
+git checkout beta
+git pull origin beta
+
+# 3. Pracuj i commituj zmiany
+git add .
+git commit -m "feat(agent1): nowa funkcja"
+
+# 4. Push do beta
+git push origin beta
+
+# 5. TYLKO gdy funkcja działa -> merge do main
+git checkout main
+git merge beta
+git push origin main
+git checkout beta  # wróć na branch roboczy
+```
+
+**Przykładowe commity (Conventional Commits):**
+- `feat(agent1): dodanie obsługi stypendiów`
+- `fix(ollama): naprawa timeoutu połączenia`
+- `docs: aktualizacja README`
+- `chore: konfiguracja docker-compose`
