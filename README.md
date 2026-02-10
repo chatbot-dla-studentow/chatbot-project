@@ -121,7 +121,25 @@ System chatbota składa się z 5 wyspecjalizowanych agentów:
 
 ## 🚀 Szybki Start
 
-### Dostęp do Serwera
+### 1. Połączenie VPN (WYMAGANE)
+
+Wszystkie usługi są dostępne tylko przez VPN WireGuard.
+
+**Konfiguracja:**
+- Plik: `wg-client.conf` (w głównym katalogu projektu)
+- Klient VPN: `10.0.0.2/24`
+- Serwer VPN: `10.0.0.1`
+- Endpoint: `57.128.212.194:51820`
+
+**Instalacja:**
+1. Zainstaluj WireGuard: https://www.wireguard.com/install/
+2. Zaimportuj `wg-client.conf` do aplikacji WireGuard
+3. Aktywuj tunel "Chatbot VPS"
+4. Sprawdź: `ping 10.0.0.1`
+
+**Szczegóły:** Zobacz [DEPLOYMENT.md](DEPLOYMENT.md#połączenie-vpn-wymagane) dla pełnej instrukcji.
+
+### 2. Dostęp do Serwera
 
 **SSH:**
 ```bash
@@ -135,9 +153,9 @@ cd /opt/chatbot-project
 cd ~/chatbot-project  # symlink
 ```
 
-### Dostęp do Usług
+### 3. Dostęp do Usług
 
-**WYMAGANE:** Połączenie przez WireGuard VPN (szczegóły w [DEPLOYMENT.md](DEPLOYMENT.md))
+**WYMAGANE:** Połączenie przez WireGuard VPN
 
 Po aktywacji VPN:
 - **Open WebUI:** http://10.0.0.1:3000

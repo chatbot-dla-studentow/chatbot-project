@@ -6,6 +6,26 @@ Wszystkie usługi są zabezpieczone przez firewall i dostępne tylko przez VPN W
 
 ### Instalacja i konfiguracja VPN
 
+**Konfiguracja WireGuard znajduje się w repozytorium:**
+- Plik: `wg-client.conf` (w głównym katalogu projektu)
+- Typ: Konfiguracja klienta WireGuard
+- Dostęp: Repozytorium jest prywatne, więc plik jest bezpiecznie udostępniony zespołowi
+
+**Parametry konfiguracji:**
+```
+[Interface]
+Address = 10.0.0.2/24          # IP klienta w sieci VPN
+DNS = 1.1.1.1                   # DNS Cloudflare
+
+[Peer]
+PublicKey = di0w...             # Klucz publiczny serwera
+Endpoint = 57.128.212.194:51820 # Adres serwera VPS
+AllowedIPs = 10.0.0.0/24        # Sieć VPN
+PersistentKeepalive = 25        # Utrzymanie połączenia
+```
+
+**Kroki instalacji:**
+
 1. Pobierz i zainstaluj WireGuard:
    - Windows: https://www.wireguard.com/install/
    - macOS: https://apps.apple.com/us/app/wireguard/id1451685025
@@ -20,6 +40,23 @@ Wszystkie usługi są zabezpieczone przez firewall i dostępne tylko przez VPN W
 3. Aktywuj tunel:
    - W aplikacji WireGuard kliknij "Activate"
    - Status powinien zmienić się na "Active"
+
+**Weryfikacja połączenia:**
+```bash
+# Windows PowerShell / Linux / macOS
+ping 10.0.0.1
+
+# Test dostępu do usług
+curl http://10.0.0.1:8001/api/version  # Agent1
+curl http://10.0.0.1:6333/collections  # Qdrant
+```
+
+**Adresy IP w sieci VPN:**
+- Serwer VPS: `10.0.0.1`
+- Klient (Ty): `10.0.0.2`
+- Zakres sieci: `10.0.0.0/24`
+
+**Uwaga:** Plik `wg-client.conf` zawiera klucze prywatne i jest udostępniony tylko w prywatnym repozytorium zespołu. Nie udostępniaj go publicznie.
 
 ## Lokalizacja projektu na serwerze
 
