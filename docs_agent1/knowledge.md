@@ -161,7 +161,76 @@ docker exec agent1_student python helpers/load_knowledge_base.py
 # lub przez knowledge_manager.py (opcja 2)
 ```
 
-### 3. verify_knowledge_base.py
+**UWAGA**: Ten skrypt usuwa istniejącą kolekcję i tworzy nową. Dla bezpieczniejszej aktualizacji użyj `update_knowledge.py`.
+
+### 3. update_knowledge.py
+
+**Funkcja**: Inkrementalna aktualizacja bazy wiedzy - dodaje tylko nowe dokumenty.
+
+**Proces**:
+1. Wczytuje dokumenty JSON z `knowledge/all_documents.json`
+2. Pobiera wszystkie istniejące dokumenty z Qdrant
+3. Oblicza MD5 hash dla każdego dokumentu (content + path)
+4. Porównuje nowe dokumenty z istniejącymi
+5. Dodaje TYLKO nowe dokumenty (bez usuwania starych)
+6. Generuje raport z liczbą dodanych dokumentów
+
+**Zalety**:
+- ✅ **Bezpieczne**: Nie usuwa istniejących dokumentów
+- ✅ **Szybkie**: Przetwarza tylko nowe dokumenty
+- ✅ **Wydajne**: Idealne do regularnych aktualizacji
+- ✅ **Automatyczne**: Wykrywa duplikaty na podstawie hash
+
+**Różnica vs load_knowledge_base.py**:
+| Aspekt | load_knowledge_base.py | update_knowledge.py |
+|--------|------------------------|---------------------|
+| Operacja | Pełny reload (usuwa kolekcję) | Inkrementalna aktualizacja |
+| Bezpieczeństwo | ⚠️ Usuwa wszystkie dane | ✅ Zachowuje istniejące |
+| Szybkość | Wolniejszy (wszystkie docs) | Szybszy (tylko nowe) |
+| Użycie | Pierwsza instalacja | Regularne aktualizacje |
+
+**Przykładowy output**:
+```
+======================================================================
+Inkrementalna Aktualizacja Bazy Wiedzy
+Dodaje tylko nowe dokumenty bez usuwania istniejących
+======================================================================
+
+1. Wczytywanie dokumentów JSON z ./knowledge...
+   Wczytano 215 dokumentów z all_documents.json
+   RAZEM: 215 dokumentów do sprawdzenia
+
+2. Sprawdzanie Ollama (http://localhost:11434)...
+   ✓ Model nomic-embed-text gotowy (wymiar: 768)
+
+3. Łączenie z Qdrant (localhost:6333)...
+   ✓ Połączono z kolekcją 'agent1_student'
+
+4. Pobieranie istniejących dokumentów...
+   Pobrano: 215 dokumentów...
+   Znaleziono 215 unikalnych dokumentów w Qdrant
+
+5. Filtrowanie nowych dokumentów...
+   Znaleziono 0 nowych dokumentów
+   Pominięto 215 istniejących dokumentów
+
+✓ Baza wiedzy jest aktualna - brak nowych dokumentów do dodania!
+```
+
+**Uruchomienie**:
+```bash
+docker exec agent1_student python helpers/update_knowledge.py
+# lub przez knowledge_manager.py (opcja 3)
+```
+
+**Kiedy używać**:
+- ✅ Dodajesz nowe pliki do chatbot-baza-wiedzy-nowa/
+- ✅ Regularne aktualizacje bazy wiedzy
+- ✅ Chcesz zachować istniejące dokumenty
+- ❌ Pierwsza instalacja (użyj load_knowledge_base.py)
+- ❌ Chcesz przebudować całą kolekcję
+
+### 4. verify_knowledge_base.py
 
 **Funkcja**: Weryfikuje strukturę i kompletność bazy wiedzy.
 
@@ -193,10 +262,10 @@ RAPORT WERYFIKACJI BAZY WIEDZY
 **Uruchomienie**:
 ```bash
 python helpers/verify_knowledge_base.py
-# lub przez knowledge_manager.py (opcja 3)
+# lub przez knowledge_manager.py (opcja 4)
 ```
 
-### 4. check_knowledge_quality.py
+### 5. check_knowledge_quality.py
 
 **Funkcja**: Sprawdza jakość danych w Qdrant.
 
@@ -229,10 +298,10 @@ ANALIZA BAZY WIEDZY W QDRANT
 **Uruchomienie**:
 ```bash
 docker exec agent1_student python helpers/check_knowledge_quality.py
-# lub przez knowledge_manager.py (opcja 4)
+# lub przez knowledge_manager.py (opcja 5)
 ```
 
-### 5. add_qa_pairs.py
+### 6. add_qa_pairs.py
 
 **Funkcja**: Dodaje przykładowe pary pytanie-odpowiedź do bazy wiedzy.
 
@@ -254,10 +323,10 @@ docker exec agent1_student python helpers/check_knowledge_quality.py
 **Uruchomienie**:
 ```bash
 python helpers/add_qa_pairs.py
-# lub przez knowledge_manager.py (opcja 5)
+# lub przez knowledge_manager.py (opcja 6)
 ```
 
-### 6. init_log_collections.py
+### 7. init_log_collections.py
 
 **Funkcja**: Inicjalizuje kolekcje logów w Qdrant.
 
@@ -273,10 +342,10 @@ python helpers/add_qa_pairs.py
 **Uruchomienie**:
 ```bash
 docker exec agent1_student python helpers/init_log_collections.py
-# lub przez knowledge_manager.py (opcja 6)
+# lub przez knowledge_manager.py (opcja 7)
 ```
 
-### 7. delete_qdrant_collection.py
+### 8. delete_qdrant_collection.py
 
 **Funkcja**: Usuwa kolekcję z Qdrant.
 
@@ -285,10 +354,10 @@ docker exec agent1_student python helpers/init_log_collections.py
 **Uruchomienie**:
 ```bash
 docker exec agent1_student python helpers/delete_qdrant_collection.py
-# lub przez knowledge_manager.py (opcja 7 - wymaga potwierdzenia)
+# lub przez knowledge_manager.py (opcja 8 - wymaga potwierdzenia)
 ```
 
-### 8. query_logger.py
+### 9. query_logger.py
 
 **Funkcja**: Moduł do logowania zapytań i odpowiedzi w Qdrant.
 
@@ -337,47 +406,63 @@ python knowledge_manager.py
 
 **Menu**:
 ```
-===============================
+======================================================================
 KNOWLEDGE MANAGER - Agent1 Student
-===============================
+======================================================================
 
 📚 ZARZĄDZANIE BAZĄ WIEDZY:
-  1. Parse - Parsuj pliki źródłowe (txt, docx, pdf) → JSON
-  2. Load  - Załaduj dokumenty JSON do Qdrant + embeddingi
-  3. Verify - Weryfikuj strukturę i zawartość bazy wiedzy
-  4. Check - Sprawdź jakość danych w Qdrant (duplikaty)
-  5. Add QA - Dodaj pary pytanie-odpowiedź
+  1. Parse  - Parsuj pliki źródłowe (txt, docx, pdf) → JSON
+  2. Load   - Załaduj dokumenty JSON do Qdrant + embeddingi (pełne)
+  3. Update - Aktualizuj bazę (dodaj tylko nowe dokumenty)
+  4. Verify - Weryfikuj strukturę i zawartość bazy wiedzy
+  5. Check  - Sprawdź jakość danych w Qdrant (duplikaty)
+  6. Add QA - Dodaj pary pytanie-odpowiedź
 
 🔧 ZARZĄDZANIE KOLEKCJAMI:
-  6. Init Logs - Inicjalizuj kolekcje logów
-  7. Delete - Usuń kolekcję z Qdrant
+  7. Init Logs - Inicjalizuj kolekcje logów (query_logs, qa_logs)
+  8. Delete - Usuń kolekcję z Qdrant
 
 📊 INFORMACJE:
-  8. Status - Pokaż status wszystkich kolekcji
-  9. Help - Pokaż szczegółową pomoc
+  9. Status - Pokaż status wszystkich kolekcji
+  h. Help - Pokaż szczegółową pomoc
   0. Exit - Wyjdź
 ```
 
 **Funkcje**:
-- **Status** (opcja 8): Wyświetla wszystkie kolekcje w Qdrant z liczbą punktów
-- **Help** (opcja 9): Szczegółowa pomoc z workflow i przykładami
+- **Status** (opcja 9): Wyświetla wszystkie kolekcje w Qdrant z liczbą punktów
+- **Help** (opcja h): Szczegółowa pomoc z workflow i przykładami
 
 ## 🔄 Workflow Zarządzania Bazą Wiedzy
 
-### Inicjalne Ładowanie
+### Inicjalne Ładowanie (Pierwsza Instalacja)
 
 ```bash
 # 1. Parsuj pliki źródłowe
 python knowledge_manager.py  # opcja 1
 
 # 2. Weryfikuj strukturę
-python knowledge_manager.py  # opcja 3
+python knowledge_manager.py  # opcja 4
 
-# 3. Załaduj do Qdrant
+# 3. Załaduj do Qdrant (pełny load)
 docker exec agent1_student python knowledge_manager.py  # opcja 2
 
 # 4. Sprawdź jakość
-docker exec agent1_student python knowledge_manager.py  # opcja 4
+docker exec agent1_student python knowledge_manager.py  # opcja 5
+```
+
+### Regularna Aktualizacja (Nowe Dokumenty)
+
+```bash
+# 1. Dodaj nowe pliki do chatbot-baza-wiedzy-nowa/
+
+# 2. Parsuj nowe pliki
+python knowledge_manager.py  # opcja 1
+
+# 3. Aktualizuj bazę (tylko nowe dokumenty)
+docker exec agent1_student python knowledge_manager.py  # opcja 3
+
+# 4. Sprawdź kompletność
+docker exec agent1_student python knowledge_manager.py  # opcja 5
 
 # 5. Inicjalizuj logi (opcjonalnie)
 docker exec agent1_student python knowledge_manager.py  # opcja 6
@@ -385,27 +470,35 @@ docker exec agent1_student python knowledge_manager.py  # opcja 6
 
 ### Aktualizacja Bazy Wiedzy
 
-**Dodanie nowych dokumentów**:
+**Dodanie nowych dokumentów (ZALECANE)**:
 1. Dodaj pliki do odpowiedniego katalogu w `chatbot-baza-wiedzy-nowa/`
 2. Uruchom `parse_knowledge_base.py` (opcja 1)
-3. Uruchom `verify_knowledge_base.py` (opcja 3) - sprawdź błędy
-4. Uruchom `load_knowledge_base.py` (opcja 2) - przeładuje całą kolekcję
+3. Uruchom `verify_knowledge_base.py` (opcja 4) - sprawdź błędy
+4. Uruchom `update_knowledge.py` (opcja 3) - ✅ dodaje tylko nowe dokumenty
+
+**Pełna przebudowa bazy (gdy potrzebne)**:
+1. Dodaj/edytuj pliki w `chatbot-baza-wiedzy-nowa/`
+2. Uruchom `parse_knowledge_base.py` (opcja 1)
+3. Uruchom `load_knowledge_base.py` (opcja 2) - ⚠️ usuwa całą kolekcję
 
 **Modyfikacja istniejących dokumentów**:
 1. Edytuj plik w `chatbot-baza-wiedzy-nowa/`
-2. Re-parsuj: `parse_knowledge_base.py`
-3. Przeładuj: `load_knowledge_base.py`
+2. Re-parsuj: `parse_knowledge_base.py` (opcja 1)
+3. Usuń starą wersję dokumentu (jeśli potrzeba)
+4. Dodaj nową: `update_knowledge.py` (opcja 3)
 
-**UWAGA**: `load_knowledge_base.py` usuwa i odtwarza kolekcję - wszystkie dane są zastępowane.
+**RÓŻNICA update_knowledge.py vs load_knowledge.py**:
+- ✅ `update_knowledge.py` - Bezpieczne, szybkie, zachowuje dane (ZALECANE)
+- ⚠️ `load_knowledge_base.py` - Usuwa całą kolekcję, wolniejsze (tylko gdy konieczne)
 
 ### Monitorowanie i Analiza
 
 ```bash
 # Sprawdź status kolekcji
-python knowledge_manager.py  # opcja 8
+python knowledge_manager.py  # opcja 9
 
 # Analiza jakości
-docker exec agent1_student python knowledge_manager.py  # opcja 4
+docker exec agent1_student python knowledge_manager.py  # opcja 5
 
 # Przeglądanie logów zapytań (przez API lub Qdrant UI)
 curl http://10.0.0.1:6333/collections/agent1_query_logs

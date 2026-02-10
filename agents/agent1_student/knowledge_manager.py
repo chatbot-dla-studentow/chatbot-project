@@ -16,17 +16,18 @@ def print_menu():
     print("KNOWLEDGE MANAGER - Agent1 Student")
     print("=" * 70)
     print("\n📚 ZARZĄDZANIE BAZĄ WIEDZY:")
-    print("  1. Parse - Parsuj pliki źródłowe (txt, docx, pdf) → JSON")
-    print("  2. Load  - Załaduj dokumenty JSON do Qdrant + embeddingi")
-    print("  3. Verify - Weryfikuj strukturę i zawartość bazy wiedzy")
-    print("  4. Check - Sprawdź jakość danych w Qdrant (duplikaty)")
-    print("  5. Add QA - Dodaj pary pytanie-odpowiedź")
+    print("  1. Parse  - Parsuj pliki źródłowe (txt, docx, pdf) → JSON")
+    print("  2. Load   - Załaduj dokumenty JSON do Qdrant + embeddingi (pełne)")
+    print("  3. Update - Aktualizuj bazę (dodaj tylko nowe dokumenty)")
+    print("  4. Verify - Weryfikuj strukturę i zawartość bazy wiedzy")
+    print("  5. Check  - Sprawdź jakość danych w Qdrant (duplikaty)")
+    print("  6. Add QA - Dodaj pary pytanie-odpowiedź")
     print("\n🔧 ZARZĄDZANIE KOLEKCJAMI:")
-    print("  6. Init Logs - Inicjalizuj kolekcje logów (query_logs, qa_logs)")
-    print("  7. Delete - Usuń kolekcję z Qdrant")
+    print("  7. Init Logs - Inicjalizuj kolekcje logów (query_logs, qa_logs)")
+    print("  8. Delete - Usuń kolekcję z Qdrant")
     print("\n📊 INFORMACJE:")
-    print("  8. Status - Pokaż status wszystkich kolekcji")
-    print("  9. Help - Pokaż szczegółową pomoc")
+    print("  9. Status - Pokaż status wszystkich kolekcji")
+    print("  h. Help - Pokaż szczegółową pomoc")
     print("  0. Exit - Wyjdź")
     print("\n" + "=" * 70)
 
@@ -105,31 +106,39 @@ def show_help():
    ├─ Wczytuje dokumenty JSON z knowledge/
    ├─ Generuje embeddingi używając Ollama (nomic-embed-text)
    ├─ Ładuje do kolekcji 'agent1_student' w Qdrant
+   ├─ UWAGA: Usuwa istniejącą kolekcję i tworzy nową (pełny reload)
    └─ Automatycznie pull model jeśli brak
 
-3️⃣  VERIFY (verify_knowledge_base.py)
+3️⃣  UPDATE (update_knowledge.py)
+   ├─ Inkrementalna aktualizacja bazy wiedzy
+   ├─ Porównuje istniejące dokumenty z nowymi (hash MD5)
+   ├─ Dodaje TYLKO nowe dokumenty bez usuwania starych
+   ├─ Szybsze i bezpieczniejsze niż pełny LOAD
+   └─ Idealne do regularnych aktualizacji
+
+4️⃣  VERIFY (verify_knowledge_base.py)
    ├─ Weryfikuje strukturę plików JSON
    ├─ Sprawdza kompletność kategorii
    ├─ Wyświetla statystyki dokumentów i QA pairs
    └─ Wykrywa błędy formatowania
 
-4️⃣  CHECK (check_knowledge_quality.py)
+5️⃣  CHECK (check_knowledge_quality.py)
    ├─ Analizuje dane w Qdrant
    ├─ Wykrywa duplikaty (content hash)
    ├─ Sprawdza kategoryzację
    └─ Generuje raport jakości
 
-5️⃣  ADD QA (add_qa_pairs.py)
+6️⃣  ADD QA (add_qa_pairs.py)
    ├─ Dodaje przykładowe pary pytanie-odpowiedź
    ├─ Wzbogaca bazę wiedzy o kontekst
    └─ Poprawia jakość odpowiedzi chatbota
 
-6️⃣  INIT LOGS (init_log_collections.py)
+7️⃣  INIT LOGS (init_log_collections.py)
    ├─ Tworzy kolekcje: agent1_query_logs, agent1_qa_logs
    ├─ Używane do logowania zapytań użytkowników
    └─ Wymaga działającego Ollama (embeddingi)
 
-7️⃣  DELETE (delete_qdrant_collection.py)
+8️⃣  DELETE (delete_qdrant_collection.py)
    ├─ Usuwa kolekcję z Qdrant
    ├─ UWAGA: Operacja nieodwracalna!
    └─ Przydatne przy ponownym ładowaniu danych
@@ -145,12 +154,24 @@ def show_help():
    helpers/                   - Skrypty zarządzania
 
 💡 PRZYKŁADOWY WORKFLOW:
-   1. Dodaj nowe pliki do chatbot-baza-wiedzy-nowa/
+   
+   PIERWSZA INSTALACJA:
+   1. Dodaj pliki do chatbot-baza-wiedzy-nowa/
    2. Uruchom PARSE aby sparsować do JSON
    3. Uruchom VERIFY aby sprawdzić strukturę
-   4. Uruchom LOAD aby załadować do Qdrant
+   4. Uruchom LOAD aby załadować do Qdrant (pełny import)
    5. Uruchom CHECK aby zweryfikować jakość
    6. (Opcjonalnie) ADD QA aby dodać przykłady
+   
+   REGULARNA AKTUALIZACJA:
+   1. Dodaj nowe pliki do chatbot-baza-wiedzy-nowa/
+   2. Uruchom PARSE aby sparsować nowe dokumenty
+   3. Uruchom UPDATE aby dodać tylko nowe (szybsze!)
+   4. Uruchom CHECK aby sprawdzić kompletność
+   
+   ⚡ RÓŻNICA LOAD vs UPDATE:
+      • LOAD  - Usuwa całą kolekcję i tworzy nową (wolniejszy)
+      • UPDATE - Dodaje tylko nowe dokumenty (szybszy, bezpieczniejszy)
     """
     print(help_text)
     print("=" * 70)
@@ -162,7 +183,7 @@ def main():
         print_menu()
         
         try:
-            choice = input("\n👉 Wybierz opcję (0-9): ").strip()
+            choice = input("\n👉 Wybierz opcję (0-9, h): ").strip().lower()
             
             if choice == "0":
                 print("\n👋 Do widzenia!")
@@ -175,18 +196,21 @@ def main():
                 run_script("load_knowledge_base.py")
             
             elif choice == "3":
-                run_script("verify_knowledge_base.py")
+                run_script("update_knowledge.py")
             
             elif choice == "4":
-                run_script("check_knowledge_quality.py")
+                run_script("verify_knowledge_base.py")
             
             elif choice == "5":
-                run_script("add_qa_pairs.py")
+                run_script("check_knowledge_quality.py")
             
             elif choice == "6":
-                run_script("init_log_collections.py")
+                run_script("add_qa_pairs.py")
             
             elif choice == "7":
+                run_script("init_log_collections.py")
+            
+            elif choice == "8":
                 print("\n⚠️  UWAGA: Ta operacja jest nieodwracalna!")
                 confirm = input("Czy na pewno chcesz usunąć kolekcję? (tak/nie): ").strip().lower()
                 if confirm == "tak":
@@ -194,14 +218,14 @@ def main():
                 else:
                     print("❌ Operacja anulowana")
             
-            elif choice == "8":
+            elif choice == "9":
                 show_status()
             
-            elif choice == "9":
+            elif choice == "h":
                 show_help()
             
             else:
-                print("❌ Nieprawidłowa opcja. Wybierz 0-9.")
+                print("❌ Nieprawidłowa opcja. Wybierz 0-9 lub h.")
             
             input("\n⏎ Naciśnij Enter aby kontynuować...")
             

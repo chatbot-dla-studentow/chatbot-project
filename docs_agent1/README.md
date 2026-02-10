@@ -96,6 +96,7 @@ Node-RED:            http://localhost:1880
 
 ### Szybka reindeksacja (CLI)
 
+**Pierwsza instalacja (pełny load)**:
 ```bash
 # 1) Przetworzenie plików źródłowych do JSON
 python parse_knowledge_base.py
@@ -103,8 +104,17 @@ python parse_knowledge_base.py
 # 2) Dodanie QA pairs
 python add_qa_pairs.py
 
-# 3) Wczytanie do Qdrant
+# 3) Wczytanie do Qdrant (pełne)
 python load_knowledge_base.py
+```
+
+**Regularna aktualizacja (tylko nowe dokumenty)**:
+```bash
+# 1) Przetworzenie nowych plików do JSON
+python parse_knowledge_base.py
+
+# 2) Aktualizacja Qdrant (inkrementalna)
+python update_knowledge.py
 ```
 
 ### Czyszczenie kolekcji Qdrant
@@ -115,11 +125,19 @@ python delete_qdrant_collection.py
 
 ## Dodawanie dokumentów do bazy wiedzy
 
+**Pierwsza instalacja**:
 1. Dodaj pliki do `chatbot-baza-wiedzy-nowa/<kategoria>/`
 2. Obsługiwane formaty: `.pdf`, `.docx`, `.doc`, `.txt`
 3. Uruchom `parse_knowledge_base.py`
 4. (Opcjonalnie) uzupełnij QA pairs w `add_qa_pairs.py` i uruchom skrypt
-5. Wczytaj dane do Qdrant: `load_knowledge_base.py`
+5. Wczytaj dane do Qdrant: `load_knowledge_base.py` (pełny load)
+
+**Regularna aktualizacja**:
+1. Dodaj nowe pliki do `chatbot-baza-wiedzy-nowa/<kategoria>/`
+2. Uruchom `parse_knowledge_base.py`
+3. Uruchom `update_knowledge.py` (✅ dodaje tylko nowe dokumenty)
+
+**Różnica**: `update_knowledge.py` jest bezpieczniejsze i szybsze niż `load_knowledge_base.py`
 
 ## Struktura projektu
 
@@ -129,16 +147,20 @@ agents/agent1_student/
 ├── docker-compose.yml
 ├── Dockerfile
 ├── requirements.txt
+├── knowledge_manager.py         # CLI do zarządzania bazą wiedzy
 ├── agent1_flow.json             # Workflow Node-RED
 ├── chatbot-baza-wiedzy-nowa/    # Źródła dokumentów
 ├── knowledge/                   # Przetworzone JSON-y do Qdrant
-├── parse_knowledge_base.py      # Parser plików
-├── add_qa_pairs.py              # QA pairs
-├── load_knowledge_base.py       # Ładowanie do Qdrant
-├── delete_qdrant_collection.py  # Czyszczenie kolekcji
-├── verify_knowledge_base.py     # Walidacja bazy
-├── init_log_collections.py      # Inicjalizacja kolekcji logów
-├── query_logger.py              # Logowanie zapytań i QA
+├── helpers/                     # Skrypty zarządzania
+│   ├── parse_knowledge_base.py      # Parser plików
+│   ├── load_knowledge_base.py       # Pełny load do Qdrant
+│   ├── update_knowledge.py          # Inkrementalna aktualizacja ✨ NOWY
+│   ├── verify_knowledge_base.py     # Walidacja bazy
+│   ├── check_knowledge_quality.py   # Analiza jakości
+│   ├── add_qa_pairs.py              # QA pairs
+│   ├── delete_qdrant_collection.py  # Czyszczenie kolekcji
+│   ├── init_log_collections.py      # Inicjalizacja kolekcji logów
+│   └── query_logger.py              # Logowanie zapytań i QA
 ├── LOGGING_TEST_REPORT.md       # Raport testów logowania
 ├── LOGGING_EXAMPLES.md          # Przykłady użycia logów
 ├── AGENT1_IMPLEMENTATION_REPORT.md # Raport dla promotora
