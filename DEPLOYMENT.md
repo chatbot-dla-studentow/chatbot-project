@@ -21,6 +21,44 @@ Wszystkie usługi są zabezpieczone przez firewall i dostępne tylko przez VPN W
    - W aplikacji WireGuard kliknij "Activate"
    - Status powinien zmienić się na "Active"
 
+## Lokalizacja projektu na serwerze
+
+**Ścieżka główna:**
+```
+/opt/chatbot-project
+```
+
+**Struktura katalogów:**
+- `/opt/chatbot-project/agents/` - kod agentów (agent1-5)
+- `/opt/chatbot-project/nodered/` - konfiguracja Node-RED
+- `/opt/chatbot-project/qdrant/` - konfiguracja Qdrant
+- `/opt/chatbot-project/Open_WebUI/` - konfiguracja Open WebUI
+- `/opt/chatbot-project/ollama/` - konfiguracja Ollama
+
+**Uprawnienia:**
+- Właściciel: `asiehen`
+- Grupa: `chatbot-devs`
+- Uprawnienia grupy: `rwX` (odczyt, zapis, wykonywanie)
+- Wszyscy członkowie grupy `chatbot-devs` mają pełny dostęp
+
+**Symlink dla wygody:**
+```bash
+~/chatbot-project -> /opt/chatbot-project
+```
+
+**Przykładowe komendy:**
+```bash
+# Przejście do projektu
+cd /opt/chatbot-project
+
+# Restart agenta
+cd /opt/chatbot-project/agents/agent1_student
+docker compose restart
+
+# Sprawdzenie logów
+docker logs agent1_student --tail 50
+```
+
 ## Lista usług
 
 ### Interfejsy użytkownika
