@@ -1,97 +1,37 @@
 # Chatbot dla Studentów - System Multi-Agentowy
 
-Inteligentny chatbot dla studentów uczelni wyższej wykorzystujący architekturę multi-agentową, RAG (Retrieval Augmented Generation) i lokalne modele LLM.
+Inteligentny chatbot dla studentów uczelni wyższej wykorzystujący architekturę multi-agentową, RAG (Retrieval-Augmented Generation) i lokalne modele LLM.
 
-## 📋 Spis Treści
+## 📋 Spis treści
 
-- [Opis Projektu](#opis-projektu)
-- [Architektura Systemu](#architektura-systemu)
-- [Lokalizacja na Serwerze](#lokalizacja-na-serwerze)
-- [Szybki Start](#szybki-start)
-- [Dokumentacja](#dokumentacja)
-- [Zespół](#zespół)
+- [Opis projektu](#opis-projektu)
+- [Struktura katalogów](#struktura-katalogów)
+- [Zespół i zakres prac](#zespół-i-zakres-prac)
+- [Indeks dokumentów](#indeks-dokumentów)
+- [Szybki deploy i uruchomienie](#szybki-deploy-i-uruchomienie)
+- [VPN i plik konfiguracyjny](#vpn-i-plik-konfiguracyjny)
+- [Architektura w skrócie](#architektura-w-skrócie)
+- [Troubleshooting](#troubleshooting)
 
-## 🎯 Opis Projektu
+## 🎯 Opis projektu
 
-System chatbota składa się z 5 wyspecjalizowanych agentów:
-- **Agent1 (Student)** - Pytania studenckie (stypendia, BOS, harmonogramy)
-- **Agent2 (Ticket)** - Zarządzanie zgłoszeniami
-- **Agent3 (Analytics)** - Analityka i statystyki
-- **Agent4 (BOS)** - Integracja z Biurem Obsługi Studenta
-- **Agent5 (Security)** - Bezpieczeństwo i autoryzacja
+System składa się z 5 wyspecjalizowanych agentów:
+- **Agent1 (Student)** - pytania studenckie (stypendia, BOS, harmonogramy)
+- **Agent2 (Ticket)** - zarządzanie zgłoszeniami
+- **Agent3 (Analytics)** - analityka i statystyki
+- **Agent4 (BOS)** - integracja z Biurem Obsługi Studenta
+- **Agent5 (Security)** - bezpieczeństwo i autoryzacja
 
 **Główne funkcjonalności:**
-- ✅ Konwersacje w języku naturalnym (mistral:7b)
+- ✅ konwersacje w języku naturalnym (mistral:7b)
 - ✅ RAG - wyszukiwanie w bazie wiedzy (Qdrant)
-- ✅ Orkiestracja workflow (Node-RED)
-- ✅ Logowanie zapytań i odpowiedzi
-- ✅ Interfejs webowy (Open WebUI)
-- ✅ Bezpieczny dostęp (WireGuard VPN)
+- ✅ orkiestracja workflow (Node-RED)
+- ✅ logowanie zapytań i odpowiedzi
+- ✅ interfejs webowy (Open WebUI)
+- ✅ bezpieczny dostęp przez VPN (WireGuard)
 
-## 🏗️ Architektura Systemu
+## 📂 Struktura katalogów
 
-### Stack Technologiczny
-
-**Backend:**
-- Python 3.11 (FastAPI)
-- Ollama + mistral:7b (7.2B parametrów, Q4_K_M)
-- LangChain (orchestration)
-- httpx (async HTTP client)
-
-**Baza Wiedzy:**
-- Qdrant (vector database)
-- nomic-embed-text (embeddings)
-- Kolekcje: agent1_student, queries_log, qa_pairs_log
-
-**Frontend:**
-- Open WebUI (chat interface)
-
-**Orkiestracja:**
-- Node-RED (workflow automation)
-  - Wizualna orkiestracja przepływu danych między agentami
-  - Editor flow dostępny przez przeglądarkę
-  - Port: 1880 (http://10.0.0.1:1880)
-  - Endpoint publikacji workflow w Agent1: POST /publish-workflow
-  - Flow testowy: nodered/flow_test.json
-  - Kontener: node-red (obraz nodered/node-red:latest)
-
-**Infrastruktura:**
-- Docker + Docker Compose
-- WireGuard VPN
-- iptables (firewall)
-- Ubuntu 24.10 (VPS OVHcloud)
-
-### Komponenty
-
-```
-┌─────────────────┐
-│   Open WebUI    │ :3000
-│  (Chat UI)      │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│  Agent1_Student │ :8001
-│  (RAG + LLM)    │
-└────────┬────────┘
-         │
-    ┌────┴────┬─────────┬─────────┐
-    ▼         ▼         ▼         ▼
-┌────────┐ ┌────────┐ ┌───────┐ ┌─────────┐
-│ Ollama │ │ Qdrant │ │Node   │ │ Agent   │
-│:11434  │ │ :6333  │ │RED    │ │ 2-5     │
-│        │ │        │ │:1880  │ │:8002-05 │
-└────────┘ └────────┘ └───────┘ └─────────┘
-```
-
-## 📂 Lokalizacja na Serwerze
-
-**Ścieżka projektu:**
-```bash
-/opt/chatbot-project
-```
-
-**Struktura katalogów:**
 ```
 /opt/chatbot-project/
 ├── agents/
@@ -104,100 +44,82 @@ System chatbota składa się z 5 wyspecjalizowanych agentów:
 ├── qdrant/                 # Konfiguracja Qdrant
 ├── Open_WebUI/             # Konfiguracja Open WebUI
 ├── ollama/                 # Konfiguracja Ollama
-├── DEPLOYMENT.md           # Instrukcja wdrożenia
-└── TEAM_TASKS.md           # Podział zadań zespołu
+├── docs_agent1/            # Dokumentacja Agent1
+├── DEPLOYMENT.md           # Szczegóły wdrożenia
+├── README_AGENT1.md        # Dokumentacja Agent1 (szczegółowa)
+└── wg-client.conf          # Konfiguracja VPN
 ```
 
-**Uprawnienia:**
-- **Właściciel:** asiehen
-- **Grupa:** chatbot-devs
-- **Uprawnienia grupy:** rwX (read, write, execute)
-- **Członkowie grupy:** wszyscy użytkownicy serwera VPS
+## 👥 Zespół i zakres prac
 
-**Symlink dla wygody:**
-```bash
-~/chatbot-project -> /opt/chatbot-project
-```
+| Członek zespołu | Rola | Zadania (skrót) |
+|---|---|---|
+| Adam Siehen | Project Manager | Do uzupełnienia |
+| Patryk Boguski | Tech Ops | Do uzupełnienia |
+| Mikołaj Sykucki | Tester/Analityk | Do uzupełnienia |
+| Oskar Jurgielaniec | Frontend | Do uzupełnienia |
+| Paweł Ponikowski | Baza wiedzy i dokumentacja | FAQ, procedury, stypendia, regulaminy; skrypty: parse/load/update/verify/check/add_qa; dokumentacja: knowledge.md, ARCHITECTURE.md; testy helperów; merge beta -> main |
 
-## 🚀 Szybki Start
+## 📚 Indeks dokumentów
 
-### 1. Połączenie VPN (WYMAGANE)
+- [README_AGENT1.md](README_AGENT1.md) - pełna dokumentacja Agent1
+- [docs_agent1/knowledge.md](docs_agent1/knowledge.md) - dokumentacja bazy wiedzy
+- [docs_agent1/ARCHITECTURE.md](docs_agent1/ARCHITECTURE.md) - architektura systemu
+- [docs_agent1/QUICK_START.md](docs_agent1/QUICK_START.md) - szybki start (Agent1)
+- [docs_agent1/INDEX.md](docs_agent1/INDEX.md) - indeks dokumentów Agent1
+- [DEPLOYMENT.md](DEPLOYMENT.md) - szczegóły wdrożenia i środowiska
+- [wg-client.conf](wg-client.conf) - konfiguracja WireGuard (plik w repo)
 
-Wszystkie usługi są dostępne tylko przez VPN WireGuard.
+## 🚀 Szybki deploy i uruchomienie
 
-**Konfiguracja:**
-- Plik: `wg-client.conf` (w głównym katalogu projektu)
-- Klient VPN: `10.0.0.2/24`
-- Serwer VPN: `10.0.0.1`
-- Endpoint: `57.128.212.194:51820`
+**Wymagane:** aktywny VPN (WireGuard).
 
-**Instalacja:**
+## 🔐 VPN i plik konfiguracyjny
+
+Połączenie VPN jest wymagane, aby uzyskać dostęp do usług.
+
 1. Zainstaluj WireGuard: https://www.wireguard.com/install/
-2. Zaimportuj `wg-client.conf` do aplikacji WireGuard
-3. Aktywuj tunel "Chatbot VPS"
-4. Sprawdź: `ping 10.0.0.1`
+2. Zaimportuj konfigurację z pliku [wg-client.conf](wg-client.conf)
+3. Aktywuj tunel i sprawdź połączenie: `ping 10.0.0.1`
 
-**Szczegóły:** Zobacz [DEPLOYMENT.md](DEPLOYMENT.md#połączenie-vpn-wymagane) dla pełnej instrukcji.
+### 1) Połączenie z serwerem
 
-### 2. Dostęp do Serwera
-
-**SSH:**
 ```bash
 ssh <user>@57.128.212.194
-```
-
-**Dostęp do projektu:**
-```bash
 cd /opt/chatbot-project
-# lub
-cd ~/chatbot-project  # symlink
 ```
 
-### 3. Dostęp do Usług
+### 2) Start kluczowych usług
 
-**WYMAGANE:** Połączenie przez WireGuard VPN
-
-Po aktywacji VPN:
-- **Open WebUI:** http://10.0.0.1:3000
-- **Node-RED:** http://10.0.0.1:1880
-- **Qdrant Dashboard:** http://10.0.0.1:6333/dashboard
-- **Agent1 API:** http://10.0.0.1:8001/docs
-
-### Zarządzanie Kontenerami
-
-**Sprawdzenie statusu:**
 ```bash
-cd /opt/chatbot-project/agents/agent1_student
-docker compose ps
+cd /opt/chatbot-project/qdrant && docker compose up -d
+cd /opt/chatbot-project/ollama && docker compose up -d
+cd /opt/chatbot-project/Open_WebUI && docker compose up -d
+cd /opt/chatbot-project/nodered && docker compose up -d
+cd /opt/chatbot-project/agents/agent1_student && docker compose up -d --build
 ```
 
-**Restart agenta:**
-```bash
-cd /opt/chatbot-project/agents/agent1_student
-docker compose restart
-```
+### 3) Dostęp do usług (po VPN)
 
-**Logi:**
-```bash
-docker logs agent1_student --tail 50 -f
-```
+- Open WebUI: http://10.0.0.1:3000
+- Node-RED: http://10.0.0.1:1880
+- Qdrant Dashboard: http://10.0.0.1:6333/dashboard
+- Agent1 API: http://10.0.0.1:8001/docs
 
-**Restart wszystkich usług:**
-```bash
-# Qdrant
-cd /opt/chatbot-project/qdrant && docker compose restart
 
-# Open WebUI
-cd /opt/chatbot-project/Open_WebUI && docker compose restart
+Szczegóły: [DEPLOYMENT.md](DEPLOYMENT.md#połączenie-vpn-wymagane)
 
-# Node-RED
-cd /opt/chatbot-project/nodered && docker compose restart
+## 🏗️ Architektura w skrócie
 
-# Agenci 1-5
-for i in {1..5}; do
-  cd /opt/chatbot-project/agents/agent${i}_* && docker compose restart
-done
-```
+Centralnym komponentem jest **Agent1 Student**, który realizuje RAG (Qdrant + Ollama) i udostępnia wiedzę agentom 2-5. Orkiestrację przepływu zapewnia Node-RED.
+
+Pełny opis: [docs_agent1/ARCHITECTURE.md](docs_agent1/ARCHITECTURE.md)
+
+## 🧰 Troubleshooting
+
+- **Brak dostępu do usług (10.0.0.1)**: sprawdź, czy VPN jest aktywny.
+- **Agent1 nie odpowiada**: uruchom `docker compose up -d --build` w [agents/agent1_student](agents/agent1_student).
+- **Qdrant/Ollama nie startuje**: sprawdź `docker ps` i logi kontenerów (`docker logs <nazwa>`).
 
 ## Node-RED - Orkiestracja Workflow
 
@@ -269,7 +191,7 @@ Pełna dokumentacja API: http://10.0.0.1:8001/docs (po połączeniu VPN)
 ## 👥 Zespół
 
 ### Członkowie Zespołu
-- **Adam Siehen** (@asiehen) - Project Manager, Deployment, Infrastruktura
+- **Adam Siehen** (@adamsiehen) - Project Manager, Deployment, Infrastruktura
 - **Patryk Boguski** - Tech Ops, LLM, Backend ML
 - **Mikołaj Sykucki** - Tester/Analityk, Python
 - **Oskar Jurgielaniec** - Frontend, JavaScript
@@ -346,4 +268,4 @@ git push origin main
 ---
 
 **Ostatnia aktualizacja:** 10 lutego 2026  
-**Maintainers:** Adam Siehen (@asiehen), Paweł Ponikowski (@pponikowski)
+**Maintainers:** Adam Siehen (@adamsiehen), Paweł Ponikowski (@pponikowski)
