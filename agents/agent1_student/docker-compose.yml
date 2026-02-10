@@ -11,6 +11,9 @@ services:
     environment:
       - COLLECTION=agent1_student
       - NODERED_URL=http://node-red:1880
+      - OLLAMA_URL=http://ollama:11434
+      - QDRANT_HOST=qdrant
+      - QDRANT_PORT=6333
 
 networks:
   ai_network:
