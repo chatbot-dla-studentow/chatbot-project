@@ -350,7 +350,7 @@ async def publish_workflow_to_nodered(workflow_data: dict) -> bool:
         logger.warning(f"Błąd podczas publikacji workflow do Node-RED: {e}")
         nodered_available = False
         return False
-#test
+
 
 @app.on_event("startup")
 async def startup_event():
