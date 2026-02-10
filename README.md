@@ -182,10 +182,14 @@ done
 - **[TEAM_TASKS.md](TEAM_TASKS.md)** - Podział zadań zespołu
 
 ### Dokumentacja Agentów
-- **[docs_agent1/](docs_agent1/INDEX.md)** - Kompletna dokumentacja Agent1 Student
-  - Architektura RAG, API, Quick Start
-  - System logowania i kategoryzacji
+- **[README_AGENT1.md](README_AGENT1.md)** - Kompletna dokumentacja Agent1 Student
+  - Architektura RAG, API, instalacja, konfiguracja
+  - Baza wiedzy (220 dokumentów, 5 kategorii)
+  - System logowania i troubleshooting
+- **[docs_agent1/](docs_agent1/INDEX.md)** - Dokumentacja szczegółowa Agent1
   - Raporty implementacji i testów
+  - Przykłady użycia logowania
+  - Quick Start Guide
 
 ### API Endpoints
 
