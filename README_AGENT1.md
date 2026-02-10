@@ -749,110 +749,13 @@ services:
 
 ### Sprint 1-3 (Listopad 2025 - Luty 2026)
 
-**Paweł Ponikowski** (Baza wiedzy i dokumentacja):
-
-#### ✅ Zadania główne (10/10 wykonanych)
-
-1. **FAQ studenckie** - Utworzono FAQ z najczęstszymi pytaniami dotyczącymi stypendiów
-   - Lokalizacja: `chatbot-baza-wiedzy-nowa/stypendia/FAQ - Najczęściej zadawane pytania dotyczące stypendiów.docx`
-   - Format: 41 pytań i odpowiedzi
-
-2. **Procedury administracyjne** - Kompletna kolekcja dokumentów proceduralnych
-   - 5 kategorii: dane_osobowe, egzaminy, rekrutacja, stypendia, urlopy_zwolnienia
-   - 47 plików źródłowych (.txt, .docx, .doc, .pdf)
-
-3. **Rozbudowa bazy wiedzy** - Skalowanie z 15 do 220 dokumentów
-   - Status: 220 dokumentów w JSON, 215 załadowanych do Qdrant
-   - Kategorie: dane_osobowe (77), stypendia (56), rekrutacja (52), egzaminy (15), urlopy (15)
-
-4. **Regulamin studiów** - Dodano oficjalne regulaminy uczelni
-   - `regulamin-studiow_2024_2025.pdf`
-   - `Regulamin studiów 2025_2026.pdf`
-   - Lokalizacja: `chatbot-baza-wiedzy-nowa/rekrutacja/` i `egzaminy/`
-
-5. **Informacje o stypendiach** - Pełny zestaw dokumentów stypendialnych
-   - 11 plików: rektora, socjalne, Erasmus, VIS, sportowców, niepełnosprawnych, FAQ
-   - Stawki w semestrze zimowym 2025-2026
-   - Dane kontaktowe i instrukcje aplikowania
-
-6. **Walidacja jakości danych** - System kontroli jakości bazy wiedzy
-   - Skrypt: `helpers/check_knowledge_quality.py`
-   - Funkcje: wykrywanie duplikatów (MD5 hash), analiza kategoryzacji, statystyki rozmiarów
-   - Wykryto i zidentyfikowano 24 grupy duplikatów
-
-7. **Kategoryzacja wiedzy** - System automatycznej kategoryzacji
-   - 5 głównych kategorii z detekcją słów kluczowych
-   - Auto-detection w `helpers/query_logger.py`
-   - Słowa kluczowe dla każdej kategorii (dane, egzamin, stypendium, urlop, rekrutacja)
-
-8. **Dokumentacja bazy wiedzy** - Kompletna dokumentacja techniczna
-   - `docs_agent1/knowledge.md` - 725 linii szczegółowej dokumentacji
-   - Opisy wszystkich skryptów (parse, load, update, verify, check, add_qa, init_logs, delete)
-   - Workflow zarządzania i przykłady użycia
-
-9. **API agent2-5** - Implementacja komunikacji między agentami
-   - 4 agenty (ticket, analytics, bos, security) z endpointami `/run` i `/health`
-   - Proxy do Agent1 przez zmienną środowiskową `AGENT1_URL=http://agent1_student:8000`
-   - Zgodność z architekturą multi-agent
-
-10. **Skrypt aktualizacji wiedzy** - Inkrementalna aktualizacja bazy
-    - Nowy skrypt: `helpers/update_knowledge.py`
-    - Wykorzystanie MD5 hash do detekcji zmian (content + path)
-    - Dodawanie tylko nowych dokumentów bez usuwania starych
-    - Raportowanie: ile dodano, ile pominięto, ile błędów
-
-#### ✅ Dodatkowe osiągnięcia
-
-11. **Knowledge Manager CLI** - Interfejs wiersza poleceń do zarządzania bazą
-    - Plik: `agents/agent1_student/knowledge_manager.py` (250 linii)
-    - 10 opcji menu: Parse, Load, Update, Verify, Check, Add QA, Init Logs, Delete, Status, Help
-    - Interaktywny interfejs z kolorowym outputem
-
-12. **Folder helpers/** - Modułowa struktura skryptów zarządzania
-    - 9 plików Python w `agents/agent1_student/helpers/`
-    - `__init__.py` - eksport QueryLogger
-    - Wszystkie skrypty z dynamicznymi ścieżkami (bazując na `__file__`)
-
-13. **Dokumentacja architektury** - Szczegółowy opis systemu multi-agent
-    - `docs_agent1/ARCHITECTURE.md` - 648 linii
-    - Diagramy przepływu danych, interakcji agentów, struktury kolekcji
-    - Wykorzystanie Mermaid.js do wizualizacji
-
-14. **Testy helperów** - Weryfikacja wszystkich skryptów w Docker
-    - 7/9 skryptów przetestowanych na serwerze produkcyjnym
-    - Poprawka hardcoded ścieżek na dynamiczne
-    - Raport testowy z wynikami i statystykami
-
-15. **Merge beta → main** - Synchronizacja branchy
-    - Fast-forward merge bez konfliktów
-    - 39 plików zmienionych: +3350 linii, -83 linii
-    - Wszystkie commity zsynchronizowane z origin
-
-#### 📊 Statystyki końcowe
-
-**Baza wiedzy:**
-- 47 plików źródłowych (.txt, .docx, .doc, .pdf)
-- 220 dokumentów sparsowanych do JSON
-- 215 dokumentów załadowanych do Qdrant
-- 17 par Q&A w 5 kategoriach
-- 5 kategorii tematycznych
-
-**Kod i dokumentacja:**
-- 9 skryptów Python w helpers/ (~50KB kodu)
-- 1 CLI manager (250 linii)
-- 5 plików dokumentacji w docs_agent1/ (~2500 linii)
-- README_AGENT1.md (796 linii)
-- ARCHITECTURE.md (648 linii)
-
-**Commity:**
-- 10+ commitów autorstwa Pawła Ponikowskiego
-- Ostatni: `ea415e4` - fix: Naprawiono hardcoded ścieżki w helpers
-- Branch: beta → main (zsynchronizowane)
-
-**Testy:**
-- 7 skryptów helpers/ przetestowanych w Docker
-- Wszystkie testy zakończone sukcesem
-- Wykryto i naprawiono problemy z hardcoded ścieżkami
+| Członek zespołu | Rola | Zadania (skrót) |
+|---|---|---|
+| Adam Siehen | Project Manager | Do uzupełnienia |
+| Patryk Boguski | Tech Ops | Do uzupełnienia |
+| Mikołaj Sykucki | Tester/Analityk | Do uzupełnienia |
+| Oskar Jurgielaniec | Frontend | Do uzupełnienia |
+| Paweł Ponikowski | Baza wiedzy i dokumentacja | FAQ, procedury, stypendia, regulaminy; skrypty: parse/load/update/verify/check/add_qa; dokumentacja: knowledge.md, ARCHITECTURE.md; testy helperów; merge beta -> main |
 
 ---
 
@@ -903,4 +806,4 @@ Indeks całej dokumentacji.
 
 **Ostatnia aktualizacja:** 10 lutego 2026  
 **Wersja:** 1.0 (MVP)  
-**Maintainers:** Adam Siehen (@asiehen), Paweł Ponikowski (@pponikowski)
+**Maintainers:** Adam Siehen (@adamsiehen), Paweł Ponikowski (@pponikowski)
