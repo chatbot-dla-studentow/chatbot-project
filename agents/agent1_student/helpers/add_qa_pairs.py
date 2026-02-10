@@ -190,7 +190,9 @@ def add_qa_pairs_to_knowledge_base(knowledge_dir: Path):
 
 
 def main():
-    knowledge_dir = Path("/home/admin/Desktop/ai_stack/ai_stack/agents/agent1_student/knowledge")
+    # Dynamiczna ścieżka bazująca na lokalizacji pliku
+    base_dir = Path(__file__).parent.parent
+    knowledge_dir = base_dir / "knowledge"
     
     print("Adding QA pairs to knowledge base...\n")
     add_qa_pairs_to_knowledge_base(knowledge_dir)

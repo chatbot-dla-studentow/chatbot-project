@@ -185,8 +185,10 @@ class KnowledgeBaseParser:
 
 
 def main():
-    source_dir = "/home/admin/Desktop/ai_stack/ai_stack/agents/agent1_student/chatbot-baza-wiedzy-nowa"
-    output_dir = "/home/admin/Desktop/ai_stack/ai_stack/agents/agent1_student/knowledge"
+    # Dynamiczne ścieżki bazujące na lokalizacji pliku
+    base_dir = Path(__file__).parent.parent
+    source_dir = base_dir / "chatbot-baza-wiedzy-nowa"
+    output_dir = base_dir / "knowledge"
     
     parser = KnowledgeBaseParser(source_dir, output_dir)
     print("Starting knowledge base parsing...\n")

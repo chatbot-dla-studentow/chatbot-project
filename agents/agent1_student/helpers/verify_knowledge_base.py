@@ -119,7 +119,9 @@ def print_validation_report(stats: Dict):
 
 
 def main():
-    knowledge_dir = "/home/admin/Desktop/ai_stack/ai_stack/agents/agent1_student/knowledge"
+    # Dynamiczna ścieżka bazująca na lokalizacji pliku
+    base_dir = Path(__file__).parent.parent
+    knowledge_dir = base_dir / "knowledge"
     
     print("Weryfikacja bazy wiedzy...\n")
     stats = validate_knowledge_base(knowledge_dir)
