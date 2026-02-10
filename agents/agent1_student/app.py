@@ -8,7 +8,7 @@ from langchain_community.chat_models import ChatOllama
 from langchain_community.embeddings import OllamaEmbeddings
 from qdrant_client import QdrantClient
 import httpx
-from query_logger import QueryLogger
+from helpers.query_logger import QueryLogger
 
 # Konfiguracja logowania
 logging.basicConfig(level=logging.INFO)
@@ -726,6 +726,14 @@ Odpowiedz TYLKO na podstawie powyższego kontekstu. Jeśli odpowiedzi nie ma w k
                                 score=rag_score,
                                 metadata={"model": model}
                             )
+                    
+                    # Dodaj sources do odpowiedzi (dla frontend)
+                    if sources_list and rag_score:
+                        response_data["sources"] = {
+                            "documents": sources_list,
+                            "score": round(rag_score, 3),
+                            "category": detected_category
+                        }
                     
                     return response_data
                 else:

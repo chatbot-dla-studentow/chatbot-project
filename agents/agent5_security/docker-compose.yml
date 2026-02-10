@@ -7,7 +7,7 @@ services:
     networks:
       - ai_network
     environment:
-      - COLLECTION=agent5_audit
+      - AGENT1_URL=http://agent1_student:8001
 
 networks:
   ai_network:
