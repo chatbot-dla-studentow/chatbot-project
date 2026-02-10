@@ -1,6 +1,6 @@
 # Architektura Systemu Multi-Agent
 
-## 📐 Przegląd Architektu ry
+## Przegląd Architektury
 
 System chatbota dla studentów oparty jest na architekturze multi-agent, gdzie **Agent1 Student** pełni rolę centralnego agenta wiedzy, a pozostałe agenty (Agent2-5) mogą z niego korzystać dla specyficznych zadań.
 
@@ -36,7 +36,7 @@ System chatbota dla studentów oparty jest na architekturze multi-agent, gdzie *
           [Komunikują się z Agent1]
 ```
 
-## 🏗️ Komponenty Systemu
+## Komponenty Systemu
 
 ### 1. Agent1 Student (Core Knowledge Agent)
 
@@ -387,7 +387,7 @@ environment:
   - AGENT1_URL=http://agent1_student:8001
 ```
 
-## 📊 Monitoring i Logging
+## Monitoring i Logging
 
 ### Agent1 Logs
 
@@ -438,7 +438,7 @@ Lista ostatnich zapytań.
 **GET /admin/logs/qa-pairs?limit=10**:
 Lista ostatnich odpowiedzi z sources.
 
-## 🔐 Security
+## Security
 
 ### CORS
 - Agent1: Konfigurowalny CORS dla Open WebUI
@@ -452,7 +452,7 @@ Lista ostatnich odpowiedzi z sources.
 - RODO compliance: Agent5 do walidacji
 - Sources: Transparentność źródeł odpowiedzi
 
-## 🚀 Deployment
+## Deployment
 
 ### Development
 
@@ -520,7 +520,7 @@ Dodać Redis dla cache'owania:
 - Embeddingi (wymiar: 768)
 - Search results z Qdrant
 
-## 🔗 Integracja z Innymi Grupami
+## Integracja z Innymi Grupami
 
 **Agent2-5 - Punkty Integracji**:
 
@@ -594,7 +594,7 @@ Dodać Redis dla cache'owania:
    - Przekaż sources z Agent1
    - Dodaj własne metadane (agent, category)
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### Problem: Agent2-5 nie mogą połączyć się z Agent1
 

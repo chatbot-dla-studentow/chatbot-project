@@ -99,28 +99,28 @@ Node-RED:            http://localhost:1880
 **Pierwsza instalacja (pełny load)**:
 ```bash
 # 1) Przetworzenie plików źródłowych do JSON
-python parse_knowledge_base.py
+python helpers/parse_knowledge_base.py
 
 # 2) Dodanie QA pairs
-python add_qa_pairs.py
+python helpers/add_qa_pairs.py
 
 # 3) Wczytanie do Qdrant (pełne)
-python load_knowledge_base.py
+python helpers/load_knowledge_base.py
 ```
 
 **Regularna aktualizacja (tylko nowe dokumenty)**:
 ```bash
 # 1) Przetworzenie nowych plików do JSON
-python parse_knowledge_base.py
+python helpers/parse_knowledge_base.py
 
 # 2) Aktualizacja Qdrant (inkrementalna)
-python update_knowledge.py
+python helpers/update_knowledge.py
 ```
 
 ### Czyszczenie kolekcji Qdrant
 
 ```bash
-python delete_qdrant_collection.py
+python helpers/delete_qdrant_collection.py
 ```
 
 ## Dodawanie dokumentów do bazy wiedzy
@@ -128,14 +128,14 @@ python delete_qdrant_collection.py
 **Pierwsza instalacja**:
 1. Dodaj pliki do `chatbot-baza-wiedzy-nowa/<kategoria>/`
 2. Obsługiwane formaty: `.pdf`, `.docx`, `.doc`, `.txt`
-3. Uruchom `parse_knowledge_base.py`
-4. (Opcjonalnie) uzupełnij QA pairs w `add_qa_pairs.py` i uruchom skrypt
-5. Wczytaj dane do Qdrant: `load_knowledge_base.py` (pełny load)
+3. Uruchom `helpers/parse_knowledge_base.py`
+4. (Opcjonalnie) uzupełnij QA pairs w `helpers/add_qa_pairs.py` i uruchom skrypt
+5. Wczytaj dane do Qdrant: `helpers/load_knowledge_base.py` (pełny load)
 
 **Regularna aktualizacja**:
 1. Dodaj nowe pliki do `chatbot-baza-wiedzy-nowa/<kategoria>/`
-2. Uruchom `parse_knowledge_base.py`
-3. Uruchom `update_knowledge.py` (✅ dodaje tylko nowe dokumenty)
+2. Uruchom `helpers/parse_knowledge_base.py`
+3. Uruchom `helpers/update_knowledge.py` (dodaje tylko nowe dokumenty)
 
 **Różnica**: `update_knowledge.py` jest bezpieczniejsze i szybsze niż `load_knowledge_base.py`
 
@@ -154,7 +154,7 @@ agents/agent1_student/
 ├── helpers/                     # Skrypty zarządzania
 │   ├── parse_knowledge_base.py      # Parser plików
 │   ├── load_knowledge_base.py       # Pełny load do Qdrant
-│   ├── update_knowledge.py          # Inkrementalna aktualizacja ✨ NOWY
+│   ├── update_knowledge.py          # Inkrementalna aktualizacja
 │   ├── verify_knowledge_base.py     # Walidacja bazy
 │   ├── check_knowledge_quality.py   # Analiza jakości
 │   ├── add_qa_pairs.py              # QA pairs

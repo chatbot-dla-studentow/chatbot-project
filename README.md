@@ -2,7 +2,7 @@
 
 Inteligentny chatbot dla studentów uczelni wyższej wykorzystujący architekturę multi-agentową, RAG (Retrieval-Augmented Generation) i lokalne modele LLM.
 
-## 📋 Spis treści
+## Spis treści
 
 - [Opis projektu](#opis-projektu)
 - [Struktura katalogów](#struktura-katalogów)
@@ -13,7 +13,7 @@ Inteligentny chatbot dla studentów uczelni wyższej wykorzystujący architektur
 - [Architektura w skrócie](#architektura-w-skrócie)
 - [Troubleshooting](#troubleshooting)
 
-## 🎯 Opis projektu
+## Opis projektu
 
 System składa się z 5 wyspecjalizowanych agentów:
 - **Agent1 (Student)** - pytania studenckie (stypendia, BOS, harmonogramy)
@@ -23,14 +23,14 @@ System składa się z 5 wyspecjalizowanych agentów:
 - **Agent5 (Security)** - bezpieczeństwo i autoryzacja
 
 **Główne funkcjonalności:**
-- ✅ konwersacje w języku naturalnym (mistral:7b)
-- ✅ RAG - wyszukiwanie w bazie wiedzy (Qdrant)
-- ✅ orkiestracja workflow (Node-RED)
-- ✅ logowanie zapytań i odpowiedzi
-- ✅ interfejs webowy (Open WebUI)
-- ✅ bezpieczny dostęp przez VPN (WireGuard)
+- konwersacje w języku naturalnym (mistral:7b)
+- RAG - wyszukiwanie w bazie wiedzy (Qdrant)
+- orkiestracja workflow (Node-RED)
+- logowanie zapytań i odpowiedzi
+- interfejs webowy (Open WebUI)
+- bezpieczny dostęp przez VPN (WireGuard)
 
-## 📂 Struktura katalogów
+## Struktura katalogów
 
 ```
 /opt/chatbot-project/
@@ -46,11 +46,11 @@ System składa się z 5 wyspecjalizowanych agentów:
 ├── ollama/                 # Konfiguracja Ollama
 ├── docs_agent1/            # Dokumentacja Agent1
 ├── DEPLOYMENT.md           # Szczegóły wdrożenia
-├── README_AGENT1.md        # Dokumentacja Agent1 (szczegółowa)
+├── AGENT1_OVERVIEW.md      # Dokumentacja Agent1 (szczegółowa)
 └── wg-client.conf          # Konfiguracja VPN
 ```
 
-## 👥 Zespół i zakres prac
+## Zespół i zakres prac
 
 | Członek zespołu | Rola | Zadania (skrót) |
 |---|---|---|
@@ -60,9 +60,9 @@ System składa się z 5 wyspecjalizowanych agentów:
 | Oskar Jurgielaniec | Frontend | Do uzupełnienia |
 | Paweł Ponikowski | Baza wiedzy i dokumentacja | FAQ, procedury, stypendia, regulaminy; skrypty: parse/load/update/verify/check/add_qa; dokumentacja: knowledge.md, ARCHITECTURE.md; testy helperów; merge beta -> main |
 
-## 📚 Indeks dokumentów
+## Indeks dokumentów
 
-- [README_AGENT1.md](README_AGENT1.md) - pełna dokumentacja Agent1
+- [AGENT1_OVERVIEW.md](AGENT1_OVERVIEW.md) - pełna dokumentacja Agent1
 - [docs_agent1/knowledge.md](docs_agent1/knowledge.md) - dokumentacja bazy wiedzy
 - [docs_agent1/ARCHITECTURE.md](docs_agent1/ARCHITECTURE.md) - architektura systemu
 - [docs_agent1/QUICK_START.md](docs_agent1/QUICK_START.md) - szybki start (Agent1)
@@ -70,11 +70,11 @@ System składa się z 5 wyspecjalizowanych agentów:
 - [DEPLOYMENT.md](DEPLOYMENT.md) - szczegóły wdrożenia i środowiska
 - [wg-client.conf](wg-client.conf) - konfiguracja WireGuard (plik w repo)
 
-## 🚀 Szybki deploy i uruchomienie
+## Szybki deploy i uruchomienie
 
 **Wymagane:** aktywny VPN (WireGuard).
 
-## 🔐 VPN i plik konfiguracyjny
+## VPN i plik konfiguracyjny
 
 Połączenie VPN jest wymagane, aby uzyskać dostęp do usług.
 
@@ -109,13 +109,13 @@ cd /opt/chatbot-project/agents/agent1_student && docker compose up -d --build
 
 Szczegóły: [DEPLOYMENT.md](DEPLOYMENT.md#połączenie-vpn-wymagane)
 
-## 🏗️ Architektura w skrócie
+## Architektura w skrócie
 
 Centralnym komponentem jest **Agent1 Student**, który realizuje RAG (Qdrant + Ollama) i udostępnia wiedzę agentom 2-5. Orkiestrację przepływu zapewnia Node-RED.
 
 Pełny opis: [docs_agent1/ARCHITECTURE.md](docs_agent1/ARCHITECTURE.md)
 
-## 🧰 Troubleshooting
+## Troubleshooting
 
 - **Brak dostępu do usług (10.0.0.1)**: sprawdź, czy VPN jest aktywny.
 - **Agent1 nie odpowiada**: uruchom `docker compose up -d --build` w [agents/agent1_student](agents/agent1_student).
@@ -160,14 +160,14 @@ docker logs node-red --tail 50 -f
 docker ps | grep node-red
 ```
 
-## 📚 Dokumentacja
+## Dokumentacja
 
 ### Główne Dokumenty
 - **[DEPLOYMENT.md](DEPLOYMENT.md)** - Instrukcja wdrożenia i dostępu
 - **[TEAM_TASKS.md](TEAM_TASKS.md)** - Podział zadań zespołu
 
 ### Dokumentacja Agentów
-- **[README_AGENT1.md](README_AGENT1.md)** - Kompletna dokumentacja Agent1 Student
+- **[AGENT1_OVERVIEW.md](AGENT1_OVERVIEW.md)** - Kompletna dokumentacja Agent1 Student
   - Architektura RAG, API, instalacja, konfiguracja
   - Baza wiedzy (220 dokumentów, 5 kategorii)
   - System logowania i troubleshooting
@@ -188,7 +188,7 @@ docker ps | grep node-red
 
 Pełna dokumentacja API: http://10.0.0.1:8001/docs (po połączeniu VPN)
 
-## 👥 Zespół
+## Zespół
 
 ### Członkowie Zespołu
 - **Adam Siehen** (@adamsiehen) - Project Manager, Deployment, Infrastruktura
@@ -203,7 +203,7 @@ Pełna dokumentacja API: http://10.0.0.1:8001/docs (po połączeniu VPN)
 - **`beta`** - branch roboczy/deweloperski (domyślny dla pracy)
 - **`main`** - branch produkcyjny (stabilny, tylko działające funkcje)
 
-⚠️ **Zawsze pracuj na `beta`!** Branch `main` to zabezpieczenie - merge tylko gdy funkcja działa.
+**Zawsze pracuj na `beta`.** Branch `main` to zabezpieczenie - merge tylko gdy funkcja działa.
 
 **Git Workflow:**
 ```bash
@@ -239,13 +239,13 @@ git push origin main
 - `refactor:` - refaktoryzacja
 - `chore:` - konfiguracja, devops
 
-## 🔗 Linki
+## Linki
 
 - **Repozytorium:** https://github.com/chatbot-dla-studentow/chatbot-project
 - **Serwer VPS:** vps-5f2a574b.vps.ovh.net (57.128.212.194)
 - **Projekt na VPS:** `/opt/chatbot-project`
 
-## 📊 Metryki Projektu
+## Metryki Projektu
 
 **Infrastruktura:**
 - Serwer: Ubuntu 24.10, 16GB RAM, 300GB SSD
@@ -263,7 +263,7 @@ git push origin main
 - Silnik: Qdrant
 - Embedding: nomic-embed-text
 - Kolekcje: 3 (agent1_student, queries_log, qa_pairs_log)
-- Dokumenty: ~20+ (stypendia, BOS, harmonogramy)
+- Dokumenty: 220 (5 kategorii)
 
 ---
 

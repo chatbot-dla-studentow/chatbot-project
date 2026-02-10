@@ -2,7 +2,7 @@
 
 Dokumentacja agenta chatbotowego odpowiadającego na pytania studenckie (stypendia, BOS, harmonogramy, obrony prac).
 
-## 📚 Spis Dokumentów
+## Spis Dokumentów
 
 ### 1. [README.md](README.md)
 **Główna dokumentacja techniczna Agent1**
@@ -78,7 +78,7 @@ Dokumentacja agenta chatbotowego odpowiadającego na pytania studenckie (stypend
 
 ---
 
-## 🔗 Powiązane Zasoby
+## Powiązane Zasoby
 
 **Kod źródłowy:**
 - `agents/agent1_student/app.py` - główna aplikacja FastAPI
@@ -120,7 +120,7 @@ Dokumentacja agenta chatbotowego odpowiadającego na pytania studenckie (stypend
 
 ---
 
-## 🚀 Quick Links
+## Quick Links
 
 - **Główny README projektu:** [../README.md](../README.md)
 - **Deployment:** [../DEPLOYMENT.md](../DEPLOYMENT.md)

@@ -152,13 +152,13 @@ docker ps
 
 ```bash
 # W katalogu agents/agent1_student
-python init_log_collections.py
+python helpers/init_log_collections.py
 ```
 
 ### 4. Wczytanie bazy wiedzy do Qdrant (jednorazowo)
 
 ```bash
-python load_knowledge_base.py
+python helpers/load_knowledge_base.py
 ```
 
 ### 5. Dostęp do aplikacji
@@ -211,10 +211,10 @@ curl http://localhost:8001/admin/logs/queries/stats
 ```
 agents/agent1_student/
 ├── app.py                              # Główna aplikacja FastAPI + RAG
-├── query_logger.py                     # Logowanie zapytań i QA
 ├── docker-compose.yml                  # Konfiguracja Docker
 ├── Dockerfile                          # Obraz kontenera
 ├── requirements.txt                    # Zależności Python
+├── knowledge_manager.py                # CLI do zarządzania bazą wiedzy
 ├── agent1_flow.json                    # Workflow Node-RED
 │
 ├── chatbot-baza-wiedzy-nowa/           # Źródłowe pliki (TXT, DOCX, PDF)
@@ -242,12 +242,15 @@ agents/agent1_student/
 │       ├── urlopy_zwolnienia_documents.json   (15 chunks)
 │       └── urlopy_zwolnienia_qa_pairs.json    (2 QA)
 │
-├── parse_knowledge_base.py             # Parser plików źródłowych
-├── add_qa_pairs.py                     # Dodawanie przykładowych QA
-├── verify_knowledge_base.py            # Walidacja struktury bazy
-├── load_knowledge_base.py              # Wczytanie do Qdrant
-├── delete_qdrant_collection.py         # Czyszczenie kolekcji
-└── init_log_collections.py             # Inicjalizacja kolekcji logów
+├── helpers/                             # Skrypty zarządzania
+│   ├── parse_knowledge_base.py          # Parser plików źródłowych
+│   ├── add_qa_pairs.py                  # Dodawanie przykładowych QA
+│   ├── verify_knowledge_base.py         # Walidacja struktury bazy
+│   ├── load_knowledge_base.py           # Wczytanie do Qdrant
+│   ├── update_knowledge.py              # Aktualizacja inkrementalna
+│   ├── delete_qdrant_collection.py      # Czyszczenie kolekcji
+│   ├── init_log_collections.py          # Inicjalizacja kolekcji logów
+│   └── query_logger.py                  # Logowanie zapytań i QA
 ```
 
 ---
@@ -544,14 +547,14 @@ curl http://localhost:8001/admin/logs/categories | jq '.'
 
 # 2. Przetwórz na JSON
 cd agents/agent1_student
-python parse_knowledge_base.py
+python helpers/parse_knowledge_base.py
 
 # 3. (Opcjonalnie) Dodaj QA pairs
 # Edytuj add_qa_pairs.py i uruchom:
-python add_qa_pairs.py
+python helpers/add_qa_pairs.py
 
 # 4. Wczytaj do Qdrant
-python load_knowledge_base.py
+python helpers/load_knowledge_base.py
 ```
 
 **Opcja B: Edycja bezpośrednia JSON**
@@ -560,14 +563,14 @@ python load_knowledge_base.py
 
 # 2. Wczytaj do Qdrant
 cd agents/agent1_student
-python load_knowledge_base.py
+python helpers/load_knowledge_base.py
 ```
 
 ### Weryfikacja bazy wiedzy
 
 ```bash
 cd agents/agent1_student
-python verify_knowledge_base.py
+python helpers/verify_knowledge_base.py
 ```
 
 Wyświetli:
@@ -580,10 +583,10 @@ Wyświetli:
 
 ```bash
 cd agents/agent1_student
-python delete_qdrant_collection.py
+python helpers/delete_qdrant_collection.py
 ```
 
-Kolekcja jest automatycznie usuwana i tworzona na nowo przy każdym uruchomieniu `load_knowledge_base.py`.
+Kolekcja jest automatycznie usuwana i tworzona na nowo przy każdym uruchomieniu `helpers/load_knowledge_base.py`.
 
 ### Reindeksacja kompletna
 
@@ -591,13 +594,13 @@ Kolekcja jest automatycznie usuwana i tworzona na nowo przy każdym uruchomieniu
 cd agents/agent1_student
 
 # 1. Przetwórz pliki źródłowe
-python parse_knowledge_base.py
+python helpers/parse_knowledge_base.py
 
 # 2. Dodaj QA pairs
-python add_qa_pairs.py
+python helpers/add_qa_pairs.py
 
 # 3. Wczytaj do Qdrant (automatycznie czyści starą kolekcję)
-python load_knowledge_base.py
+python helpers/load_knowledge_base.py
 ```
 
 ---
@@ -651,7 +654,7 @@ docker logs qdrant
 
 # 2. Wczytaj bazę wiedzy ponownie
 cd agents/agent1_student
-python load_knowledge_base.py
+python helpers/load_knowledge_base.py
 
 # 3. Weryfikuj plik źródłowy
 ls -lh knowledge/all_documents.json
@@ -684,7 +687,7 @@ docker compose up -d --build
 **Rozwiązanie:**
 ```bash
 cd agents/agent1_student
-python init_log_collections.py
+python helpers/init_log_collections.py
 ```
 
 ---

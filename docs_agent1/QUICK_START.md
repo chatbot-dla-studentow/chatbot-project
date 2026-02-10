@@ -40,17 +40,19 @@ agents/agent1_student/
 │       ├── urlopy_zwolnienia_documents.json # 15 chunks
 │       └── urlopy_zwolnienia_qa_pairs.json  # 2 QA
 ├── chatbot-baza-wiedzy-nowa/               # Źródłowe pliki (txt, docx, pdf)
-├── parse_knowledge_base.py                  # Parser plików źródłowych
-├── add_qa_pairs.py                          # Dodaje QA pairs
-├── verify_knowledge_base.py                 # Weryfikacja struktury
-├── load_knowledge_base.py                   # Wczytuje JSON do Qdrant
-├── delete_qdrant_collection.py              # Czyści kolekcję w Qdrant
-├── init_log_collections.py                  # Inicjalizacja kolekcji logów
-├── query_logger.py                          # Logowanie zapytań i QA
+├── knowledge_manager.py                     # CLI do zarządzania bazą wiedzy
+├── helpers/                                 # Skrypty zarządzania
+│   ├── parse_knowledge_base.py              # Parser plików źródłowych
+│   ├── add_qa_pairs.py                      # Dodaje QA pairs
+│   ├── verify_knowledge_base.py             # Weryfikacja struktury
+│   ├── load_knowledge_base.py               # Pełny load do Qdrant
+│   ├── update_knowledge.py                  # Aktualizacja inkrementalna
+│   ├── delete_qdrant_collection.py          # Czyści kolekcję w Qdrant
+│   ├── init_log_collections.py              # Inicjalizacja kolekcji logów
+│   └── query_logger.py                      # Logowanie zapytań i QA
 ├── LOGGING_TEST_REPORT.md                   # Raport testów logowania
 ├── LOGGING_EXAMPLES.md                      # Przykłady użycia logów
-├── AGENT1_IMPLEMENTATION_REPORT.md          # Raport dla promotora
-└── KNOWLEDGE_BASE_README.md                 # Pełna dokumentacja
+└── AGENT1_IMPLEMENTATION_REPORT.md          # Raport dla promotora
 ```
 
 ## Jak użyć?
@@ -70,22 +72,22 @@ Dostęp do serwisów:
 ### 2. Weryfikacja bazy wiedzy (opcjonalne)
 
 ```bash
-cd /home/admin/Desktop/ai_stack/ai_stack/agents/agent1_student
-python verify_knowledge_base.py
+cd agents/agent1_student
+python helpers/verify_knowledge_base.py
 ```
 
 ### 3. Wczytanie bazy wiedzy do Qdrant
 
 ```bash
-cd /home/admin/Desktop/ai_stack/ai_stack/agents/agent1_student
-python load_knowledge_base.py
+cd agents/agent1_student
+python helpers/load_knowledge_base.py
 ```
 
 ### 4. Inicjalizacja kolekcji logów (jednorazowo)
 
 ```bash
-cd /home/admin/Desktop/ai_stack/ai_stack/agents/agent1_student
-python init_log_collections.py
+cd agents/agent1_student
+python helpers/init_log_collections.py
 ```
 
 ### 5. Testowanie zapytań
@@ -119,22 +121,22 @@ curl http://localhost:8001/admin/logs/categories | jq '.'
 ```bash
 # 1. Dodaj pliki do chatbot-baza-wiedzy-nowa/<kategoria>/
 # 2. Uruchom parser
-cd /home/admin/Desktop/ai_stack/ai_stack/agents/agent1_student
-python parse_knowledge_base.py
+cd agents/agent1_student
+python helpers/parse_knowledge_base.py
 
 # 3. Dodaj QA (opcjonalne - edytuj add_qa_pairs.py najpierw)
-python add_qa_pairs.py
+python helpers/add_qa_pairs.py
 
 # 4. Wczytaj do Qdrant
-python load_knowledge_base.py
+python helpers/load_knowledge_base.py
 ```
 
 #### Opcja B: Edycja bezpośrednia JSON
 ```bash
 # Edytuj pliki w knowledge/<kategoria>/*.json
 # Następnie wczytaj do Qdrant
-cd /home/admin/Desktop/ai_stack/ai_stack/agents/agent1_student
-python load_knowledge_base.py
+cd agents/agent1_student
+python helpers/load_knowledge_base.py
 ```
 
 ## Przykładowe pytania w bazie
@@ -170,11 +172,12 @@ python load_knowledge_base.py
 
 | Skrypt | Opis | Użycie |
 |--------|------|--------|
-| `parse_knowledge_base.py` | Parsuje pliki źródłowe (txt/docx/pdf) | Przy dodawaniu nowych plików |
-| `add_qa_pairs.py` | Dodaje przykładowe pytania/odpowiedzi | Edytuj QA_PAIRS w kodzie |
-| `verify_knowledge_base.py` | Weryfikuje strukturę i wyświetla stats | Przed wczytaniem do Qdrant |
-| `load_knowledge_base.py` | Wczytuje dokumenty do Qdrant | Po każdej zmianie w knowledge/ |
-| `init_log_collections.py` | Tworzy kolekcje logów w Qdrant | Jednorazowo |
+| `parse_knowledge_base.py` | Parsuje pliki źródłowe (txt/docx/pdf) | `helpers/parse_knowledge_base.py` |
+| `add_qa_pairs.py` | Dodaje przykładowe pytania/odpowiedzi | `helpers/add_qa_pairs.py` |
+| `verify_knowledge_base.py` | Weryfikuje strukturę i wyświetla stats | `helpers/verify_knowledge_base.py` |
+| `load_knowledge_base.py` | Wczytuje dokumenty do Qdrant | `helpers/load_knowledge_base.py` |
+| `update_knowledge.py` | Aktualizacja inkrementalna | `helpers/update_knowledge.py` |
+| `init_log_collections.py` | Tworzy kolekcje logów w Qdrant | `helpers/init_log_collections.py` |
 
 ## Konfiguracja load_knowledge_base.py
 
@@ -189,10 +192,11 @@ EMBEDDING_MODEL = "nomic-embed-text"         # Model Ollama do embeddingów
 Aby usunąć starą kolekcję przed wczytaniem nowej:
 
 ```bash
-/home/admin/Desktop/ai_stack/ai_stack/.venv/bin/python delete_qdrant_collection.py
+cd agents/agent1_student
+python helpers/delete_qdrant_collection.py
 ```
 
-Kolekcja jest automatycznie usuwana i tworzona na nowo przy każdym uruchomieniu `load_knowledge_base.py`.
+Kolekcja jest automatycznie usuwana i tworzona na nowo przy każdym uruchomieniu `helpers/load_knowledge_base.py`.
 
 ## Logowanie i kategorie
 
@@ -217,7 +221,7 @@ Endpointy administracyjne:
 ## Następne kroki
 
 Teraz możesz:
-- Uruchomić `load_knowledge_base.py` aby wczytać wszystko do Qdrant
+- Uruchomić `helpers/load_knowledge_base.py` aby wczytać wszystko do Qdrant
 - Testować chatbota z nową bazą wiedzy
 - Dodawać nowe dokumenty i pytania
 - Monitorować jakość odpowiedzi i iterować

@@ -1,10 +1,10 @@
 # Baza Wiedzy - Documentation
 
-## 📚 Przegląd
+## Przegląd
 
 Baza wiedzy Agent1 Student zawiera dokumenty z kategorii akademickich, zoptymalizowane pod kątem retrieval-augmented generation (RAG). System wykorzystuje Qdrant jako vector database oraz Ollama do generowania embeddingów.
 
-## 🗂️ Struktura Bazy Wiedzy
+## Struktura Bazy Wiedzy
 
 ### Katalogi
 
@@ -29,6 +29,7 @@ agents/agent1_student/
     ├── __init__.py
     ├── parse_knowledge_base.py
     ├── load_knowledge_base.py
+    ├── update_knowledge.py
     ├── verify_knowledge_base.py
     ├── check_knowledge_quality.py
     ├── add_qa_pairs.py
@@ -49,13 +50,13 @@ agents/agent1_student/
 
 ### Statystyki (stan aktualny)
 
-- **Łącznie dokumentów**: 215
+- **Łącznie dokumentów**: 220
 - **Kolekcje Qdrant**: 
   - `agent1_student` - 215 punktów (główna baza wiedzy)
   - `agent1_query_logs` - 0 punktów (logi zapytań)
   - `agent1_qa_logs` - 0 punktów (logi par Q&A)
 
-## 📄 Format Dokumentu
+## Format Dokumentu
 
 ### Struktura JSON
 
@@ -101,7 +102,7 @@ Każdy dokument w bazie wiedzy ma następującą strukturę:
 }
 ```
 
-## 🔧 Skrypty Zarządzania
+## Skrypty Zarządzania
 
 Wszystkie skrypty znajdują się w folderze `helpers/` i są dostępne przez interfejs `knowledge_manager.py`.
 
@@ -176,16 +177,16 @@ docker exec agent1_student python helpers/load_knowledge_base.py
 6. Generuje raport z liczbą dodanych dokumentów
 
 **Zalety**:
-- ✅ **Bezpieczne**: Nie usuwa istniejących dokumentów
-- ✅ **Szybkie**: Przetwarza tylko nowe dokumenty
-- ✅ **Wydajne**: Idealne do regularnych aktualizacji
-- ✅ **Automatyczne**: Wykrywa duplikaty na podstawie hash
+- **Bezpieczne**: Nie usuwa istniejących dokumentów
+- **Szybkie**: Przetwarza tylko nowe dokumenty
+- **Wydajne**: Idealne do regularnych aktualizacji
+- **Automatyczne**: Wykrywa duplikaty na podstawie hash
 
 **Różnica vs load_knowledge_base.py**:
 | Aspekt | load_knowledge_base.py | update_knowledge.py |
 |--------|------------------------|---------------------|
 | Operacja | Pełny reload (usuwa kolekcję) | Inkrementalna aktualizacja |
-| Bezpieczeństwo | ⚠️ Usuwa wszystkie dane | ✅ Zachowuje istniejące |
+| Bezpieczeństwo | Usuwa wszystkie dane | Zachowuje istniejące |
 | Szybkość | Wolniejszy (wszystkie docs) | Szybszy (tylko nowe) |
 | Użycie | Pierwsza instalacja | Regularne aktualizacje |
 
@@ -197,8 +198,8 @@ Dodaje tylko nowe dokumenty bez usuwania istniejących
 ======================================================================
 
 1. Wczytywanie dokumentów JSON z ./knowledge...
-   Wczytano 215 dokumentów z all_documents.json
-   RAZEM: 215 dokumentów do sprawdzenia
+  Wczytano 220 dokumentów z all_documents.json
+  RAZEM: 220 dokumentów do sprawdzenia
 
 2. Sprawdzanie Ollama (http://localhost:11434)...
    ✓ Model nomic-embed-text gotowy (wymiar: 768)
@@ -207,14 +208,14 @@ Dodaje tylko nowe dokumenty bez usuwania istniejących
    ✓ Połączono z kolekcją 'agent1_student'
 
 4. Pobieranie istniejących dokumentów...
-   Pobrano: 215 dokumentów...
-   Znaleziono 215 unikalnych dokumentów w Qdrant
+  Pobrano: 215 dokumentów...
+  Znaleziono 215 unikalnych dokumentów w Qdrant
 
 5. Filtrowanie nowych dokumentów...
    Znaleziono 0 nowych dokumentów
-   Pominięto 215 istniejących dokumentów
+  Pominięto 215 istniejących dokumentów
 
-✓ Baza wiedzy jest aktualna - brak nowych dokumentów do dodania!
+Baza wiedzy jest aktualna - brak nowych dokumentów do dodania!
 ```
 
 **Uruchomienie**:
@@ -224,11 +225,11 @@ docker exec agent1_student python helpers/update_knowledge.py
 ```
 
 **Kiedy używać**:
-- ✅ Dodajesz nowe pliki do chatbot-baza-wiedzy-nowa/
-- ✅ Regularne aktualizacje bazy wiedzy
-- ✅ Chcesz zachować istniejące dokumenty
-- ❌ Pierwsza instalacja (użyj load_knowledge_base.py)
-- ❌ Chcesz przebudować całą kolekcję
+- Dodajesz nowe pliki do chatbot-baza-wiedzy-nowa/
+- Regularne aktualizacje bazy wiedzy
+- Chcesz zachować istniejące dokumenty
+- Pierwsza instalacja (użyj load_knowledge_base.py)
+- Chcesz przebudować całą kolekcję
 
 ### 4. verify_knowledge_base.py
 
@@ -244,14 +245,14 @@ docker exec agent1_student python helpers/update_knowledge.py
 ```
 RAPORT WERYFIKACJI BAZY WIEDZY
 ==============================
-📊 STATYSTYKI OGÓLNE:
-   Łączna liczba dokumentów: 215
-   Łączna liczba QA pair: 45
+STATYSTYKI OGÓLNE:
+  Łączna liczba dokumentów: 220
+  Łączna liczba QA pair: 17
    Liczba kategorii: 5
 
-📂 KATEGORII ZNALEZIONE: dane_osobowe, egzaminy, rekrutacja, stypendia, urlopy_zwolnienia
+KATEGORII ZNALEZIONE: dane_osobowe, egzaminy, rekrutacja, stypendia, urlopy_zwolnienia
 
-📋 SZCZEGÓŁY PO KATEGORII:
+SZCZEGÓŁY PO KATEGORII:
    DANE_OSOBOWE
    ├─ Dokumenty: 43 chunks
    ├─ QA pairs: 8
@@ -278,20 +279,20 @@ python helpers/verify_knowledge_base.py
 ```
 ANALIZA BAZY WIEDZY W QDRANT
 ==============================
-📊 Kolekcja: agent1_student
+Kolekcja: agent1_student
    Liczba punktów: 215
    Status: green
 
-📦 Pobrano 215 dokumentów z Qdrant
+Pobrano 215 dokumentów z Qdrant
 
-📂 KATEGORIE:
+KATEGORIE:
    dane_osobowe: 43 dokumenty (20.0%)
    egzaminy: 52 dokumenty (24.2%)
    rekrutacja: 38 dokumenty (17.7%)
    stypendia: 55 dokumenty (25.6%)
    urlopy_zwolnienia: 27 dokumenty (12.5%)
 
-🔍 DUPLIKATY:
+DUPLIKATY:
    Znaleziono 0 duplikatów
 ```
 
@@ -410,7 +411,7 @@ python knowledge_manager.py
 KNOWLEDGE MANAGER - Agent1 Student
 ======================================================================
 
-📚 ZARZĄDZANIE BAZĄ WIEDZY:
+ZARZĄDZANIE BAZĄ WIEDZY:
   1. Parse  - Parsuj pliki źródłowe (txt, docx, pdf) → JSON
   2. Load   - Załaduj dokumenty JSON do Qdrant + embeddingi (pełne)
   3. Update - Aktualizuj bazę (dodaj tylko nowe dokumenty)
@@ -418,11 +419,11 @@ KNOWLEDGE MANAGER - Agent1 Student
   5. Check  - Sprawdź jakość danych w Qdrant (duplikaty)
   6. Add QA - Dodaj pary pytanie-odpowiedź
 
-🔧 ZARZĄDZANIE KOLEKCJAMI:
+ZARZĄDZANIE KOLEKCJAMI:
   7. Init Logs - Inicjalizuj kolekcje logów (query_logs, qa_logs)
   8. Delete - Usuń kolekcję z Qdrant
 
-📊 INFORMACJE:
+INFORMACJE:
   9. Status - Pokaż status wszystkich kolekcji
   h. Help - Pokaż szczegółową pomoc
   0. Exit - Wyjdź
@@ -474,12 +475,12 @@ docker exec agent1_student python knowledge_manager.py  # opcja 6
 1. Dodaj pliki do odpowiedniego katalogu w `chatbot-baza-wiedzy-nowa/`
 2. Uruchom `parse_knowledge_base.py` (opcja 1)
 3. Uruchom `verify_knowledge_base.py` (opcja 4) - sprawdź błędy
-4. Uruchom `update_knowledge.py` (opcja 3) - ✅ dodaje tylko nowe dokumenty
+4. Uruchom `update_knowledge.py` (opcja 3) - dodaje tylko nowe dokumenty
 
 **Pełna przebudowa bazy (gdy potrzebne)**:
 1. Dodaj/edytuj pliki w `chatbot-baza-wiedzy-nowa/`
 2. Uruchom `parse_knowledge_base.py` (opcja 1)
-3. Uruchom `load_knowledge_base.py` (opcja 2) - ⚠️ usuwa całą kolekcję
+3. Uruchom `load_knowledge_base.py` (opcja 2) - usuwa całą kolekcję
 
 **Modyfikacja istniejących dokumentów**:
 1. Edytuj plik w `chatbot-baza-wiedzy-nowa/`
@@ -488,8 +489,8 @@ docker exec agent1_student python knowledge_manager.py  # opcja 6
 4. Dodaj nową: `update_knowledge.py` (opcja 3)
 
 **RÓŻNICA update_knowledge.py vs load_knowledge.py**:
-- ✅ `update_knowledge.py` - Bezpieczne, szybkie, zachowuje dane (ZALECANE)
-- ⚠️ `load_knowledge_base.py` - Usuwa całą kolekcję, wolniejsze (tylko gdy konieczne)
+- `update_knowledge.py` - Bezpieczne, szybkie, zachowuje dane (zalecane)
+- `load_knowledge_base.py` - Usuwa całą kolekcję, wolniejsze (tylko gdy konieczne)
 
 ### Monitorowanie i Analiza
 
@@ -594,7 +595,7 @@ response = {
 }
 ```
 
-## 📊 Zmienne Środowiskowe
+## Zmienne Środowiskowe
 
 | Zmienna | Default | Opis |
 |---------|---------|------|
@@ -702,9 +703,9 @@ docker exec agent1_student python helpers/load_knowledge_base.py
 - **Weryfikuj**: Po każdej aktualizacji - `verify_knowledge_base.py`
 - **Testuj**: Wypróbuj różne query przed deploymentem
 
-## 🔗 Powiązane Pliki
+## Powiązane Pliki
 
-- [README_AGENT1.md](../README_AGENT1.md) - Główna dokumentacja techniczna
+- [AGENT1_OVERVIEW.md](../AGENT1_OVERVIEW.md) - Główna dokumentacja techniczna
 - [QUICK_START.md](./QUICK_START.md) - Szybki start
 - [LOGGING_EXAMPLES.md](./LOGGING_EXAMPLES.md) - Przykłady logowania
 - [TEST_REPORT.md](./TEST_REPORT.md) - Raport testów
