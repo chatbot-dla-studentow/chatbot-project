@@ -1,0 +1,200 @@
+/* Custom CSS dla Open WebUI - WSB Merito branding */
+
+:root {
+  /* Kolory WSB Merito - biała kolorystyka */
+  --primary-color: #FFFFFF;
+  --wsb-white: #FFFFFF;
+  --wsb-light-gray: #F5F5F5;
+  --wsb-gray: #E0E0E0;
+  --wsb-dark-gray: #666666;
+  --accent-color: #FFFFFF;
+}
+
+/* Wymuszenie tytułu strony */
+body::before {
+  content: '';
+  display: none;
+}
+
+/* Logo WSB Merito zamiast tekstu "Open WebUI" */
+#sidebar-webui-name {
+  font-size: 0 !important;
+  background-image: url('/static/logo.png') !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  min-height: 60px !important;
+  width: 180px !important;
+  margin: 0 auto !important;
+  display: block !important;
+}
+
+/* Sidebar białe tło */
+#sidebar {
+  background-color: white !important;
+  border-right: 1px solid #E0E0E0 !important;
+}
+
+#sidebar > div *:hover {
+  background-color: #F5F5F5 !important;
+}
+
+/* Przyciski i elementy interaktywne - szare */
+#send-message-button {
+  background-color: #F5F5F5 !important;
+  color: #333 !important;
+}
+
+#send-message-button:hover {
+  background-color: #E0E0E0 !important;
+}
+
+[aria-label="Voice mode"] {
+  background-color: #F5F5F5 !important;
+  color: #333 !important;
+}
+
+button[type="submit"] {
+  background-color: #F5F5F5 !important;
+  border-color: #E0E0E0 !important;
+  color: #333 !important;
+}
+
+button[type="submit"]:hover {
+  background-color: #E0E0E0 !important;
+}
+
+[role="switch"][aria-checked="true"] {
+  background-color: #999999 !important;
+}
+
+/* Tooltips */
+.tippy-content {
+  background-color: #666666 !important;
+  border-color: #666666 !important;
+  color: white !important;
+}
+
+.tippy-box {
+  background-color: #666666 !important;
+  border-color: #666666 !important;
+}
+
+
+
+
+/* Główny kolor aplikacji - biały */
+.bg-primary,
+.btn-primary,
+.text-primary {
+  background-color: white !important;
+  color: #333 !important;
+}
+
+/* Przyciski - subtelny szary */
+button.primary,
+.btn-primary,
+input[type="submit"] {
+  background-color: #F5F5F5 !important;
+  border-color: #E0E0E0 !important;
+  color: #333 !important;
+}
+
+button.primary:hover,
+.btn-primary:hover {
+  background-color: #E0E0E0 !important;
+  border-color: #CCCCCC !important;
+}
+
+/* Linki - ciemny szary */
+a,
+.link,
+.text-accent {
+  color: #666 !important;
+}
+
+a:hover {
+  color: #333 !important;
+}
+
+/* Sidebar - białe tło */
+.sidebar,
+.nav-primary {
+  background-color: white !important;
+  border-right: 1px solid #E0E0E0 !important;
+}
+
+/* Aktywne elementy menu */
+.nav-item.active,
+.menu-item.active {
+  background-color: #F5F5F5 !important;
+  border-left: 3px solid #999999 !important;
+}
+
+/* Input focus */
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #999999 !important;
+  box-shadow: 0 0 0 0.2rem rgba(153, 153, 153, 0.15) !important;
+}
+
+/* Wiadomości chatbota */
+.message.assistant {
+  background-color: #F5F5F5 !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar-thumb {
+  background-color: #CCCCCC;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #999999;
+}
+
+/* Header aplikacji */
+.app-header,
+.top-bar {
+  background-color: white !important;
+  border-bottom: 1px solid #E0E0E0 !important;
+}
+
+/* Badges i tagi */
+.badge,
+.tag {
+  background-color: #F5F5F5 !important;
+  color: #666 !important;
+  border: 1px solid #E0E0E0 !important;
+}
+
+/* Loader/Spinner */
+.spinner,
+.loader {
+  border-top-color: #999999 !important;
+}
+
+/* Tooltips */
+.tooltip {
+  background-color: #666666 !important;
+}
+
+/* Cards i panele */
+.card-header,
+.panel-header {
+  background-color: white !important;
+  border-bottom: 1px solid #E0E0E0 !important;
+}
+
+/* Branding footer */
+.app-footer {
+  text-align: center;
+  padding: 1rem;
+  color: #999;
+  font-size: 0.875rem;
+}
+
+.branding-text {
+  color: #666;
+  font-weight: 600;
+}

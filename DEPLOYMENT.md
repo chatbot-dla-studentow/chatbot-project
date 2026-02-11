@@ -103,10 +103,11 @@ curl http://10.0.0.1:6333/collections  # Qdrant
 
 | Login | Email | Rola | Dostęp |
 |-------|-------|------|--------|
-| pboguski | pboguski@pboguski.pl | Admin | Full (git, docker, config) |
-| msykucki | msykucki@msykucki.pl | Admin | Full (git, docker, config) |
-| ojurgielaniec | ojurgielaniec@ojurgielaniec.pl | Admin | Full (git, docker, config) |
-| pponikowski | pponikowski@pponikowski.pl | Admin | Full (git, docker, config) |
+| asiehen | adam.siehen@outlook.com | Admin | Full (sudo, git, docker, config) |
+| pboguski | pboguski@pboguski.pl | Admin | Full (sudo, git, docker, config) |
+| msykucki | msykucki@msykucki.pl | Admin | Full (sudo, git, docker, config) |
+| ojurgielaniec | ojurgielaniec@ojurgielaniec.pl | Admin | Full (sudo, git, docker, config) |
+| pponikowski | pponikowski@pponikowski.pl | Admin | Full (sudo, git, docker, config) |
 
 **Łączenie się z serwerem:**
 ```bash
