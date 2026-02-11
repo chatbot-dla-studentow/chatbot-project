@@ -57,7 +57,7 @@ System składa się z 5 wyspecjalizowanych agentów:
 | Adam Siehen | Project Manager | Do uzupełnienia |
 | Patryk Boguski | Tech Ops | Do uzupełnienia |
 | Mikołaj Sykucki | Tester/Analityk | Do uzupełnienia |
-| Oskar Jurgielaniec | Frontend/Dokumentacja | Reorganizacja docs_agent1 (Test reports/, User guide/); DEPLOYMENT.md (user access, VM specs); rename README_AGENT1 -> AGENT1_OVERVIEW; branding Open WebUI (custom Dockerfile, logo WSB Merito, white theme CSS, custom.js, favicon) |
+| Oskar Jurgielaniec | Frontend/Dokumentacja | Reorganizacja docs_agent1 (Test reports/, User guide/); DEPLOYMENT.md (user access, VM specs); rename README_AGENT1 -> AGENT1_OVERVIEW; branding Open WebUI (custom Dockerfile z favicon fix, logo WSB Merito, white theme CSS, custom.js, favicon.ico multi-format, usunięcie starych Open WebUI favikonek, cache-busting); customizacja interfejsu użytkownika |
 | Paweł Ponikowski | Baza wiedzy i dokumentacja | FAQ, procedury, stypendia, regulaminy; skrypty: parse/load/update/verify/check/add_qa; dokumentacja: knowledge.md, ARCHITECTURE.md; testy helperów; merge beta -> main |
 
 ## Indeks dokumentów
