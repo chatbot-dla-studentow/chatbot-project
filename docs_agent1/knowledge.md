@@ -706,9 +706,11 @@ docker exec agent1_student python helpers/load_knowledge_base.py
 ## Powiązane Pliki
 
 - [AGENT1_OVERVIEW.md](../AGENT1_OVERVIEW.md) - Główna dokumentacja techniczna
-- [QUICK_START.md](./QUICK_START.md) - Szybki start
+- [QUICK_START.md](./User guide/QUICK_START.md) - Szybki start
+- [user_guide.md](./User guide/user_guide.md) - Instrukcja użytkownika
 - [LOGGING_EXAMPLES.md](./LOGGING_EXAMPLES.md) - Przykłady logowania
-- [TEST_REPORT.md](./TEST_REPORT.md) - Raport testów
+- [TEST_REPORT.md](./Test reports/TEST_REPORT.md) - Raport testów
+- [mobile_tests.md](./Test reports/mobile_tests.md) - Testy mobilne
 - [app.py](../app.py) - Główna aplikacja FastAPI
 
 ## 📅 Historia Zmian

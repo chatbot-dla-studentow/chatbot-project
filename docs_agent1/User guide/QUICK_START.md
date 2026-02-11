@@ -50,9 +50,20 @@ agents/agent1_student/
 │   ├── delete_qdrant_collection.py          # Czyści kolekcję w Qdrant
 │   ├── init_log_collections.py              # Inicjalizacja kolekcji logów
 │   └── query_logger.py                      # Logowanie zapytań i QA
-├── LOGGING_TEST_REPORT.md                   # Raport testów logowania
 ├── LOGGING_EXAMPLES.md                      # Przykłady użycia logów
-└── AGENT1_IMPLEMENTATION_REPORT.md          # Raport dla promotora
+├── img/                                     # Obrazy
+│   ├── user_guide/                          # User guide images
+│   │   └── chat.png, home.png, login.png, menu.png
+│   └── mobile_tests/                        # Mobile screenshots
+│       └── IMG_*.PNG
+├── Test reports/
+│   ├── AGENT1_IMPLEMENTATION_REPORT.md      # Raport dla promotora
+│   ├── TEST_REPORT.md                       # Raport testów
+│   ├── LOGGING_TEST_REPORT.md               # Raport testów logowania
+│   └── mobile_tests.md                      # Testy mobilne
+└── User guide/
+    ├── user_guide.md                        # Instrukcja użytkownika
+    └── QUICK_START.md                       # Ten plik
 ```
 
 ## Jak użyć?

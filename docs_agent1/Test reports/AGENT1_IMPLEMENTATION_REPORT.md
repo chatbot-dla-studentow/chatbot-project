@@ -306,9 +306,9 @@ curl "http://localhost:8001/admin/logs/queries/search?query=stypendium&limit=3"
 
 ### Pliki dokumentacji:
 1. **README.md** - główna dokumentacja projektu (zaktualizowana)
-2. **LOGGING_TEST_REPORT.md** - raport testów systemu logowania
+2. **LOGGING_TEST_REPORT.md** - raport testów systemu logowania (Test reports/)
 3. **LOGGING_EXAMPLES.md** - przykłady użycia API
-4. **AGENT1_IMPLEMENTATION_REPORT.md** - ten dokument
+4. **AGENT1_IMPLEMENTATION_REPORT.md** - ten dokument (Test reports/)
 
 ### Pliki implementacji:
 1. **query_logger.py** - moduł logowania (267 linii)

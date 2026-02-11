@@ -17,7 +17,7 @@ Dokumentacja agenta chatbotowego odpowiadającego na pytania studenckie (stypend
 
 ---
 
-### 2. [QUICK_START.md](QUICK_START.md)
+### 2. [QUICK_START.md](User guide/QUICK_START.md)
 **Szybki start - pierwsze uruchomienie**
 - Minimalna konfiguracja
 - Podstawowe komendy
@@ -41,7 +41,7 @@ Dokumentacja agenta chatbotowego odpowiadającego na pytania studenckie (stypend
 
 ---
 
-### 4. [LOGGING_TEST_REPORT.md](LOGGING_TEST_REPORT.md)
+### 4. [LOGGING_TEST_REPORT.md](Test reports/LOGGING_TEST_REPORT.md)
 **Raport testowy - system logowania**
 - Wyniki testów funkcjonalnych
 - Walidacja endpointów logowania
@@ -53,7 +53,7 @@ Dokumentacja agenta chatbotowego odpowiadającego na pytania studenckie (stypend
 
 ---
 
-### 5. [AGENT1_IMPLEMENTATION_REPORT.md](AGENT1_IMPLEMENTATION_REPORT.md)
+### 5. [AGENT1_IMPLEMENTATION_REPORT.md](Test reports/AGENT1_IMPLEMENTATION_REPORT.md)
 **Raport implementacji - zgodność z wymaganiami Prof. Orłowskiego**
 - Wymagania funkcjonalne i niefunkcjonalne
 - Podsumowanie wykonania (checklist)
@@ -66,7 +66,7 @@ Dokumentacja agenta chatbotowego odpowiadającego na pytania studenckie (stypend
 
 ---
 
-### 6. [TEST_REPORT.md](TEST_REPORT.md)
+### 6. [TEST_REPORT.md](Test reports/TEST_REPORT.md)
 **Raport testowy - testy ogólne Agent1**
 - Testy jednostkowe
 - Testy integracyjne
@@ -75,6 +75,28 @@ Dokumentacja agenta chatbotowego odpowiadającego na pytania studenckie (stypend
 - Wykryte błędy i ich naprawa
 
 **Dla kogo:** Testerzy, code review, dokumentacja QA
+
+---
+
+### 7. [user_guide.md](User guide/user_guide.md)
+**Instrukcja użytkownika - jak korzystać z chatbota**
+- Logowanie i nawigacja
+- Zadawanie pytań
+- Zrzuty ekranu interfejsu
+- Najczęstsze przypadki użycia
+
+**Dla kogo:** Użytkownicy końcowi, dokumentacja użytkownika
+
+---
+
+### 8. [mobile_tests.md](Test reports/mobile_tests.md)
+**Raport testów mobilnych**
+- Testy na urządzeniach mobilnych
+- Responsywność interfejsu
+- Zrzuty ekranu testów
+- Wykryte problemy i rozwiązania
+
+**Dla kogo:** Testerzy, dokumentacja QA, mobile testing
 
 ---
 
@@ -100,8 +122,9 @@ Dokumentacja agenta chatbotowego odpowiadającego na pytania studenckie (stypend
 
 ### Jestem nowy w projekcie
 1. Przeczytaj [README.md](README.md) - zrozumiesz architekturę
-2. Uruchom według [QUICK_START.md](QUICK_START.md)
+2. Uruchom według [QUICK_START.md](User guide/QUICK_START.md)
 3. Przetestuj API według [LOGGING_EXAMPLES.md](LOGGING_EXAMPLES.md)
+4. Zobacz [user_guide.md](User guide/user_guide.md) - instrukcja dla użytkownika
 
 ### Pracuję nad funkcjonalnością
 1. [README.md](README.md) - sprawdź istniejące API
@@ -109,14 +132,16 @@ Dokumentacja agenta chatbotowego odpowiadającego na pytania studenckie (stypend
 3. Kod w `agents/agent1_student/app.py`
 
 ### Testuję system
-1. [TEST_REPORT.md](TEST_REPORT.md) - jakie testy już są
-2. [LOGGING_TEST_REPORT.md](LOGGING_TEST_REPORT.md) - testy logowania
-3. [LOGGING_EXAMPLES.md](LOGGING_EXAMPLES.md) - jak testować ręcznie
+1. [TEST_REPORT.md](Test reports/TEST_REPORT.md) - jakie testy już są
+2. [LOGGING_TEST_REPORT.md](Test reports/LOGGING_TEST_REPORT.md) - testy logowania
+3. [mobile_tests.md](Test reports/mobile_tests.md) - testy mobilne
+4. [LOGGING_EXAMPLES.md](LOGGING_EXAMPLES.md) - jak testować ręcznie
 
 ### Przygotowuję dokumentację do obrony
-1. [AGENT1_IMPLEMENTATION_REPORT.md](AGENT1_IMPLEMENTATION_REPORT.md) - główny raport
+1. [AGENT1_IMPLEMENTATION_REPORT.md](Test reports/AGENT1_IMPLEMENTATION_REPORT.md) - główny raport
 2. [README.md](README.md) - architektura techniczna
-3. [TEST_REPORT.md](TEST_REPORT.md) + [LOGGING_TEST_REPORT.md](LOGGING_TEST_REPORT.md) - wyniki testów
+3. [TEST_REPORT.md](Test reports/TEST_REPORT.md) + [LOGGING_TEST_REPORT.md](Test reports/LOGGING_TEST_REPORT.md) + [mobile_tests.md](Test reports/mobile_tests.md) - wyniki testów
+4. [user_guide.md](User guide/user_guide.md) - instrukcja użytkownika
 
 ---
 
