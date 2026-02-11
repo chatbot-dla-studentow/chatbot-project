@@ -12,6 +12,15 @@ services:
     environment:
       # Przekierowanie na agent1_student z RAG zamiast bezpośrednio Ollama
       - OLLAMA_BASE_URL=http://agent1_student:8000
+      
+      # Domyślny model
+      - DEFAULT_MODELS=mistral:7b
+      
+      # System prompt dla chatbota
+      - DEFAULT_USER_ROLE=Jesteś chatbotem dla studentów WSB Merito. Odpowiadasz profesjonalnie i pomocnie na pytania dotyczące uczelni, stypendiów, BOS, harmonogramów i procedur. Zawsze odpowiadaj po polsku. Bierz wiedzę z bazy qdrant. Działaj jako RAG. Jeżeli nie ma informacji w bazie qdrant to odpowiedz "Nie mam informacji na ten temat. Skontaktuj się z Biurem Obsługi Studenta."
+      
+      # Nazwa aplikacji
+      - WEBUI_NAME=Chatbot dla Studentów WSB Merito
 
     volumes:
       - open_webui_data:/app/backend/data

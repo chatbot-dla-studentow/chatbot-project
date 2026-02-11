@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 app = FastAPI()
 
 llm = ChatOllama(
-    model="mistral:7b",
+    model=DEFAULT_MODEL,
     base_url="http://ollama:11434"
 )
 
@@ -28,6 +28,10 @@ WORKFLOW_ENDPOINT = os.getenv("WORKFLOW_ENDPOINT", "/agent1_student")
 QDRANT_HOST = os.getenv("QDRANT_HOST", "qdrant")
 QDRANT_PORT = int(os.getenv("QDRANT_PORT", "6333"))
 EMBEDDING_MODEL = "nomic-embed-text"  # Model embeddings w Ollama
+DEFAULT_MODEL = "mistral:7b"  # Domyślny model LLM
+
+# System prompt dla chatbota
+SYSTEM_PROMPT = """Jesteś chatbotem dla studentów WSB Merito. Odpowiadasz profesjonalnie i pomocnie na pytania dotyczące uczelni, stypendiów, BOS, harmonogramów i procedur. Zawsze odpowiadaj po polsku. Bierz wiedzę z bazy qdrant. Działaj jako RAG. Jeżeli nie ma informacji w bazie qdrant to odpowiedz "Nie mam informacji na ten temat. Skontaktuj się z Biurem Obsługi Studenta."""
 
 # Inicjalizacja klientów
 qdrant_client = None
@@ -541,7 +545,7 @@ async def ollama_generate_with_rag(payload: dict):
     try:
         # Wyciągnij prompt z zapytania
         prompt = payload.get("prompt", "")
-        model = payload.get("model", "mistral:7b")
+        model = payload.get("model", DEFAULT_MODEL)
         stream = payload.get("stream", False)
         
         if not prompt:
@@ -628,11 +632,18 @@ async def ollama_chat_with_rag(payload: dict):
     try:
         # Wyciągnij ostatnią wiadomość z konwersacji
         messages = payload.get("messages", [])
-        model = payload.get("model", "mistral:7b")
+        model = payload.get("model", DEFAULT_MODEL)
         stream = payload.get("stream", False)
         
         if not messages:
             raise HTTPException(status_code=400, detail="Brak messages w zapytaniu")
+        
+        # Dodaj system prompt na początku konwersacji (jeśli nie ma)
+        if not messages or messages[0].get("role") != "system":
+            messages.insert(0, {
+                "role": "system",
+                "content": SYSTEM_PROMPT
+            })
         
         # Pobierz ostatnią wiadomość użytkownika
         last_message = messages[-1].get("content", "") if messages else ""
@@ -676,7 +687,7 @@ async def ollama_chat_with_rag(payload: dict):
 
 PYTANIE UŻYTKOWNIKA: {last_message}
 
-Odpowiedz TYLKO na podstawie powyższego kontekstu. Jeśli odpowiedzi nie ma w kontekście, napisz: "Nie mam tej informacji w bazie wiedzy"."""
+Odpowiedz TYLKO na podstawie powyższego kontekstu. Jeśli odpowiedzi nie ma w kontekście, odpowiedz: "Nie mam informacji na ten temat. Skontaktuj się z Biurem Obsługi Studenta.""""
                     
                     # Zamień ostatnią wiadomość na wzbogaconą
                     enriched_messages[-1]["content"] = enriched_last_msg
