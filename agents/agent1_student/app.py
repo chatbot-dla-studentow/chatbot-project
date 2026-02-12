@@ -15,7 +15,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 app = FastAPI()
-
+#test
 llm = ChatOllama(
     model=DEFAULT_MODEL,
     base_url="http://ollama:11434"
