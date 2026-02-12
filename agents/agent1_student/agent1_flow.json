@@ -1,1673 +1,2087 @@
-{
-	"definitions": {
-		"collaboration": {
-			"participant": [
-				{
-					"_id": "Participant_13v2wvo",
-					"_name": "agent1_student",
-					"_processRef": "Process_00prx9s",
-					"__prefix": "bpmn"
-				},
-				{
-					"_id": "Participant_1u7eyox",
-					"_name": "agent5_security",
-					"_processRef": "Process_00sbkfa",
-					"__prefix": "bpmn"
-				},
-				{
-					"_id": "Participant_0hclpif",
-					"_name": "agent4_bos",
-					"_processRef": "Process_19ftoar",
-					"__prefix": "bpmn"
-				},
-				{
-					"_id": "Participant_1x8ga9i",
-					"_name": "agent3_analytics",
-					"_processRef": "Process_1r8vomp",
-					"__prefix": "bpmn"
-				},
-				{
-					"_id": "Participant_1l8vizt",
-					"_name": "agent2_ticket",
-					"_processRef": "Process_1x2yrq2",
-					"__prefix": "bpmn"
-				}
-			],
-			"messageFlow": [
-				{
-					"_id": "Flow_0jd6sdc",
-					"_sourceRef": "Activity_1v2ct6z",
-					"_targetRef": "Activity_0a6uqak",
-					"__prefix": "bpmn"
-				},
-				{
-					"_id": "Flow_0p2ctmn",
-					"_sourceRef": "Activity_1b3yr78",
-					"_targetRef": "Activity_0zvm1yn",
-					"__prefix": "bpmn"
-				},
-				{
-					"_id": "Flow_0frprs4",
-					"_sourceRef": "Activity_06mrnxh",
-					"_targetRef": "Activity_1b3yr78",
-					"__prefix": "bpmn"
-				},
-				{
-					"_id": "Flow_0grzt7q",
-					"_sourceRef": "Activity_033pd2k",
-					"_targetRef": "Activity_1d7svpw",
-					"__prefix": "bpmn"
-				},
-				{
-					"_id": "Flow_1wbecp4",
-					"_sourceRef": "Activity_1d7svpw",
-					"_targetRef": "Activity_02dpfvc",
-					"__prefix": "bpmn"
-				}
-			],
-			"_id": "Collaboration_1bphgl7",
-			"__prefix": "bpmn"
-		},
-		"process": [
-			{
-				"laneSet": {
-					"_id": "LaneSet_1yo7wzb",
-					"__prefix": "bpmn"
-				},
-				"startEvent": {
-					"outgoing": {
-						"__prefix": "bpmn",
-						"__text": "Flow_0ja9x70"
-					},
-					"_id": "StartEvent_0j6qdg0",
-					"_name": "Start nowa sesja Chatbota",
-					"__prefix": "bpmn"
-				},
-				"exclusiveGateway": [
-					{
-						"incoming": {
-							"__prefix": "bpmn",
-							"__text": "Flow_13erjc0"
-						},
-						"outgoing": [
-							{
-								"__prefix": "bpmn",
-								"__text": "Flow_04kxm4w"
-							},
-							{
-								"__prefix": "bpmn",
-								"__text": "Flow_1wrdikd"
-							}
-						],
-						"_id": "Gateway_0qbykuw",
-						"_name": "Czy zapytanie dotyczy dostępnych kategorii z bazy wiedzy?",
-						"__prefix": "bpmn"
-					},
-					{
-						"incoming": [
-							{
-								"__prefix": "bpmn",
-								"__text": "Flow_0qpisc7"
-							},
-							{
-								"__prefix": "bpmn",
-								"__text": "Flow_0063asb"
-							},
-							{
-								"__prefix": "bpmn",
-								"__text": "Flow_0bcwmqa"
-							}
-						],
-						"outgoing": [
-							{
-								"__prefix": "bpmn",
-								"__text": "Flow_17a6wmd"
-							},
-							{
-								"__prefix": "bpmn",
-								"__text": "Flow_14h0dsd"
-							}
-						],
-						"_id": "Gateway_1j6mgt1",
-						"_name": "Czy użytkownik ma kolejne pytania?",
-						"__prefix": "bpmn"
-					},
-					{
-						"incoming": {
-							"__prefix": "bpmn",
-							"__text": "Flow_14h0dsd"
-						},
-						"outgoing": [
-							{
-								"__prefix": "bpmn",
-								"__text": "Flow_0ja82b6"
-							},
-							{
-								"__prefix": "bpmn",
-								"__text": "Flow_12o9jqs"
-							}
-						],
-						"_id": "Gateway_1ytc9jm",
-						"_name": "Czy użytkownik chciałby wypełnić ankietę?",
-						"__prefix": "bpmn"
-					},
-					{
-						"incoming": {
-							"__prefix": "bpmn",
-							"__text": "Flow_1uerg36"
-						},
-						"outgoing": [
-							{
-								"__prefix": "bpmn",
-								"__text": "Flow_0qpisc7"
-							},
-							{
-								"__prefix": "bpmn",
-								"__text": "Flow_0ssbhxx"
-							}
-						],
-						"_id": "Gateway_0gmy85f",
-						"_name": "Czy użytkownik chciałby zrobić zgłoszenie do BOS",
-						"__prefix": "bpmn"
-					},
-					{
-						"incoming": {
-							"__prefix": "bpmn",
-							"__text": "Flow_00lz61s"
-						},
-						"outgoing": [
-							{
-								"__prefix": "bpmn",
-								"__text": "Flow_03u5hty"
-							},
-							{
-								"__prefix": "bpmn",
-								"__text": "Flow_0063asb"
-							}
-						],
-						"_id": "Gateway_1n75xir",
-						"_name": "Jeżeli jest zgoda RODO?",
-						"__prefix": "bpmn"
-					}
-				],
-				"userTask": [
-					{
-						"incoming": [
-							{
-								"__prefix": "bpmn",
-								"__text": "Flow_0ja9x70"
-							},
-							{
-								"__prefix": "bpmn",
-								"__text": "Flow_17a6wmd"
-							}
-						],
-						"outgoing": {
-							"__prefix": "bpmn",
-							"__text": "Flow_1ielou0"
-						},
-						"_id": "Activity_1gavgm4",
-						"_name": "Użytkownik zadaje zapytanie do chata",
-						"__prefix": "bpmn"
-					},
-					{
-						"incoming": {
-							"__prefix": "bpmn",
-							"__text": "Flow_12o9jqs"
-						},
-						"_id": "Activity_1v2ct6z",
-						"_name": "Wypełnienie ankiety",
-						"__prefix": "bpmn"
-					},
-					{
-						"incoming": {
-							"__prefix": "bpmn",
-							"__text": "Flow_0ssbhxx"
-						},
-						"outgoing": {
-							"__prefix": "bpmn",
-							"__text": "Flow_1442kvr"
-						},
-						"_id": "Activity_1h898n2",
-						"_name": "Wypełnienie formularza zgłoszenia do BOS",
-						"__prefix": "bpmn"
-					}
-				],
-				"serviceTask": [
-					{
-						"incoming": {
-							"__prefix": "bpmn",
-							"__text": "Flow_1ielou0"
-						},
-						"outgoing": {
-							"__prefix": "bpmn",
-							"__text": "Flow_13erjc0"
-						},
-						"_id": "Activity_19rpry4",
-						"_name": "Przetwarzanie zapytania przez model językowy",
-						"__prefix": "bpmn"
-					},
-					{
-						"incoming": {
-							"__prefix": "bpmn",
-							"__text": "Flow_04kxm4w"
-						},
-						"outgoing": {
-							"__prefix": "bpmn",
-							"__text": "Flow_0bcwmqa"
-						},
-						"_id": "Activity_0fnlt84",
-						"_name": "Wyświetl komunikat o braku wiedzy",
-						"__prefix": "bpmn"
-					},
-					{
-						"incoming": {
-							"__prefix": "bpmn",
-							"__text": "Flow_1wrdikd"
-						},
-						"outgoing": {
-							"__prefix": "bpmn",
-							"__text": "Flow_0iytbut"
-						},
-						"_id": "Activity_01noez8",
-						"_name": "Wyszukanie w bazie wiedzy",
-						"__prefix": "bpmn"
-					},
-					{
-						"incoming": {
-							"__prefix": "bpmn",
-							"__text": "Flow_0iytbut"
-						},
-						"outgoing": {
-							"__prefix": "bpmn",
-							"__text": "Flow_1uerg36"
-						},
-						"_id": "Activity_0cwbmwt",
-						"_name": "Chatbot generuje odpowiedź",
-						"__prefix": "bpmn"
-					},
-					{
-						"incoming": {
-							"__prefix": "bpmn",
-							"__text": "Flow_1442kvr"
-						},
-						"outgoing": {
-							"__prefix": "bpmn",
-							"__text": "Flow_00lz61s"
-						},
-						"_id": "Activity_1b3yr78",
-						"_name": "Wyślij żądanie weryfikacji RODO",
-						"__prefix": "bpmn"
-					}
-				],
-				"task": {
-					"incoming": {
-						"__prefix": "bpmn",
-						"__text": "Flow_03u5hty"
-					},
-					"_id": "Activity_033pd2k",
-					"_name": "Wysyłka zgłoszenia do BOS",
-					"__prefix": "bpmn"
-				},
-				"sequenceFlow": [
-					{
-						"_id": "Flow_0ja9x70",
-						"_sourceRef": "StartEvent_0j6qdg0",
-						"_targetRef": "Activity_1gavgm4",
-						"__prefix": "bpmn"
-					},
-					{
-						"_id": "Flow_0ja82b6",
-						"_name": "Nie",
-						"_sourceRef": "Gateway_1ytc9jm",
-						"_targetRef": "Event_0if1t0i",
-						"__prefix": "bpmn"
-					},
-					{
-						"_id": "Flow_13erjc0",
-						"_sourceRef": "Activity_19rpry4",
-						"_targetRef": "Gateway_0qbykuw",
-						"__prefix": "bpmn"
-					},
-					{
-						"_id": "Flow_04kxm4w",
-						"_name": "Nie",
-						"_sourceRef": "Gateway_0qbykuw",
-						"_targetRef": "Activity_0fnlt84",
-						"__prefix": "bpmn"
-					},
-					{
-						"_id": "Flow_1wrdikd",
-						"_name": "Tak",
-						"_sourceRef": "Gateway_0qbykuw",
-						"_targetRef": "Activity_01noez8",
-						"__prefix": "bpmn"
-					},
-					{
-						"_id": "Flow_17a6wmd",
-						"_name": "Tak",
-						"_sourceRef": "Gateway_1j6mgt1",
-						"_targetRef": "Activity_1gavgm4",
-						"__prefix": "bpmn"
-					},
-					{
-						"_id": "Flow_1ielou0",
-						"_sourceRef": "Activity_1gavgm4",
-						"_targetRef": "Activity_19rpry4",
-						"__prefix": "bpmn"
-					},
-					{
-						"_id": "Flow_0iytbut",
-						"_sourceRef": "Activity_01noez8",
-						"_targetRef": "Activity_0cwbmwt",
-						"__prefix": "bpmn"
-					},
-					{
-						"_id": "Flow_1uerg36",
-						"_sourceRef": "Activity_0cwbmwt",
-						"_targetRef": "Gateway_0gmy85f",
-						"__prefix": "bpmn"
-					},
-					{
-						"_id": "Flow_0qpisc7",
-						"_name": "Nie",
-						"_sourceRef": "Gateway_0gmy85f",
-						"_targetRef": "Gateway_1j6mgt1",
-						"__prefix": "bpmn"
-					},
-					{
-						"_id": "Flow_0063asb",
-						"_name": "Nie",
-						"_sourceRef": "Gateway_1n75xir",
-						"_targetRef": "Gateway_1j6mgt1",
-						"__prefix": "bpmn"
-					},
-					{
-						"_id": "Flow_14h0dsd",
-						"_name": "Nie",
-						"_sourceRef": "Gateway_1j6mgt1",
-						"_targetRef": "Gateway_1ytc9jm",
-						"__prefix": "bpmn"
-					},
-					{
-						"_id": "Flow_12o9jqs",
-						"_name": "Tak",
-						"_sourceRef": "Gateway_1ytc9jm",
-						"_targetRef": "Activity_1v2ct6z",
-						"__prefix": "bpmn"
-					},
-					{
-						"_id": "Flow_0ssbhxx",
-						"_name": "Tak",
-						"_sourceRef": "Gateway_0gmy85f",
-						"_targetRef": "Activity_1h898n2",
-						"__prefix": "bpmn"
-					},
-					{
-						"_id": "Flow_1442kvr",
-						"_sourceRef": "Activity_1h898n2",
-						"_targetRef": "Activity_1b3yr78",
-						"__prefix": "bpmn"
-					},
-					{
-						"_id": "Flow_00lz61s",
-						"_sourceRef": "Activity_1b3yr78",
-						"_targetRef": "Gateway_1n75xir",
-						"__prefix": "bpmn"
-					},
-					{
-						"_id": "Flow_03u5hty",
-						"_name": "Tak",
-						"_sourceRef": "Gateway_1n75xir",
-						"_targetRef": "Activity_033pd2k",
-						"__prefix": "bpmn"
-					},
-					{
-						"_id": "Flow_0bcwmqa",
-						"_sourceRef": "Activity_0fnlt84",
-						"_targetRef": "Gateway_1j6mgt1",
-						"__prefix": "bpmn"
-					}
-				],
-				"endEvent": {
-					"incoming": {
-						"__prefix": "bpmn",
-						"__text": "Flow_0ja82b6"
-					},
-					"_id": "Event_0if1t0i",
-					"_name": "Koniec sesji",
-					"__prefix": "bpmn"
-				},
-				"_id": "Process_00prx9s",
-				"_isExecutable": "false",
-				"__prefix": "bpmn"
-			},
-			{
-				"serviceTask": {
-					"outgoing": {
-						"__prefix": "bpmn",
-						"__text": "Flow_0eip024"
-					},
-					"_id": "Activity_0zvm1yn",
-					"_name": "Weryfikacja zgody RODO",
-					"__prefix": "bpmn"
-				},
-				"task": {
-					"incoming": {
-						"__prefix": "bpmn",
-						"__text": "Flow_0eip024"
-					},
-					"_id": "Activity_06mrnxh",
-					"_name": "Daj odpowiedź ze statusem zgody",
-					"__prefix": "bpmn"
-				},
-				"sequenceFlow": {
-					"_id": "Flow_0eip024",
-					"_sourceRef": "Activity_0zvm1yn",
-					"_targetRef": "Activity_06mrnxh",
-					"__prefix": "bpmn"
-				},
-				"_id": "Process_00sbkfa",
-				"__prefix": "bpmn"
-			},
-			{
-				"sequenceFlow": {
-					"_id": "Flow_1vpf5mq",
-					"_sourceRef": "Activity_02dpfvc",
-					"_targetRef": "Event_0ocfwwx",
-					"__prefix": "bpmn"
-				},
-				"task": {
-					"outgoing": {
-						"__prefix": "bpmn",
-						"__text": "Flow_1vpf5mq"
-					},
-					"_id": "Activity_02dpfvc",
-					"_name": "Realizacja zgłoszenia",
-					"__prefix": "bpmn"
-				},
-				"endEvent": {
-					"incoming": {
-						"__prefix": "bpmn",
-						"__text": "Flow_1vpf5mq"
-					},
-					"_id": "Event_0ocfwwx",
-					"_name": "Koniec procesu",
-					"__prefix": "bpmn"
-				},
-				"_id": "Process_19ftoar",
-				"__prefix": "bpmn"
-			},
-			{
-				"task": {
-					"outgoing": {
-						"__prefix": "bpmn",
-						"__text": "Flow_1kp5kyi"
-					},
-					"_id": "Activity_0a6uqak",
-					"_name": "Odbiór danych z ankiety",
-					"__prefix": "bpmn"
-				},
-				"endEvent": {
-					"incoming": {
-						"__prefix": "bpmn",
-						"__text": "Flow_1kp5kyi"
-					},
-					"_id": "Event_1pvgdgv",
-					"_name": "Koniec procesu",
-					"__prefix": "bpmn"
-				},
-				"sequenceFlow": {
-					"_id": "Flow_1kp5kyi",
-					"_sourceRef": "Activity_0a6uqak",
-					"_targetRef": "Event_1pvgdgv",
-					"__prefix": "bpmn"
-				},
-				"_id": "Process_1r8vomp",
-				"__prefix": "bpmn"
-			},
-			{
-				"task": {
-					"_id": "Activity_1d7svpw",
-					"_name": "Otrzymanie zgłoszenia",
-					"__prefix": "bpmn"
-				},
-				"_id": "Process_1x2yrq2",
-				"__prefix": "bpmn"
-			}
-		],
-		"BPMNDiagram": {
-			"BPMNPlane": {
-				"BPMNShape": [
-					{
-						"Bounds": {
-							"_x": "160",
-							"_y": "80",
-							"_width": "1180",
-							"_height": "510",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"__prefix": "bpmndi"
-						},
-						"_id": "Participant_13v2wvo_di",
-						"_bpmnElement": "Participant_13v2wvo",
-						"_isHorizontal": "true",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "259",
-							"_y": "192",
-							"_width": "36",
-							"_height": "36",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"Bounds": {
-								"_x": "237",
-								"_y": "235",
-								"_width": "82",
-								"_height": "27",
-								"__prefix": "dc"
-							},
-							"__prefix": "bpmndi"
-						},
-						"_id": "_BPMNShape_StartEvent_2",
-						"_bpmnElement": "StartEvent_0j6qdg0",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "682",
-							"_y": "185",
-							"_width": "50",
-							"_height": "50",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"Bounds": {
-								"_x": "669",
-								"_y": "242",
-								"_width": "77",
-								"_height": "66",
-								"__prefix": "dc"
-							},
-							"__prefix": "bpmndi"
-						},
-						"_id": "Gateway_0qbykuw_di",
-						"_bpmnElement": "Gateway_0qbykuw",
-						"_isMarkerVisible": "true",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "357",
-							"_y": "170",
-							"_width": "100",
-							"_height": "80",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"__prefix": "bpmndi"
-						},
-						"_id": "Activity_1gavgm4_di",
-						"_bpmnElement": "Activity_1gavgm4",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "517",
-							"_y": "170",
-							"_width": "100",
-							"_height": "80",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"__prefix": "bpmndi"
-						},
-						"_id": "Activity_19rpry4_di",
-						"_bpmnElement": "Activity_19rpry4",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "810",
-							"_y": "120",
-							"_width": "100",
-							"_height": "80",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"__prefix": "bpmndi"
-						},
-						"_id": "Activity_0fnlt84_di",
-						"_bpmnElement": "Activity_0fnlt84",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "810",
-							"_y": "210",
-							"_width": "100",
-							"_height": "80",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"__prefix": "bpmndi"
-						},
-						"_id": "Activity_01noez8_di",
-						"_bpmnElement": "Activity_01noez8",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "957",
-							"_y": "210",
-							"_width": "100",
-							"_height": "80",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"__prefix": "bpmndi"
-						},
-						"_id": "Activity_0cwbmwt_di",
-						"_bpmnElement": "Activity_0cwbmwt",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "762",
-							"_y": "345",
-							"_width": "50",
-							"_height": "50",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"Bounds": {
-								"_x": "788",
-								"_y": "390",
-								"_width": "77",
-								"_height": "40",
-								"__prefix": "dc"
-							},
-							"__prefix": "bpmndi"
-						},
-						"_id": "Gateway_1j6mgt1_di",
-						"_bpmnElement": "Gateway_1j6mgt1",
-						"_isMarkerVisible": "true",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "512",
-							"_y": "385",
-							"_width": "50",
-							"_height": "50",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"Bounds": {
-								"_x": "434",
-								"_y": "420",
-								"_width": "86",
-								"_height": "40",
-								"__prefix": "dc"
-							},
-							"__prefix": "bpmndi"
-						},
-						"_id": "Gateway_1ytc9jm_di",
-						"_bpmnElement": "Gateway_1ytc9jm",
-						"_isMarkerVisible": "true",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "1135",
-							"_y": "225",
-							"_width": "50",
-							"_height": "50",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"Bounds": {
-								"_x": "1121",
-								"_y": "173.5",
-								"_width": "77",
-								"_height": "53",
-								"__prefix": "dc"
-							},
-							"__prefix": "bpmndi"
-						},
-						"_id": "Gateway_0gmy85f_di",
-						"_bpmnElement": "Gateway_0gmy85f",
-						"_isMarkerVisible": "true",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "487",
-							"_y": "480",
-							"_width": "100",
-							"_height": "80",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"__prefix": "bpmndi"
-						},
-						"_id": "Activity_1v2ct6z_di",
-						"_bpmnElement": "Activity_1v2ct6z",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "1150",
-							"_y": "480",
-							"_width": "100",
-							"_height": "80",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"__prefix": "bpmndi"
-						},
-						"_id": "Activity_1h898n2_di",
-						"_bpmnElement": "Activity_1h898n2",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "920",
-							"_y": "480",
-							"_width": "100",
-							"_height": "80",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"__prefix": "bpmndi"
-						},
-						"_id": "Activity_1b3yr78_di",
-						"_bpmnElement": "Activity_1b3yr78",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "657",
-							"_y": "480",
-							"_width": "100",
-							"_height": "80",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"__prefix": "bpmndi"
-						},
-						"_id": "Activity_033pd2k_di",
-						"_bpmnElement": "Activity_033pd2k",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "815",
-							"_y": "495",
-							"_width": "50",
-							"_height": "50",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"Bounds": {
-								"_x": "804",
-								"_y": "552",
-								"_width": "72",
-								"_height": "27",
-								"__prefix": "dc"
-							},
-							"__prefix": "bpmndi"
-						},
-						"_id": "Gateway_1n75xir_di",
-						"_bpmnElement": "Gateway_1n75xir",
-						"_isMarkerVisible": "true",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "259",
-							"_y": "392",
-							"_width": "36",
-							"_height": "36",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"Bounds": {
-								"_x": "248",
-								"_y": "435",
-								"_width": "59",
-								"_height": "14",
-								"__prefix": "dc"
-							},
-							"__prefix": "bpmndi"
-						},
-						"_id": "Event_0if1t0i_di",
-						"_bpmnElement": "Event_0if1t0i",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "160",
-							"_y": "1210",
-							"_width": "1180",
-							"_height": "250",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"__prefix": "bpmndi"
-						},
-						"_id": "Participant_1u7eyox_di",
-						"_bpmnElement": "Participant_1u7eyox",
-						"_isHorizontal": "true",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "1000",
-							"_y": "1310",
-							"_width": "100",
-							"_height": "80",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"__prefix": "bpmndi"
-						},
-						"_id": "Activity_0zvm1yn_di",
-						"_bpmnElement": "Activity_0zvm1yn",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "850",
-							"_y": "1310",
-							"_width": "100",
-							"_height": "80",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"__prefix": "bpmndi"
-						},
-						"_id": "Activity_06mrnxh_di",
-						"_bpmnElement": "Activity_06mrnxh",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "160",
-							"_y": "960",
-							"_width": "1180",
-							"_height": "250",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"__prefix": "bpmndi"
-						},
-						"_id": "Participant_0hclpif_di",
-						"_bpmnElement": "Participant_0hclpif",
-						"_isHorizontal": "true",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "660",
-							"_y": "1010",
-							"_width": "100",
-							"_height": "80",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"__prefix": "bpmndi"
-						},
-						"_id": "Activity_02dpfvc_di",
-						"_bpmnElement": "Activity_02dpfvc",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "692",
-							"_y": "1132",
-							"_width": "36",
-							"_height": "36",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"Bounds": {
-								"_x": "672",
-								"_y": "1175",
-								"_width": "76",
-								"_height": "14",
-								"__prefix": "dc"
-							},
-							"__prefix": "bpmndi"
-						},
-						"_id": "Event_0ocfwwx_di",
-						"_bpmnElement": "Event_0ocfwwx",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "160",
-							"_y": "710",
-							"_width": "1180",
-							"_height": "250",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"__prefix": "bpmndi"
-						},
-						"_id": "Participant_1x8ga9i_di",
-						"_bpmnElement": "Participant_1x8ga9i",
-						"_isHorizontal": "true",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "490",
-							"_y": "780",
-							"_width": "100",
-							"_height": "80",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"__prefix": "bpmndi"
-						},
-						"_id": "Activity_0a6uqak_di",
-						"_bpmnElement": "Activity_0a6uqak",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "522",
-							"_y": "892",
-							"_width": "36",
-							"_height": "36",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"Bounds": {
-								"_x": "502",
-								"_y": "935",
-								"_width": "76",
-								"_height": "14",
-								"__prefix": "dc"
-							},
-							"__prefix": "bpmndi"
-						},
-						"_id": "Event_1pvgdgv_di",
-						"_bpmnElement": "Event_1pvgdgv",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "160",
-							"_y": "590",
-							"_width": "1180",
-							"_height": "120",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"__prefix": "bpmndi"
-						},
-						"_id": "Participant_1l8vizt_di",
-						"_bpmnElement": "Participant_1l8vizt",
-						"_isHorizontal": "true",
-						"__prefix": "bpmndi"
-					},
-					{
-						"Bounds": {
-							"_x": "660",
-							"_y": "610",
-							"_width": "100",
-							"_height": "80",
-							"__prefix": "dc"
-						},
-						"BPMNLabel": {
-							"__prefix": "bpmndi"
-						},
-						"_id": "Activity_1d7svpw_di",
-						"_bpmnElement": "Activity_1d7svpw",
-						"__prefix": "bpmndi"
-					}
-				],
-				"BPMNEdge": [
-					{
-						"waypoint": [
-							{
-								"_x": "295",
-								"_y": "210",
-								"__prefix": "di"
-							},
-							{
-								"_x": "357",
-								"_y": "210",
-								"__prefix": "di"
-							}
-						],
-						"_id": "Flow_0ja9x70_di",
-						"_bpmnElement": "Flow_0ja9x70",
-						"__prefix": "bpmndi"
-					},
-					{
-						"waypoint": [
-							{
-								"_x": "512",
-								"_y": "410",
-								"__prefix": "di"
-							},
-							{
-								"_x": "295",
-								"_y": "410",
-								"__prefix": "di"
-							}
-						],
-						"BPMNLabel": {
-							"Bounds": {
-								"_x": "334",
-								"_y": "397",
-								"_width": "17",
-								"_height": "14",
-								"__prefix": "dc"
-							},
-							"__prefix": "bpmndi"
-						},
-						"_id": "Flow_0ja82b6_di",
-						"_bpmnElement": "Flow_0ja82b6",
-						"__prefix": "bpmndi"
-					},
-					{
-						"waypoint": [
-							{
-								"_x": "617",
-								"_y": "210",
-								"__prefix": "di"
-							},
-							{
-								"_x": "682",
-								"_y": "210",
-								"__prefix": "di"
-							}
-						],
-						"_id": "Flow_13erjc0_di",
-						"_bpmnElement": "Flow_13erjc0",
-						"__prefix": "bpmndi"
-					},
-					{
-						"waypoint": [
-							{
-								"_x": "707",
-								"_y": "185",
-								"__prefix": "di"
-							},
-							{
-								"_x": "707",
-								"_y": "160",
-								"__prefix": "di"
-							},
-							{
-								"_x": "810",
-								"_y": "160",
-								"__prefix": "di"
-							}
-						],
-						"BPMNLabel": {
-							"Bounds": {
-								"_x": "748",
-								"_y": "142",
-								"_width": "17",
-								"_height": "14",
-								"__prefix": "dc"
-							},
-							"__prefix": "bpmndi"
-						},
-						"_id": "Flow_04kxm4w_di",
-						"_bpmnElement": "Flow_04kxm4w",
-						"__prefix": "bpmndi"
-					},
-					{
-						"waypoint": [
-							{
-								"_x": "712",
-								"_y": "230",
-								"__prefix": "di"
-							},
-							{
-								"_x": "771",
-								"_y": "230",
-								"__prefix": "di"
-							},
-							{
-								"_x": "771",
-								"_y": "250",
-								"__prefix": "di"
-							},
-							{
-								"_x": "810",
-								"_y": "250",
-								"__prefix": "di"
-							}
-						],
-						"BPMNLabel": {
-							"Bounds": {
-								"_x": "771",
-								"_y": "220",
-								"_width": "19",
-								"_height": "14",
-								"__prefix": "dc"
-							},
-							"__prefix": "bpmndi"
-						},
-						"_id": "Flow_1wrdikd_di",
-						"_bpmnElement": "Flow_1wrdikd",
-						"__prefix": "bpmndi"
-					},
-					{
-						"waypoint": [
-							{
-								"_x": "762",
-								"_y": "370",
-								"__prefix": "di"
-							},
-							{
-								"_x": "437",
-								"_y": "370",
-								"__prefix": "di"
-							},
-							{
-								"_x": "437",
-								"_y": "250",
-								"__prefix": "di"
-							}
-						],
-						"BPMNLabel": {
-							"Bounds": {
-								"_x": "636",
-								"_y": "352",
-								"_width": "19",
-								"_height": "14",
-								"__prefix": "dc"
-							},
-							"__prefix": "bpmndi"
-						},
-						"_id": "Flow_17a6wmd_di",
-						"_bpmnElement": "Flow_17a6wmd",
-						"__prefix": "bpmndi"
-					},
-					{
-						"waypoint": [
-							{
-								"_x": "457",
-								"_y": "210",
-								"__prefix": "di"
-							},
-							{
-								"_x": "517",
-								"_y": "210",
-								"__prefix": "di"
-							}
-						],
-						"_id": "Flow_1ielou0_di",
-						"_bpmnElement": "Flow_1ielou0",
-						"__prefix": "bpmndi"
-					},
-					{
-						"waypoint": [
-							{
-								"_x": "910",
-								"_y": "250",
-								"__prefix": "di"
-							},
-							{
-								"_x": "957",
-								"_y": "250",
-								"__prefix": "di"
-							}
-						],
-						"_id": "Flow_0iytbut_di",
-						"_bpmnElement": "Flow_0iytbut",
-						"__prefix": "bpmndi"
-					},
-					{
-						"waypoint": [
-							{
-								"_x": "1057",
-								"_y": "250",
-								"__prefix": "di"
-							},
-							{
-								"_x": "1135",
-								"_y": "250",
-								"__prefix": "di"
-							}
-						],
-						"_id": "Flow_1uerg36_di",
-						"_bpmnElement": "Flow_1uerg36",
-						"__prefix": "bpmndi"
-					},
-					{
-						"waypoint": [
-							{
-								"_x": "1160",
-								"_y": "275",
-								"__prefix": "di"
-							},
-							{
-								"_x": "1160",
-								"_y": "370",
-								"__prefix": "di"
-							},
-							{
-								"_x": "812",
-								"_y": "370",
-								"__prefix": "di"
-							}
-						],
-						"BPMNLabel": {
-							"Bounds": {
-								"_x": "1071",
-								"_y": "352",
-								"_width": "17",
-								"_height": "14",
-								"__prefix": "dc"
-							},
-							"__prefix": "bpmndi"
-						},
-						"_id": "Flow_0qpisc7_di",
-						"_bpmnElement": "Flow_0qpisc7",
-						"__prefix": "bpmndi"
-					},
-					{
-						"waypoint": [
-							{
-								"_x": "840",
-								"_y": "495",
-								"__prefix": "di"
-							},
-							{
-								"_x": "840",
-								"_y": "370",
-								"__prefix": "di"
-							},
-							{
-								"_x": "812",
-								"_y": "370",
-								"__prefix": "di"
-							}
-						],
-						"BPMNLabel": {
-							"Bounds": {
-								"_x": "847",
-								"_y": "430",
-								"_width": "17",
-								"_height": "14",
-								"__prefix": "dc"
-							},
-							"__prefix": "bpmndi"
-						},
-						"_id": "Flow_0063asb_di",
-						"_bpmnElement": "Flow_0063asb",
-						"__prefix": "bpmndi"
-					},
-					{
-						"waypoint": [
-							{
-								"_x": "787",
-								"_y": "395",
-								"__prefix": "di"
-							},
-							{
-								"_x": "787",
-								"_y": "410",
-								"__prefix": "di"
-							},
-							{
-								"_x": "562",
-								"_y": "410",
-								"__prefix": "di"
-							}
-						],
-						"BPMNLabel": {
-							"Bounds": {
-								"_x": "637",
-								"_y": "393",
-								"_width": "17",
-								"_height": "14",
-								"__prefix": "dc"
-							},
-							"__prefix": "bpmndi"
-						},
-						"_id": "Flow_14h0dsd_di",
-						"_bpmnElement": "Flow_14h0dsd",
-						"__prefix": "bpmndi"
-					},
-					{
-						"waypoint": [
-							{
-								"_x": "537",
-								"_y": "435",
-								"__prefix": "di"
-							},
-							{
-								"_x": "537",
-								"_y": "480",
-								"__prefix": "di"
-							}
-						],
-						"BPMNLabel": {
-							"Bounds": {
-								"_x": "543",
-								"_y": "455",
-								"_width": "18",
-								"_height": "14",
-								"__prefix": "dc"
-							},
-							"__prefix": "bpmndi"
-						},
-						"_id": "Flow_12o9jqs_di",
-						"_bpmnElement": "Flow_12o9jqs",
-						"__prefix": "bpmndi"
-					},
-					{
-						"waypoint": [
-							{
-								"_x": "1185",
-								"_y": "250",
-								"__prefix": "di"
-							},
-							{
-								"_x": "1200",
-								"_y": "250",
-								"__prefix": "di"
-							},
-							{
-								"_x": "1200",
-								"_y": "480",
-								"__prefix": "di"
-							}
-						],
-						"BPMNLabel": {
-							"Bounds": {
-								"_x": "1211",
-								"_y": "358",
-								"_width": "18",
-								"_height": "14",
-								"__prefix": "dc"
-							},
-							"__prefix": "bpmndi"
-						},
-						"_id": "Flow_0ssbhxx_di",
-						"_bpmnElement": "Flow_0ssbhxx",
-						"__prefix": "bpmndi"
-					},
-					{
-						"waypoint": [
-							{
-								"_x": "1150",
-								"_y": "520",
-								"__prefix": "di"
-							},
-							{
-								"_x": "1020",
-								"_y": "520",
-								"__prefix": "di"
-							}
-						],
-						"_id": "Flow_1442kvr_di",
-						"_bpmnElement": "Flow_1442kvr",
-						"__prefix": "bpmndi"
-					},
-					{
-						"waypoint": [
-							{
-								"_x": "920",
-								"_y": "520",
-								"__prefix": "di"
-							},
-							{
-								"_x": "865",
-								"_y": "520",
-								"__prefix": "di"
-							}
-						],
-						"_id": "Flow_00lz61s_di",
-						"_bpmnElement": "Flow_00lz61s",
-						"__prefix": "bpmndi"
-					},
-					{
-						"waypoint": [
-							{
-								"_x": "815",
-								"_y": "520",
-								"__prefix": "di"
-							},
-							{
-								"_x": "757",
-								"_y": "520",
-								"__prefix": "di"
-							}
-						],
-						"BPMNLabel": {
-							"Bounds": {
-								"_x": "777",
-								"_y": "502",
-								"_width": "18",
-								"_height": "14",
-								"__prefix": "dc"
-							},
-							"__prefix": "bpmndi"
-						},
-						"_id": "Flow_03u5hty_di",
-						"_bpmnElement": "Flow_03u5hty",
-						"__prefix": "bpmndi"
-					},
-					{
-						"waypoint": [
-							{
-								"_x": "910",
-								"_y": "160",
-								"__prefix": "di"
-							},
-							{
-								"_x": "930",
-								"_y": "160",
-								"__prefix": "di"
-							},
-							{
-								"_x": "930",
-								"_y": "320",
-								"__prefix": "di"
-							},
-							{
-								"_x": "787",
-								"_y": "320",
-								"__prefix": "di"
-							},
-							{
-								"_x": "787",
-								"_y": "345",
-								"__prefix": "di"
-							}
-						],
-						"_id": "Flow_0bcwmqa_di",
-						"_bpmnElement": "Flow_0bcwmqa",
-						"__prefix": "bpmndi"
-					},
-					{
-						"waypoint": [
-							{
-								"_x": "1000",
-								"_y": "1350",
-								"__prefix": "di"
-							},
-							{
-								"_x": "950",
-								"_y": "1350",
-								"__prefix": "di"
-							}
-						],
-						"_id": "Flow_0eip024_di",
-						"_bpmnElement": "Flow_0eip024",
-						"__prefix": "bpmndi"
-					},
-					{
-						"waypoint": [
-							{
-								"_x": "710",
-								"_y": "1090",
-								"__prefix": "di"
-							},
-							{
-								"_x": "710",
-								"_y": "1132",
-								"__prefix": "di"
-							}
-						],
-						"_id": "Flow_1vpf5mq_di",
-						"_bpmnElement": "Flow_1vpf5mq",
-						"__prefix": "bpmndi"
-					},
-					{
-						"waypoint": [
-							{
-								"_x": "540",
-								"_y": "860",
-								"__prefix": "di"
-							},
-							{
-								"_x": "540",
-								"_y": "892",
-								"__prefix": "di"
-							}
-						],
-						"_id": "Flow_1kp5kyi_di",
-						"_bpmnElement": "Flow_1kp5kyi",
-						"__prefix": "bpmndi"
-					},
-					{
-						"waypoint": [
-							{
-								"_x": "538",
-								"_y": "560",
-								"__prefix": "di"
-							},
-							{
-								"_x": "538",
-								"_y": "780",
-								"__prefix": "di"
-							}
-						],
-						"_id": "Flow_0jd6sdc_di",
-						"_bpmnElement": "Flow_0jd6sdc",
-						"__prefix": "bpmndi"
-					},
-					{
-						"waypoint": [
-							{
-								"_x": "990",
-								"_y": "560",
-								"__prefix": "di"
-							},
-							{
-								"_x": "990",
-								"_y": "935",
-								"__prefix": "di"
-							},
-							{
-								"_x": "1040",
-								"_y": "935",
-								"__prefix": "di"
-							},
-							{
-								"_x": "1040",
-								"_y": "1310",
-								"__prefix": "di"
-							}
-						],
-						"_id": "Flow_0p2ctmn_di",
-						"_bpmnElement": "Flow_0p2ctmn",
-						"__prefix": "bpmndi"
-					},
-					{
-						"waypoint": [
-							{
-								"_x": "900",
-								"_y": "1310",
-								"__prefix": "di"
-							},
-							{
-								"_x": "900",
-								"_y": "935",
-								"__prefix": "di"
-							},
-							{
-								"_x": "940",
-								"_y": "935",
-								"__prefix": "di"
-							},
-							{
-								"_x": "940",
-								"_y": "560",
-								"__prefix": "di"
-							}
-						],
-						"_id": "Flow_0frprs4_di",
-						"_bpmnElement": "Flow_0frprs4",
-						"__prefix": "bpmndi"
-					},
-					{
-						"waypoint": [
-							{
-								"_x": "705",
-								"_y": "560",
-								"__prefix": "di"
-							},
-							{
-								"_x": "705",
-								"_y": "610",
-								"__prefix": "di"
-							}
-						],
-						"_id": "Flow_0grzt7q_di",
-						"_bpmnElement": "Flow_0grzt7q",
-						"__prefix": "bpmndi"
-					},
-					{
-						"waypoint": [
-							{
-								"_x": "705",
-								"_y": "691",
-								"__prefix": "di"
-							},
-							{
-								"_x": "705",
-								"_y": "1010",
-								"__prefix": "di"
-							}
-						],
-						"_id": "Flow_1wbecp4_di",
-						"_bpmnElement": "Flow_1wbecp4",
-						"__prefix": "bpmndi"
-					}
-				],
-				"_id": "BPMNPlane_1",
-				"_bpmnElement": "Collaboration_1bphgl7",
-				"__prefix": "bpmndi"
-			},
-			"_id": "BPMNDiagram_1",
-			"__prefix": "bpmndi"
-		},
-		"_xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
-		"_xmlns:bpmn": "http://www.omg.org/spec/BPMN/20100524/MODEL",
-		"_xmlns:bpmndi": "http://www.omg.org/spec/BPMN/20100524/DI",
-		"_xmlns:dc": "http://www.omg.org/spec/DD/20100524/DC",
-		"_xmlns:di": "http://www.omg.org/spec/DD/20100524/DI",
-		"_id": "Definitions_0yacmhq",
-		"_targetNamespace": "http://bpmn.io/schema/bpmn",
-		"_exporter": "bpmn-js (https://demo.bpmn.io)",
-		"_exporterVersion": "18.10.1",
-		"__prefix": "bpmn"
-	}
-}
+[
+  {
+    "id": "agent1_tab_main",
+    "type": "tab",
+    "label": "Agent1 Student - Main Flow",
+    "disabled": false
+  },
+  {
+    "id": "inject_test_main",
+    "type": "inject",
+    "z": "agent1_tab_main",
+    "name": "Test Main Flow",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jak ubiegać się o stypendium rektora?\"}],\"userId\":\"test_main\",\"sessionId\":\"test_session_main\"}",
+    "payloadType": "json",
+    "x": 100,
+    "y": 180,
+    "wires": [
+      [
+        "extract_payload"
+      ]
+    ]
+  },
+  {
+    "id": "http_in_agent1",
+    "type": "http in",
+    "z": "agent1_tab_main",
+    "name": "API Request",
+    "url": "/agent1_student",
+    "method": "post",
+    "upload": false,
+    "swaggerDoc": "",
+    "x": 100,
+    "y": 100,
+    "wires": [
+      [
+        "debug_input",
+        "extract_payload"
+      ]
+    ]
+  },
+  {
+    "id": "debug_input",
+    "type": "debug",
+    "z": "agent1_tab_main",
+    "name": "Input Debug",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 280,
+    "y": 40,
+    "wires": []
+  },
+  {
+    "id": "extract_payload",
+    "type": "function",
+    "z": "agent1_tab_main",
+    "name": "Extract Message",
+    "func": "// Wyciągnij wiadomość z payload\nlet message = msg.payload.message || msg.payload.input || msg.payload;\n\nif (!message) {\n    msg.statusCode = 400;\n    return [null, msg];\n}\n\nmsg.userMessage = message;\nmsg.payload = {\n    message: message,\n    timestamp: new Date().toISOString(),\n    sessionId: msg.payload.sessionId || 'default',\n    userId: msg.payload.userId || 'guest'\n};\n\nnode.status({fill: \"blue\", shape: \"dot\", text: \"Przetwarzanie..\"});\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 280,
+    "y": 100,
+    "wires": [
+      [
+        "debug_extracted",
+        "validate_message"
+      ]
+    ]
+  },
+  {
+    "id": "debug_extracted",
+    "type": "debug",
+    "z": "agent1_tab_main",
+    "name": "Extracted Payload",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 460,
+    "y": 40,
+    "wires": []
+  },
+  {
+    "id": "validate_message",
+    "type": "function",
+    "z": "agent1_tab_main",
+    "name": "Validate Input",
+    "func": "// Walidacja wiadomości\nif (!msg.userMessage || msg.userMessage.trim().length === 0) {\n    msg.statusCode = 400;\n    msg.payload = {error: \"Empty message\"};\n    node.status({fill: \"red\", shape: \"ring\", text: \"Validation failed\"});\n    return [null, null, msg];\n}\n\nif (msg.userMessage.length > 2000) {\n    msg.statusCode = 413;\n    msg.payload = {error: \"Message too long (max 2000 chars)\"};\n    node.status({fill: \"red\", shape: \"ring\", text: \"Message too long\"});\n    return [null, null, msg];\n}\n\nnode.status({fill: \"green\", shape: \"dot\", text: \"Validated\"});\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 460,
+    "y": 100,
+    "wires": [
+      [
+        "debug_validated",
+        "prepare_rag_query"
+      ]
+    ]
+  },
+  {
+    "id": "debug_validated",
+    "type": "debug",
+    "z": "agent1_tab_main",
+    "name": "Validated",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 640,
+    "y": 40,
+    "wires": []
+  },
+  {
+    "id": "prepare_rag_query",
+    "type": "function",
+    "z": "agent1_tab_main",
+    "name": "Prepare RAG Query",
+    "func": "// Przygotuj zapytanie dla RAG\n// W peĹ‚nej implementacji tutaj byĹ‚oby zapytanie do Qdrant\n\nmsg.ragContext = \"KONTEKST Z BAZY WIEDZY (placeholder):\\n- Stypendium dla studentĂłw WSB Merito jest przyznawane na podstawie wyniku w nauce\\n- Procedura obejmuje zĹ‚oĹĽenie wniosku do BOS\\n- Maksymalnie 2 semestry wypĹ‚aty\";\n\nmsg.fullPrompt = `${msg.ragContext}\\n\\n---\\n\\nPYTANIE UĹ»YTKOWNIKA: ${msg.userMessage}\\n\\nOdpowiedz profesjonalnie i pomocnie po polsku. Jeśli nie wiesz, powiedz ĹĽe nie masz informacji.`;\n\nnode.status({fill: \"blue\", shape: \"dot\", text: \"RAG prepared\"});\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 640,
+    "y": 100,
+    "wires": [
+      [
+        "debug_rag",
+        "create_ollama_request"
+      ]
+    ]
+  },
+  {
+    "id": "debug_rag",
+    "type": "debug",
+    "z": "agent1_tab_main",
+    "name": "RAG Context",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "ragContext",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 820,
+    "y": 40,
+    "wires": []
+  },
+  {
+    "id": "create_ollama_request",
+    "type": "function",
+    "z": "agent1_tab_main",
+    "name": "Create Ollama Request",
+    "func": "// Tworzenie żądania do Agent1 /api/chat z RAG\nmsg.payload = {\n    model: \"mistral:7b\",\n    messages: [\n        {role: \"system\", content: \"Jesteś chatbotem dla studentów WSB Merito.\"},\n        {role: \"user\", content: msg.userMessage}\n    ],\n    stream: false\n};\nmsg.headers = {\"Content-Type\": \"application/json\"};\nnode.status({fill: \"cyan\", shape: \"dot\", text: \"RAG request ready\"});\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 820,
+    "y": 100,
+    "wires": [
+      [
+        "debug_ollama_request",
+        "http_request_ollama"
+      ]
+    ]
+  },
+  {
+    "id": "debug_ollama_request",
+    "type": "debug",
+    "z": "agent1_tab_main",
+    "name": "Ollama Request",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1000,
+    "y": 40,
+    "wires": []
+  },
+  {
+    "id": "http_request_ollama",
+    "type": "http request",
+    "z": "agent1_tab_main",
+    "name": "Query Agent1 /api/chat (z RAG)",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://agent1_student:8000/api/chat",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "senderr": false,
+    "headers": {},
+    "x": 1000,
+    "y": 100,
+    "wires": [
+      [
+        "debug_ollama_response",
+        "process_ollama_response"
+      ]
+    ]
+  },
+  {
+    "id": "debug_ollama_response",
+    "type": "debug",
+    "z": "agent1_tab_main",
+    "name": "Ollama Response",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1180,
+    "y": 40,
+    "wires": []
+  },
+  {
+    "id": "process_ollama_response",
+    "type": "function",
+    "z": "agent1_tab_main",
+    "name": "Process Response",
+    "func": "// Odpowiedź z /api/chat z RAG\nlet response = msg.payload;\nif (!response) return [null, null, msg];\nlet answer = response.message?.content || response.answer || \"Nie mam informacji na ten temat\";\nmsg.finalResponse = {success: true, answer: answer, sources: response.sources || {}};\nmsg.payload = msg.finalResponse;\nmsg.statusCode = 200;\nnode.status({fill: \"green\", shape: \"dot\", text: \"Ready\"});\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "// Zapisz czas startu\n__node__.startTime = Date.now();",
+    "finalize": "",
+    "libs": [],
+    "x": 1180,
+    "y": 100,
+    "wires": [
+      [
+        "debug_final_response",
+        "http_response"
+      ]
+    ]
+  },
+  {
+    "id": "debug_final_response",
+    "type": "debug",
+    "z": "agent1_tab_main",
+    "name": "Final Response",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1360,
+    "y": 40,
+    "wires": []
+  },
+  {
+    "id": "http_response",
+    "type": "http response",
+    "z": "agent1_tab_main",
+    "name": "Send Response",
+    "statusCode": "msg.statusCode",
+    "headers": {},
+    "x": 1360,
+    "y": 100,
+    "wires": []
+  },
+  {
+    "id": "error_handler",
+    "type": "catch",
+    "z": "agent1_tab_main",
+    "name": "Error Handler",
+    "scope": null,
+    "uncaught": false,
+    "x": 100,
+    "y": 240,
+    "wires": [
+      [
+        "debug_error",
+        "http_error_response"
+      ]
+    ]
+  },
+  {
+    "id": "debug_error",
+    "type": "debug",
+    "z": "agent1_tab_main",
+    "name": "Error",
+    "active": true,
+    "tosidebar": true,
+    "console": true,
+    "tostatus": false,
+    "complete": "error",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 280,
+    "y": 240,
+    "wires": []
+  },
+  {
+    "id": "http_error_response",
+    "type": "function",
+    "z": "agent1_tab_main",
+    "name": "Format Error",
+    "func": "msg.statusCode = msg.statusCode || 500;\nmsg.payload = {\n    error: msg.error?.message || \"Internal server error\",\n    timestamp: new Date().toISOString()\n};\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 460,
+    "y": 240,
+    "wires": [
+      [
+        "http_response"
+      ]
+    ]
+  },
+  {
+    "id": "test_example_tab",
+    "type": "tab",
+    "label": "Test Examples - Stypendia & Urlopy",
+    "disabled": false
+  },
+  {
+    "id": "test_example_1",
+    "type": "inject",
+    "z": "test_example_tab",
+    "name": "Stypendium rektora",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jak ubiegać się o stypendium rektora?\"}],\"userId\":\"student001\",\"sessionId\":\"session_001\"}",
+    "payloadType": "json",
+    "x": 120,
+    "y": 60,
+    "wires": [
+      [
+        "test_http_request_1"
+      ]
+    ]
+  },
+  {
+    "id": "test_http_request_1",
+    "type": "http request",
+    "z": "test_example_tab",
+    "name": "Call Agent1",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://agent1_student:8000/api/chat",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "senderr": false,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "x": 320,
+    "y": 60,
+    "wires": [
+      [
+        "test_debug_response_1"
+      ]
+    ]
+  },
+  {
+    "id": "test_debug_response_1",
+    "type": "debug",
+    "z": "test_example_tab",
+    "name": "Response",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 500,
+    "y": 60,
+    "wires": []
+  },
+  {
+    "id": "test_example_2",
+    "type": "inject",
+    "z": "test_example_tab",
+    "name": "Urlop dziekałski",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jak wziąć urlop dziekałski?\"}],\"userId\":\"student002\",\"sessionId\":\"session_002\"}",
+    "payloadType": "json",
+    "x": 120,
+    "y": 120,
+    "wires": [
+      [
+        "test_http_request_2"
+      ]
+    ]
+  },
+  {
+    "id": "test_http_request_2",
+    "type": "http request",
+    "z": "test_example_tab",
+    "name": "Call Agent1",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://agent1_student:8000/api/chat",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "senderr": false,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "x": 320,
+    "y": 120,
+    "wires": [
+      [
+        "test_debug_response_2"
+      ]
+    ]
+  },
+  {
+    "id": "test_debug_response_2",
+    "type": "debug",
+    "z": "test_example_tab",
+    "name": "Response",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 500,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "test_example_3",
+    "type": "inject",
+    "z": "test_example_tab",
+    "name": "Stypendium dla niepeĹ‚nosprawnych",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jakie stypendia dostępne są dla osĂłb z niepeĹ‚nosprawnościami?\"}],\"userId\":\"student003\",\"sessionId\":\"session_003\"}",
+    "payloadType": "json",
+    "x": 120,
+    "y": 180,
+    "wires": [
+      [
+        "test_http_request_3"
+      ]
+    ]
+  },
+  {
+    "id": "test_http_request_3",
+    "type": "http request",
+    "z": "test_example_tab",
+    "name": "Call Agent1",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://agent1_student:8000/api/chat",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "senderr": false,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "x": 320,
+    "y": 180,
+    "wires": [
+      [
+        "test_debug_response_3"
+      ]
+    ]
+  },
+  {
+    "id": "test_debug_response_3",
+    "type": "debug",
+    "z": "test_example_tab",
+    "name": "Response",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 500,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "test_example_4",
+    "type": "inject",
+    "z": "test_example_tab",
+    "name": "Erasmus+",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jak aplikować do programu Erasmus+?\"}],\"userId\":\"student004\",\"sessionId\":\"session_004\"}",
+    "payloadType": "json",
+    "x": 120,
+    "y": 240,
+    "wires": [
+      [
+        "test_http_request_4"
+      ]
+    ]
+  },
+  {
+    "id": "test_http_request_4",
+    "type": "http request",
+    "z": "test_example_tab",
+    "name": "Call Agent1",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://agent1_student:8000/api/chat",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "senderr": false,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "x": 320,
+    "y": 240,
+    "wires": [
+      [
+        "test_debug_response_4"
+      ]
+    ]
+  },
+  {
+    "id": "test_debug_response_4",
+    "type": "debug",
+    "z": "test_example_tab",
+    "name": "Response",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 500,
+    "y": 240,
+    "wires": []
+  },
+  {
+    "id": "test_procedures_tab",
+    "type": "tab",
+    "label": "Test Examples - Procedury & Egzaminy",
+    "disabled": false
+  },
+  {
+    "id": "test_proc_1",
+    "type": "inject",
+    "z": "test_procedures_tab",
+    "name": "Obrona pracy",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jaka jest procedura obrony pracy dyplomowej?\"}],\"userId\":\"student005\",\"sessionId\":\"session_005\"}",
+    "payloadType": "json",
+    "x": 120,
+    "y": 60,
+    "wires": [
+      [
+        "test_proc_req_1"
+      ]
+    ]
+  },
+  {
+    "id": "test_proc_req_1",
+    "type": "http request",
+    "z": "test_procedures_tab",
+    "name": "Call Agent1",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://agent1_student:8000/api/chat",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "senderr": false,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "x": 320,
+    "y": 60,
+    "wires": [
+      [
+        "test_proc_debug_1"
+      ]
+    ]
+  },
+  {
+    "id": "test_proc_debug_1",
+    "type": "debug",
+    "z": "test_procedures_tab",
+    "name": "Response",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 500,
+    "y": 60,
+    "wires": []
+  },
+  {
+    "id": "test_proc_2",
+    "type": "inject",
+    "z": "test_procedures_tab",
+    "name": "Zmiana kierunku",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jak zmienić kierunek studiĂłw?\"}],\"userId\":\"student006\",\"sessionId\":\"session_006\"}",
+    "payloadType": "json",
+    "x": 120,
+    "y": 120,
+    "wires": [
+      [
+        "test_proc_req_2"
+      ]
+    ]
+  },
+  {
+    "id": "test_proc_req_2",
+    "type": "http request",
+    "z": "test_procedures_tab",
+    "name": "Call Agent1",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://agent1_student:8000/api/chat",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "senderr": false,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "x": 320,
+    "y": 120,
+    "wires": [
+      [
+        "test_proc_debug_2"
+      ]
+    ]
+  },
+  {
+    "id": "test_proc_debug_2",
+    "type": "debug",
+    "z": "test_procedures_tab",
+    "name": "Response",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 500,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "test_proc_3",
+    "type": "inject",
+    "z": "test_procedures_tab",
+    "name": "Rezygnacja ze studiĂłw",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Czy mogę zrezygnować ze studiĂłw? Jaka jest procedura?\"}],\"userId\":\"student007\",\"sessionId\":\"session_007\"}",
+    "payloadType": "json",
+    "x": 120,
+    "y": 180,
+    "wires": [
+      [
+        "test_proc_req_3"
+      ]
+    ]
+  },
+  {
+    "id": "test_proc_req_3",
+    "type": "http request",
+    "z": "test_procedures_tab",
+    "name": "Call Agent1",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://agent1_student:8000/api/chat",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "senderr": false,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "x": 320,
+    "y": 180,
+    "wires": [
+      [
+        "test_proc_debug_3"
+      ]
+    ]
+  },
+  {
+    "id": "test_proc_debug_3",
+    "type": "debug",
+    "z": "test_procedures_tab",
+    "name": "Response",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 500,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "test_proc_4",
+    "type": "inject",
+    "z": "test_procedures_tab",
+    "name": "Harmonogram egzaminĂłw",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Gdzie znaleĹşć harmonogram egzaminĂłw i obron prac?\"}],\"userId\":\"student008\",\"sessionId\":\"session_008\"}",
+    "payloadType": "json",
+    "x": 120,
+    "y": 240,
+    "wires": [
+      [
+        "test_proc_req_4"
+      ]
+    ]
+  },
+  {
+    "id": "test_proc_req_4",
+    "type": "http request",
+    "z": "test_procedures_tab",
+    "name": "Call Agent1",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://agent1_student:8000/api/chat",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "senderr": false,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "x": 320,
+    "y": 240,
+    "wires": [
+      [
+        "test_proc_debug_4"
+      ]
+    ]
+  },
+  {
+    "id": "test_proc_debug_4",
+    "type": "debug",
+    "z": "test_procedures_tab",
+    "name": "Response",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 500,
+    "y": 240,
+    "wires": []
+  },
+  {
+    "id": "test_edge_cases_tab",
+    "type": "tab",
+    "label": "Test Examples - Edge Cases",
+    "disabled": false
+  },
+  {
+    "id": "test_edge_1",
+    "type": "inject",
+    "z": "test_edge_cases_tab",
+    "name": "DĹ‚ugie pytanie",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jestem studentem drugiego roku kierunku Informatyka na WSB Merito i chciaĹ‚bym wiedzieć, jakie są moĹĽliwości ubiegania się o stypendium rektora biorąc pod uwagę moje aktywne uczestnictwo w projekcie naukowym oraz średnią ocen rĂłwną 4.5. Jakie są kroki, terminy i wymagane dokumenty do zĹ‚oĹĽenia wniosku?\"}],\"userId\":\"student009\",\"sessionId\":\"session_009\"}",
+    "payloadType": "json",
+    "x": 120,
+    "y": 60,
+    "wires": [
+      [
+        "test_edge_req_1"
+      ]
+    ]
+  },
+  {
+    "id": "test_edge_req_1",
+    "type": "http request",
+    "z": "test_edge_cases_tab",
+    "name": "Call Agent1",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://agent1_student:8000/api/chat",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "senderr": false,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "x": 320,
+    "y": 60,
+    "wires": [
+      [
+        "test_edge_debug_1"
+      ]
+    ]
+  },
+  {
+    "id": "test_edge_debug_1",
+    "type": "debug",
+    "z": "test_edge_cases_tab",
+    "name": "Response",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 500,
+    "y": 60,
+    "wires": []
+  },
+  {
+    "id": "test_edge_2",
+    "type": "inject",
+    "z": "test_edge_cases_tab",
+    "name": "Bardzo krĂłtkie",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Stypendium?\"}],\"userId\":\"student010\",\"sessionId\":\"session_010\"}",
+    "payloadType": "json",
+    "x": 120,
+    "y": 120,
+    "wires": [
+      [
+        "test_edge_req_2"
+      ]
+    ]
+  },
+  {
+    "id": "test_edge_req_2",
+    "type": "http request",
+    "z": "test_edge_cases_tab",
+    "name": "Call Agent1",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://agent1_student:8000/api/chat",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "senderr": false,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "x": 320,
+    "y": 120,
+    "wires": [
+      [
+        "test_edge_debug_2"
+      ]
+    ]
+  },
+  {
+    "id": "test_edge_debug_2",
+    "type": "debug",
+    "z": "test_edge_cases_tab",
+    "name": "Response",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 500,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "test_edge_3",
+    "type": "inject",
+    "z": "test_edge_cases_tab",
+    "name": "Puste pytanie",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"\"}],\"userId\":\"student011\",\"sessionId\":\"session_011\"}",
+    "payloadType": "json",
+    "x": 120,
+    "y": 180,
+    "wires": [
+      [
+        "test_edge_req_3"
+      ]
+    ]
+  },
+  {
+    "id": "test_edge_req_3",
+    "type": "http request",
+    "z": "test_edge_cases_tab",
+    "name": "Call Agent1",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://agent1_student:8000/api/chat",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "senderr": false,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "x": 320,
+    "y": 180,
+    "wires": [
+      [
+        "test_edge_debug_3"
+      ]
+    ]
+  },
+  {
+    "id": "test_edge_debug_3",
+    "type": "debug",
+    "z": "test_edge_cases_tab",
+    "name": "Response",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 500,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "test_edge_4",
+    "type": "inject",
+    "z": "test_edge_cases_tab",
+    "name": "Dane osobowe",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jakie dane osobowe mogą być zbierane przez WSB Merito?\"}],\"userId\":\"student012\",\"sessionId\":\"session_012\"}",
+    "payloadType": "json",
+    "x": 120,
+    "y": 240,
+    "wires": [
+      [
+        "test_edge_req_4"
+      ]
+    ]
+  },
+  {
+    "id": "test_edge_req_4",
+    "type": "http request",
+    "z": "test_edge_cases_tab",
+    "name": "Call Agent1",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://agent1_student:8000/api/chat",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "senderr": false,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "x": 320,
+    "y": 240,
+    "wires": [
+      [
+        "test_edge_debug_4"
+      ]
+    ]
+  },
+  {
+    "id": "test_edge_debug_4",
+    "type": "debug",
+    "z": "test_edge_cases_tab",
+    "name": "Response",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 500,
+    "y": 240,
+    "wires": []
+  },
+  {
+    "id": "test_recruitment_tab",
+    "type": "tab",
+    "label": "Test Examples - Rekrutacja & Kariera",
+    "disabled": false
+  },
+  {
+    "id": "test_rec_1",
+    "type": "inject",
+    "z": "test_recruitment_tab",
+    "name": "Drugi kierunek",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Czy mogę zrobić drugi kierunek w WSB Merito?\"}],\"userId\":\"student013\",\"sessionId\":\"session_013\"}",
+    "payloadType": "json",
+    "x": 120,
+    "y": 60,
+    "wires": [
+      [
+        "test_rec_req_1"
+      ]
+    ]
+  },
+  {
+    "id": "test_rec_req_1",
+    "type": "http request",
+    "z": "test_recruitment_tab",
+    "name": "Call Agent1",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://agent1_student:8000/api/chat",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "senderr": false,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "x": 320,
+    "y": 60,
+    "wires": [
+      [
+        "test_rec_debug_1"
+      ]
+    ]
+  },
+  {
+    "id": "test_rec_debug_1",
+    "type": "debug",
+    "z": "test_recruitment_tab",
+    "name": "Response",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 500,
+    "y": 60,
+    "wires": []
+  },
+  {
+    "id": "test_rec_2",
+    "type": "inject",
+    "z": "test_recruitment_tab",
+    "name": "Kariera po studiach",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jak się przygotować do kariery po ukołczeniu studiĂłw? Jakie są moĹĽliwości?\"}],\"userId\":\"student014\",\"sessionId\":\"session_014\"}",
+    "payloadType": "json",
+    "x": 120,
+    "y": 120,
+    "wires": [
+      [
+        "test_rec_req_2"
+      ]
+    ]
+  },
+  {
+    "id": "test_rec_req_2",
+    "type": "http request",
+    "z": "test_recruitment_tab",
+    "name": "Call Agent1",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://agent1_student:8000/api/chat",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "senderr": false,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "x": 320,
+    "y": 120,
+    "wires": [
+      [
+        "test_rec_debug_2"
+      ]
+    ]
+  },
+  {
+    "id": "test_rec_debug_2",
+    "type": "debug",
+    "z": "test_recruitment_tab",
+    "name": "Response",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 500,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "test_rec_3",
+    "type": "inject",
+    "z": "test_recruitment_tab",
+    "name": "Biuro ObsĹ‚ugi Studenta",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Gdzie się znajduje Biuro ObsĹ‚ugi Studenta i jakie są godziny pracy?\"}],\"userId\":\"student015\",\"sessionId\":\"session_015\"}",
+    "payloadType": "json",
+    "x": 120,
+    "y": 180,
+    "wires": [
+      [
+        "test_rec_req_3"
+      ]
+    ]
+  },
+  {
+    "id": "test_rec_req_3",
+    "type": "http request",
+    "z": "test_recruitment_tab",
+    "name": "Call Agent1",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://agent1_student:8000/api/chat",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "senderr": false,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "x": 320,
+    "y": 180,
+    "wires": [
+      [
+        "test_rec_debug_3"
+      ]
+    ]
+  },
+  {
+    "id": "test_rec_debug_3",
+    "type": "debug",
+    "z": "test_recruitment_tab",
+    "name": "Response",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 500,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "test_rec_4",
+    "type": "inject",
+    "z": "test_recruitment_tab",
+    "name": "Wniosek o stypendium",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jakie są wymagania i jak zĹ‚oĹĽyć wniosek o stypendium za drugie miejsce?\"}],\"userId\":\"student016\",\"sessionId\":\"session_016\"}",
+    "payloadType": "json",
+    "x": 120,
+    "y": 240,
+    "wires": [
+      [
+        "test_rec_req_4"
+      ]
+    ]
+  },
+  {
+    "id": "test_rec_req_4",
+    "type": "http request",
+    "z": "test_recruitment_tab",
+    "name": "Call Agent1",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://agent1_student:8000/api/chat",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "senderr": false,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "x": 320,
+    "y": 240,
+    "wires": [
+      [
+        "test_rec_debug_4"
+      ]
+    ]
+  },
+  {
+    "id": "test_rec_debug_4",
+    "type": "debug",
+    "z": "test_recruitment_tab",
+    "name": "Response",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 500,
+    "y": 240,
+    "wires": []
+  },
+  {
+    "id": "test_direct_tab",
+    "type": "tab",
+    "label": "Direct Node-RED Test",
+    "disabled": false
+  },
+  {
+    "id": "direct_http_in",
+    "type": "http in",
+    "z": "test_direct_tab",
+    "name": "Test Direct Endpoint",
+    "url": "/test",
+    "method": "post",
+    "upload": false,
+    "x": 100,
+    "y": 100,
+    "wires": [
+      [
+        "direct_debug_1"
+      ]
+    ]
+  },
+  {
+    "id": "direct_debug_1",
+    "type": "debug",
+    "z": "test_direct_tab",
+    "name": "Input",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 280,
+    "y": 100,
+    "wires": []
+  },
+  {
+    "id": "direct_response",
+    "type": "function",
+    "z": "test_direct_tab",
+    "name": "Echo Response",
+    "func": "return {\n    payload: {\n        received: msg.payload,\n        testStatus: \"OK\",\n        timestamp: new Date().toISOString(),\n        nodeRedVersion: \"node-red-version\"\n    }\n};",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 460,
+    "y": 100,
+    "wires": [
+      [
+        "direct_http_out"
+      ]
+    ]
+  },
+  {
+    "id": "direct_http_out",
+    "type": "http response",
+    "z": "test_direct_tab",
+    "name": "Response",
+    "statusCode": "200",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "x": 640,
+    "y": 100,
+    "wires": []
+  },
+  {
+    "id": "comprehensive_tests_tab",
+    "type": "tab",
+    "label": "Comprehensive Tests Suite",
+    "disabled": false
+  },
+  {
+    "id": "test_unit_category",
+    "type": "inject",
+    "z": "comprehensive_tests_tab",
+    "name": "Test: Category Detection",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "payload": "{\"query\":\"Jakie stypendia dostępne?\",\"expected_category\":\"stypendia\"}",
+    "payloadType": "json",
+    "x": 120,
+    "y": 120,
+    "wires": [
+      [
+        "unit_test_category_func"
+      ]
+    ]
+  },
+  {
+    "id": "unit_test_category_func",
+    "type": "function",
+    "z": "comprehensive_tests_tab",
+    "name": "Verify Category",
+    "func": "// Test kategoryzacji pytania\nlet test = msg.payload;\nlet categories = {\n    'stypendia': ['stypendium', 'stypendia', 'stypendialny'],\n    'egzaminy': ['egzamin', 'obrona', 'harmonogram'],\n    'rekrutacja': ['rekrutacja', 'aplikować', 'kandydat'],\n    'urlopy': ['urlop', 'zwolnienie', 'rezygnacja'],\n    'dane_osobowe': ['dane', 'RODO', 'prywatność']\n};\n\nlet detected = null;\nfor (let cat in categories) {\n    if (categories[cat].some(kw => test.query.toLowerCase().includes(kw))) {\n        detected = cat;\n        break;\n    }\n}\n\nmsg.result = {\n    test_name: 'Category Detection',\n    query: test.query,\n    expected: test.expected_category,\n    detected: detected,\n    passed: detected === test.expected_category,\n    timestamp: new Date().toISOString()\n};\nreturn msg;",
+    "outputs": 1,
+    "x": 320,
+    "y": 120,
+    "wires": [
+      [
+        "debug_unit_tests"
+      ]
+    ]
+  },
+  {
+    "id": "test_unit_validation",
+    "type": "inject",
+    "z": "comprehensive_tests_tab",
+    "name": "Test: Message Validation",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "payload": "[{\"msg\":\"Normalne pytanie\",\"valid\":true},{\"msg\":\"\",\"valid\":false},{\"msg_length\":2001,\"valid\":false}]",
+    "payloadType": "json",
+    "x": 120,
+    "y": 180,
+    "wires": [
+      [
+        "unit_test_validation_node"
+      ]
+    ]
+  },
+  {
+    "id": "unit_test_validation_node",
+    "type": "function",
+    "z": "comprehensive_tests_tab",
+    "name": "Run Validation Tests",
+    "func": "let tests = msg.payload;\nlet results = [];\n\nfor (let test of tests) {\n    let msgText = test.msg;\n    if (typeof test.msg_length === 'number') {\n        msgText = 'x'.repeat(test.msg_length);\n    }\n    msgText = msgText || '';\n    let valid = msgText.trim().length > 0 && msgText.length <= 2000;\n    results.push({\n        message: msgText.substring(0, 50),\n        expected: test.valid,\n        actual: valid,\n        passed: valid === test.valid\n    });\n}\n\nmsg.result = {\n    test_name: 'Message Validation',\n    total: tests.length,\n    passed: results.filter(r => r.passed).length,\n    results: results\n};\nreturn msg;",
+    "outputs": 1,
+    "x": 320,
+    "y": 180,
+    "wires": [
+      [
+        "debug_unit_tests"
+      ]
+    ]
+  },
+  {
+    "id": "test_kb_connectivity",
+    "type": "inject",
+    "z": "comprehensive_tests_tab",
+    "name": "Test: KB Connectivity",
+    "payload": "{}",
+    "payloadType": "json",
+    "x": 520,
+    "y": 60,
+    "wires": [
+      [
+        "kb_test_connect"
+      ]
+    ]
+  },
+  {
+    "id": "kb_test_connect",
+    "type": "http request",
+    "z": "comprehensive_tests_tab",
+    "name": "Query Qdrant Health",
+    "method": "GET",
+    "url": "http://qdrant:6333/health",
+    "ret": "obj",
+    "x": 680,
+    "y": 60,
+    "wires": [
+      [
+        "kb_test_verify"
+      ]
+    ]
+  },
+  {
+    "id": "kb_test_verify",
+    "type": "function",
+    "z": "comprehensive_tests_tab",
+    "name": "Verify KB Response",
+    "func": "msg.result = {\n    test_name: 'KB Connectivity',\n    qdrant_status: msg.payload?.status || msg.statusCode,\n    passed: msg.statusCode === 200,\n    response_time_ms: msg.responseTime || 0\n};\nreturn msg;",
+    "outputs": 1,
+    "x": 840,
+    "y": 60,
+    "wires": [
+      [
+        "debug_kb_tests"
+      ]
+    ]
+  },
+  {
+    "id": "test_kb_documents",
+    "type": "inject",
+    "z": "comprehensive_tests_tab",
+    "name": "Test: Document Count",
+    "payload": "{\"expected_min\":200}",
+    "payloadType": "json",
+    "x": 520,
+    "y": 120,
+    "wires": [
+      [
+        "kb_doc_count"
+      ]
+    ]
+  },
+  {
+    "id": "kb_doc_count",
+    "type": "http request",
+    "z": "comprehensive_tests_tab",
+    "name": "Get Collection Info",
+    "method": "GET",
+    "url": "http://qdrant:6333/collections/agent1_student",
+    "ret": "obj",
+    "x": 680,
+    "y": 120,
+    "wires": [
+      [
+        "kb_doc_verify"
+      ]
+    ]
+  },
+  {
+    "id": "kb_doc_verify",
+    "type": "function",
+    "z": "comprehensive_tests_tab",
+    "name": "Verify Doc Count",
+    "func": "let docCount = msg.payload?.result?.points_count || 0;\nlet expectedMin = msg.payload?.expected_min || 200;\nmsg.result = {\n    test_name: 'Document Count',\n    document_count: docCount,\n    expected_minimum: expectedMin,\n    passed: docCount >= expectedMin,\n    collection: 'agent1_student'\n};\nreturn msg;",
+    "outputs": 1,
+    "x": 840,
+    "y": 120,
+    "wires": [
+      [
+        "debug_kb_tests"
+      ]
+    ]
+  },
+  {
+    "id": "test_prompts_correct",
+    "type": "inject",
+    "z": "comprehensive_tests_tab",
+    "name": "Test: Valid Prompts (In KB)",
+    "payload": "[\"Jak ubiegać się o stypendium rektora?\",\"Jaka jest procedura obrony?\",\"Jakie stypendia dla niepełnosprawnych?\"]",
+    "payloadType": "json",
+    "x": 120,
+    "y": 300,
+    "wires": [
+      [
+        "prompt_test_valid"
+      ]
+    ]
+  },
+  {
+    "id": "prompt_test_valid",
+    "type": "function",
+    "z": "comprehensive_tests_tab",
+    "name": "Send Valid Prompt",
+    "func": "let prompts = msg.payload;\nmsg.payload = {messages: [{role: 'user', content: prompts[0]}], model: 'mistral:7b'};\nreturn msg;",
+    "outputs": 1,
+    "x": 300,
+    "y": 300,
+    "wires": [
+      [
+        "prompt_send_to_agent"
+      ]
+    ]
+  },
+  {
+    "id": "test_prompts_invalid",
+    "type": "inject",
+    "z": "comprehensive_tests_tab",
+    "name": "Test: Invalid Prompts (Out KB)",
+    "payload": "[\"Jaki jest sens życia?\",\"Како се добија диплома?\",\"Расскажи мне про твой день\"]",
+    "payloadType": "json",
+    "x": 120,
+    "y": 360,
+    "wires": [
+      [
+        "prompt_test_invalid"
+      ]
+    ]
+  },
+  {
+    "id": "prompt_test_invalid",
+    "type": "function",
+    "z": "comprehensive_tests_tab",
+    "name": "Send Invalid Prompt",
+    "func": "let prompts = msg.payload;\nmsg.payload = {messages: [{role: 'user', content: prompts[0]}], model: 'mistral:7b'};\nreturn msg;",
+    "outputs": 1,
+    "x": 300,
+    "y": 360,
+    "wires": [
+      [
+        "prompt_send_to_agent_invalid"
+      ]
+    ]
+  },
+  {
+    "id": "prompt_send_to_agent",
+    "type": "http request",
+    "z": "comprehensive_tests_tab",
+    "name": "Send to Agent1 /api/chat",
+    "method": "POST",
+    "url": "http://agent1_student:8000/api/chat",
+    "ret": "obj",
+    "x": 520,
+    "y": 300,
+    "wires": [
+      [
+        "prompt_verify_response"
+      ]
+    ]
+  },
+  {
+    "id": "prompt_send_to_agent_invalid",
+    "type": "http request",
+    "z": "comprehensive_tests_tab",
+    "name": "Send Invalid to Agent",
+    "method": "POST",
+    "url": "http://agent1_student:8000/api/chat",
+    "ret": "obj",
+    "x": 520,
+    "y": 360,
+    "wires": [
+      [
+        "prompt_verify_invalid"
+      ]
+    ]
+  },
+  {
+    "id": "prompt_verify_response",
+    "type": "function",
+    "z": "comprehensive_tests_tab",
+    "name": "Verify Valid Response",
+    "func": "let hasKnowledge = msg.payload?.sources?.has_knowledge || false;\nmsg.result = {\n    test_name: 'Valid Prompt Response',\n    has_sources: (msg.payload?.sources?.documents || []).length > 0,\n    has_knowledge: hasKnowledge,\n    passed: hasKnowledge === true,\n    answer_length: msg.payload?.message?.content?.length || 0\n};\nreturn msg;",
+    "outputs": 1,
+    "x": 740,
+    "y": 300,
+    "wires": [
+      [
+        "debug_prompt_tests"
+      ]
+    ]
+  },
+  {
+    "id": "prompt_verify_invalid",
+    "type": "function",
+    "z": "comprehensive_tests_tab",
+    "name": "Verify Invalid Response",
+    "func": "let content = msg.payload?.message?.content || '';\nlet hasNoInfo = content.includes('Nie mam informacji') || content.includes('Skontaktuj');\nmsg.result = {\n    test_name: 'Invalid Prompt Response',\n    received_no_info_message: hasNoInfo,\n    passed: hasNoInfo,\n    answer_preview: content.substring(0, 100)\n};\nreturn msg;",
+    "outputs": 1,
+    "x": 740,
+    "y": 360,
+    "wires": [
+      [
+        "debug_prompt_tests"
+      ]
+    ]
+  },
+  {
+    "id": "test_rag_with",
+    "type": "inject",
+    "z": "comprehensive_tests_tab",
+    "name": "Test: Query WITH RAG",
+    "payload": "{\"query\":\"Stypendium\"}",
+    "payloadType": "json",
+    "x": 120,
+    "y": 480,
+    "wires": [
+      [
+        "rag_prepare_with"
+      ]
+    ]
+  },
+  {
+    "id": "rag_prepare_with",
+    "type": "function",
+    "z": "comprehensive_tests_tab",
+    "name": "Prepare RAG Query",
+    "func": "let query = msg.payload.query;\nmsg.payload = {messages: [{role: 'user', content: query}], model: 'mistral:7b'};\nreturn msg;",
+    "outputs": 1,
+    "x": 300,
+    "y": 480,
+    "wires": [
+      [
+        "rag_send_with"
+      ]
+    ]
+  },
+  {
+    "id": "rag_send_with",
+    "type": "http request",
+    "z": "comprehensive_tests_tab",
+    "name": "Agent /api/chat WITH RAG",
+    "method": "POST",
+    "url": "http://agent1_student:8000/api/chat",
+    "ret": "obj",
+    "x": 520,
+    "y": 480,
+    "wires": [
+      [
+        "rag_test_compare"
+      ]
+    ]
+  },
+  {
+    "id": "test_rag_without",
+    "type": "inject",
+    "z": "comprehensive_tests_tab",
+    "name": "Test: Query WITHOUT RAG",
+    "payload": "{\"query\":\"Coś co nie ma w bazie\"}",
+    "payloadType": "json",
+    "x": 120,
+    "y": 540,
+    "wires": [
+      [
+        "rag_prepare_without"
+      ]
+    ]
+  },
+  {
+    "id": "rag_prepare_without",
+    "type": "function",
+    "z": "comprehensive_tests_tab",
+    "name": "Prepare No-RAG Query",
+    "func": "let query = msg.payload.query;\nmsg.payload = {messages: [{role: 'user', content: query}], model: 'mistral:7b'};\nreturn msg;",
+    "outputs": 1,
+    "x": 300,
+    "y": 540,
+    "wires": [
+      [
+        "rag_send_without"
+      ]
+    ]
+  },
+  {
+    "id": "rag_send_without",
+    "type": "http request",
+    "z": "comprehensive_tests_tab",
+    "name": "Agent /api/chat WITHOUT RAG",
+    "method": "POST",
+    "url": "http://agent1_student:8000/api/chat",
+    "ret": "obj",
+    "x": 520,
+    "y": 540,
+    "wires": [
+      [
+        "rag_test_compare"
+      ]
+    ]
+  },
+  {
+    "id": "rag_test_compare",
+    "type": "function",
+    "z": "comprehensive_tests_tab",
+    "name": "Compare RAG Impact",
+    "func": "msg.result = {\n    test_name: 'RAG Comparison',\n    has_sources: (msg.payload?.sources?.documents || []).length > 0,\n    rag_score: msg.payload?.sources?.score || 0,\n    has_knowledge: msg.payload?.sources?.has_knowledge || false,\n    response_contains_no_info: (msg.payload?.message?.content || '').includes('Nie mam informacji'),\n    answer_length: msg.payload?.message?.content?.length || 0\n};\nreturn msg;",
+    "outputs": 1,
+    "x": 740,
+    "y": 510,
+    "wires": [
+      [
+        "debug_rag_tests"
+      ]
+    ]
+  },
+  {
+    "id": "test_perf_response_time",
+    "type": "inject",
+    "z": "comprehensive_tests_tab",
+    "name": "Test: Response Time",
+    "payload": "{\"iterations\":3}",
+    "payloadType": "json",
+    "x": 120,
+    "y": 650,
+    "wires": [
+      [
+        "perf_test_measure"
+      ]
+    ]
+  },
+  {
+    "id": "perf_test_measure",
+    "type": "function",
+    "z": "comprehensive_tests_tab",
+    "name": "Measure Performance",
+    "func": "msg.startTime = Date.now();\nmsg.payload = {\n    messages: [{role: 'user', content: 'Jak ubiegać się o stypendium?'}],\n    model: 'mistral:7b'\n};\nreturn msg;",
+    "outputs": 1,
+    "x": 300,
+    "y": 650,
+    "wires": [
+      [
+        "perf_http_request"
+      ]
+    ]
+  },
+  {
+    "id": "perf_http_request",
+    "type": "http request",
+    "z": "comprehensive_tests_tab",
+    "name": "Agent Request",
+    "method": "POST",
+    "url": "http://agent1_student:8000/api/chat",
+    "ret": "obj",
+    "x": 520,
+    "y": 650,
+    "wires": [
+      [
+        "perf_test_analyze"
+      ]
+    ]
+  },
+  {
+    "id": "perf_test_analyze",
+    "type": "function",
+    "z": "comprehensive_tests_tab",
+    "name": "Analyze Performance",
+    "func": "let responseTime = Date.now() - msg.startTime;\nmsg.result = {\n    test_name: 'Response Time Performance',\n    response_time_ms: responseTime,\n    passed: responseTime < 5000,\n    threshold_ms: 5000,\n    answer_length: msg.payload?.message?.content?.length || 0\n};\nreturn msg;",
+    "outputs": 1,
+    "x": 740,
+    "y": 650,
+    "wires": [
+      [
+        "debug_perf_tests"
+      ]
+    ]
+  },
+  {
+    "id": "test_embedding_consistency",
+    "type": "inject",
+    "z": "comprehensive_tests_tab",
+    "name": "Test: Embedding Consistency",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "payload": "{\"model\":\"nomic-embed-text\",\"prompt\":\"Stypendium dla studentów\"}",
+    "payloadType": "json",
+    "x": 120,
+    "y": 750,
+    "wires": [
+      [
+        "embed_test_ollama"
+      ]
+    ]
+  },
+  {
+    "id": "embed_test_ollama",
+    "type": "http request",
+    "z": "comprehensive_tests_tab",
+    "name": "Get Embedding",
+    "method": "POST",
+    "url": "http://ollama:11434/api/embeddings",
+    "ret": "obj",
+    "x": 320,
+    "y": 750,
+    "wires": [
+      [
+        "embed_test_verify"
+      ]
+    ]
+  },
+  {
+    "id": "embed_test_verify",
+    "type": "function",
+    "z": "comprehensive_tests_tab",
+    "name": "Verify Embeddings",
+    "func": "let embedding = msg.payload?.embedding || [];\nmsg.result = {\n    test_name: 'Embedding Consistency',\n    embedding_dimension: embedding.length,\n    expected_dimension: 768,\n    passed: embedding.length === 768,\n    embedding_type: typeof embedding[0],\n    first_values: embedding.slice(0, 5)\n};\nreturn msg;",
+    "outputs": 1,
+    "x": 560,
+    "y": 750,
+    "wires": [
+      [
+        "debug_embed_tests"
+      ]
+    ]
+  },
+  {
+    "id": "debug_unit_tests",
+    "type": "debug",
+    "z": "comprehensive_tests_tab",
+    "name": "Unit Results",
+    "x": 520,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "debug_kb_tests",
+    "type": "debug",
+    "z": "comprehensive_tests_tab",
+    "name": "KB Results",
+    "x": 980,
+    "y": 90,
+    "wires": []
+  },
+  {
+    "id": "debug_prompt_tests",
+    "type": "debug",
+    "z": "comprehensive_tests_tab",
+    "name": "Prompt Results",
+    "x": 980,
+    "y": 330,
+    "wires": []
+  },
+  {
+    "id": "debug_rag_tests",
+    "type": "debug",
+    "z": "comprehensive_tests_tab",
+    "name": "RAG Results",
+    "x": 980,
+    "y": 510,
+    "wires": []
+  },
+  {
+    "id": "debug_perf_tests",
+    "type": "debug",
+    "z": "comprehensive_tests_tab",
+    "name": "Performance Results",
+    "x": 980,
+    "y": 650,
+    "wires": []
+  },
+  {
+    "id": "debug_embed_tests",
+    "type": "debug",
+    "z": "comprehensive_tests_tab",
+    "name": "Embedding Results",
+    "x": 980,
+    "y": 750,
+    "wires": []
+  }
+]

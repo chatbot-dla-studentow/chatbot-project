@@ -10,7 +10,7 @@ services:
       - "3000:8080"
 
     environment:
-      # Przekierowanie na agent1_student z RAG zamiast bezpośrednio Ollama
+      # Połączenie do agent1_student dla RAG
       - OLLAMA_BASE_URL=http://agent1_student:8000
       
       # Domyślny model
