@@ -15,12 +15,8 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 app = FastAPI()
-#test
-llm = ChatOllama(
-    model=DEFAULT_MODEL,
-    base_url="http://ollama:11434"
-)
 
+# Zmienne konfiguracyjne - MUSZĄ być zdefiniowane PRZED użyciem
 COLLECTION = os.getenv("COLLECTION", "agent1_student")
 NODERED_URL = os.getenv("NODERED_URL", "http://node-red:1880")
 WORKFLOW_FILE = os.getenv("WORKFLOW_FILE", "/app/agent1_flow.json")
@@ -30,7 +26,12 @@ QDRANT_PORT = int(os.getenv("QDRANT_PORT", "6333"))
 EMBEDDING_MODEL = "nomic-embed-text"  # Model embeddings w Ollama
 DEFAULT_MODEL = "mistral:7b"  # Domyślny model LLM
 
-# System prompt dla chatbota
+# Teraz możemy inicjalizować LLM
+llm = ChatOllama(
+    model=DEFAULT_MODEL,
+    base_url="http://ollama:11434"
+)
+
 SYSTEM_PROMPT = """Jesteś chatbotem dla studentów WSB Merito. Odpowiadasz profesjonalnie i pomocnie na pytania dotyczące uczelni, stypendiów, BOS, harmonogramów i procedur. Zawsze odpowiadaj po polsku. Bierz wiedzę z bazy qdrant. Działaj jako RAG. Jeżeli nie ma informacji w bazie qdrant to odpowiedz "Nie mam informacji na ten temat. Skontaktuj się z Biurem Obsługi Studenta."""
 
 # Inicjalizacja klientów
@@ -687,7 +688,7 @@ async def ollama_chat_with_rag(payload: dict):
 
 PYTANIE UŻYTKOWNIKA: {last_message}
 
-Odpowiedz TYLKO na podstawie powyższego kontekstu. Jeśli odpowiedzi nie ma w kontekście, odpowiedz: "Nie mam informacji na ten temat. Skontaktuj się z Biurem Obsługi Studenta.""""
+Odpowiedz TYLKO na podstawie powyższego kontekstu. Jeśli odpowiedzi nie ma w kontekście, odpowiedz: "Nie mam informacji na ten temat. Skontaktuj się z Biurem Obsługi Studenta.\""""
                     
                     # Zamień ostatnią wiadomość na wzbogaconą
                     enriched_messages[-1]["content"] = enriched_last_msg
