@@ -227,8 +227,5 @@ sudo passwd ubuntu
 **Ostatnia aktualizacja:** 13.02.2026
 
 ## Maintainers
-- Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Mikołaj Sykucki (zybert)
-- Oskar Jurgielaniec (oskarju1)
-- Paweł Ponikowski (pponikowski)
+- Adam Siehen (adamsiehen)

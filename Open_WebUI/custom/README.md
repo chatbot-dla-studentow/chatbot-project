@@ -22,8 +22,4 @@ Pliki są montowane w kontenerze Open WebUI przez docker-compose.yml:
 - `logo.png` -> `/app/backend/data/uploads/logo.png`
 
 ## Maintainers
-- Adam Siehen (adamsiehen)
-- Patryk Boguski (ptrBoguski)
-- Mikołaj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Paweł Ponikowski (pponikowski)

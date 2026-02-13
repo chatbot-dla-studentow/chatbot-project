@@ -369,8 +369,4 @@ System jest **gotowy do produkcji** i może być wdrożony jako część projekt
 **Status:** Implementacja zakończona
 
 ## Maintainers
-- Adam Siehen (adamsiehen)
-- Patryk Boguski (ptrBoguski)
 - Mikołaj Sykucki (zybert)
-- Oskar Jurgielaniec (oskarju1)
-- Paweł Ponikowski (pponikowski)
