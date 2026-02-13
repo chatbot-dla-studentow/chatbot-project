@@ -207,7 +207,7 @@ sudo /usr/local/bin/update-geo-blocking.sh
 
 ### 7. Monitoring & Alerting
 
-**Email alerts:** adam.siehen@gmail.com
+**Email alerts:** adam.siehen@outlook.com
 
 **Sprawdzane:**
 - Użycie dysku (> 85% = alert)

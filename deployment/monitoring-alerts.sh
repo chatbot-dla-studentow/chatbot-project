@@ -11,7 +11,7 @@ BLUE='\033[0;34m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
 
-ADMIN_EMAIL="adam.siehen@gmail.com"
+ADMIN_EMAIL="adam.siehen@outlook.com"
 HOSTNAME=$(hostname)
 
 log_info() {

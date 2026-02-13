@@ -20,7 +20,7 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 
 # Configuration
-ADMIN_EMAIL="adam.siehen@gmail.com"
+ADMIN_EMAIL="adam.siehen@outlook.com"
 SSH_PORT=2222
 VPN_SUBNET_V4="10.0.0.0/24"
 VPN_SUBNET_V6="fd00::/8"

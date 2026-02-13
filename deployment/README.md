@@ -53,7 +53,7 @@ chmod +x setup-new-vps.sh
 **Czas:** ~2 minuty
 
 ### Phase 3: Monitoring (`monitoring-alerts.sh`)
-- ✅ Email alerts - alerts na adam.siehen@gmail.com
+- ✅ Email alerts - alerts na adam.siehen@outlook.com
 - ✅ Health monitoring - CPU, RAM, disk, Docker
 - ✅ Security audits - szczegółowy dzienny raport
 - ✅ fail2ban integration - alerty przy ban/unban
