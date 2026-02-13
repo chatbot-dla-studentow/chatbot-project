@@ -5,6 +5,10 @@ __pycache__/
 *.pyd
 *.env
 *.venv
+venv/
+.venv/
+env/
+ENV/
 
 # Docker
 **/docker-compose.override.yml
@@ -23,9 +27,32 @@ ollama/models/
 qdrant/data/
 qdrant/backups/
 
+# Backups
+backups/
+*.tar.gz
+*.backup
+*.bak
+
+# Logs
+*.log
+logs/
+
 # VS Code
 .vscode/
 
 # system Windows
 Thumbs.db
 Desktop.ini
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+.directory
+
+# Deployment temporary files
+.deployment/
+.temp/

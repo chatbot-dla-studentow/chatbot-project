@@ -76,6 +76,22 @@ System składa się z 5 wyspecjalizowanych agentów:
 
 ## Szybki deploy i uruchomienie
 
+### ⚡ Nowy VPS (Rekomendowane - wszystko automatyczne!)
+
+```bash
+ssh root@<new-vps-ip>
+git clone <repo-url> /opt/chatbot-project
+cd /opt/chatbot-project
+chmod +x deployment/setup.sh
+./deployment/setup.sh
+```
+
+**Co robi:** Security hardening → Geo-blocking → Monitoring → Deployment (~20 min - all-in-one!)
+
+**Alternatywa (manual):** Uruchom poszczególne skrypty z `deployment/server/` i `deployment/app/`
+
+### Lokalna instalacja (Dev/Testing - Windows lub Linux z WSL)
+
 **Wymagane:** aktywny VPN (WireGuard).
 
 ## VPN i plik konfiguracyjny
@@ -335,3 +351,4 @@ git push origin main
 
 **Ostatnia aktualizacja:** 10 lutego 2026  
 **Maintainers:** Adam Siehen (@adamsiehen), Paweł Ponikowski (@pponikowski)
+

@@ -1,0 +1,48 @@
+# ChatBot Systemd Service
+# This allows the chatbot to start automatically on system boot
+# Installation: sudo cp chatbot.service /etc/systemd/system/
+#              sudo systemctl daemon-reload
+#              sudo systemctl enable chatbot
+#              sudo systemctl start chatbot
+
+[Unit]
+Description=ChatBot Multi-Agent System
+Requires=docker.service
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/opt/chatbot-project
+User=asiehen
+Group=chatbot-devs
+
+# Start all services
+ExecStart=/usr/bin/docker compose up -d
+
+# Stop all services
+ExecStop=/usr/bin/docker compose down
+
+# Reload configuration
+ExecReload=/usr/bin/docker compose restart
+
+# Restart policy
+Restart=on-failure
+RestartSec=10s
+
+# Resource limits (adjust as needed)
+MemoryLimit=8G
+CPUQuota=400%
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=chatbot
+
+[Install]
+WantedBy=multi-user.target

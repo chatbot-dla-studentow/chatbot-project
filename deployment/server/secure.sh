@@ -225,14 +225,11 @@ TCPKeepAlive yes
 # Privilege separation and security
 PermitUserEnvironment no
 Compression no
-ClientAliveCountMax 2
 PermitTunnel no
 AllowTcpForwarding yes
 X11Forwarding no
 PrintMotd no
 PrintLastLog yes
-TCPKeepAlive yes
-Permitallenvironment no
 PermitUserRC no
 
 # Logging
@@ -241,7 +238,7 @@ LogLevel VERBOSE
 UsePAM yes
 
 # Subsystem
-Subsystem sftp  /usr/lib/openssh/sftp-server -f AUTHPRIV -l INFO
+Subsystem sftp /usr/lib/openssh/sftp-server
 
 # Banner
 Banner /etc/ssh/banner.txt

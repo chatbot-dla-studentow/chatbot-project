@@ -1,0 +1,81 @@
+# Crontab Examples for ChatBot Automated Operations
+# Install: crontab -e
+# View current crontab: crontab -l
+
+# ============================================
+# Daily Backup at 2:00 AM
+# ============================================
+0 2 * * * /opt/chatbot-project/backup.sh /opt/chatbot-backups >> /var/log/chatbot-backup.log 2>&1
+
+# ============================================
+# Health Check Every 15 Minutes
+# ============================================
+*/15 * * * * /opt/chatbot-project/health-check.sh >> /var/log/chatbot-health.log 2>&1
+
+# ============================================
+# Restart Services Daily at 4:00 AM (Optional)
+# Use only if you experience memory leaks or stability issues
+# ============================================
+# 0 4 * * * cd /opt/chatbot-project && ./deployment/app/deploy.sh restart >> /var/log/chatbot-restart.log 2>&1
+
+# ============================================
+# Weekly Cleanup of Old Logs (Sundays at 3:00 AM)
+# ============================================
+0 3 * * 0 find /var/log/chatbot-*.log -mtime +30 -delete
+
+# ============================================
+# Monitor Disk Space (Every Hour)
+# Alert if disk usage > 90%
+# ============================================
+0 * * * * df -h / | awk '$5 > 90 {print "WARNING: Disk usage at " $5}' | while read line; do echo "$line" | mail -s "ChatBot Disk Alert" admin@example.com; done
+
+# ============================================
+# Check and Restart Failed Containers (Every 5 Minutes)
+# ============================================
+*/5 * * * * cd /opt/chatbot-project && docker compose ps | grep -q "Exit\|unhealthy" && ./deployment/app/deploy.sh restart >> /var/log/chatbot-auto-restart.log 2>&1
+
+# ============================================
+# Update Knowledge Base (Weekly - Sundays at 1:00 AM)
+# Use if you have automated knowledge base updates
+# ============================================
+# 0 1 * * 0 cd /opt/chatbot-project && ./deployment/app/init-knowledge.sh >> /var/log/chatbot-kb-update.log 2>&1
+
+# ============================================
+# Docker System Cleanup (Monthly - 1st of month at 5:00 AM)
+# Remove unused images, containers, volumes
+# ============================================
+0 5 1 * * docker system prune -af --volumes >> /var/log/chatbot-docker-cleanup.log 2>&1
+
+# ============================================
+# Export Metrics (Daily at 11:59 PM)
+# Save system stats to file for analysis
+# ============================================
+59 23 * * * docker stats --no-stream --format "{{.Name}},{{.CPUPerc}},{{.MemUsage}}" >> /var/log/chatbot-metrics-$(date +\%Y\%m).csv
+
+# ============================================
+# Monitor Qdrant Collection Size (Daily at 6:00 AM)
+# ============================================
+0 6 * * * curl -s http://localhost:6333/collections/agent1_student | python3 -c "import sys,json; data=json.load(sys.stdin); print(f\"Qdrant points: {data['result']['points_count']}\")" >> /var/log/chatbot-qdrant-stats.log 2>&1
+
+# ============================================
+# ADVANCED: Auto-update from Git (Optional - Risky!)
+# Pull latest changes and restart (Sundays at 2:30 AM)
+# Only use in development/staging, NOT in production!
+# ============================================
+# 30 2 * * 0 cd /opt/chatbot-project && git pull origin main && ./deployment/app/deploy.sh restart >> /var/log/chatbot-auto-update.log 2>&1
+
+# ============================================
+# Ollama Model Check (Weekly)
+# Ensure required models are downloaded
+# ============================================
+0 7 * * 1 docker exec ollama ollama list | grep -q "mistral:7b" || docker exec ollama ollama pull mistral:7b >> /var/log/chatbot-ollama.log 2>&1
+
+# ============================================
+# NOTES:
+# ============================================
+# - Adjust paths according to your installation
+# - Make sure scripts are executable: chmod +x *.sh
+# - Create log directory: sudo mkdir -p /var/log && sudo chown $USER /var/log
+# - Test cronjobs before deploying: run each command manually first
+# - Monitor cron logs: tail -f /var/log/syslog | grep CRON
+# - Email notifications require configured mail system (postfix/sendmail)
