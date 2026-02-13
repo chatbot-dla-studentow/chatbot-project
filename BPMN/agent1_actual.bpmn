@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_actual" targetNamespace="http://bpmn.io/schema/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="18.12.0">
+  <bpmn:collaboration id="Collaboration_Agent1_Actual">
+    <bpmn:participant id="Participant_OpenWebUI" name="Open WebUI (Użytkownik)" processRef="Process_User" />
+    <bpmn:participant id="Participant_Agent1" name="Agent1 Student (RAG Pipeline)" processRef="Process_Agent1_RAG" />
+    <bpmn:participant id="Participant_Qdrant" name="Qdrant (Vector DB)" processRef="Process_Qdrant" />
+    <bpmn:participant id="Participant_Ollama" name="Ollama (LLM mistral:7b)" processRef="Process_Ollama" />
+    <bpmn:messageFlow id="Flow_UserQuery" sourceRef="Activity_UserSendMessage" targetRef="Activity_ReceiveQuery" />
+    <bpmn:messageFlow id="Flow_SearchKnowledge" sourceRef="Activity_SearchQdrant" targetRef="Activity_QdrantSearch" />
+    <bpmn:messageFlow id="Flow_SearchResults" sourceRef="EndEvent_Qdrant" targetRef="Activity_ProcessResults" />
+    <bpmn:messageFlow id="Flow_LogQuery" sourceRef="Activity_LogQuery" targetRef="Activity_QdrantLogQuery" />
+    <bpmn:messageFlow id="Flow_LogQA" sourceRef="Activity_LogQAPair" targetRef="Activity_QdrantLogQA" />
+    <bpmn:messageFlow id="Flow_GenerateRequest" sourceRef="Activity_CallOllama" targetRef="Activity_OllamaGenerate" />
+    <bpmn:messageFlow id="Flow_GenerateResponse" sourceRef="Activity_OllamaGenerate" targetRef="Activity_ReceiveResponse" />
+    <bpmn:messageFlow id="Flow_DisplayResponse" sourceRef="Activity_SendResponse" targetRef="Activity_UserReceiveResponse" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_User" isExecutable="false">
+    <bpmn:startEvent id="StartEvent_User" name="Użytkownik otwiera chatbot">
+      <bpmn:outgoing>Flow_User_1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="Activity_UserSendMessage" name="Zadanie pytania w chacie">
+      <bpmn:incoming>Flow_User_1</bpmn:incoming>
+      <bpmn:incoming>Flow_User_Loop</bpmn:incoming>
+      <bpmn:outgoing>Flow_User_2</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_UserReceiveResponse" name="Odbiór odpowiedzi">
+      <bpmn:incoming>Flow_User_2</bpmn:incoming>
+      <bpmn:outgoing>Flow_User_3</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="Gateway_UserContinue" name="Kolejne pytanie?">
+      <bpmn:incoming>Flow_User_3</bpmn:incoming>
+      <bpmn:outgoing>Flow_User_Loop</bpmn:outgoing>
+      <bpmn:outgoing>Flow_User_End</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="EndEvent_User" name="Koniec sesji">
+      <bpmn:incoming>Flow_User_End</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_User_1" sourceRef="StartEvent_User" targetRef="Activity_UserSendMessage" />
+    <bpmn:sequenceFlow id="Flow_User_2" sourceRef="Activity_UserSendMessage" targetRef="Activity_UserReceiveResponse" />
+    <bpmn:sequenceFlow id="Flow_User_3" sourceRef="Activity_UserReceiveResponse" targetRef="Gateway_UserContinue" />
+    <bpmn:sequenceFlow id="Flow_User_Loop" name="Tak" sourceRef="Gateway_UserContinue" targetRef="Activity_UserSendMessage" />
+    <bpmn:sequenceFlow id="Flow_User_End" name="Nie" sourceRef="Gateway_UserContinue" targetRef="EndEvent_User" />
+  </bpmn:process>
+  <bpmn:process id="Process_Agent1_RAG" isExecutable="false">
+    <bpmn:startEvent id="StartEvent_Agent1" name="Endpoint POST /api/chat">
+      <bpmn:outgoing>Flow_A1_1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="Activity_ReceiveQuery" name="Przetworzenie zapytania">
+      <bpmn:incoming>Flow_A1_1</bpmn:incoming>
+      <bpmn:outgoing>Flow_A1_2</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_DetectCategory" name="Kategoryzacja zapytania (detect_category)">
+      <bpmn:incoming>Flow_A1_2</bpmn:incoming>
+      <bpmn:outgoing>Flow_A1_3</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_LogQuery" name="Logowanie zapytania do query_logs">
+      <bpmn:incoming>Flow_A1_3</bpmn:incoming>
+      <bpmn:outgoing>Flow_A1_4</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="Gateway_CheckKnowledge" name="Czy zapytanie dotyczy bazy wiedzy?">
+      <bpmn:incoming>Flow_A1_4</bpmn:incoming>
+      <bpmn:outgoing>Flow_A1_5_Yes</bpmn:outgoing>
+      <bpmn:outgoing>Flow_A1_5_No</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="Activity_SearchQdrant" name="Wyszukiwanie w Qdrant (search_knowledge_base)">
+      <bpmn:incoming>Flow_A1_5_Yes</bpmn:incoming>
+      <bpmn:outgoing>Flow_A1_6</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_ProcessResults" name="Przetwarzanie wyników (limit=2, score&#62;0.25)">
+      <bpmn:incoming>Flow_A1_6</bpmn:incoming>
+      <bpmn:outgoing>Flow_A1_7</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="Gateway_CheckScore" name="Znaleziono dokumenty? (score &#62; 0.25)">
+      <bpmn:incoming>Flow_A1_7</bpmn:incoming>
+      <bpmn:outgoing>Flow_A1_8_Yes</bpmn:outgoing>
+      <bpmn:outgoing>Flow_A1_8_No</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="Activity_EnrichPrompt" name="Wzbogacenie prompt o kontekst (600 znaków)">
+      <bpmn:incoming>Flow_A1_8_Yes</bpmn:incoming>
+      <bpmn:outgoing>Flow_A1_9</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_DefaultPrompt" name="Użycie domyślnego prompt">
+      <bpmn:incoming>Flow_A1_8_No</bpmn:incoming>
+      <bpmn:incoming>Flow_A1_5_No</bpmn:incoming>
+      <bpmn:outgoing>Flow_A1_10</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="Gateway_MergePrompt">
+      <bpmn:incoming>Flow_A1_9</bpmn:incoming>
+      <bpmn:incoming>Flow_A1_10</bpmn:incoming>
+      <bpmn:outgoing>Flow_A1_11</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="Activity_CallOllama" name="Wywołanie Ollama (mistral:7b, temp=0.3, num_predict=80)">
+      <bpmn:incoming>Flow_A1_11</bpmn:incoming>
+      <bpmn:outgoing>Flow_A1_12</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_ReceiveResponse" name="Odbiór odpowiedzi z Ollama">
+      <bpmn:incoming>Flow_A1_12</bpmn:incoming>
+      <bpmn:outgoing>Flow_A1_13</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_LogQAPair" name="Logowanie pary Q&#38;A do qa_logs">
+      <bpmn:incoming>Flow_A1_13</bpmn:incoming>
+      <bpmn:outgoing>Flow_A1_14</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_AddSources" name="Dodanie sources do odpowiedzi">
+      <bpmn:incoming>Flow_A1_14</bpmn:incoming>
+      <bpmn:outgoing>Flow_A1_15</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_SendResponse" name="Zwrot odpowiedzi (JSON)">
+      <bpmn:incoming>Flow_A1_15</bpmn:incoming>
+      <bpmn:outgoing>Flow_A1_16</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="EndEvent_Agent1" name="Endpoint zwraca 200 OK">
+      <bpmn:incoming>Flow_A1_16</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_A1_1" sourceRef="StartEvent_Agent1" targetRef="Activity_ReceiveQuery" />
+    <bpmn:sequenceFlow id="Flow_A1_2" sourceRef="Activity_ReceiveQuery" targetRef="Activity_DetectCategory" />
+    <bpmn:sequenceFlow id="Flow_A1_3" sourceRef="Activity_DetectCategory" targetRef="Activity_LogQuery" />
+    <bpmn:sequenceFlow id="Flow_A1_4" sourceRef="Activity_LogQuery" targetRef="Gateway_CheckKnowledge" />
+    <bpmn:sequenceFlow id="Flow_A1_5_Yes" name="Tak" sourceRef="Gateway_CheckKnowledge" targetRef="Activity_SearchQdrant" />
+    <bpmn:sequenceFlow id="Flow_A1_5_No" name="Nie" sourceRef="Gateway_CheckKnowledge" targetRef="Activity_DefaultPrompt" />
+    <bpmn:sequenceFlow id="Flow_A1_6" sourceRef="Activity_SearchQdrant" targetRef="Activity_ProcessResults" />
+    <bpmn:sequenceFlow id="Flow_A1_7" sourceRef="Activity_ProcessResults" targetRef="Gateway_CheckScore" />
+    <bpmn:sequenceFlow id="Flow_A1_8_Yes" name="Tak" sourceRef="Gateway_CheckScore" targetRef="Activity_EnrichPrompt" />
+    <bpmn:sequenceFlow id="Flow_A1_8_No" name="Nie" sourceRef="Gateway_CheckScore" targetRef="Activity_DefaultPrompt" />
+    <bpmn:sequenceFlow id="Flow_A1_9" sourceRef="Activity_EnrichPrompt" targetRef="Gateway_MergePrompt" />
+    <bpmn:sequenceFlow id="Flow_A1_10" sourceRef="Activity_DefaultPrompt" targetRef="Gateway_MergePrompt" />
+    <bpmn:sequenceFlow id="Flow_A1_11" sourceRef="Gateway_MergePrompt" targetRef="Activity_CallOllama" />
+    <bpmn:sequenceFlow id="Flow_A1_12" sourceRef="Activity_CallOllama" targetRef="Activity_ReceiveResponse" />
+    <bpmn:sequenceFlow id="Flow_A1_13" sourceRef="Activity_ReceiveResponse" targetRef="Activity_LogQAPair" />
+    <bpmn:sequenceFlow id="Flow_A1_14" sourceRef="Activity_LogQAPair" targetRef="Activity_AddSources" />
+    <bpmn:sequenceFlow id="Flow_A1_15" sourceRef="Activity_AddSources" targetRef="Activity_SendResponse" />
+    <bpmn:sequenceFlow id="Flow_A1_16" sourceRef="Activity_SendResponse" targetRef="EndEvent_Agent1" />
+  </bpmn:process>
+  <bpmn:process id="Process_Qdrant" isExecutable="false">
+    <bpmn:task id="Activity_QdrantSearch" name="Vector Search (collection: agent1_student)">
+      <bpmn:outgoing>Flow_Q1</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Activity_QdrantLogQuery" name="Zapis do query_logs collection" />
+    <bpmn:task id="Activity_QdrantLogQA" name="Zapis do qa_logs collection" />
+    <bpmn:endEvent id="EndEvent_Qdrant" name="Zwrot wyników">
+      <bpmn:incoming>Flow_Q1</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_Q1" sourceRef="Activity_QdrantSearch" targetRef="EndEvent_Qdrant" />
+  </bpmn:process>
+  <bpmn:process id="Process_Ollama" isExecutable="false">
+    <bpmn:task id="Activity_OllamaGenerate" name="Generowanie odpowiedzi (POST /api/chat)">
+      <bpmn:outgoing>Flow_O1</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="EndEvent_Ollama" name="Zwrot odpowiedzi">
+      <bpmn:incoming>Flow_O1</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_O1" sourceRef="Activity_OllamaGenerate" targetRef="EndEvent_Ollama" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_Actual">
+    <bpmndi:BPMNPlane id="BPMNPlane_Actual" bpmnElement="Collaboration_Agent1_Actual">
+      <bpmndi:BPMNShape id="Participant_OpenWebUI_di" bpmnElement="Participant_OpenWebUI" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="1880" height="200" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_User_di" bpmnElement="StartEvent_User">
+        <dc:Bounds x="230" y="162" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="210" y="205" width="76" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_UserSendMessage_di" bpmnElement="Activity_UserSendMessage">
+        <dc:Bounds x="320" y="140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_UserReceiveResponse_di" bpmnElement="Activity_UserReceiveResponse">
+        <dc:Bounds x="1720" y="140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_UserContinue_di" bpmnElement="Gateway_UserContinue" isMarkerVisible="true">
+        <dc:Bounds x="1875" y="155" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1860" y="125" width="80" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_User_di" bpmnElement="EndEvent_User">
+        <dc:Bounds x="1982" y="162" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1969" y="205" width="62" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_User_1_di" bpmnElement="Flow_User_1">
+        <di:waypoint x="266" y="180" />
+        <di:waypoint x="320" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_User_2_di" bpmnElement="Flow_User_2">
+        <di:waypoint x="420" y="180" />
+        <di:waypoint x="1720" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_User_3_di" bpmnElement="Flow_User_3">
+        <di:waypoint x="1820" y="180" />
+        <di:waypoint x="1875" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_User_Loop_di" bpmnElement="Flow_User_Loop">
+        <di:waypoint x="1900" y="155" />
+        <di:waypoint x="1900" y="100" />
+        <di:waypoint x="370" y="100" />
+        <di:waypoint x="370" y="140" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1130" y="82" width="19" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_User_End_di" bpmnElement="Flow_User_End">
+        <di:waypoint x="1925" y="180" />
+        <di:waypoint x="1982" y="180" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1945" y="162" width="17" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_Agent1_di" bpmnElement="Participant_Agent1" isHorizontal="true">
+        <dc:Bounds x="160" y="300" width="1880" height="400" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_Agent1_di" bpmnElement="StartEvent_Agent1">
+        <dc:Bounds x="230" y="462" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="209" y="505" width="78" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_ReceiveQuery_di" bpmnElement="Activity_ReceiveQuery">
+        <dc:Bounds x="320" y="440" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_DetectCategory_di" bpmnElement="Activity_DetectCategory">
+        <dc:Bounds x="460" y="440" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_LogQuery_di" bpmnElement="Activity_LogQuery">
+        <dc:Bounds x="600" y="440" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_CheckKnowledge_di" bpmnElement="Gateway_CheckKnowledge" isMarkerVisible="true">
+        <dc:Bounds x="745" y="455" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="730" y="512" width="80" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_SearchQdrant_di" bpmnElement="Activity_SearchQdrant">
+        <dc:Bounds x="840" y="340" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_ProcessResults_di" bpmnElement="Activity_ProcessResults">
+        <dc:Bounds x="980" y="340" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_CheckScore_di" bpmnElement="Gateway_CheckScore" isMarkerVisible="true">
+        <dc:Bounds x="1125" y="355" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1108" y="412" width="84" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_EnrichPrompt_di" bpmnElement="Activity_EnrichPrompt">
+        <dc:Bounds x="1220" y="340" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_DefaultPrompt_di" bpmnElement="Activity_DefaultPrompt">
+        <dc:Bounds x="840" y="540" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_MergePrompt_di" bpmnElement="Gateway_MergePrompt" isMarkerVisible="true">
+        <dc:Bounds x="1365" y="455" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_CallOllama_di" bpmnElement="Activity_CallOllama">
+        <dc:Bounds x="1460" y="440" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_ReceiveResponse_di" bpmnElement="Activity_ReceiveResponse">
+        <dc:Bounds x="1620" y="440" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_LogQAPair_di" bpmnElement="Activity_LogQAPair">
+        <dc:Bounds x="1460" y="580" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_AddSources_di" bpmnElement="Activity_AddSources">
+        <dc:Bounds x="1620" y="580" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_SendResponse_di" bpmnElement="Activity_SendResponse">
+        <dc:Bounds x="1760" y="580" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_Agent1_di" bpmnElement="EndEvent_Agent1">
+        <dc:Bounds x="1902" y="602" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1880" y="645" width="80" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_A1_1_di" bpmnElement="Flow_A1_1">
+        <di:waypoint x="266" y="480" />
+        <di:waypoint x="320" y="480" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_A1_2_di" bpmnElement="Flow_A1_2">
+        <di:waypoint x="420" y="480" />
+        <di:waypoint x="460" y="480" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_A1_3_di" bpmnElement="Flow_A1_3">
+        <di:waypoint x="560" y="480" />
+        <di:waypoint x="600" y="480" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_A1_4_di" bpmnElement="Flow_A1_4">
+        <di:waypoint x="700" y="480" />
+        <di:waypoint x="745" y="480" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_A1_5_Yes_di" bpmnElement="Flow_A1_5_Yes">
+        <di:waypoint x="770" y="455" />
+        <di:waypoint x="770" y="380" />
+        <di:waypoint x="840" y="380" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="776" y="415" width="19" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_A1_5_No_di" bpmnElement="Flow_A1_5_No">
+        <di:waypoint x="770" y="505" />
+        <di:waypoint x="770" y="580" />
+        <di:waypoint x="840" y="580" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="776" y="540" width="17" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_A1_6_di" bpmnElement="Flow_A1_6">
+        <di:waypoint x="940" y="380" />
+        <di:waypoint x="980" y="380" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_A1_7_di" bpmnElement="Flow_A1_7">
+        <di:waypoint x="1080" y="380" />
+        <di:waypoint x="1125" y="380" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_A1_8_Yes_di" bpmnElement="Flow_A1_8_Yes">
+        <di:waypoint x="1175" y="380" />
+        <di:waypoint x="1220" y="380" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1189" y="362" width="18" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_A1_8_No_di" bpmnElement="Flow_A1_8_No">
+        <di:waypoint x="1150" y="405" />
+        <di:waypoint x="1150" y="580" />
+        <di:waypoint x="940" y="580" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1156" y="490" width="17" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_A1_9_di" bpmnElement="Flow_A1_9">
+        <di:waypoint x="1320" y="380" />
+        <di:waypoint x="1390" y="380" />
+        <di:waypoint x="1390" y="455" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_A1_10_di" bpmnElement="Flow_A1_10">
+        <di:waypoint x="940" y="580" />
+        <di:waypoint x="1390" y="580" />
+        <di:waypoint x="1390" y="505" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_A1_11_di" bpmnElement="Flow_A1_11">
+        <di:waypoint x="1415" y="480" />
+        <di:waypoint x="1460" y="480" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_A1_12_di" bpmnElement="Flow_A1_12">
+        <di:waypoint x="1580" y="480" />
+        <di:waypoint x="1620" y="480" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_A1_13_di" bpmnElement="Flow_A1_13">
+        <di:waypoint x="1630" y="520" />
+        <di:waypoint x="1557" y="583" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_A1_14_di" bpmnElement="Flow_A1_14">
+        <di:waypoint x="1560" y="620" />
+        <di:waypoint x="1620" y="620" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_A1_15_di" bpmnElement="Flow_A1_15">
+        <di:waypoint x="1720" y="620" />
+        <di:waypoint x="1760" y="620" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_A1_16_di" bpmnElement="Flow_A1_16">
+        <di:waypoint x="1860" y="620" />
+        <di:waypoint x="1902" y="620" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_Qdrant_di" bpmnElement="Participant_Qdrant" isHorizontal="true">
+        <dc:Bounds x="160" y="720" width="1880" height="150" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_QdrantSearch_di" bpmnElement="Activity_QdrantSearch">
+        <dc:Bounds x="840" y="760" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_QdrantLogQuery_di" bpmnElement="Activity_QdrantLogQuery">
+        <dc:Bounds x="600" y="760" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_QdrantLogQA_di" bpmnElement="Activity_QdrantLogQA">
+        <dc:Bounds x="1460" y="760" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_Qdrant_di" bpmnElement="EndEvent_Qdrant">
+        <dc:Bounds x="972" y="782" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="953" y="825" width="74" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_Q1_di" bpmnElement="Flow_Q1">
+        <di:waypoint x="940" y="800" />
+        <di:waypoint x="972" y="800" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_Ollama_di" bpmnElement="Participant_Ollama" isHorizontal="true">
+        <dc:Bounds x="160" y="890" width="1880" height="150" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_OllamaGenerate_di" bpmnElement="Activity_OllamaGenerate">
+        <dc:Bounds x="1460" y="930" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_Ollama_di" bpmnElement="EndEvent_Ollama">
+        <dc:Bounds x="1622" y="952" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1603" y="995" width="74" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_O1_di" bpmnElement="Flow_O1">
+        <di:waypoint x="1580" y="970" />
+        <di:waypoint x="1622" y="970" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_UserQuery_di" bpmnElement="Flow_UserQuery">
+        <di:waypoint x="370" y="220" />
+        <di:waypoint x="370" y="440" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_SearchKnowledge_di" bpmnElement="Flow_SearchKnowledge">
+        <di:waypoint x="890" y="420" />
+        <di:waypoint x="890" y="760" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_SearchResults_di" bpmnElement="Flow_SearchResults">
+        <di:waypoint x="990" y="782" />
+        <di:waypoint x="990" y="420" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_LogQuery_di" bpmnElement="Flow_LogQuery">
+        <di:waypoint x="650" y="520" />
+        <di:waypoint x="650" y="760" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_LogQA_di" bpmnElement="Flow_LogQA">
+        <di:waypoint x="1510" y="660" />
+        <di:waypoint x="1510" y="760" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_GenerateRequest_di" bpmnElement="Flow_GenerateRequest">
+        <di:waypoint x="1460" y="480" />
+        <di:waypoint x="1430" y="480" />
+        <di:waypoint x="1430" y="970" />
+        <di:waypoint x="1460" y="970" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_GenerateResponse_di" bpmnElement="Flow_GenerateResponse">
+        <di:waypoint x="1640" y="930" />
+        <di:waypoint x="1640" y="952" />
+        <di:waypoint x="1710" y="952" />
+        <di:waypoint x="1710" y="520" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_DisplayResponse_di" bpmnElement="Flow_DisplayResponse">
+        <di:waypoint x="1810" y="580" />
+        <di:waypoint x="1810" y="360" />
+        <di:waypoint x="1770" y="360" />
+        <di:waypoint x="1770" y="220" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
