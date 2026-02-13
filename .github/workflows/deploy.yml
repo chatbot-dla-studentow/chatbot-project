@@ -72,3 +72,10 @@ jobs:
       - name: Notify on failure
         if: failure()
         run: echo "Deployment failed - check GitHub Actions logs"
+
+---
+
+## Maintainers
+
+- **Adam Siehen** - GitHub Actions workflow, VPN integration, deployment orchestration
+- **Patryk Boguski** - Deployment scripts, VPS security hardening

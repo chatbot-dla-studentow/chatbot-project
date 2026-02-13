@@ -72,3 +72,5 @@ echo "Server IP: 10.0.0.1"
 echo "Listen Port: 51820"
 echo ""
 wg show
+
+# Maintainers: Adam Siehen, Patryk Boguski

@@ -160,6 +160,13 @@ sudo ufw status
 
 ---
 
+## Maintainers
+
+- **Adam Siehen** - GitHub Actions workflow, deployment automation, VPN integration
+- **Patryk Boguski** - VPS security, WireGuard setup, deployment infrastructure
+
+---
+
 ## 6. Local Development - Zamiast Actions
 
 Jeśli chcesz deployować ręcznie przez VPN:
