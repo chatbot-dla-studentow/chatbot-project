@@ -8,8 +8,8 @@
 
 ### ⚡ Breaking Change v2.0 (Stycz-2026)
 
-**Stare pliki:**
-- `agents/*/docker-compose.yml` - USUNIĘTE (były redundantne)
+**Zmiany:**
+- `agents/*/docker-compose.yml` - PRZYWRÓCONE (do uruchamiania pojedynczych agentów)
 - Deploy skrypty przeniesione do `deployment/app/` i `deployment/server/`
 
 ✅ **Noweł struktura /deployment:**
@@ -26,6 +26,9 @@ deployment/
 - **Manualnie?** → `./deployment/server/secure.sh` + inne skrypty
 - **Aplikacji?** → `./deployment/app/deploy.sh`
 - **Lokalmente na dev?** → `make deploy` (z Makefile'a)
+
+✅ **Uruchamianie pojedynczych agentów (opcjonalnie):**
+- `agents/*/docker-compose.yml` (wymaga uruchomionych `qdrant` i `ollama` w sieci `ai_network`)
 
 ## Spis treści
 
