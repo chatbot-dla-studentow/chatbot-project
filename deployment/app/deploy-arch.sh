@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+# TODO: merge logic of  deploy.sh and deploy-arch.sh into 1 file
 
 # Colors for output
 RED='\033[0;31m'
@@ -33,58 +34,44 @@ log_error() {
 check_root() {
     if [[ $EUID -eq 0 ]]; then
         log_error "This script should NOT be run as root (except for install_dependencies)"
-        log_info "Use: sudo ./deploy.sh install_dependencies"
-        log_info "Then: ./deploy.sh deploy"
+        log_info "Use: sudo ./deploy-arch.sh install_dependencies"
+        log_info "Then: ./deploy-arch.sh deploy"
         exit 1
     fi
 }
 
 install_dependencies() {
-    log_info "Installing system dependencies..."
+    log_info "Installing system dependencies for Arch Linux..."
     
-    # Update package list
-    sudo apt update
+    # Update package list and upgrade system
+    sudo pacman -Syu --noconfirm
     
     # Install required packages
-    sudo apt install -y \
-        curl \
-        wget \
-        git \
-        ca-certificates \
-        gnupg \
-        lsb-release \
-        python3 \
-        python3-pip \
-        python3-venv
+    sudo pacman -S --noconfirm --needed 
+        curl 
+        wget 
+        git 
+        base-devel 
+        python 
+        python-pip 
+        python-virtualenv 
+        docker 
+        docker-compose
     
-    # Install Docker
-    if ! command -v docker &> /dev/null; then
-        log_info "Installing Docker..."
-        
-        # Add Docker's official GPG key
-        sudo install -m 0755 -d /etc/apt/keyrings
-        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-        sudo chmod a+r /etc/apt/keyrings/docker.gpg
-        
-        # Set up the repository
-        echo \
-          "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-          $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-        
-        # Install Docker Engine
-        sudo apt update
-        sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-        
-        # Add current user to docker group
-        sudo usermod -aG docker $USER
-        log_warning "Docker installed. You may need to log out and back in for group changes to take effect."
-    else
-        log_success "Docker is already installed"
+    # Start and enable Docker
+    log_info "Starting and enabling Docker service..."
+    sudo systemctl enable --now docker.service
+    
+    # Add current user to docker group
+    if ! groups "$USER" | grep &>/dev/null "\bdocker\b"; then
+        log_info "Adding $USER to docker group..."
+        sudo usermod -aG docker "$USER"
+        log_warning "User added to docker group. You MUST log out and back in for group changes to take effect."
     fi
     
     # Verify Docker Compose
     if ! docker compose version &> /dev/null; then
-        log_error "Docker Compose plugin not found"
+        log_error "Docker Compose not found. Please ensure 'docker-compose' package is installed correctly."
         exit 1
     fi
     
@@ -118,11 +105,17 @@ check_dependencies() {
     
     if [ ${#missing_deps[@]} -ne 0 ]; then
         log_error "Missing dependencies: ${missing_deps[*]}"
-        log_info "Run: sudo ./deploy.sh install_dependencies"
+        log_info "Run: sudo ./deploy-arch.sh install_dependencies"
         exit 1
     fi
     
-    log_success "All dependencies are installed"
+    # Check if docker service is running
+    if ! systemctl is-active --quiet docker.service; then
+        log_warning "Docker service is not running. Attempting to start..."
+        sudo systemctl start docker.service
+    fi
+    
+    log_success "All dependencies are installed and running"
 }
 
 setup_project() {
@@ -131,7 +124,7 @@ setup_project() {
     # Create project directory if it doesn't exist
     if [ ! -d "$PROJECT_DIR" ]; then
         sudo mkdir -p "$PROJECT_DIR"
-        sudo chown $USER:$USER "$PROJECT_DIR"
+        sudo chown "$USER":"$USER" "$PROJECT_DIR"
     fi
     
     cd "$PROJECT_DIR"
@@ -311,7 +304,7 @@ show_status() {
 }
 
 full_deployment() {
-    log_info "Starting full deployment..."
+    log_info "Starting full deployment on Arch Linux..."
     echo ""
     
     check_dependencies
@@ -339,7 +332,7 @@ stop_all() {
 
 cleanup() {
     log_warning "This will remove all containers, volumes, and data!"
-    read -p "Are you sure? (yes/no): " confirm
+    read -p -r "Are you sure? (yes/no): " confirm
     
     if [ "$confirm" == "yes" ]; then
         cd "$PROJECT_DIR"
@@ -352,12 +345,12 @@ cleanup() {
 }
 
 show_help() {
-    echo "ChatBot Project - Automated Deployment Script"
+    echo "ChatBot Project - Automated Deployment Script (Arch Linux)"
     echo ""
-    echo "Usage: ./deploy.sh [COMMAND]"
+    echo "Usage: ./deploy-arch.sh [COMMAND]"
     echo ""
     echo "Commands:"
-    echo "  install_dependencies  Install Docker, Docker Compose, and other dependencies (requires sudo)"
+    echo "  install_dependencies  Install Docker, Docker Compose, and other dependencies via pacman (requires sudo)"
     echo "  deploy               Full deployment (check deps, setup, start all services)"
     echo "  start                Start all services"
     echo "  stop                 Stop all services"
@@ -369,19 +362,19 @@ show_help() {
     echo "  help                 Show this help message"
     echo ""
     echo "Examples:"
-    echo "  sudo ./deploy.sh install_dependencies"
-    echo "  ./deploy.sh deploy"
-    echo "  ./deploy.sh status"
-    echo "  ./deploy.sh logs agent1_student"
+    echo "  sudo ./deploy-arch.sh install_dependencies"
+    echo "  ./deploy-arch.sh deploy"
+    echo "  ./deploy-arch.sh status"
+    echo "  ./deploy-arch.sh logs agent1_student"
 }
 
-# Main script logic
+# Main
 case "${1:-}" in
     install_dependencies)
-        # This command needs root
+        # INFO : this command needs root
         if [[ $EUID -ne 0 ]]; then
             log_error "This command must be run as root"
-            log_info "Use: sudo ./deploy.sh install_dependencies"
+            log_info "Use: sudo ./deploy-arch.sh install_dependencies"
             exit 1
         fi
         install_dependencies
