@@ -225,3 +225,10 @@ sudo passwd ubuntu
 ---
 
 **Ostatnia aktualizacja:** 13.02.2026
+
+## Maintainers
+- Adam Siehen (adamsiehen)
+- Patryk Boguski (ptrBoguski)
+- Miko³aj Sykucki (zybert)
+- Oskar Jurgielaniec (oskarju1)
+- Pawe³ Ponikowski (pponikowski)

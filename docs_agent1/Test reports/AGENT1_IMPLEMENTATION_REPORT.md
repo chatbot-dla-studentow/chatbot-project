@@ -367,3 +367,10 @@ System jest **gotowy do produkcji** i może być wdrożony jako część projekt
 **Raport przygotował:** Adam Sieheń (Project Manager)  
 **Data:** 6 lutego 2026  
 **Status:** Implementacja zakończona
+
+## Maintainers
+- Adam Siehen (adamsiehen)
+- Patryk Boguski (ptrBoguski)
+- Miko�aj Sykucki (zybert)
+- Oskar Jurgielaniec (oskarju1)
+- Pawe� Ponikowski (pponikowski)

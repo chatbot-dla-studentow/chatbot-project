@@ -205,3 +205,10 @@ Je≈õli odpowied≈∫ nie ma w kontek≈õcie, odpowiedz: "Nie mam informacji na ten te
 ```
 
 ---
+
+## Maintainers
+- Adam Siehen (adamsiehen)
+- Patryk Boguski (ptrBoguski)
+- Miko≥aj Sykucki (zybert)
+- Oskar Jurgielaniec (oskarju1)
+- Pawe≥ Ponikowski (pponikowski)

@@ -214,3 +214,10 @@ Jeśli chcesz usunąć wszystko (UWAGA: usunie dane!):
 
 **Gotowe!** System chatbot jest teraz uruchomiony i gotowy do użycia. 🎉
 
+
+## Maintainers
+- Adam Siehen (adamsiehen)
+- Patryk Boguski (ptrBoguski)
+- Miko�aj Sykucki (zybert)
+- Oskar Jurgielaniec (oskarju1)
+- Pawe� Ponikowski (pponikowski)

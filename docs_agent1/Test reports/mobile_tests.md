@@ -67,3 +67,10 @@ Aplikacja jest w pe≈Çni u≈ºywalna na urzƒÖdzeniach mobilnych i nie wymaga dodatk
 
 ### Menu nawigacji
 ![Menu](../img/mobile_tests/IMG_4227.PNG)
+
+## Maintainers
+- Adam Siehen (adamsiehen)
+- Patryk Boguski (ptrBoguski)
+- Miko≥aj Sykucki (zybert)
+- Oskar Jurgielaniec (oskarju1)
+- Pawe≥ Ponikowski (pponikowski)

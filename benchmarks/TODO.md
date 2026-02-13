@@ -26,3 +26,10 @@ Lista planowanych usprawnień i funkcji do dodania w module benchmarków.
 ## Organizacja
 - [ ] **Auto-cleanup:** Skrypt do czyszczenia starych raportów i wykresów (np. starszych niż 30 dni).
 - [ ] **Interaktywny Dashboard:** Prosty widok w Streamlit do przeglądania historycznych wyników benchmarków.
+
+## Maintainers
+- Adam Siehen (adamsiehen)
+- Patryk Boguski (ptrBoguski)
+- Miko�aj Sykucki (zybert)
+- Oskar Jurgielaniec (oskarju1)
+- Pawe� Ponikowski (pponikowski)

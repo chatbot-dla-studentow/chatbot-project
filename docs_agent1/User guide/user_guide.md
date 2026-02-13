@@ -42,3 +42,10 @@ W menu bocznym dostępne są dodatkowe opcje aplikacji.
 ## 7. Najczęstsze problemy
 - Brak odpowiedzi: sprawdź połączenie z internetem.
 - Problem z logowaniem: upewnij się, że dane są poprawne.
+
+## Maintainers
+- Adam Siehen (adamsiehen)
+- Patryk Boguski (ptrBoguski)
+- Miko�aj Sykucki (zybert)
+- Oskar Jurgielaniec (oskarju1)
+- Pawe� Ponikowski (pponikowski)

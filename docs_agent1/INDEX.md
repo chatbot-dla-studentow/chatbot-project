@@ -156,3 +156,10 @@ Dokumentacja agenta chatbotowego odpowiadajÄ…cego na pytania studenckie (stypend
 
 **Ostatnia aktualizacja:** 10 lutego 2026  
 **Maintainers:** Adam Siehen (@asiehen), PaweÅ‚ Ponikowski (@pponikowski)
+
+## Maintainers
+- Adam Siehen (adamsiehen)
+- Patryk Boguski (ptrBoguski)
+- Miko³aj Sykucki (zybert)
+- Oskar Jurgielaniec (oskarju1)
+- Pawe³ Ponikowski (pponikowski)

@@ -241,3 +241,10 @@ Teraz mo≈ºesz:
 
 **Utworzono**: 6 lutego 2026
 **Status**: Zaktualizowano pod logowanie i kategorie
+
+## Maintainers
+- Adam Siehen (adamsiehen)
+- Patryk Boguski (ptrBoguski)
+- Miko≥aj Sykucki (zybert)
+- Oskar Jurgielaniec (oskarju1)
+- Pawe≥ Ponikowski (pponikowski)

@@ -427,3 +427,10 @@ QDRANT_PORT=9333
 
 **Gotowe!** System jest teraz w pełni zautomatyzowany i gotowy do wdrożenia na produkcję. 🎉
 
+
+## Maintainers
+- Adam Siehen (adamsiehen)
+- Patryk Boguski (ptrBoguski)
+- Miko�aj Sykucki (zybert)
+- Oskar Jurgielaniec (oskarju1)
+- Pawe� Ponikowski (pponikowski)

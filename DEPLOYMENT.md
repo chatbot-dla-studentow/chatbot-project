@@ -976,3 +976,10 @@ refactor(knowledge): optymalizacja parsowania dokument√≥w
 4. Merge po zatwierddzeniu
 5. Delete branch po merge'u
 
+
+## Maintainers
+- Adam Siehen (adamsiehen)
+- Patryk Boguski (ptrBoguski)
+- Miko≥aj Sykucki (zybert)
+- Oskar Jurgielaniec (oskarju1)
+- Pawe≥ Ponikowski (pponikowski)

@@ -381,3 +381,10 @@ python init_log_collections.py
 ## Wsparcie
 
 Dokumentacja API (FastAPI): http://localhost:8001/docs
+
+## Maintainers
+- Adam Siehen (adamsiehen)
+- Patryk Boguski (ptrBoguski)
+- Miko³aj Sykucki (zybert)
+- Oskar Jurgielaniec (oskarju1)
+- Pawe³ Ponikowski (pponikowski)

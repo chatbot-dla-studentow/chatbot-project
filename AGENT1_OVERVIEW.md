@@ -828,3 +828,10 @@ Indeks ca≈Çej dokumentacji.
 **Ostatnia aktualizacja:** 10 lutego 2026  
 **Wersja:** 1.0 (MVP)  
 **Maintainers:** Adam Siehen (@adamsiehen), Pawe≈Ç Ponikowski (@pponikowski)
+
+## Maintainers
+- Adam Siehen (adamsiehen)
+- Patryk Boguski (ptrBoguski)
+- Miko≥aj Sykucki (zybert)
+- Oskar Jurgielaniec (oskarju1)
+- Pawe≥ Ponikowski (pponikowski)
