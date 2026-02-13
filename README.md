@@ -11,6 +11,7 @@ Inteligentny chatbot dla studentów uczelni wyższej wykorzystujący architektur
 - [Szybki deploy i uruchomienie](#szybki-deploy-i-uruchomienie)
 - [VPN i plik konfiguracyjny](#vpn-i-plik-konfiguracyjny)
 - [Architektura w skrócie](#architektura-w-skrócie)
+- [Diagramy Procesów BPMN](#diagramy-procesów-bpmn)
 - [Troubleshooting](#troubleshooting)
 
 ## Opis projektu
@@ -40,6 +41,7 @@ System składa się z 5 wyspecjalizowanych agentów:
 │   ├── agent3_analytics/   # Agent analityki
 │   ├── agent4_bos/         # Agent BOS
 │   └── agent5_security/    # Agent bezpieczeństwa
+├── BPMN/                   # Diagramy procesów biznesowych (BPMN 2.0)
 ├── nodered/                # Konfiguracja Node-RED
 ├── qdrant/                 # Konfiguracja Qdrant
 ├── Open_WebUI/             # Konfiguracja Open WebUI
@@ -69,6 +71,8 @@ System składa się z 5 wyspecjalizowanych agentów:
 - [docs_agent1/INDEX.md](docs_agent1/INDEX.md) - indeks dokumentów Agent1
 - [DEPLOYMENT.md](DEPLOYMENT.md) - szczegóły wdrożenia i środowiska
 - [wg-client.conf](wg-client.conf) - konfiguracja WireGuard (plik w repo)
+- [BPMN/agent1_previous.bpmn](BPMN/agent1_previous.bpmn) - diagram procesu pierwotnego
+- [BPMN/agent1_actual.bpmn](BPMN/agent1_actual.bpmn) - diagram procesu rzeczywistego
 
 ## Szybki deploy i uruchomienie
 
@@ -114,6 +118,68 @@ Szczegóły: [DEPLOYMENT.md](DEPLOYMENT.md#połączenie-vpn-wymagane)
 Centralnym komponentem jest **Agent1 Student**, który realizuje RAG (Qdrant + Ollama) i udostępnia wiedzę agentom 2-5. Orkiestrację przepływu zapewnia Node-RED.
 
 Pełny opis: [docs_agent1/ARCHITECTURE.md](docs_agent1/ARCHITECTURE.md)
+
+## Diagramy Procesów BPMN
+
+Projekt przeszedł ewolucję od pierwotnie zaplanowanej architektury multi-agentowej do zoptymalizowanego systemu RAG skupionego na Agent1.
+
+### 📋 Pierwotny Proces (Planowany)
+
+**Plik:** [BPMN/agent1_previous.bpmn](BPMN/agent1_previous.bpmn)
+
+Pierwotny diagram zakładał pełną orkiestrację 5 agentów z kompleksowym workflow:
+
+![Agent1 - Proces Pierwotny](BPMN/agent1_previous.svg)
+
+**Charakterystyka pierwotnego procesu:**
+- ✅ **Agent1-5** - pełna integracja wszystkich 5 agentów
+- ✅ **Ankiety** - moduł zbierania feedbacku (Agent3 Analytics)
+- ✅ **Zgłoszenia BOS** - formularze zgłoszeń do Biura Obsługi Studenta (Agent4)
+- ✅ **Weryfikacja RODO** - kontrola zgód na przetwarzanie danych (Agent5 Security)
+- ✅ **Node-RED orchestration** - centralna orkiestracja przepływu między agentami
+- ✅ **Złożone gateways** - wielopoziomowe decyzje użytkownika
+
+**Status:** Planowany, częściowo zaimplementowany (tylko Agent1 w pełni)
+
+---
+
+### 🚀 Rzeczywisty Proces (Zaimplementowany)
+
+**Plik:** [BPMN/agent1_actual.bpmn](BPMN/agent1_actual.bpmn)
+
+Zoptymalizowany pipeline RAG skupiony na Agent1 Student z pełnym logowaniem:
+
+![Agent1 - Proces Rzeczywisty](BPMN/agent1_actual.svg)
+
+**Charakterystyka rzeczywistego procesu:**
+- ✅ **RAG Pipeline** - Retrieval-Augmented Generation (Qdrant + Ollama)
+- ✅ **Kategoryzacja automatyczna** - `detect_category()` dla każdego zapytania
+- ✅ **Dual Logging** - równoległe logowanie do `query_logs` i `qa_logs` w Qdrant
+- ✅ **Vector Search** - embedding przez `nomic-embed-text`, search limit=2, score>0.25
+- ✅ **Context Enrichment** - wzbogacanie prompt o 600 znaków kontekstu z dokumentów
+- ✅ **Ollama Optimization** - temperature=0.3, num_predict=80, num_ctx=1024
+- ✅ **Sources Metadata** - zwracanie źródeł dokumentów w odpowiedzi JSON
+- ✅ **Open WebUI Integration** - endpoint `/api/chat` kompatybilny z Ollama API
+
+**Status:** W pełni funkcjonalny, produkcja (luty 2026)
+
+---
+
+### 🔄 Kluczowe Różnice
+
+| Aspekt | Pierwotny Plan | Rzeczywista Implementacja |
+|--------|----------------|---------------------------|
+| **Agenty** | 5 agentów (Agent1-5) | 1 agent (Agent1 Student) + placeholders |
+| **Orchestration** | Node-RED workflow | Bezpośrednie wywołanie `/api/chat` |
+| **User Flow** | Ankiety, zgłoszenia BOS, RODO | Cykl: pytanie → odpowiedź → kolejne pytanie |
+| **Logowanie** | Brak specyfikacji | Podwójne: query_logs + qa_logs |
+| **RAG** | Ogólny zarys | Pełny pipeline: categorize → search → enrich → generate |
+| **Integracje** | Agent2-5 communication | Ollama + Qdrant (single agent focus) |
+| **Complexity** | Wysoka (wieloagentowy) | Średnia (zoptymalizowany RAG) |
+
+**Decyzja projektowa:** Skupienie się na doskonałym działaniu Agent1 z RAG jako MVP, pozostawiając Agent2-5 jako bazę do przyszłego rozwoju.
+
+---
 
 ## Troubleshooting
 
