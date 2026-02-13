@@ -84,7 +84,7 @@ apt install -y \
     nmap \
     fail2ban \
     ufw \
-    mlocate \
+    plocate \
     aide \
     unattended-upgrades \
     apt-listchanges \
