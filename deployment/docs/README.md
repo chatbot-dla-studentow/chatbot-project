@@ -1,7 +1,8 @@
 # 🚀 Wdrożenie na Świeży VPS - Szybki Przewodnik
 
-> ⚠️ **WAŻNE - Breaking Change:** Stare pliki `agents/*/docker-compose.yml` zostały **usunięte**. 
-> Aby wdrożyć system, **musisz używać** `/deployment/setup.sh` lub główny `docker-compose.yml` z głównego katalogu!
+> ✅ **Aktualizacja:** Dedykowane pliki `agents/*/docker-compose.yml` zostały **przywrócone**.
+> Do pełnego wdrożenia nadal rekomendujemy `/deployment/setup.sh` lub główny `docker-compose.yml`,
+> ale możesz też uruchamiać pojedynczych agentów z ich katalogów.
 
 ## 📖 Struktura Folderu `deployment/`
 
@@ -166,6 +167,23 @@ sudo ./deployment/app/deploy.sh install_dependencies
 # Arch Linux
 sudo ./deployment/app/deploy-arch.sh install_dependencies
 ./deployment/app/deploy-arch.sh deploy
+```
+
+### Uruchamianie pojedynczych agentów (dedykowane compose)
+
+> Wymaga działającego `qdrant` i `ollama` w sieci `ai_network`.
+
+```bash
+# Utwórz sieć jeśli nie istnieje
+docker network create ai_network
+
+# Start infrastruktury (z głównego katalogu)
+cd /opt/chatbot-project
+docker compose up -d qdrant ollama
+
+# Start pojedynczego agenta
+cd /opt/chatbot-project/agents/agent1_student
+docker-compose up -d
 ```
 
 ---
