@@ -1,9 +1,14 @@
-# Instrukcja dostępu do wdrożonego chatbota
+# Instrukcja wdrożenia i dostępu do chatbota
 
 > **Powiązana dokumentacja:** [README.md](README.md) | [AGENT1_OVERVIEW.md](AGENT1_OVERVIEW.md) | [docs_agent1/ARCHITECTURE.md](docs_agent1/ARCHITECTURE.md) | [docs_agent1/QUICK_START.md](docs_agent1/QUICK_START.md)
 
 ## Spis treści
 
+- [🚀 Automatyczne wdrożenie](#-automatyczne-wdrożenie-nowa-maszyna)
+  - [Quick Start - Świeży VPS](#quick-start---świeży-vps)
+  - [Wymagania systemowe](#wymagania-systemowe)
+  - [Konfiguracja środowiska](#konfiguracja-środowiska)
+  - [Komenda deployment](#komendy-deployment)
 - [Połączenie VPN](#połączenie-vpn-wymagane)
 - [Dostęp SSH](#dostęp-ssh)
 - [Zasoby serwera](#zasoby-serwera)
@@ -13,6 +18,296 @@
 - [Bezpieczeństwo](#bezpieczeństwo)
 - [Diagnostyka](#diagnostyka)
 - [Git Workflow](#git-workflow-strategia-branchowania)
+
+---
+
+## 🚀 Automatyczne wdrożenie (nowa maszyna)
+
+### Quick Start - Świeży VPS
+
+Wdrożenie całego systemu na świeżej maszynie wirtualnej lub VPS w **3 krokach**:
+
+```bash
+# 1. Sklonuj repozytorium
+git clone https://github.com/yourusername/chatbot-project.git
+cd chatbot-project
+
+# 2. Zainstaluj zależności (wymaga sudo)
+sudo ./deploy.sh install_dependencies
+
+# 3. Wdróż cały system
+./deploy.sh deploy
+```
+
+**Czas wdrożenia:** ~10-15 minut (w zależności od prędkości internetu)
+
+Po zakończeniu wszystkie serwisy będą dostępne:
+- 🤖 Agent1 (Student Support): http://localhost:8001
+- 📊 Qdrant (Vector DB): http://localhost:6333
+- 🧠 Ollama (LLM): http://localhost:11434
+- 🔄 Node-RED (Workflows): http://localhost:1880
+- 🌐 Open WebUI: http://localhost:3000
+
+### Wymagania systemowe
+
+**Minimalna konfiguracja:**
+- OS: Ubuntu 22.04+ / Debian 11+ / RHEL 8+
+- RAM: 8 GB (16 GB zalecane)
+- CPU: 4 rdzenie (dla modelu Ollama mistral:7b)
+- Dysk: 30 GB wolnej przestrzeni
+- Połączenie: Stały dostęp do internetu
+
+**Oprogramowanie (instalowane automatycznie):**
+- Docker 24.0+
+- Docker Compose V2
+- Git
+- Python 3.10+
+- curl, wget
+
+### Konfiguracja środowiska
+
+**1. Skopiuj przykładowy plik środowiskowy:**
+```bash
+cp .env.example .env
+```
+
+**2. Edytuj `.env` i dostosuj konfigurację:**
+```bash
+nano .env
+```
+
+**Kluczowe parametry do dostosowania:**
+
+```bash
+# Porty serwisów (zmień jeśli masz konflikty)
+AGENT1_PORT=8001
+QDRANT_PORT=6333
+OLLAMA_PORT=11434
+NODERED_PORT=1880
+
+# Model Ollama (zmień na większy jeśli masz więcej RAM)
+OLLAMA_MODEL=mistral:7b
+
+# Ścieżka wdrożenia
+DEPLOY_PATH=/opt/chatbot-project
+
+# Bezpieczeństwo (ZMIEŃ W PRODUKCJI!)
+SECRET_KEY=<wygeneruj-bezpieczny-klucz>
+API_KEY=<wygeneruj-bezpieczny-klucz>
+
+# Środowisko
+ENVIRONMENT=production
+```
+
+**Generowanie bezpiecznych kluczy:**
+```bash
+# Secret Key
+openssl rand -base64 32
+
+# API Key
+openssl rand -base64 32
+```
+
+**3. Zaktualizuj URL repozytorium w `deploy.sh`:**
+```bash
+# Linia 13 w deploy.sh
+GIT_REPO="https://github.com/your-username/chatbot-project.git"
+```
+
+### Komendy deployment
+
+**Główny skrypt: `deploy.sh`**
+
+#### Instalacja systemu
+
+```bash
+# Zainstaluj Docker, Docker Compose i zależności (wymaga sudo)
+sudo ./deploy.sh install_dependencies
+
+# Pełne wdrożenie (wszystkie kroki)
+./deploy.sh deploy
+```
+
+#### Zarządzanie serwisami
+
+```bash
+# Uruchom wszystkie serwisy
+./deploy.sh start
+
+# Zatrzymaj wszystkie serwisy
+./deploy.sh stop
+
+# Restart wszystkich serwisów
+./deploy.sh restart
+
+# Sprawdź status serwisów
+./deploy.sh status
+```
+
+#### Logi i diagnostyka
+
+```bash
+# Pokaż logi wszystkich serwisów (live)
+./deploy.sh logs
+
+# Pokaż logi konkretnego serwisu
+./deploy.sh logs agent1_student
+./deploy.sh logs qdrant
+./deploy.sh logs ollama
+./deploy.sh logs node-red
+```
+
+#### Zarządzanie bazą wiedzy
+
+```bash
+# Zainicjalizuj/odśwież bazę wiedzy
+./deploy.sh init-kb
+
+# Lub użyj dedykowanego skryptu
+./init-knowledge.sh
+```
+
+#### Czyszczenie systemu
+
+```bash
+# Usuń wszystkie kontenery i wolumeny (UWAGA: usuwa dane!)
+./deploy.sh cleanup
+```
+
+### Architektura deployment
+
+**Kolejność uruchamiania serwisów:**
+
+```
+1. Infrastruktura
+   ├── Qdrant (Vector Database)
+   ├── Ollama (LLM Service)
+   └── Node-RED (Workflow Engine)
+   
+2. Inicjalizacja
+   ├── Pobierz model Ollama (mistral:7b)
+   └── Załaduj bazę wiedzy do Qdrant
+   
+3. Agenci
+   ├── Agent1 (Student Support) - główny
+   ├── Agent2 (Ticket Management)
+   ├── Agent3 (Analytics)
+   ├── Agent4 (BOS)
+   └── Agent5 (Security)
+   
+4. Opcjonalne
+   └── Open WebUI (interfejs użytkownika)
+```
+
+**Network Architecture:**
+```
+ai_network (bridge)
+├── qdrant:6333
+├── ollama:11434
+├── node-red:1880
+├── agent1_student:8000 → host:8001
+├── agent2_ticket:8000 → host:8002
+├── agent3_analytics:8000 → host:8003
+├── agent4_bos:8000 → host:8004
+├── agent5_security:8000 → host:8005
+└── open-webui:8080 → host:3000
+```
+
+### Troubleshooting deployment
+
+**Problem: Brak Dockera**
+```bash
+sudo ./deploy.sh install_dependencies
+```
+
+**Problem: Port już zajęty**
+```bash
+# Sprawdź co używa portu
+sudo netstat -tulpn | grep :8001
+
+# Zmień port w .env
+AGENT1_PORT=8101
+```
+
+**Problem: Brak pamięci dla Ollamy**
+```bash
+# Użyj mniejszego modelu
+OLLAMA_MODEL=mistral:7b  # zamiast llama2:13b
+
+# Lub zwiększ swap
+sudo fallocate -l 4G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+```
+
+**Problem: Qdrant nie odpowiada**
+```bash
+# Sprawdź logi
+./deploy.sh logs qdrant
+
+# Restart serwisu
+docker compose restart qdrant
+```
+
+**Problem: Baza wiedzy pusta**
+```bash
+# Re-inicjalizuj bazę wiedzy
+./init-knowledge.sh
+
+# Sprawdź kolekcję
+curl http://localhost:6333/collections/agent1_student
+```
+
+### Monitoring deployment
+
+**Sprawdzenie stanu wszystkich serwisów:**
+```bash
+./deploy.sh status
+```
+
+**Lub ręcznie:**
+```bash
+# Kontenery
+docker ps
+
+# Zdrowie serwisów
+curl http://localhost:8001/health      # Agent1
+curl http://localhost:6333/health      # Qdrant
+curl http://localhost:11434/api/tags   # Ollama
+
+# Kolekcje Qdrant
+curl http://localhost:6333/collections
+
+# Modele Ollama
+docker exec ollama ollama list
+```
+
+### Backup i przywracanie
+
+**Backup wolumenów Docker:**
+```bash
+# Backup Qdrant
+docker run --rm -v qdrant_data:/data -v $(pwd):/backup \
+  ubuntu tar czf /backup/qdrant-backup-$(date +%Y%m%d).tar.gz -C /data .
+
+# Backup Ollama
+docker run --rm -v ollama_data:/data -v $(pwd):/backup \
+  ubuntu tar czf /backup/ollama-backup-$(date +%Y%m%d).tar.gz -C /data .
+
+# Backup Node-RED
+docker run --rm -v nodered_data:/data -v $(pwd):/backup \
+  ubuntu tar czf /backup/nodered-backup-$(date +%Y%m%d).tar.gz -C /data .
+```
+
+**Przywracanie:**
+```bash
+# Restore Qdrant
+docker run --rm -v qdrant_data:/data -v $(pwd):/backup \
+  ubuntu tar xzf /backup/qdrant-backup-20260213.tar.gz -C /data
+```
+
+---
 
 ## Połączenie VPN (WYMAGANE)
 
