@@ -1,9 +1,9 @@
 # 🚀 ChatBot Deployment System
 
-⚠️ **BREAKING CHANGE v2.0 (Feb 2026):** Stare pliki `agents/*/docker-compose.yml` zostały USUNIĘTE.
+⚠️ **BREAKING CHANGE v2.0 (Feb 2026):** Stare pliki `agents/*/docker-compose.yml` zostały USUNIĘTE. Plik `deploy.ps1` usunięty (tylko Linux/WSL/Ubuntu).
 
 ✅ **Teraz wykorzystuj:**
-- Nowy VPS? → `./deployment/setup-new-vps.sh` ← **REKOMENDOWANE!**
+- Nowy VPS? → `./deployment/setup.sh` ← **REKOMENDOWANE!**
 - Manualnie? → główny `docker-compose.yml` w root katalogu
 - Dev lokalne? → `make deploy` z Makefile
 
