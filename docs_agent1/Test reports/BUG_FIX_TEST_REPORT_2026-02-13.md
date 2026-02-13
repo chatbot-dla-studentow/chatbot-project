@@ -1,4 +1,4 @@
-# Raport Testów i Napraw - Agent1 Student Chatbot
+﻿# Raport Testów i Napraw - Agent1 Student Chatbot
 ## Sesja Debugowania: 13 lutego 2026
 
 **Status Ogólny**: ROZWIĄZANE  
@@ -386,6 +386,6 @@ PORT:   0.0.0.0:8001->8000/tcp
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Miko�aj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Pawe� Ponikowski (pponikowski)
+- Paweł Ponikowski (pponikowski)

@@ -1,4 +1,4 @@
-# 🛡️ ChatBot VPS Security Configuration
+﻿# 🛡️ ChatBot VPS Security Configuration
 
 ## Quick Security Setup
 
@@ -429,6 +429,6 @@ sudo sshd -T
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Miko�aj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Pawe� Ponikowski (pponikowski)
+- Paweł Ponikowski (pponikowski)

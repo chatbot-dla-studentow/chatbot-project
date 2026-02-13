@@ -1,4 +1,4 @@
-# Przewodnik Szybki Start - Baza Wiedzy
+﻿# Przewodnik Szybki Start - Baza Wiedzy
 
 ## Co zostało zrobione?
 
@@ -245,6 +245,6 @@ Teraz możesz:
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Miko�aj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Pawe� Ponikowski (pponikowski)
+- Paweł Ponikowski (pponikowski)

@@ -1,4 +1,4 @@
-# Architektura Systemu Multi-Agent
+ï»¿# Architektura Systemu Multi-Agent
 
 ## PrzeglÄ…d Architektury
 
@@ -650,6 +650,6 @@ docker logs agent1_student | grep "RAG:"
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko³aj Sykucki (zybert)
+- Mikoï¿½aj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Pawe³ Ponikowski (pponikowski)
+- PaweÅ‚ Ponikowski (pponikowski)

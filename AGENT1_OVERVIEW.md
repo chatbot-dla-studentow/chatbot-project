@@ -1,4 +1,4 @@
-# Agent1 Student - Dokumentacja Techniczna
+﻿# Agent1 Student - Dokumentacja Techniczna
 
 Chatbot studencki oparty na technologii RAG (Retrieval-Augmented Generation) odpowiadający na pytania dotyczące procedur uczelnianych.
 
@@ -832,6 +832,6 @@ Indeks całej dokumentacji.
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Miko�aj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Pawe� Ponikowski (pponikowski)
+- Paweł Ponikowski (pponikowski)

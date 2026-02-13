@@ -1,4 +1,4 @@
-# Raport Testów - Agent1 Student Chatbot
+﻿# Raport Testów - Agent1 Student Chatbot
 
 **Data**: 6 lutego 2026
 **Status**: SUKCES
@@ -189,6 +189,6 @@ NUM_CTX = 1024
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Miko�aj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Pawe� Ponikowski (pponikowski)
+- Paweł Ponikowski (pponikowski)

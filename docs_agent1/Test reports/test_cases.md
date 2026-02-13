@@ -1,4 +1,4 @@
-# Dokumentacja Przypadków Testowych - Agent1 Student Chatbot
+﻿# Dokumentacja Przypadków Testowych - Agent1 Student Chatbot
 
 **Projekt**: Chatbot dla Studentów WSB Merito  
 **Komponent**: Agent1 Student (RAG System)  
@@ -1003,6 +1003,6 @@ Ollama logs         # LLM monitoring
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Miko�aj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Pawe� Ponikowski (pponikowski)
+- Paweł Ponikowski (pponikowski)

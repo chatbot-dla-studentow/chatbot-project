@@ -1,4 +1,4 @@
-# 🔐 SSH Access - Dokumentacja
+﻿# 🔐 SSH Access - Dokumentacja
 
 > **VPS:** `51.68.151.45` | **User:** `ubuntu` | **Hostname:** `vps-fcbe5571.vps.ovh.net`
 
@@ -229,6 +229,6 @@ sudo passwd ubuntu
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Miko�aj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Pawe� Ponikowski (pponikowski)
+- Paweł Ponikowski (pponikowski)

@@ -1,4 +1,4 @@
-# Raport testów mobilnych – Student Chatbot
+﻿# Raport testów mobilnych – Student Chatbot
 
 **Data:** 11 lutego 2026  
 **Tester:** Oskar Jurgielaniec 
@@ -71,6 +71,6 @@ Aplikacja jest w pełni używalna na urządzeniach mobilnych i nie wymaga dodatk
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Miko�aj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Pawe� Ponikowski (pponikowski)
+- Paweł Ponikowski (pponikowski)

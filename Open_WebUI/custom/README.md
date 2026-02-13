@@ -1,4 +1,4 @@
-# Custom Branding - WSB Merito
+ï»¿# Custom Branding - WSB Merito
 
 ## Logo
 Skopiuj logo WSB Merito do tego katalogu jako `logo.png`
@@ -24,6 +24,6 @@ Pliki sÄ… montowane w kontenerze Open WebUI przez docker-compose.yml:
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko³aj Sykucki (zybert)
+- Mikoï¿½aj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Pawe³ Ponikowski (pponikowski)
+- PaweÅ‚ Ponikowski (pponikowski)

@@ -1,4 +1,4 @@
-# Raport Wydajności LLM
+﻿# Raport Wydajności LLM
 
 Data: 2026-02-13 06:37:34
 
@@ -209,6 +209,6 @@ Jeśli odpowiedź nie ma w kontekście, odpowiedz: "Nie mam informacji na ten te
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Miko�aj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Pawe� Ponikowski (pponikowski)
+- Paweł Ponikowski (pponikowski)

@@ -1,4 +1,4 @@
-# Baza Wiedzy - Documentation
+ï»¿# Baza Wiedzy - Documentation
 
 ## PrzeglÄ…d
 
@@ -730,6 +730,6 @@ docker exec agent1_student python helpers/load_knowledge_base.py
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko³aj Sykucki (zybert)
+- Mikoï¿½aj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Pawe³ Ponikowski (pponikowski)
+- PaweÅ‚ Ponikowski (pponikowski)
