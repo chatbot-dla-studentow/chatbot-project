@@ -37,6 +37,7 @@ deployment/
   - [Wymagania systemowe](#wymagania-systemowe)
   - [Konfiguracja środowiska](#konfiguracja-środowiska)
   - [Komenda deployment](#komendy-deployment)
+- [GitHub Actions + WireGuard Deployment](#github-actions--wireguard-deployment) ← **AUTOMATYCZNE WDRAŻANIE**
 - [Połączenie VPN](#połączenie-vpn-wymagane)
 - [Dostęp SSH](#dostęp-ssh)
 - [Zasoby serwera](#zasoby-serwera)
@@ -132,6 +133,110 @@ Phase 4: 🚀 Deployment aplikacji (8-10 min)
 **Monitorowanie:**
 - Email alerts wysyłane do: `adam.siehen@outlook.com`
 - Dashboard: `chatbot-status` (dostępna komenda SSH)
+
+---
+
+## GitHub Actions + WireGuard Deployment
+
+> ⭐ **Zautomatyzowana wdrażanie bez ręcznego SSH dostępu!**
+
+Po uruchomieniu `setup.sh` na VPS, możesz skonfigurować **automatyczne wdrażanie** przy każdym push do gałęzi `main`.
+
+### Architektura Bezpieczeństwa
+
+```
+GitHub Actions Runner              WireGuard VPN (51820/UDP)
+         ▼                                      ▼
+  Setup WireGuard ────────────────► VPS Server
+  SSH przez VPN                     - SSH na 10.0.0.1
+  Deploy aplikacji                  - Dostęp tylko z VPN
+```
+
+**Zamiast otwarcia SSH na świat**, GitHub Actions:
+1. Łączy się z VPS przez **WireGuard VPN**
+2. Uruchamia `deployment/app/deploy.sh` w bezpiecznym tunelu
+3. Zaciąga kod z GitHub'a
+4. Restartuje serwisy
+
+### Konfiguracja GitHub Secrets
+
+Przejdź do: **Settings → Secrets and variables → Actions** w swoim repozytorium GitHub.
+
+Dodaj te tajne zmienne:
+
+| Secret | Wartość | Gdzie znaleźć |
+|--------|---------|---------------|
+| `SSH_PRIVATE_KEY` | Zawartość `github_deploy` private key | `ssh-keygen -t ed25519 -f github_deploy` |
+| `DEPLOY_USER` | `ubuntu` | Domyślnie na Ubuntu |
+| `DEPLOY_HOST` | `10.0.0.1` | VPN IP serwera (nie public!) |
+| `WIREGUARD_PRIVATEKEY` | Z `wireguard-setup.sh` output | Uruchom skrypt, zapisz klucz |
+| `WIREGUARD_PUBLICKEY` | `cat /etc/wireguard/publickey` | Na VPS po setup.sh |
+| `WIREGUARD_ENDPOINT` | `<public-ip-vps>:51820` | Z konfiguracji VPSa |
+
+### Krok 1: Setup WireGuard na VPS
+
+```bash
+# Na nowym VPS, po uruchomieniu setup.sh
+sudo bash deployment/server/wireguard-setup.sh
+
+# Będą wygenerowane klucze - ZAPISZ JE!
+# Output pokaże: Private Key, Public Key
+```
+
+### Krok 2: Przygotuj SSH klucz dla GitHub
+
+```powershell
+# Na Windows Dev maszynie
+ssh-keygen -t ed25519 -f "$env:USERPROFILE\.ssh\github_deploy" -C "github-actions" -N ""
+
+# Dodaj public key na VPS
+ssh ubuntu@<vps-public-ip> 
+echo "$(Get-Content $env:USERPROFILE\.ssh\github_deploy.pub)" >> ~/.ssh/authorized_keys
+```
+
+### Krok 3: Filluj GitHub Secrets
+
+Z outputu `wireguard-setup.sh` skopiuj:
+- `WIREGUARD_PRIVATEKEY` (private key serwera)
+- `WIREGUARD_PUBLICKEY` (public key z `/etc/wireguard/publickey`)
+
+### Krok 4: Trigger Deployment
+
+Każdy push do `main` automatycznie:
+```bash
+git add agents/ deployment/
+git commit -m "feat: Nowa funkcja"
+git push origin main  # ← GitHub Actions automatycznie wdraża!
+```
+
+### Debug - Sprawdzać logi GitHub Actions
+
+1. Otwórz: https://github.com/chatbot-dla-studentow/chatbot-project/actions
+2. Kliknij ostatni workflow run
+3. Sprawdź każdy krok (setup WireGuard, SSH connection, deploy)
+
+**Jeśli coś nie działa:**
+
+Na VPS:
+```bash
+sudo wg show          # Czy WireGuard działa?
+sudo systemctl status ssh
+sudo tail -f /var/log/auth.log  # Logi SSH
+```
+
+Ze swoją maszyną dev:
+```powershell
+# Test VPN connection (przede wszystkim)
+# Załaduj WireGuard Client z wg-client.conf
+# Potem:
+ssh -i $env:USERPROFILE\.ssh\github_deploy ubuntu@10.0.0.1
+```
+
+### Pełna dokumentacja
+
+📖 **Szczegółowe instrukcje:** [deployment/docs/GITHUB_ACTIONS_SETUP.md](deployment/docs/GITHUB_ACTIONS_SETUP.md)
+
+---
 
 ---
 

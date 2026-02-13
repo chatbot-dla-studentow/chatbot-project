@@ -1,0 +1,74 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'agents/**'
+      - 'deployment/**'
+      - '.github/workflows/deploy.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup WireGuard VPN
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wireguard wireguard-tools
+          echo "${{ secrets.WIREGUARD_PRIVATEKEY }}" > /tmp/wg_private.key
+          sudo ip link add dev wg0 type wireguard || true
+          sudo ip addr add 10.0.0.2/24 dev wg0 || true
+          sudo wg set wg0 private-key /tmp/wg_private.key
+          sudo wg set wg0 peer ${{ secrets.WIREGUARD_PUBLICKEY }} \
+            endpoint ${{ secrets.WIREGUARD_ENDPOINT }} \
+            allowed-ips 10.0.0.0/24 \
+            persistent-keepalive 25
+          sudo ip link set wg0 up
+          sleep 2
+          rm /tmp/wg_private.key
+          
+      - name: Verify VPN connection
+        run: |
+          ping -c 3 10.0.0.1 || echo "VPN ping failed, continuing..."
+          
+      - name: Deploy via SSH (over VPN)
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H $DEPLOY_HOST >> ~/.ssh/known_hosts 2>/dev/null || true
+          ssh -i ~/.ssh/deploy_key \
+            -o StrictHostKeyChecking=accept-new \
+            -o ConnectTimeout=10 \
+            $DEPLOY_USER@$DEPLOY_HOST \
+            'cd ~/chatbot-project && bash deployment/app/deploy.sh update'
+          rm ~/.ssh/deploy_key
+          
+      - name: Verify deployment
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh -i ~/.ssh/deploy_key \
+            $DEPLOY_USER@$DEPLOY_HOST \
+            'bash deployment/app/deploy.sh status'
+          rm ~/.ssh/deploy_key
+          
+      - name: Notify on failure
+        if: failure()
+        run: echo "Deployment failed - check GitHub Actions logs"
