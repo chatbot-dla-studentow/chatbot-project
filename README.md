@@ -76,6 +76,20 @@ System składa się z 5 wyspecjalizowanych agentów:
 
 ## Szybki deploy i uruchomienie
 
+### ⚡ Nowy VPS (Rekomendowane - wszystko automatyczne!)
+
+```bash
+ssh root@<new-vps-ip>
+git clone <repo-url> /opt/chatbot-project
+cd /opt/chatbot-project/deployment
+chmod +x setup-new-vps.sh
+./setup-new-vps.sh
+```
+
+**Co robi:** Security hardening + Geo-blocking + Monitoring + Deployment w jednym skrypcie (~20 min)
+
+### Lokalna instalacja (Dev/Testing)
+
 **Wymagane:** aktywny VPN (WireGuard).
 
 ## VPN i plik konfiguracyjny

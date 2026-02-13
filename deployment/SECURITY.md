@@ -12,7 +12,7 @@ Kompleksowe zabezpieczenie świeżego VPS przed atakami i zagrożeniami.
 4. **Network Security** - SYN cookies, IP spoofing protection, rate limiting
 5. **Automatic Updates** - Codziennie Security patches
 6. **Geo-Blocking** - Dostęp tylko z UE
-7. **Monitoring & Alerting** - Email alerts na adam.siehen@gmail.com
+7. **Monitoring & Alerting** - Email alerts na adam.siehen@outlook.com
 8. **Centralized Logging** - Wszystkie zdarzenia bezpieczeństwa logowane
 
 ---
@@ -29,29 +29,33 @@ ssh root@<vps-ip>
 
 ```bash
 git clone <your-repo> /opt/chatbot-project
-cd /opt/chatbot-project/deployment
+cd /opt/chatbot-project
 ```
 
-### Krok 3: Uruchom setupy bezpieczeństwa
+### Krok 3: Uruchom interaktywny setup (ALL-IN-ONE)
 
+```bash
+# Użyj głównego skryptu który robi wszystko:
+chmod +x deployment/setup-new-vps.sh
+sudo ./deployment/setup-new-vps.sh
+```
+
+**Alternatywnie - Krok po kroku (manual):**
 ```bash
 # 1. Główny security hardening (obowiązkowy)
-sudo chmod +x secure.sh
-sudo ./secure.sh
+sudo chmod +x deployment/secure.sh
+sudo ./deployment/secure.sh
 
 # 2. Geo-blocking dla UE (zalecane)
-sudo chmod +x geo-blocking.sh
-sudo ./geo-blocking.sh
+sudo chmod +x deployment/geo-blocking.sh
+sudo ./deployment/geo-blocking.sh
 
 # 3. Monitoring i alerty (zalecane)
-sudo chmod +x monitoring-alerts.sh
-sudo ./monitoring-alerts.sh
-```
+sudo chmod +x deployment/monitoring-alerts.sh
+sudo ./deployment/monitoring-alerts.sh
 
-### Krok 4: Wdróż aplikację
-
-```bash
-cd /opt/chatbot-project
+# 4. Wdróż aplikację
+sudo chmod +x deploy.sh
 sudo ./deploy.sh install_dependencies
 ./deploy.sh deploy
 ```

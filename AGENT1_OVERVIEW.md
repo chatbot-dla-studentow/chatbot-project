@@ -211,11 +211,13 @@ curl http://localhost:8001/admin/logs/queries/stats
 ```
 agents/agent1_student/
 ├── app.py                              # Główna aplikacja FastAPI + RAG
-├── docker-compose.yml                  # Konfiguracja Docker
 ├── Dockerfile                          # Obraz kontenera
 ├── requirements.txt                    # Zależności Python
 ├── knowledge_manager.py                # CLI do zarządzania bazą wiedzy
 ├── agent1_flow.json                    # Workflow Node-RED
+| 
+| 📌 Uwaga: docker-compose.yml usunięty (v2.0)
+|    → Użyj głównego /docker-compose.yml lub /deployment/setup-new-vps.sh
 │
 ├── chatbot-baza-wiedzy-nowa/           # Źródłowe pliki (TXT, DOCX, PDF)
 │   ├── dane_osobowe/
@@ -726,16 +728,32 @@ EMBEDDING_MODEL = "nomic-embed-text"
 BATCH_SIZE = 20
 ```
 
-### Docker Compose (docker-compose.yml)
+### Docker Compose - Centralna konfiguracja
+
+📌 **Od v2.0:** Stary `agents/agent1_student/docker-compose.yml` został usunięty.
+
+Używaj **głównego `/docker-compose.yml`** w katalogu root:
 
 ```yaml
 services:
   agent1_student:
+    build: ./agents/agent1_student
     ports:
       - "8001:8000"
     environment:
       - OLLAMA_URL=http://ollama:11434
       - QDRANT_URL=http://qdrant:6333
+    networks:
+      - ai_network
+```
+
+**Uruchamianie:**
+```bash
+# Automatycznie (recommended)
+./deployment/setup-new-vps.sh
+
+# Lub ręcznie
+docker-compose up -d
 ```
 
 ### Performance tips

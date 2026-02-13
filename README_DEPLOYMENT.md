@@ -1,5 +1,12 @@
 # 🚀 ChatBot Deployment System
 
+⚠️ **BREAKING CHANGE v2.0 (Feb 2026):** Stare pliki `agents/*/docker-compose.yml` zostały USUNIĘTE.
+
+✅ **Teraz wykorzystuj:**
+- Nowy VPS? → `./deployment/setup-new-vps.sh` ← **REKOMENDOWANE!**
+- Manualnie? → główny `docker-compose.yml` w root katalogu
+- Dev lokalne? → `make deploy` z Makefile
+
 Kompletny system automatycznego wdrożenia chatbota na świeżą maszynę wirtualną lub VPS.
 
 ## 📦 Co zostało stworzone?
