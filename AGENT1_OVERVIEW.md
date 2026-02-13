@@ -217,7 +217,7 @@ agents/agent1_student/
 ├── agent1_flow.json                    # Workflow Node-RED
 | 
 | 📌 Uwaga: docker-compose.yml usunięty (v2.0)
-|    → Użyj głównego /docker-compose.yml lub /deployment/setup-new-vps.sh
+|    → Użyj głównego /docker-compose.yml lub /deployment/setup.sh
 │
 ├── chatbot-baza-wiedzy-nowa/           # Źródłowe pliki (TXT, DOCX, PDF)
 │   ├── dane_osobowe/
@@ -750,7 +750,7 @@ services:
 **Uruchamianie:**
 ```bash
 # Automatycznie (recommended)
-./deployment/setup-new-vps.sh
+./deployment/setup.sh
 
 # Lub ręcznie
 docker-compose up -d

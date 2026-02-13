@@ -15,14 +15,14 @@
 ✅ **Noweł struktura /deployment:**
 ```
 deployment/
-├── setup-new-vps.sh          ← Uruchom ten!
-├── server/                  ← Bezpieczeństwo serwera
-├── app/                     ← Wdróżenie aplikacji
+├── setup.sh                  ← Uruchom ten! (ALL-IN-ONE)
+├── server/                   ← Bezpieczeństwo serwera
+├── app/                      ← Wdróżenie aplikacji
 └── docs/                    ← Dokumentacja
 ```
 
 ✅ **Do wdrożenia teraz używaj:**
-- **Nowy VPS?** → `./deployment/setup-new-vps.sh` (rekomendowane!) ← ALL-IN-ONE
+- **Nowy VPS?** → `./deployment/setup.sh` (rekomendowane!) ← ALL-IN-ONE
 - **Manualnie?** → `./deployment/server/secure.sh` + inne skrypty
 - **Aplikacji?** → `./deployment/app/deploy.sh`
 - **Lokalmente na dev?** → `make deploy` (z Makefile'a)
@@ -63,13 +63,13 @@ git clone <repo-url> /opt/chatbot-project
 cd /opt/chatbot-project
 
 # 3. Uruchom interaktywny wizard (all-in-one setup)
-chmod +x deployment/setup-new-vps.sh
-sudo ./deployment/setup-new-vps.sh
+chmod +x deployment/setup.sh
+sudo ./deployment/setup.sh
 ```
 
 **Czas całej konfiguracji:** ~20 minut (zabezpieczenia + aplikacja)
 
-### Co obejmuje `setup-new-vps.sh` ?
+### Co obejmuje `setup.sh` ?
 
 ```
 Phase 1: 🔒 Zabezpieczenie systemu (5 min)
@@ -108,7 +108,7 @@ Phase 4: 🚀 Deployment aplikacji (8-10 min)
 | [INSTALL.md](INSTALL.md) | 🔧 Instrukcja instalacji krok po kroku |
 | [README_DEPLOYMENT.md](README_DEPLOYMENT.md) | 📚 Pełna dokumentacja deployment'u |
 
-### Po uruchomieniu `setup-new-vps.sh` wszystkie serwisy będą dostępne
+### Po uruchomieniu `setup.sh` wszystkie serwisy będą dostępne
 
 **Dostęp wymaga VPN na subnecie:**
 - IPv4: `10.0.0.0/24`

@@ -1,6 +1,6 @@
 #!/bin/bash
 # Complete Deployment and Security Setup for New VPS
-# Usage: ./setup-new-vps.sh
+# Usage: ./setup.sh
 # This script automates the entire process:
 # 1. Security hardening
 # 2. Geo-blocking

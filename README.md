@@ -82,8 +82,8 @@ System składa się z 5 wyspecjalizowanych agentów:
 ssh root@<new-vps-ip>
 git clone <repo-url> /opt/chatbot-project
 cd /opt/chatbot-project
-chmod +x deployment/setup-new-vps.sh
-./deployment/setup-new-vps.sh
+chmod +x deployment/setup.sh
+./deployment/setup.sh
 ```
 
 **Co robi:** Security hardening → Geo-blocking → Monitoring → Deployment (~20 min - all-in-one!)

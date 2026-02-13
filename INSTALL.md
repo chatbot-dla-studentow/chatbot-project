@@ -1,6 +1,6 @@
 # 🚀 Quick Install Guide
 
-⚠️ **UWAGA - v2.0 BREAKING CHANGE:** Stare pliki `agents/*/docker-compose.yml` zostały usunięte. Do wdrożenia używaj `/deployment/setup-new-vps.sh` lub główny `docker-compose.yml`.
+⚠️ **UWAGA - v2.0 BREAKING CHANGE:** Stare pliki `agents/*/docker-compose.yml` zostały usunięte. Do wdrożenia używaj `/deployment/setup.sh` lub główny `docker-compose.yml`.
 
 Szybki przewodnik instalacji systemu chatbot na nowej maszynie.
 

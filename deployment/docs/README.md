@@ -1,13 +1,13 @@
 # 🚀 Wdrożenie na Świeży VPS - Szybki Przewodnik
 
 > ⚠️ **WAŻNE - Breaking Change:** Stare pliki `agents/*/docker-compose.yml` zostały **usunięte**. 
-> Aby wdrożyć system, **musisz używać** `/deployment/setup-new-vps.sh` lub główny `docker-compose.yml` z głównego katalogu!
+> Aby wdrożyć system, **musisz używać** `/deployment/setup.sh` lub główny `docker-compose.yml` z głównego katalogu!
 
 ## 📖 Struktura Folderu `deployment/`
 
 ```
 deployment/
-├── setup-new-vps.sh                 # Główny skrypt (uruchom pierwszy!)
+├── setup.sh                         # Główny skrypt (uruchom pierwszy!) - ALL-IN-ONE
 │
 ├── server/                          # Skrypty konfiguracji SERWERA
 │   ├── secure.sh                   # Security hardening
@@ -41,8 +41,8 @@ git clone https://github.com/yourusername/chatbot-project.git /opt/chatbot-proje
 cd /opt/chatbot-project/deployment
 
 # 3. Uruchom setup (następi seria pytań/konfiguracji)
-chmod +x setup-new-vps.sh
-./setup-new-vps.sh
+chmod +x setup.sh
+./setup.sh
 ```
 
 **Gotowe!** System będzie w pełni zabezpieczony i wdrożony.

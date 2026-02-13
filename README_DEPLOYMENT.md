@@ -13,7 +13,7 @@ Kompletny system automatycznego wdrożenia chatbota na świeżą maszynę wirtua
 
 ### Główny orchestrator
 
-**`deployment/setup-new-vps.sh`** - ALL-IN-ONE setup dla nowego VPS
+**`deployment/setup.sh`** - ALL-IN-ONE setup dla nowego VPS
 - Sekwencyjnie uruchamia wszystkie fazy
 - Interactive prompts
 - Zalecane dla wdrożenia od zera
@@ -114,7 +114,7 @@ git clone https://github.com/your-username/chatbot-project.git
 cd chatbot-project
 
 # 2. Uruchom all-in-one setup
-./deployment/setup-new-vps.sh
+./deployment/setup.sh
 ```
 
 **Alternatywnie - Krok po kroku (manual):**

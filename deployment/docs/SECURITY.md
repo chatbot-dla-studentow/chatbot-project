@@ -36,8 +36,8 @@ cd /opt/chatbot-project
 
 ```bash
 # Użyj głównego skryptu który robi wszystko:
-chmod +x deployment/setup-new-vps.sh
-sudo ./deployment/setup-new-vps.sh
+chmod +x deployment/setup.sh
+sudo ./deployment/setup.sh
 ```
 
 **Alternatywnie - Krok po kroku (manual):**
