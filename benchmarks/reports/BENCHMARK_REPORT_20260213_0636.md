@@ -209,6 +209,6 @@ Jeśli odpowiedź nie ma w kontekście, odpowiedz: "Nie mam informacji na ten te
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Mikołaj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
 - Paweł Ponikowski (pponikowski)

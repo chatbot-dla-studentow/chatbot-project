@@ -501,6 +501,6 @@ curl http://localhost:8001/admin/logs/queries/stats | \
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Mikołaj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
 - Paweł Ponikowski (pponikowski)

@@ -386,6 +386,6 @@ PORT:   0.0.0.0:8001->8000/tcp
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Mikołaj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
 - Paweł Ponikowski (pponikowski)
