@@ -20,3 +20,10 @@ UÅ¼yte w `custom.css`:
 Pliki sÄ… montowane w kontenerze Open WebUI przez docker-compose.yml:
 - `custom.css` -> `/app/backend/data/custom.css`
 - `logo.png` -> `/app/backend/data/uploads/logo.png`
+
+## Maintainers
+- Adam Siehen (adamsiehen)
+- Patryk Boguski (ptrBoguski)
+- Miko³aj Sykucki (zybert)
+- Oskar Jurgielaniec (oskarju1)
+- Pawe³ Ponikowski (pponikowski)

@@ -726,3 +726,10 @@ docker exec agent1_student python helpers/load_knowledge_base.py
 **Autor**: Agent1 Student Team  
 **Ostatnia aktualizacja**: 10 lutego 2026  
 **Status**: Active Development
+
+## Maintainers
+- Adam Siehen (adamsiehen)
+- Patryk Boguski (ptrBoguski)
+- Miko³aj Sykucki (zybert)
+- Oskar Jurgielaniec (oskarju1)
+- Pawe³ Ponikowski (pponikowski)

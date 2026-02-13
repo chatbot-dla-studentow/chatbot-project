@@ -372,3 +372,10 @@ Return Response to User
 **Raport wygenerowany:** 6 lutego 2026, 17:15 UTC  
 **≈örodowisko testowe:** Docker Compose (agent1_student + Qdrant + Ollama)  
 **Status ko≈Ñcowy:** System gotowy do produkcji
+
+## Maintainers
+- Adam Siehen (adamsiehen)
+- Patryk Boguski (ptrBoguski)
+- Miko≥aj Sykucki (zybert)
+- Oskar Jurgielaniec (oskarju1)
+- Pawe≥ Ponikowski (pponikowski)

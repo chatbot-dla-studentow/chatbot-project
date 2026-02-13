@@ -646,3 +646,10 @@ docker logs agent1_student | grep "RAG:"
 **Autor**: Agent1 Student Team  
 **Data**: 10 lutego 2026  
 **Wersja**: 1.0
+
+## Maintainers
+- Adam Siehen (adamsiehen)
+- Patryk Boguski (ptrBoguski)
+- Miko³aj Sykucki (zybert)
+- Oskar Jurgielaniec (oskarju1)
+- Pawe³ Ponikowski (pponikowski)

@@ -299,3 +299,10 @@ crontab -e
 
 **Gotowe!** VPS jest teraz bezpieczny i peÅ‚en funkcjonalny. ðŸŽ‰
 
+
+## Maintainers
+- Adam Siehen (adamsiehen)
+- Patryk Boguski (ptrBoguski)
+- Miko³aj Sykucki (zybert)
+- Oskar Jurgielaniec (oskarju1)
+- Pawe³ Ponikowski (pponikowski)

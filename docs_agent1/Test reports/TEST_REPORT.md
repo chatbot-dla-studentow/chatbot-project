@@ -185,3 +185,10 @@ NUM_CTX = 1024
 - WydajnoÅ›Ä‡ jest akceptowalna
 
 **Sukces testÃ³w**: 9/9 (100%)
+
+## Maintainers
+- Adam Siehen (adamsiehen)
+- Patryk Boguski (ptrBoguski)
+- Miko³aj Sykucki (zybert)
+- Oskar Jurgielaniec (oskarju1)
+- Pawe³ Ponikowski (pponikowski)

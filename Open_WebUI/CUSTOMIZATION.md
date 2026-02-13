@@ -80,3 +80,10 @@ Jeśli chcesz zmienić kolory, edytuj `custom/custom.css`:
 - Wyczyść cache przeglądarki (Ctrl+Shift+R)
 - Sprawdź logi: `docker logs open-webui`
 - Zweryfikuj montowanie: `docker exec open-webui ls -la /app/backend/data/custom/`
+
+## Maintainers
+- Adam Siehen (adamsiehen)
+- Patryk Boguski (ptrBoguski)
+- Miko�aj Sykucki (zybert)
+- Oskar Jurgielaniec (oskarju1)
+- Pawe� Ponikowski (pponikowski)

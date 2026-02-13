@@ -999,3 +999,10 @@ Ollama logs         # LLM monitoring
 **Wersja**: 1.0  
 **Status**: AKTYWNY
 
+
+## Maintainers
+- Adam Siehen (adamsiehen)
+- Patryk Boguski (ptrBoguski)
+- Miko³aj Sykucki (zybert)
+- Oskar Jurgielaniec (oskarju1)
+- Pawe³ Ponikowski (pponikowski)

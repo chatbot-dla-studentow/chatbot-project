@@ -425,3 +425,10 @@ sudo sshd -T
 ---
 
 **Gotowe!** VPS jest teraz zabezpieczony. ğŸ›¡ï¸
+
+## Maintainers
+- Adam Siehen (adamsiehen)
+- Patryk Boguski (ptrBoguski)
+- Miko³aj Sykucki (zybert)
+- Oskar Jurgielaniec (oskarju1)
+- Pawe³ Ponikowski (pponikowski)

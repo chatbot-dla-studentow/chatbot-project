@@ -382,3 +382,10 @@ PORT:   0.0.0.0:8001->8000/tcp
 **Autoryzacja**: Automated Test System  
 **Next Review**: W razie nowych bÅ‚Ä™dÃ³w w logach aplikacji  
 
+
+## Maintainers
+- Adam Siehen (adamsiehen)
+- Patryk Boguski (ptrBoguski)
+- Miko³aj Sykucki (zybert)
+- Oskar Jurgielaniec (oskarju1)
+- Pawe³ Ponikowski (pponikowski)

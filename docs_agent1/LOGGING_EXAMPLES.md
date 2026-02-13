@@ -497,3 +497,10 @@ curl http://localhost:8001/admin/logs/queries/stats | \
 **Dokument stworzony:** 6 lutego 2026  
 **Wersja:** 1.0  
 **Agent:** Agent1 Student
+
+## Maintainers
+- Adam Siehen (adamsiehen)
+- Patryk Boguski (ptrBoguski)
+- Miko³aj Sykucki (zybert)
+- Oskar Jurgielaniec (oskarju1)
+- Pawe³ Ponikowski (pponikowski)
