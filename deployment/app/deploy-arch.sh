@@ -47,15 +47,15 @@ install_dependencies() {
     sudo pacman -Syu --noconfirm
     
     # Install required packages
-    sudo pacman -S --noconfirm --needed 
-        curl 
-        wget 
-        git 
-        base-devel 
-        python 
-        python-pip 
-        python-virtualenv 
-        docker 
+    sudo pacman -S --noconfirm --needed \
+        curl \
+        wget \
+        git \
+        base-devel \
+        python \
+        python-pip \
+        python-virtualenv \
+        docker \
         docker-compose
     
     # Start and enable Docker
