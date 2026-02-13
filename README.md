@@ -244,11 +244,7 @@ docker ps | grep node-red
 
 ## Dokumentacja
 
-### Główne Dokumenty
 - **[DEPLOYMENT.md](DEPLOYMENT.md)** - Instrukcja wdrożenia i dostępu
-- **[TEAM_TASKS.md](TEAM_TASKS.md)** - Podział zadań zespołu
-
-### Dokumentacja Agentów
 - **[AGENT1_OVERVIEW.md](AGENT1_OVERVIEW.md)** - Kompletna dokumentacja Agent1 Student
   - Architektura RAG, API, instalacja, konfiguracja
   - Baza wiedzy (220 dokumentów, 5 kategorii)
