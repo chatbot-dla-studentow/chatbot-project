@@ -238,7 +238,7 @@ LogLevel VERBOSE
 UsePAM yes
 
 # Subsystem
-Subsystem sftp  /usr/lib/openssh/sftp-server -f AUTHPRIV -l INFO
+Subsystem sftp /usr/lib/openssh/sftp-server
 
 # Banner
 Banner /etc/ssh/banner.txt
