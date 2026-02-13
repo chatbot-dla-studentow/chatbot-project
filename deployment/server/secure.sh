@@ -225,14 +225,11 @@ TCPKeepAlive yes
 # Privilege separation and security
 PermitUserEnvironment no
 Compression no
-ClientAliveCountMax 2
 PermitTunnel no
 AllowTcpForwarding yes
 X11Forwarding no
 PrintMotd no
 PrintLastLog yes
-TCPKeepAlive yes
-Permitallenvironment no
 PermitUserRC no
 
 # Logging
