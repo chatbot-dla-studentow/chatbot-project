@@ -28,8 +28,4 @@ Lista planowanych usprawnień i funkcji do dodania w module benchmarków.
 - [ ] **Interaktywny Dashboard:** Prosty widok w Streamlit do przeglądania historycznych wyników benchmarków.
 
 ## Maintainers
-- Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Mikołaj Sykucki (zybert)
-- Oskar Jurgielaniec (oskarju1)
-- Paweł Ponikowski (pponikowski)

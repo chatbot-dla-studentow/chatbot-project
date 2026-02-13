@@ -44,8 +44,4 @@ W menu bocznym dostępne są dodatkowe opcje aplikacji.
 - Problem z logowaniem: upewnij się, że dane są poprawne.
 
 ## Maintainers
-- Adam Siehen (adamsiehen)
-- Patryk Boguski (ptrBoguski)
-- Mikołaj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Paweł Ponikowski (pponikowski)

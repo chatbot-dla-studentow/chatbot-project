@@ -82,8 +82,4 @@ Jeśli chcesz zmienić kolory, edytuj `custom/custom.css`:
 - Zweryfikuj montowanie: `docker exec open-webui ls -la /app/backend/data/custom/`
 
 ## Maintainers
-- Adam Siehen (adamsiehen)
-- Patryk Boguski (ptrBoguski)
-- Mikołaj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Paweł Ponikowski (pponikowski)

@@ -243,8 +243,4 @@ Teraz możesz:
 **Status**: Zaktualizowano pod logowanie i kategorie
 
 ## Maintainers
-- Adam Siehen (adamsiehen)
-- Patryk Boguski (ptrBoguski)
-- Mikołaj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Paweł Ponikowski (pponikowski)

@@ -384,7 +384,3 @@ Dokumentacja API (FastAPI): http://localhost:8001/docs
 
 ## Maintainers
 - Adam Siehen (adamsiehen)
-- Patryk Boguski (ptrBoguski)
-- Mikołaj Sykucki (zybert)
-- Oskar Jurgielaniec (oskarju1)
-- Paweł Ponikowski (pponikowski)

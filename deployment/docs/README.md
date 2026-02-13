@@ -301,8 +301,5 @@ crontab -e
 
 
 ## Maintainers
-- Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Mikołaj Sykucki (zybert)
-- Oskar Jurgielaniec (oskarju1)
-- Paweł Ponikowski (pponikowski)
+- Adam Siehen (adamsiehen)

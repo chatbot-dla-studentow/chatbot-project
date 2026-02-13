@@ -69,8 +69,4 @@ Aplikacja jest w pełni używalna na urządzeniach mobilnych i nie wymaga dodatk
 ![Menu](../img/mobile_tests/IMG_4227.PNG)
 
 ## Maintainers
-- Adam Siehen (adamsiehen)
-- Patryk Boguski (ptrBoguski)
-- Mikołaj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Paweł Ponikowski (pponikowski)

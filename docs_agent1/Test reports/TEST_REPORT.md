@@ -187,8 +187,4 @@ NUM_CTX = 1024
 **Sukces testów**: 9/9 (100%)
 
 ## Maintainers
-- Adam Siehen (adamsiehen)
-- Patryk Boguski (ptrBoguski)
 - Mikołaj Sykucki (zybert)
-- Oskar Jurgielaniec (oskarju1)
-- Paweł Ponikowski (pponikowski)
