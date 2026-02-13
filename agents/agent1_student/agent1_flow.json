@@ -1,18 +1,52 @@
 [
   {
-    "id": "agent1_tab_main",
+    "id": "tab_rag_pipeline",
     "type": "tab",
-    "label": "Agent1 Student - Main Flow",
-    "disabled": false
+    "label": "🧠 RAG Pipeline Tests",
+    "disabled": false,
+    "info": "Testy pełnego pipeline RAG: Categorize → Search → Enrich → Generate → Log"
   },
   {
-    "id": "inject_test_main",
+    "id": "tab_knowledge_tests",
+    "type": "tab",
+    "label": "📚 Knowledge Base Tests",
+    "disabled": false,
+    "info": "Testy dostępności wiedzy: KB Present vs KB Absent"
+  },
+  {
+    "id": "tab_categorization",
+    "type": "tab",
+    "label": "🏷️ Categorization Tests",
+    "disabled": false,
+    "info": "Testy automatycznej kategoryzacji zapytań"
+  },
+  {
+    "id": "tab_logging",
+    "type": "tab",
+    "label": "📝 Logging Tests",
+    "disabled": false,
+    "info": "Testy logowania do Qdrant (query_logs + qa_logs)"
+  },
+  {
+    "id": "tab_performance",
+    "type": "tab",
+    "label": "⚡ Performance Tests",
+    "disabled": false,
+    "info": "Testy wydajnościowe (response time, throughput)"
+  },
+  {
+    "id": "inject_rag_full_pipeline",
     "type": "inject",
-    "z": "agent1_tab_main",
-    "name": "Test Main Flow",
+    "z": "tab_rag_pipeline",
+    "name": "TC-INT-003: Full RAG Pipeline",
     "props": [
       {
         "p": "payload"
+      },
+      {
+        "p": "testName",
+        "v": "TC-INT-003",
+        "vt": "str"
       }
     ],
     "repeat": "",
@@ -20,113 +54,109 @@
     "once": false,
     "onceDelay": 0.1,
     "topic": "",
-    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jak ubiegać się o stypendium rektora?\"}],\"userId\":\"test_main\",\"sessionId\":\"test_session_main\"}",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jak ubiegać się o stypendium rektora?\"}],\"model\":\"mistral:7b\",\"stream\":false}",
     "payloadType": "json",
-    "x": 100,
-    "y": 180,
+    "x": 150,
+    "y": 80,
     "wires": [
       [
-        "extract_payload"
+        "timestamp_start"
       ]
     ]
   },
   {
-    "id": "http_in_agent1",
-    "type": "http in",
-    "z": "agent1_tab_main",
-    "name": "API Request",
-    "url": "/agent1_student",
-    "method": "post",
-    "upload": false,
-    "swaggerDoc": "",
-    "x": 100,
-    "y": 100,
-    "wires": [
-      [
-        "debug_input",
-        "extract_payload"
-      ]
-    ]
-  },
-  {
-    "id": "debug_input",
-    "type": "debug",
-    "z": "agent1_tab_main",
-    "name": "Input Debug",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 280,
-    "y": 40,
-    "wires": []
-  },
-  {
-    "id": "extract_payload",
+    "id": "timestamp_start",
     "type": "function",
-    "z": "agent1_tab_main",
-    "name": "Extract Message",
-    "func": "// Wyciągnij wiadomość z payload\nlet message = msg.payload.message || msg.payload.input || msg.payload;\n\nif (!message) {\n    msg.statusCode = 400;\n    return [null, msg];\n}\n\nmsg.userMessage = message;\nmsg.payload = {\n    message: message,\n    timestamp: new Date().toISOString(),\n    sessionId: msg.payload.sessionId || 'default',\n    userId: msg.payload.userId || 'guest'\n};\n\nnode.status({fill: \"blue\", shape: \"dot\", text: \"Przetwarzanie..\"});\nreturn msg;",
+    "z": "tab_rag_pipeline",
+    "name": "Start Timer",
+    "func": "msg.startTime = Date.now();\nmsg.testName = msg.testName || 'Unknown Test';\nnode.status({fill: \"blue\", shape: \"ring\", text: \"Started: \" + msg.testName});\nreturn msg;",
     "outputs": 1,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 280,
-    "y": 100,
+    "x": 370,
+    "y": 80,
     "wires": [
       [
-        "debug_extracted",
-        "validate_message"
+        "http_request_chat"
       ]
     ]
   },
   {
-    "id": "debug_extracted",
-    "type": "debug",
-    "z": "agent1_tab_main",
-    "name": "Extracted Payload",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 460,
-    "y": 40,
-    "wires": []
+    "id": "http_request_chat",
+    "type": "http request",
+    "z": "tab_rag_pipeline",
+    "name": "POST /api/chat",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://agent1_student:8000/api/chat",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [
+      {
+        "keyType": "Content-Type",
+        "keyValue": "",
+        "valueType": "application/json",
+        "valueValue": ""
+      }
+    ],
+    "x": 580,
+    "y": 80,
+    "wires": [
+      [
+        "timestamp_end"
+      ]
+    ]
   },
   {
-    "id": "validate_message",
+    "id": "timestamp_end",
     "type": "function",
-    "z": "agent1_tab_main",
-    "name": "Validate Input",
-    "func": "// Walidacja wiadomości\nif (!msg.userMessage || msg.userMessage.trim().length === 0) {\n    msg.statusCode = 400;\n    msg.payload = {error: \"Empty message\"};\n    node.status({fill: \"red\", shape: \"ring\", text: \"Validation failed\"});\n    return [null, null, msg];\n}\n\nif (msg.userMessage.length > 2000) {\n    msg.statusCode = 413;\n    msg.payload = {error: \"Message too long (max 2000 chars)\"};\n    node.status({fill: \"red\", shape: \"ring\", text: \"Message too long\"});\n    return [null, null, msg];\n}\n\nnode.status({fill: \"green\", shape: \"dot\", text: \"Validated\"});\nreturn msg;",
+    "z": "tab_rag_pipeline",
+    "name": "Calculate Response Time",
+    "func": "const endTime = Date.now();\nconst responseTime = endTime - msg.startTime;\n\nmsg.responseTime = responseTime;\nmsg.performanceData = {\n    startTime: msg.startTime,\n    endTime: endTime,\n    responseTime: responseTime,\n    responseTimeSeconds: (responseTime / 1000).toFixed(2)\n};\n\nconst statusColor = responseTime < 5000 ? \"green\" : responseTime < 15000 ? \"yellow\" : \"red\";\nnode.status({fill: statusColor, shape: \"dot\", text: `${responseTime}ms`});\n\nreturn msg;",
     "outputs": 1,
     "noerr": 0,
     "initialize": "",
     "finalize": "",
     "libs": [],
-    "x": 460,
-    "y": 100,
+    "x": 830,
+    "y": 80,
     "wires": [
       [
-        "debug_validated",
-        "prepare_rag_query"
+        "validate_rag_response"
       ]
     ]
   },
   {
-    "id": "debug_validated",
+    "id": "validate_rag_response",
+    "type": "function",
+    "z": "tab_rag_pipeline",
+    "name": "Validate RAG Response",
+    "func": "const response = msg.payload;\nconst validation = {\n    testName: msg.testName,\n    timestamp: new Date().toISOString(),\n    responseTime: msg.responseTime,\n    passed: true,\n    errors: []\n};\n\n// Sprawdź strukturę odpowiedzi\nif (!response.message || !response.message.content) {\n    validation.passed = false;\n    validation.errors.push(\"Brak message.content w odpowiedzi\");\n}\n\n// Sprawdź sources (jeśli są)\nif (response.sources) {\n    if (response.sources.score !== undefined && response.sources.score < 0.25) {\n        validation.errors.push(`RAG score zbyt niski: ${response.sources.score}`);\n    }\n    \n    if (response.sources.category) {\n        validation.category = response.sources.category;\n    }\n    \n    if (response.sources.documents && response.sources.documents.length > 0) {\n        validation.hasKnowledge = true;\n        validation.documentsFound = response.sources.documents.length;\n    }\n}\n\n// Sprawdź czas odpowiedzi\nif (msg.responseTime > 15000) {\n    validation.errors.push(`Response time zbyt długi: ${msg.responseTime}ms (limit: 15000ms)`);\n    validation.passed = false;\n}\n\nmsg.validation = validation;\nmsg.payload = {\n    test: msg.testName,\n    result: validation.passed ? \"PASS\" : \"FAIL\",\n    responseTime: `${msg.responseTime}ms`,\n    category: validation.category || \"unknown\",\n    hasKnowledge: validation.hasKnowledge || false,\n    documentsFound: validation.documentsFound || 0,\n    errors: validation.errors,\n    response: response.message.content.substring(0, 200) + \"...\"\n};\n\nconst statusColor = validation.passed ? \"green\" : \"red\";\nconst statusText = validation.passed ? \"PASS\" : \"FAIL\";\nnode.status({fill: statusColor, shape: \"dot\", text: statusText});\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1100,
+    "y": 80,
+    "wires": [
+      [
+        "debug_rag_result"
+      ]
+    ]
+  },
+  {
+    "id": "debug_rag_result",
     "type": "debug",
-    "z": "agent1_tab_main",
-    "name": "Validated",
+    "z": "tab_rag_pipeline",
+    "name": "RAG Test Result",
     "active": true,
     "tosidebar": true,
     "console": false,
@@ -135,1813 +165,712 @@
     "targetType": "msg",
     "statusVal": "",
     "statusType": "auto",
+    "x": 1350,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "inject_kb_present",
+    "type": "inject",
+    "z": "tab_knowledge_tests",
+    "name": "TC-FUNC-001: KB Present (Stypendium)",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "testName",
+        "v": "TC-FUNC-001",
+        "vt": "str"
+      },
+      {
+        "p": "expectedCategory",
+        "v": "stypendia",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jak ubiegać się o stypendium rektora?\"}],\"model\":\"mistral:7b\",\"stream\":false}",
+    "payloadType": "json",
+    "x": 170,
+    "y": 80,
+    "wires": [
+      [
+        "kb_http_request"
+      ]
+    ]
+  },
+  {
+    "id": "inject_kb_absent",
+    "type": "inject",
+    "z": "tab_knowledge_tests",
+    "name": "TC-FUNC-002: KB Absent (Filozofia)",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "testName",
+        "v": "TC-FUNC-002",
+        "vt": "str"
+      },
+      {
+        "p": "expectedCategory",
+        "v": "unknown",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Co to jest sens życia i dlaczego istnieją czarne dziury?\"}],\"model\":\"mistral:7b\",\"stream\":false}",
+    "payloadType": "json",
+    "x": 180,
+    "y": 160,
+    "wires": [
+      [
+        "kb_http_request"
+      ]
+    ]
+  },
+  {
+    "id": "inject_kb_egzaminy",
+    "type": "inject",
+    "z": "tab_knowledge_tests",
+    "name": "KB Present: Egzaminy",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "testName",
+        "v": "KB-Egzaminy",
+        "vt": "str"
+      },
+      {
+        "p": "expectedCategory",
+        "v": "egzaminy",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Kiedy są egzaminy dyplomowe?\"}],\"model\":\"mistral:7b\",\"stream\":false}",
+    "payloadType": "json",
+    "x": 140,
+    "y": 240,
+    "wires": [
+      [
+        "kb_http_request"
+      ]
+    ]
+  },
+  {
+    "id": "inject_kb_urlopy",
+    "type": "inject",
+    "z": "tab_knowledge_tests",
+    "name": "KB Present: Urlopy",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "testName",
+        "v": "KB-Urlopy",
+        "vt": "str"
+      },
+      {
+        "p": "expectedCategory",
+        "v": "urlopy_zwolnienia",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jak ubiegać się o urlop dziekański?\"}],\"model\":\"mistral:7b\",\"stream\":false}",
+    "payloadType": "json",
+    "x": 140,
+    "y": 320,
+    "wires": [
+      [
+        "kb_http_request"
+      ]
+    ]
+  },
+  {
+    "id": "kb_http_request",
+    "type": "http request",
+    "z": "tab_knowledge_tests",
+    "name": "POST /api/chat",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://agent1_student:8000/api/chat",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [
+      {
+        "keyType": "Content-Type",
+        "keyValue": "",
+        "valueType": "application/json",
+        "valueValue": ""
+      }
+    ],
+    "x": 480,
+    "y": 200,
+    "wires": [
+      [
+        "validate_kb_response"
+      ]
+    ]
+  },
+  {
+    "id": "validate_kb_response",
+    "type": "function",
+    "z": "tab_knowledge_tests",
+    "name": "Validate KB Response",
+    "func": "const response = msg.payload;\nconst testName = msg.testName;\nconst expectedCategory = msg.expectedCategory;\n\nconst validation = {\n    testName: testName,\n    expectedCategory: expectedCategory,\n    passed: true,\n    checks: []\n};\n\n// Sprawdź czy odpowiedź ma sources\nif (response.sources) {\n    const sources = response.sources;\n    \n    // Sprawdź score\n    if (sources.score !== undefined) {\n        const scoreCheck = {\n            name: \"RAG Score\",\n            expected: \">= 0.25\",\n            actual: sources.score,\n            passed: sources.score >= 0.25\n        };\n        validation.checks.push(scoreCheck);\n        if (!scoreCheck.passed && expectedCategory !== \"unknown\") {\n            validation.passed = false;\n        }\n    }\n    \n    // Sprawdź kategorię\n    if (sources.category) {\n        const categoryCheck = {\n            name: \"Category\",\n            expected: expectedCategory,\n            actual: sources.category,\n            passed: sources.category === expectedCategory\n        };\n        validation.checks.push(categoryCheck);\n        if (!categoryCheck.passed && expectedCategory !== \"unknown\") {\n            validation.passed = false;\n        }\n    }\n    \n    // Sprawdź dokumenty\n    if (sources.documents) {\n        const docsCheck = {\n            name: \"Documents Found\",\n            expected: expectedCategory === \"unknown\" ? \"0 lub < 0.25 score\" : \">= 1\",\n            actual: sources.documents.length,\n            passed: expectedCategory === \"unknown\" ? true : sources.documents.length >= 1\n        };\n        validation.checks.push(docsCheck);\n        if (!docsCheck.passed && expectedCategory !== \"unknown\") {\n            validation.passed = false;\n        }\n    }\n}\n\n// Sprawdź treść odpowiedzi\nif (response.message && response.message.content) {\n    const content = response.message.content.toLowerCase();\n    \n    if (expectedCategory === \"unknown\") {\n        // Dla KB Absent powinno być \"nie mam informacji\" lub podobne\n        const hasNoInfoMessage = content.includes(\"nie mam informacji\") || \n                                 content.includes(\"skontaktuj się z biurem\") ||\n                                 content.includes(\"bos\");\n        \n        const contentCheck = {\n            name: \"KB Absent Response\",\n            expected: \"Communicates lack of knowledge\",\n            actual: hasNoInfoMessage ? \"Correct\" : \"Missing no-info message\",\n            passed: hasNoInfoMessage\n        };\n        validation.checks.push(contentCheck);\n        if (!contentCheck.passed) {\n            validation.passed = false;\n        }\n    }\n}\n\nmsg.validation = validation;\nmsg.payload = {\n    test: testName,\n    result: validation.passed ? \"✅ PASS\" : \"❌ FAIL\",\n    expectedCategory: expectedCategory,\n    actualCategory: response.sources?.category || \"N/A\",\n    score: response.sources?.score || \"N/A\",\n    documentsFound: response.sources?.documents?.length || 0,\n    checks: validation.checks,\n    responsePreview: response.message?.content?.substring(0, 150) + \"...\"\n};\n\nconst statusColor = validation.passed ? \"green\" : \"red\";\nnode.status({fill: statusColor, shape: \"dot\", text: validation.passed ? \"PASS\" : \"FAIL\"});\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 720,
+    "y": 200,
+    "wires": [
+      [
+        "debug_kb_result"
+      ]
+    ]
+  },
+  {
+    "id": "debug_kb_result",
+    "type": "debug",
+    "z": "tab_knowledge_tests",
+    "name": "KB Test Result",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 980,
+    "y": 200,
+    "wires": []
+  },
+  {
+    "id": "inject_cat_stypendia",
+    "type": "inject",
+    "z": "tab_categorization",
+    "name": "TC-UNIT-002: Stypendia",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "testName",
+        "v": "CAT-Stypendia",
+        "vt": "str"
+      },
+      {
+        "p": "expectedCategory",
+        "v": "stypendia",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jak uzyskać stypendium?\"}],\"model\":\"mistral:7b\",\"stream\":false}",
+    "payloadType": "json",
+    "x": 150,
+    "y": 80,
+    "wires": [
+      [
+        "cat_http_request"
+      ]
+    ]
+  },
+  {
+    "id": "inject_cat_egzaminy",
+    "type": "inject",
+    "z": "tab_categorization",
+    "name": "Egzaminy",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "testName",
+        "v": "CAT-Egzaminy",
+        "vt": "str"
+      },
+      {
+        "p": "expectedCategory",
+        "v": "egzaminy",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Kiedy są egzaminy?\"}],\"model\":\"mistral:7b\",\"stream\":false}",
+    "payloadType": "json",
+    "x": 120,
+    "y": 140,
+    "wires": [
+      [
+        "cat_http_request"
+      ]
+    ]
+  },
+  {
+    "id": "inject_cat_dane",
+    "type": "inject",
+    "z": "tab_categorization",
+    "name": "Dane Osobowe",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "testName",
+        "v": "CAT-DaneOsobowe",
+        "vt": "str"
+      },
+      {
+        "p": "expectedCategory",
+        "v": "dane_osobowe",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jak zmienić dane osobowe?\"}],\"model\":\"mistral:7b\",\"stream\":false}",
+    "payloadType": "json",
+    "x": 130,
+    "y": 200,
+    "wires": [
+      [
+        "cat_http_request"
+      ]
+    ]
+  },
+  {
+    "id": "inject_cat_urlopy",
+    "type": "inject",
+    "z": "tab_categorization",
+    "name": "Urlopy",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "testName",
+        "v": "CAT-Urlopy",
+        "vt": "str"
+      },
+      {
+        "p": "expectedCategory",
+        "v": "urlopy_zwolnienia",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Urlop dziekański procedura\"}],\"model\":\"mistral:7b\",\"stream\":false}",
+    "payloadType": "json",
+    "x": 110,
+    "y": 260,
+    "wires": [
+      [
+        "cat_http_request"
+      ]
+    ]
+  },
+  {
+    "id": "inject_cat_unknown",
+    "type": "inject",
+    "z": "tab_categorization",
+    "name": "Unknown (Random Query)",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "testName",
+        "v": "CAT-Unknown",
+        "vt": "str"
+      },
+      {
+        "p": "expectedCategory",
+        "v": "unknown",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jaka jest pogoda dzisiaj?\"}],\"model\":\"mistral:7b\",\"stream\":false}",
+    "payloadType": "json",
+    "x": 160,
+    "y": 320,
+    "wires": [
+      [
+        "cat_http_request"
+      ]
+    ]
+  },
+  {
+    "id": "cat_http_request",
+    "type": "http request",
+    "z": "tab_categorization",
+    "name": "POST /api/chat",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://agent1_student:8000/api/chat",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 420,
+    "y": 200,
+    "wires": [
+      [
+        "validate_category"
+      ]
+    ]
+  },
+  {
+    "id": "validate_category",
+    "type": "function",
+    "z": "tab_categorization",
+    "name": "Check Category",
+    "func": "const response = msg.payload;\nconst expectedCategory = msg.expectedCategory;\nconst actualCategory = response.sources?.category || \"N/A\";\n\nconst passed = actualCategory === expectedCategory;\n\nmsg.payload = {\n    test: msg.testName,\n    result: passed ? \"✅ PASS\" : \"❌ FAIL\",\n    expected: expectedCategory,\n    actual: actualCategory,\n    match: passed\n};\n\nconst color = passed ? \"green\" : \"red\";\nnode.status({fill: color, shape: \"dot\", text: `${actualCategory} ${passed ? \"=\" : \"!=\"} ${expectedCategory}`});\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 650,
+    "y": 200,
+    "wires": [
+      [
+        "debug_cat_result"
+      ]
+    ]
+  },
+  {
+    "id": "debug_cat_result",
+    "type": "debug",
+    "z": "tab_categorization",
+    "name": "Categorization Result",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 890,
+    "y": 200,
+    "wires": []
+  },
+  {
+    "id": "inject_log_test",
+    "type": "inject",
+    "z": "tab_logging",
+    "name": "TC-INT-004: Test Logging",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "testName",
+        "v": "LOG-Test",
+        "vt": "str"
+      },
+      {
+        "p": "testId",
+        "v": "",
+        "vt": "date"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Test logowania - stypendium rektora\"}],\"model\":\"mistral:7b\",\"stream\":false}",
+    "payloadType": "json",
+    "x": 150,
+    "y": 80,
+    "wires": [
+      [
+        "log_send_query"
+      ]
+    ]
+  },
+  {
+    "id": "log_send_query",
+    "type": "http request",
+    "z": "tab_logging",
+    "name": "POST /api/chat",
+    "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
+    "url": "http://agent1_student:8000/api/chat",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 400,
+    "y": 80,
+    "wires": [
+      [
+        "log_wait_delay"
+      ]
+    ]
+  },
+  {
+    "id": "log_wait_delay",
+    "type": "delay",
+    "z": "tab_logging",
+    "name": "Wait 2s for logging",
+    "pauseType": "delay",
+    "timeout": "2",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
     "x": 640,
-    "y": 40,
-    "wires": []
-  },
-  {
-    "id": "prepare_rag_query",
-    "type": "function",
-    "z": "agent1_tab_main",
-    "name": "Prepare RAG Query",
-    "func": "// Przygotuj zapytanie dla RAG\n// W peĹ‚nej implementacji tutaj byĹ‚oby zapytanie do Qdrant\n\nmsg.ragContext = \"KONTEKST Z BAZY WIEDZY (placeholder):\\n- Stypendium dla studentĂłw WSB Merito jest przyznawane na podstawie wyniku w nauce\\n- Procedura obejmuje zĹ‚oĹĽenie wniosku do BOS\\n- Maksymalnie 2 semestry wypĹ‚aty\";\n\nmsg.fullPrompt = `${msg.ragContext}\\n\\n---\\n\\nPYTANIE UĹ»YTKOWNIKA: ${msg.userMessage}\\n\\nOdpowiedz profesjonalnie i pomocnie po polsku. Jeśli nie wiesz, powiedz ĹĽe nie masz informacji.`;\n\nnode.status({fill: \"blue\", shape: \"dot\", text: \"RAG prepared\"});\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 640,
-    "y": 100,
+    "y": 80,
     "wires": [
       [
-        "debug_rag",
-        "create_ollama_request"
+        "log_check_query_logs"
       ]
     ]
   },
   {
-    "id": "debug_rag",
-    "type": "debug",
-    "z": "agent1_tab_main",
-    "name": "RAG Context",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "ragContext",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 820,
-    "y": 40,
-    "wires": []
-  },
-  {
-    "id": "create_ollama_request",
-    "type": "function",
-    "z": "agent1_tab_main",
-    "name": "Create Ollama Request",
-    "func": "// Tworzenie żądania do Agent1 /api/chat z RAG\nmsg.payload = {\n    model: \"mistral:7b\",\n    messages: [\n        {role: \"system\", content: \"Jesteś chatbotem dla studentów WSB Merito.\"},\n        {role: \"user\", content: msg.userMessage}\n    ],\n    stream: false\n};\nmsg.headers = {\"Content-Type\": \"application/json\"};\nnode.status({fill: \"cyan\", shape: \"dot\", text: \"RAG request ready\"});\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 820,
-    "y": 100,
-    "wires": [
-      [
-        "debug_ollama_request",
-        "http_request_ollama"
-      ]
-    ]
-  },
-  {
-    "id": "debug_ollama_request",
-    "type": "debug",
-    "z": "agent1_tab_main",
-    "name": "Ollama Request",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1000,
-    "y": 40,
-    "wires": []
-  },
-  {
-    "id": "http_request_ollama",
+    "id": "log_check_query_logs",
     "type": "http request",
-    "z": "agent1_tab_main",
-    "name": "Query Agent1 /api/chat (z RAG)",
-    "method": "POST",
-    "ret": "obj",
-    "paytoqs": "ignore",
-    "url": "http://agent1_student:8000/api/chat",
-    "tls": "",
-    "persist": false,
-    "proxy": "",
-    "authType": "",
-    "senderr": false,
-    "headers": {},
-    "x": 1000,
-    "y": 100,
-    "wires": [
-      [
-        "debug_ollama_response",
-        "process_ollama_response"
-      ]
-    ]
-  },
-  {
-    "id": "debug_ollama_response",
-    "type": "debug",
-    "z": "agent1_tab_main",
-    "name": "Ollama Response",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1180,
-    "y": 40,
-    "wires": []
-  },
-  {
-    "id": "process_ollama_response",
-    "type": "function",
-    "z": "agent1_tab_main",
-    "name": "Process Response",
-    "func": "// Odpowiedź z /api/chat z RAG\nlet response = msg.payload;\nif (!response) return [null, null, msg];\nlet answer = response.message?.content || response.answer || \"Nie mam informacji na ten temat\";\nmsg.finalResponse = {success: true, answer: answer, sources: response.sources || {}};\nmsg.payload = msg.finalResponse;\nmsg.statusCode = 200;\nnode.status({fill: \"green\", shape: \"dot\", text: \"Ready\"});\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "// Zapisz czas startu\n__node__.startTime = Date.now();",
-    "finalize": "",
-    "libs": [],
-    "x": 1180,
-    "y": 100,
-    "wires": [
-      [
-        "debug_final_response",
-        "http_response"
-      ]
-    ]
-  },
-  {
-    "id": "debug_final_response",
-    "type": "debug",
-    "z": "agent1_tab_main",
-    "name": "Final Response",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1360,
-    "y": 40,
-    "wires": []
-  },
-  {
-    "id": "http_response",
-    "type": "http response",
-    "z": "agent1_tab_main",
-    "name": "Send Response",
-    "statusCode": "msg.statusCode",
-    "headers": {},
-    "x": 1360,
-    "y": 100,
-    "wires": []
-  },
-  {
-    "id": "error_handler",
-    "type": "catch",
-    "z": "agent1_tab_main",
-    "name": "Error Handler",
-    "scope": null,
-    "uncaught": false,
-    "x": 100,
-    "y": 240,
-    "wires": [
-      [
-        "debug_error",
-        "http_error_response"
-      ]
-    ]
-  },
-  {
-    "id": "debug_error",
-    "type": "debug",
-    "z": "agent1_tab_main",
-    "name": "Error",
-    "active": true,
-    "tosidebar": true,
-    "console": true,
-    "tostatus": false,
-    "complete": "error",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 280,
-    "y": 240,
-    "wires": []
-  },
-  {
-    "id": "http_error_response",
-    "type": "function",
-    "z": "agent1_tab_main",
-    "name": "Format Error",
-    "func": "msg.statusCode = msg.statusCode || 500;\nmsg.payload = {\n    error: msg.error?.message || \"Internal server error\",\n    timestamp: new Date().toISOString()\n};\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 460,
-    "y": 240,
-    "wires": [
-      [
-        "http_response"
-      ]
-    ]
-  },
-  {
-    "id": "test_example_tab",
-    "type": "tab",
-    "label": "Test Examples - Stypendia & Urlopy",
-    "disabled": false
-  },
-  {
-    "id": "test_example_1",
-    "type": "inject",
-    "z": "test_example_tab",
-    "name": "Stypendium rektora",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jak ubiegać się o stypendium rektora?\"}],\"userId\":\"student001\",\"sessionId\":\"session_001\"}",
-    "payloadType": "json",
-    "x": 120,
-    "y": 60,
-    "wires": [
-      [
-        "test_http_request_1"
-      ]
-    ]
-  },
-  {
-    "id": "test_http_request_1",
-    "type": "http request",
-    "z": "test_example_tab",
-    "name": "Call Agent1",
-    "method": "POST",
-    "ret": "obj",
-    "paytoqs": "ignore",
-    "url": "http://agent1_student:8000/api/chat",
-    "tls": "",
-    "persist": false,
-    "proxy": "",
-    "authType": "",
-    "senderr": false,
-    "headers": {
-      "Content-Type": "application/json"
-    },
-    "x": 320,
-    "y": 60,
-    "wires": [
-      [
-        "test_debug_response_1"
-      ]
-    ]
-  },
-  {
-    "id": "test_debug_response_1",
-    "type": "debug",
-    "z": "test_example_tab",
-    "name": "Response",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 500,
-    "y": 60,
-    "wires": []
-  },
-  {
-    "id": "test_example_2",
-    "type": "inject",
-    "z": "test_example_tab",
-    "name": "Urlop dziekałski",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jak wziąć urlop dziekałski?\"}],\"userId\":\"student002\",\"sessionId\":\"session_002\"}",
-    "payloadType": "json",
-    "x": 120,
-    "y": 120,
-    "wires": [
-      [
-        "test_http_request_2"
-      ]
-    ]
-  },
-  {
-    "id": "test_http_request_2",
-    "type": "http request",
-    "z": "test_example_tab",
-    "name": "Call Agent1",
-    "method": "POST",
-    "ret": "obj",
-    "paytoqs": "ignore",
-    "url": "http://agent1_student:8000/api/chat",
-    "tls": "",
-    "persist": false,
-    "proxy": "",
-    "authType": "",
-    "senderr": false,
-    "headers": {
-      "Content-Type": "application/json"
-    },
-    "x": 320,
-    "y": 120,
-    "wires": [
-      [
-        "test_debug_response_2"
-      ]
-    ]
-  },
-  {
-    "id": "test_debug_response_2",
-    "type": "debug",
-    "z": "test_example_tab",
-    "name": "Response",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 500,
-    "y": 120,
-    "wires": []
-  },
-  {
-    "id": "test_example_3",
-    "type": "inject",
-    "z": "test_example_tab",
-    "name": "Stypendium dla niepeĹ‚nosprawnych",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jakie stypendia dostępne są dla osĂłb z niepeĹ‚nosprawnościami?\"}],\"userId\":\"student003\",\"sessionId\":\"session_003\"}",
-    "payloadType": "json",
-    "x": 120,
-    "y": 180,
-    "wires": [
-      [
-        "test_http_request_3"
-      ]
-    ]
-  },
-  {
-    "id": "test_http_request_3",
-    "type": "http request",
-    "z": "test_example_tab",
-    "name": "Call Agent1",
-    "method": "POST",
-    "ret": "obj",
-    "paytoqs": "ignore",
-    "url": "http://agent1_student:8000/api/chat",
-    "tls": "",
-    "persist": false,
-    "proxy": "",
-    "authType": "",
-    "senderr": false,
-    "headers": {
-      "Content-Type": "application/json"
-    },
-    "x": 320,
-    "y": 180,
-    "wires": [
-      [
-        "test_debug_response_3"
-      ]
-    ]
-  },
-  {
-    "id": "test_debug_response_3",
-    "type": "debug",
-    "z": "test_example_tab",
-    "name": "Response",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 500,
-    "y": 180,
-    "wires": []
-  },
-  {
-    "id": "test_example_4",
-    "type": "inject",
-    "z": "test_example_tab",
-    "name": "Erasmus+",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jak aplikować do programu Erasmus+?\"}],\"userId\":\"student004\",\"sessionId\":\"session_004\"}",
-    "payloadType": "json",
-    "x": 120,
-    "y": 240,
-    "wires": [
-      [
-        "test_http_request_4"
-      ]
-    ]
-  },
-  {
-    "id": "test_http_request_4",
-    "type": "http request",
-    "z": "test_example_tab",
-    "name": "Call Agent1",
-    "method": "POST",
-    "ret": "obj",
-    "paytoqs": "ignore",
-    "url": "http://agent1_student:8000/api/chat",
-    "tls": "",
-    "persist": false,
-    "proxy": "",
-    "authType": "",
-    "senderr": false,
-    "headers": {
-      "Content-Type": "application/json"
-    },
-    "x": 320,
-    "y": 240,
-    "wires": [
-      [
-        "test_debug_response_4"
-      ]
-    ]
-  },
-  {
-    "id": "test_debug_response_4",
-    "type": "debug",
-    "z": "test_example_tab",
-    "name": "Response",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 500,
-    "y": 240,
-    "wires": []
-  },
-  {
-    "id": "test_procedures_tab",
-    "type": "tab",
-    "label": "Test Examples - Procedury & Egzaminy",
-    "disabled": false
-  },
-  {
-    "id": "test_proc_1",
-    "type": "inject",
-    "z": "test_procedures_tab",
-    "name": "Obrona pracy",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jaka jest procedura obrony pracy dyplomowej?\"}],\"userId\":\"student005\",\"sessionId\":\"session_005\"}",
-    "payloadType": "json",
-    "x": 120,
-    "y": 60,
-    "wires": [
-      [
-        "test_proc_req_1"
-      ]
-    ]
-  },
-  {
-    "id": "test_proc_req_1",
-    "type": "http request",
-    "z": "test_procedures_tab",
-    "name": "Call Agent1",
-    "method": "POST",
-    "ret": "obj",
-    "paytoqs": "ignore",
-    "url": "http://agent1_student:8000/api/chat",
-    "tls": "",
-    "persist": false,
-    "proxy": "",
-    "authType": "",
-    "senderr": false,
-    "headers": {
-      "Content-Type": "application/json"
-    },
-    "x": 320,
-    "y": 60,
-    "wires": [
-      [
-        "test_proc_debug_1"
-      ]
-    ]
-  },
-  {
-    "id": "test_proc_debug_1",
-    "type": "debug",
-    "z": "test_procedures_tab",
-    "name": "Response",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 500,
-    "y": 60,
-    "wires": []
-  },
-  {
-    "id": "test_proc_2",
-    "type": "inject",
-    "z": "test_procedures_tab",
-    "name": "Zmiana kierunku",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jak zmienić kierunek studiĂłw?\"}],\"userId\":\"student006\",\"sessionId\":\"session_006\"}",
-    "payloadType": "json",
-    "x": 120,
-    "y": 120,
-    "wires": [
-      [
-        "test_proc_req_2"
-      ]
-    ]
-  },
-  {
-    "id": "test_proc_req_2",
-    "type": "http request",
-    "z": "test_procedures_tab",
-    "name": "Call Agent1",
-    "method": "POST",
-    "ret": "obj",
-    "paytoqs": "ignore",
-    "url": "http://agent1_student:8000/api/chat",
-    "tls": "",
-    "persist": false,
-    "proxy": "",
-    "authType": "",
-    "senderr": false,
-    "headers": {
-      "Content-Type": "application/json"
-    },
-    "x": 320,
-    "y": 120,
-    "wires": [
-      [
-        "test_proc_debug_2"
-      ]
-    ]
-  },
-  {
-    "id": "test_proc_debug_2",
-    "type": "debug",
-    "z": "test_procedures_tab",
-    "name": "Response",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 500,
-    "y": 120,
-    "wires": []
-  },
-  {
-    "id": "test_proc_3",
-    "type": "inject",
-    "z": "test_procedures_tab",
-    "name": "Rezygnacja ze studiĂłw",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Czy mogę zrezygnować ze studiĂłw? Jaka jest procedura?\"}],\"userId\":\"student007\",\"sessionId\":\"session_007\"}",
-    "payloadType": "json",
-    "x": 120,
-    "y": 180,
-    "wires": [
-      [
-        "test_proc_req_3"
-      ]
-    ]
-  },
-  {
-    "id": "test_proc_req_3",
-    "type": "http request",
-    "z": "test_procedures_tab",
-    "name": "Call Agent1",
-    "method": "POST",
-    "ret": "obj",
-    "paytoqs": "ignore",
-    "url": "http://agent1_student:8000/api/chat",
-    "tls": "",
-    "persist": false,
-    "proxy": "",
-    "authType": "",
-    "senderr": false,
-    "headers": {
-      "Content-Type": "application/json"
-    },
-    "x": 320,
-    "y": 180,
-    "wires": [
-      [
-        "test_proc_debug_3"
-      ]
-    ]
-  },
-  {
-    "id": "test_proc_debug_3",
-    "type": "debug",
-    "z": "test_procedures_tab",
-    "name": "Response",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 500,
-    "y": 180,
-    "wires": []
-  },
-  {
-    "id": "test_proc_4",
-    "type": "inject",
-    "z": "test_procedures_tab",
-    "name": "Harmonogram egzaminĂłw",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Gdzie znaleĹşć harmonogram egzaminĂłw i obron prac?\"}],\"userId\":\"student008\",\"sessionId\":\"session_008\"}",
-    "payloadType": "json",
-    "x": 120,
-    "y": 240,
-    "wires": [
-      [
-        "test_proc_req_4"
-      ]
-    ]
-  },
-  {
-    "id": "test_proc_req_4",
-    "type": "http request",
-    "z": "test_procedures_tab",
-    "name": "Call Agent1",
-    "method": "POST",
-    "ret": "obj",
-    "paytoqs": "ignore",
-    "url": "http://agent1_student:8000/api/chat",
-    "tls": "",
-    "persist": false,
-    "proxy": "",
-    "authType": "",
-    "senderr": false,
-    "headers": {
-      "Content-Type": "application/json"
-    },
-    "x": 320,
-    "y": 240,
-    "wires": [
-      [
-        "test_proc_debug_4"
-      ]
-    ]
-  },
-  {
-    "id": "test_proc_debug_4",
-    "type": "debug",
-    "z": "test_procedures_tab",
-    "name": "Response",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 500,
-    "y": 240,
-    "wires": []
-  },
-  {
-    "id": "test_edge_cases_tab",
-    "type": "tab",
-    "label": "Test Examples - Edge Cases",
-    "disabled": false
-  },
-  {
-    "id": "test_edge_1",
-    "type": "inject",
-    "z": "test_edge_cases_tab",
-    "name": "DĹ‚ugie pytanie",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jestem studentem drugiego roku kierunku Informatyka na WSB Merito i chciaĹ‚bym wiedzieć, jakie są moĹĽliwości ubiegania się o stypendium rektora biorąc pod uwagę moje aktywne uczestnictwo w projekcie naukowym oraz średnią ocen rĂłwną 4.5. Jakie są kroki, terminy i wymagane dokumenty do zĹ‚oĹĽenia wniosku?\"}],\"userId\":\"student009\",\"sessionId\":\"session_009\"}",
-    "payloadType": "json",
-    "x": 120,
-    "y": 60,
-    "wires": [
-      [
-        "test_edge_req_1"
-      ]
-    ]
-  },
-  {
-    "id": "test_edge_req_1",
-    "type": "http request",
-    "z": "test_edge_cases_tab",
-    "name": "Call Agent1",
-    "method": "POST",
-    "ret": "obj",
-    "paytoqs": "ignore",
-    "url": "http://agent1_student:8000/api/chat",
-    "tls": "",
-    "persist": false,
-    "proxy": "",
-    "authType": "",
-    "senderr": false,
-    "headers": {
-      "Content-Type": "application/json"
-    },
-    "x": 320,
-    "y": 60,
-    "wires": [
-      [
-        "test_edge_debug_1"
-      ]
-    ]
-  },
-  {
-    "id": "test_edge_debug_1",
-    "type": "debug",
-    "z": "test_edge_cases_tab",
-    "name": "Response",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 500,
-    "y": 60,
-    "wires": []
-  },
-  {
-    "id": "test_edge_2",
-    "type": "inject",
-    "z": "test_edge_cases_tab",
-    "name": "Bardzo krĂłtkie",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Stypendium?\"}],\"userId\":\"student010\",\"sessionId\":\"session_010\"}",
-    "payloadType": "json",
-    "x": 120,
-    "y": 120,
-    "wires": [
-      [
-        "test_edge_req_2"
-      ]
-    ]
-  },
-  {
-    "id": "test_edge_req_2",
-    "type": "http request",
-    "z": "test_edge_cases_tab",
-    "name": "Call Agent1",
-    "method": "POST",
-    "ret": "obj",
-    "paytoqs": "ignore",
-    "url": "http://agent1_student:8000/api/chat",
-    "tls": "",
-    "persist": false,
-    "proxy": "",
-    "authType": "",
-    "senderr": false,
-    "headers": {
-      "Content-Type": "application/json"
-    },
-    "x": 320,
-    "y": 120,
-    "wires": [
-      [
-        "test_edge_debug_2"
-      ]
-    ]
-  },
-  {
-    "id": "test_edge_debug_2",
-    "type": "debug",
-    "z": "test_edge_cases_tab",
-    "name": "Response",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 500,
-    "y": 120,
-    "wires": []
-  },
-  {
-    "id": "test_edge_3",
-    "type": "inject",
-    "z": "test_edge_cases_tab",
-    "name": "Puste pytanie",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"\"}],\"userId\":\"student011\",\"sessionId\":\"session_011\"}",
-    "payloadType": "json",
-    "x": 120,
-    "y": 180,
-    "wires": [
-      [
-        "test_edge_req_3"
-      ]
-    ]
-  },
-  {
-    "id": "test_edge_req_3",
-    "type": "http request",
-    "z": "test_edge_cases_tab",
-    "name": "Call Agent1",
-    "method": "POST",
-    "ret": "obj",
-    "paytoqs": "ignore",
-    "url": "http://agent1_student:8000/api/chat",
-    "tls": "",
-    "persist": false,
-    "proxy": "",
-    "authType": "",
-    "senderr": false,
-    "headers": {
-      "Content-Type": "application/json"
-    },
-    "x": 320,
-    "y": 180,
-    "wires": [
-      [
-        "test_edge_debug_3"
-      ]
-    ]
-  },
-  {
-    "id": "test_edge_debug_3",
-    "type": "debug",
-    "z": "test_edge_cases_tab",
-    "name": "Response",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 500,
-    "y": 180,
-    "wires": []
-  },
-  {
-    "id": "test_edge_4",
-    "type": "inject",
-    "z": "test_edge_cases_tab",
-    "name": "Dane osobowe",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jakie dane osobowe mogą być zbierane przez WSB Merito?\"}],\"userId\":\"student012\",\"sessionId\":\"session_012\"}",
-    "payloadType": "json",
-    "x": 120,
-    "y": 240,
-    "wires": [
-      [
-        "test_edge_req_4"
-      ]
-    ]
-  },
-  {
-    "id": "test_edge_req_4",
-    "type": "http request",
-    "z": "test_edge_cases_tab",
-    "name": "Call Agent1",
-    "method": "POST",
-    "ret": "obj",
-    "paytoqs": "ignore",
-    "url": "http://agent1_student:8000/api/chat",
-    "tls": "",
-    "persist": false,
-    "proxy": "",
-    "authType": "",
-    "senderr": false,
-    "headers": {
-      "Content-Type": "application/json"
-    },
-    "x": 320,
-    "y": 240,
-    "wires": [
-      [
-        "test_edge_debug_4"
-      ]
-    ]
-  },
-  {
-    "id": "test_edge_debug_4",
-    "type": "debug",
-    "z": "test_edge_cases_tab",
-    "name": "Response",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 500,
-    "y": 240,
-    "wires": []
-  },
-  {
-    "id": "test_recruitment_tab",
-    "type": "tab",
-    "label": "Test Examples - Rekrutacja & Kariera",
-    "disabled": false
-  },
-  {
-    "id": "test_rec_1",
-    "type": "inject",
-    "z": "test_recruitment_tab",
-    "name": "Drugi kierunek",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Czy mogę zrobić drugi kierunek w WSB Merito?\"}],\"userId\":\"student013\",\"sessionId\":\"session_013\"}",
-    "payloadType": "json",
-    "x": 120,
-    "y": 60,
-    "wires": [
-      [
-        "test_rec_req_1"
-      ]
-    ]
-  },
-  {
-    "id": "test_rec_req_1",
-    "type": "http request",
-    "z": "test_recruitment_tab",
-    "name": "Call Agent1",
-    "method": "POST",
-    "ret": "obj",
-    "paytoqs": "ignore",
-    "url": "http://agent1_student:8000/api/chat",
-    "tls": "",
-    "persist": false,
-    "proxy": "",
-    "authType": "",
-    "senderr": false,
-    "headers": {
-      "Content-Type": "application/json"
-    },
-    "x": 320,
-    "y": 60,
-    "wires": [
-      [
-        "test_rec_debug_1"
-      ]
-    ]
-  },
-  {
-    "id": "test_rec_debug_1",
-    "type": "debug",
-    "z": "test_recruitment_tab",
-    "name": "Response",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 500,
-    "y": 60,
-    "wires": []
-  },
-  {
-    "id": "test_rec_2",
-    "type": "inject",
-    "z": "test_recruitment_tab",
-    "name": "Kariera po studiach",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jak się przygotować do kariery po ukołczeniu studiĂłw? Jakie są moĹĽliwości?\"}],\"userId\":\"student014\",\"sessionId\":\"session_014\"}",
-    "payloadType": "json",
-    "x": 120,
-    "y": 120,
-    "wires": [
-      [
-        "test_rec_req_2"
-      ]
-    ]
-  },
-  {
-    "id": "test_rec_req_2",
-    "type": "http request",
-    "z": "test_recruitment_tab",
-    "name": "Call Agent1",
-    "method": "POST",
-    "ret": "obj",
-    "paytoqs": "ignore",
-    "url": "http://agent1_student:8000/api/chat",
-    "tls": "",
-    "persist": false,
-    "proxy": "",
-    "authType": "",
-    "senderr": false,
-    "headers": {
-      "Content-Type": "application/json"
-    },
-    "x": 320,
-    "y": 120,
-    "wires": [
-      [
-        "test_rec_debug_2"
-      ]
-    ]
-  },
-  {
-    "id": "test_rec_debug_2",
-    "type": "debug",
-    "z": "test_recruitment_tab",
-    "name": "Response",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 500,
-    "y": 120,
-    "wires": []
-  },
-  {
-    "id": "test_rec_3",
-    "type": "inject",
-    "z": "test_recruitment_tab",
-    "name": "Biuro ObsĹ‚ugi Studenta",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Gdzie się znajduje Biuro ObsĹ‚ugi Studenta i jakie są godziny pracy?\"}],\"userId\":\"student015\",\"sessionId\":\"session_015\"}",
-    "payloadType": "json",
-    "x": 120,
-    "y": 180,
-    "wires": [
-      [
-        "test_rec_req_3"
-      ]
-    ]
-  },
-  {
-    "id": "test_rec_req_3",
-    "type": "http request",
-    "z": "test_recruitment_tab",
-    "name": "Call Agent1",
-    "method": "POST",
-    "ret": "obj",
-    "paytoqs": "ignore",
-    "url": "http://agent1_student:8000/api/chat",
-    "tls": "",
-    "persist": false,
-    "proxy": "",
-    "authType": "",
-    "senderr": false,
-    "headers": {
-      "Content-Type": "application/json"
-    },
-    "x": 320,
-    "y": 180,
-    "wires": [
-      [
-        "test_rec_debug_3"
-      ]
-    ]
-  },
-  {
-    "id": "test_rec_debug_3",
-    "type": "debug",
-    "z": "test_recruitment_tab",
-    "name": "Response",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 500,
-    "y": 180,
-    "wires": []
-  },
-  {
-    "id": "test_rec_4",
-    "type": "inject",
-    "z": "test_recruitment_tab",
-    "name": "Wniosek o stypendium",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jakie są wymagania i jak zĹ‚oĹĽyć wniosek o stypendium za drugie miejsce?\"}],\"userId\":\"student016\",\"sessionId\":\"session_016\"}",
-    "payloadType": "json",
-    "x": 120,
-    "y": 240,
-    "wires": [
-      [
-        "test_rec_req_4"
-      ]
-    ]
-  },
-  {
-    "id": "test_rec_req_4",
-    "type": "http request",
-    "z": "test_recruitment_tab",
-    "name": "Call Agent1",
-    "method": "POST",
-    "ret": "obj",
-    "paytoqs": "ignore",
-    "url": "http://agent1_student:8000/api/chat",
-    "tls": "",
-    "persist": false,
-    "proxy": "",
-    "authType": "",
-    "senderr": false,
-    "headers": {
-      "Content-Type": "application/json"
-    },
-    "x": 320,
-    "y": 240,
-    "wires": [
-      [
-        "test_rec_debug_4"
-      ]
-    ]
-  },
-  {
-    "id": "test_rec_debug_4",
-    "type": "debug",
-    "z": "test_recruitment_tab",
-    "name": "Response",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 500,
-    "y": 240,
-    "wires": []
-  },
-  {
-    "id": "test_direct_tab",
-    "type": "tab",
-    "label": "Direct Node-RED Test",
-    "disabled": false
-  },
-  {
-    "id": "direct_http_in",
-    "type": "http in",
-    "z": "test_direct_tab",
-    "name": "Test Direct Endpoint",
-    "url": "/test",
-    "method": "post",
-    "upload": false,
-    "x": 100,
-    "y": 100,
-    "wires": [
-      [
-        "direct_debug_1"
-      ]
-    ]
-  },
-  {
-    "id": "direct_debug_1",
-    "type": "debug",
-    "z": "test_direct_tab",
-    "name": "Input",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "true",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 280,
-    "y": 100,
-    "wires": []
-  },
-  {
-    "id": "direct_response",
-    "type": "function",
-    "z": "test_direct_tab",
-    "name": "Echo Response",
-    "func": "return {\n    payload: {\n        received: msg.payload,\n        testStatus: \"OK\",\n        timestamp: new Date().toISOString(),\n        nodeRedVersion: \"node-red-version\"\n    }\n};",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 460,
-    "y": 100,
-    "wires": [
-      [
-        "direct_http_out"
-      ]
-    ]
-  },
-  {
-    "id": "direct_http_out",
-    "type": "http response",
-    "z": "test_direct_tab",
-    "name": "Response",
-    "statusCode": "200",
-    "headers": {
-      "Content-Type": "application/json"
-    },
-    "x": 640,
-    "y": 100,
-    "wires": []
-  },
-  {
-    "id": "comprehensive_tests_tab",
-    "type": "tab",
-    "label": "Comprehensive Tests Suite",
-    "disabled": false
-  },
-  {
-    "id": "test_unit_category",
-    "type": "inject",
-    "z": "comprehensive_tests_tab",
-    "name": "Test: Category Detection",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "payload": "{\"query\":\"Jakie stypendia dostępne?\",\"expected_category\":\"stypendia\"}",
-    "payloadType": "json",
-    "x": 120,
-    "y": 120,
-    "wires": [
-      [
-        "unit_test_category_func"
-      ]
-    ]
-  },
-  {
-    "id": "unit_test_category_func",
-    "type": "function",
-    "z": "comprehensive_tests_tab",
-    "name": "Verify Category",
-    "func": "// Test kategoryzacji pytania\nlet test = msg.payload;\nlet categories = {\n    'stypendia': ['stypendium', 'stypendia', 'stypendialny'],\n    'egzaminy': ['egzamin', 'obrona', 'harmonogram'],\n    'rekrutacja': ['rekrutacja', 'aplikować', 'kandydat'],\n    'urlopy': ['urlop', 'zwolnienie', 'rezygnacja'],\n    'dane_osobowe': ['dane', 'RODO', 'prywatność']\n};\n\nlet detected = null;\nfor (let cat in categories) {\n    if (categories[cat].some(kw => test.query.toLowerCase().includes(kw))) {\n        detected = cat;\n        break;\n    }\n}\n\nmsg.result = {\n    test_name: 'Category Detection',\n    query: test.query,\n    expected: test.expected_category,\n    detected: detected,\n    passed: detected === test.expected_category,\n    timestamp: new Date().toISOString()\n};\nreturn msg;",
-    "outputs": 1,
-    "x": 320,
-    "y": 120,
-    "wires": [
-      [
-        "debug_unit_tests"
-      ]
-    ]
-  },
-  {
-    "id": "test_unit_validation",
-    "type": "inject",
-    "z": "comprehensive_tests_tab",
-    "name": "Test: Message Validation",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "payload": "[{\"msg\":\"Normalne pytanie\",\"valid\":true},{\"msg\":\"\",\"valid\":false},{\"msg_length\":2001,\"valid\":false}]",
-    "payloadType": "json",
-    "x": 120,
-    "y": 180,
-    "wires": [
-      [
-        "unit_test_validation_node"
-      ]
-    ]
-  },
-  {
-    "id": "unit_test_validation_node",
-    "type": "function",
-    "z": "comprehensive_tests_tab",
-    "name": "Run Validation Tests",
-    "func": "let tests = msg.payload;\nlet results = [];\n\nfor (let test of tests) {\n    let msgText = test.msg;\n    if (typeof test.msg_length === 'number') {\n        msgText = 'x'.repeat(test.msg_length);\n    }\n    msgText = msgText || '';\n    let valid = msgText.trim().length > 0 && msgText.length <= 2000;\n    results.push({\n        message: msgText.substring(0, 50),\n        expected: test.valid,\n        actual: valid,\n        passed: valid === test.valid\n    });\n}\n\nmsg.result = {\n    test_name: 'Message Validation',\n    total: tests.length,\n    passed: results.filter(r => r.passed).length,\n    results: results\n};\nreturn msg;",
-    "outputs": 1,
-    "x": 320,
-    "y": 180,
-    "wires": [
-      [
-        "debug_unit_tests"
-      ]
-    ]
-  },
-  {
-    "id": "test_kb_connectivity",
-    "type": "inject",
-    "z": "comprehensive_tests_tab",
-    "name": "Test: KB Connectivity",
-    "payload": "{}",
-    "payloadType": "json",
-    "x": 520,
-    "y": 60,
-    "wires": [
-      [
-        "kb_test_connect"
-      ]
-    ]
-  },
-  {
-    "id": "kb_test_connect",
-    "type": "http request",
-    "z": "comprehensive_tests_tab",
-    "name": "Query Qdrant Health",
+    "z": "tab_logging",
+    "name": "GET Query Logs Stats",
     "method": "GET",
-    "url": "http://qdrant:6333/health",
     "ret": "obj",
-    "x": 680,
-    "y": 60,
+    "paytoqs": "ignore",
+    "url": "http://agent1_student:8000/admin/logs/queries/stats",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 890,
+    "y": 80,
     "wires": [
       [
-        "kb_test_verify"
+        "log_check_qa_logs"
       ]
     ]
   },
   {
-    "id": "kb_test_verify",
-    "type": "function",
-    "z": "comprehensive_tests_tab",
-    "name": "Verify KB Response",
-    "func": "msg.result = {\n    test_name: 'KB Connectivity',\n    qdrant_status: msg.payload?.status || msg.statusCode,\n    passed: msg.statusCode === 200,\n    response_time_ms: msg.responseTime || 0\n};\nreturn msg;",
-    "outputs": 1,
-    "x": 840,
-    "y": 60,
-    "wires": [
-      [
-        "debug_kb_tests"
-      ]
-    ]
-  },
-  {
-    "id": "test_kb_documents",
-    "type": "inject",
-    "z": "comprehensive_tests_tab",
-    "name": "Test: Document Count",
-    "payload": "{\"expected_min\":200}",
-    "payloadType": "json",
-    "x": 520,
-    "y": 120,
-    "wires": [
-      [
-        "kb_doc_count"
-      ]
-    ]
-  },
-  {
-    "id": "kb_doc_count",
+    "id": "log_check_qa_logs",
     "type": "http request",
-    "z": "comprehensive_tests_tab",
-    "name": "Get Collection Info",
+    "z": "tab_logging",
+    "name": "GET QA Logs Stats",
     "method": "GET",
-    "url": "http://qdrant:6333/collections/agent1_student",
     "ret": "obj",
-    "x": 680,
+    "paytoqs": "ignore",
+    "url": "http://agent1_student:8000/admin/logs/qa/stats",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 1150,
+    "y": 80,
+    "wires": [
+      [
+        "log_validate"
+      ]
+    ]
+  },
+  {
+    "id": "log_validate",
+    "type": "function",
+    "z": "tab_logging",
+    "name": "Validate Logs Exist",
+    "func": "const qaStats = msg.payload;\n\nconst validation = {\n    testName: \"Logging Verification\",\n    timestamp: new Date().toISOString(),\n    passed: true,\n    checks: []\n};\n\n// Sprawdź QA logs count\nif (qaStats.total_records !== undefined) {\n    const qaCheck = {\n        name: \"QA Logs Exist\",\n        expected: \"> 0\",\n        actual: qaStats.total_records,\n        passed: qaStats.total_records > 0\n    };\n    validation.checks.push(qaCheck);\n    if (!qaCheck.passed) {\n        validation.passed = false;\n    }\n}\n\nmsg.payload = {\n    test: \"TC-INT-004: Logging\",\n    result: validation.passed ? \"✅ PASS\" : \"❌ FAIL\",\n    qaLogsCount: qaStats.total_records || 0,\n    checks: validation.checks\n};\n\nconst color = validation.passed ? \"green\" : \"red\";\nnode.status({fill: color, shape: \"dot\", text: validation.passed ? \"Logs OK\" : \"No logs\"});\n\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1400,
+    "y": 80,
+    "wires": [
+      [
+        "debug_log_result"
+      ]
+    ]
+  },
+  {
+    "id": "debug_log_result",
+    "type": "debug",
+    "z": "tab_logging",
+    "name": "Logging Test Result",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1660,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "inject_perf_single",
+    "type": "inject",
+    "z": "tab_performance",
+    "name": "TC-PERF-001: Single Request",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "testName",
+        "v": "PERF-Single",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Jak ubiegać się o stypendium rektora?\"}],\"model\":\"mistral:7b\",\"stream\":false}",
+    "payloadType": "json",
+    "x": 170,
+    "y": 80,
+    "wires": [
+      [
+        "perf_timestamp_start"
+      ]
+    ]
+  },
+  {
+    "id": "inject_perf_burst",
+    "type": "inject",
+    "z": "tab_performance",
+    "name": "TC-PERF-002: Burst (5 requests)",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "testName",
+        "v": "PERF-Burst",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{\"messages\":[{\"role\":\"user\",\"content\":\"Test wydajnościowy - stypendium\"}],\"model\":\"mistral:7b\",\"stream\":false}",
+    "payloadType": "json",
+    "x": 180,
+    "y": 160,
+    "wires": [
+      [
+        "perf_split_5"
+      ]
+    ]
+  },
+  {
+    "id": "perf_split_5",
+    "type": "split",
+    "z": "tab_performance",
+    "name": "Split to 5 requests",
+    "splt": "\\n",
+    "spltType": "str",
+    "arraySplt": 1,
+    "arraySpltType": "len",
+    "stream": false,
+    "addname": "",
+    "x": 440,
+    "y": 160,
+    "wires": [
+      [
+        "perf_timestamp_start"
+      ]
+    ]
+  },
+  {
+    "id": "perf_timestamp_start",
+    "type": "function",
+    "z": "tab_performance",
+    "name": "Timestamp Start",
+    "func": "msg.startTime = Date.now();\nmsg.testName = msg.testName || 'PERF';\nnode.status({fill: \"blue\", shape: \"ring\", text: \"Started\"});\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 660,
     "y": 120,
-    "wires": [
-      [
-        "kb_doc_verify"
-      ]
-    ]
-  },
-  {
-    "id": "kb_doc_verify",
-    "type": "function",
-    "z": "comprehensive_tests_tab",
-    "name": "Verify Doc Count",
-    "func": "let docCount = msg.payload?.result?.points_count || 0;\nlet expectedMin = msg.payload?.expected_min || 200;\nmsg.result = {\n    test_name: 'Document Count',\n    document_count: docCount,\n    expected_minimum: expectedMin,\n    passed: docCount >= expectedMin,\n    collection: 'agent1_student'\n};\nreturn msg;",
-    "outputs": 1,
-    "x": 840,
-    "y": 120,
-    "wires": [
-      [
-        "debug_kb_tests"
-      ]
-    ]
-  },
-  {
-    "id": "test_prompts_correct",
-    "type": "inject",
-    "z": "comprehensive_tests_tab",
-    "name": "Test: Valid Prompts (In KB)",
-    "payload": "[\"Jak ubiegać się o stypendium rektora?\",\"Jaka jest procedura obrony?\",\"Jakie stypendia dla niepełnosprawnych?\"]",
-    "payloadType": "json",
-    "x": 120,
-    "y": 300,
-    "wires": [
-      [
-        "prompt_test_valid"
-      ]
-    ]
-  },
-  {
-    "id": "prompt_test_valid",
-    "type": "function",
-    "z": "comprehensive_tests_tab",
-    "name": "Send Valid Prompt",
-    "func": "let prompts = msg.payload;\nmsg.payload = {messages: [{role: 'user', content: prompts[0]}], model: 'mistral:7b'};\nreturn msg;",
-    "outputs": 1,
-    "x": 300,
-    "y": 300,
-    "wires": [
-      [
-        "prompt_send_to_agent"
-      ]
-    ]
-  },
-  {
-    "id": "test_prompts_invalid",
-    "type": "inject",
-    "z": "comprehensive_tests_tab",
-    "name": "Test: Invalid Prompts (Out KB)",
-    "payload": "[\"Jaki jest sens życia?\",\"Како се добија диплома?\",\"Расскажи мне про твой день\"]",
-    "payloadType": "json",
-    "x": 120,
-    "y": 360,
-    "wires": [
-      [
-        "prompt_test_invalid"
-      ]
-    ]
-  },
-  {
-    "id": "prompt_test_invalid",
-    "type": "function",
-    "z": "comprehensive_tests_tab",
-    "name": "Send Invalid Prompt",
-    "func": "let prompts = msg.payload;\nmsg.payload = {messages: [{role: 'user', content: prompts[0]}], model: 'mistral:7b'};\nreturn msg;",
-    "outputs": 1,
-    "x": 300,
-    "y": 360,
-    "wires": [
-      [
-        "prompt_send_to_agent_invalid"
-      ]
-    ]
-  },
-  {
-    "id": "prompt_send_to_agent",
-    "type": "http request",
-    "z": "comprehensive_tests_tab",
-    "name": "Send to Agent1 /api/chat",
-    "method": "POST",
-    "url": "http://agent1_student:8000/api/chat",
-    "ret": "obj",
-    "x": 520,
-    "y": 300,
-    "wires": [
-      [
-        "prompt_verify_response"
-      ]
-    ]
-  },
-  {
-    "id": "prompt_send_to_agent_invalid",
-    "type": "http request",
-    "z": "comprehensive_tests_tab",
-    "name": "Send Invalid to Agent",
-    "method": "POST",
-    "url": "http://agent1_student:8000/api/chat",
-    "ret": "obj",
-    "x": 520,
-    "y": 360,
-    "wires": [
-      [
-        "prompt_verify_invalid"
-      ]
-    ]
-  },
-  {
-    "id": "prompt_verify_response",
-    "type": "function",
-    "z": "comprehensive_tests_tab",
-    "name": "Verify Valid Response",
-    "func": "let hasKnowledge = msg.payload?.sources?.has_knowledge || false;\nmsg.result = {\n    test_name: 'Valid Prompt Response',\n    has_sources: (msg.payload?.sources?.documents || []).length > 0,\n    has_knowledge: hasKnowledge,\n    passed: hasKnowledge === true,\n    answer_length: msg.payload?.message?.content?.length || 0\n};\nreturn msg;",
-    "outputs": 1,
-    "x": 740,
-    "y": 300,
-    "wires": [
-      [
-        "debug_prompt_tests"
-      ]
-    ]
-  },
-  {
-    "id": "prompt_verify_invalid",
-    "type": "function",
-    "z": "comprehensive_tests_tab",
-    "name": "Verify Invalid Response",
-    "func": "let content = msg.payload?.message?.content || '';\nlet hasNoInfo = content.includes('Nie mam informacji') || content.includes('Skontaktuj');\nmsg.result = {\n    test_name: 'Invalid Prompt Response',\n    received_no_info_message: hasNoInfo,\n    passed: hasNoInfo,\n    answer_preview: content.substring(0, 100)\n};\nreturn msg;",
-    "outputs": 1,
-    "x": 740,
-    "y": 360,
-    "wires": [
-      [
-        "debug_prompt_tests"
-      ]
-    ]
-  },
-  {
-    "id": "test_rag_with",
-    "type": "inject",
-    "z": "comprehensive_tests_tab",
-    "name": "Test: Query WITH RAG",
-    "payload": "{\"query\":\"Stypendium\"}",
-    "payloadType": "json",
-    "x": 120,
-    "y": 480,
-    "wires": [
-      [
-        "rag_prepare_with"
-      ]
-    ]
-  },
-  {
-    "id": "rag_prepare_with",
-    "type": "function",
-    "z": "comprehensive_tests_tab",
-    "name": "Prepare RAG Query",
-    "func": "let query = msg.payload.query;\nmsg.payload = {messages: [{role: 'user', content: query}], model: 'mistral:7b'};\nreturn msg;",
-    "outputs": 1,
-    "x": 300,
-    "y": 480,
-    "wires": [
-      [
-        "rag_send_with"
-      ]
-    ]
-  },
-  {
-    "id": "rag_send_with",
-    "type": "http request",
-    "z": "comprehensive_tests_tab",
-    "name": "Agent /api/chat WITH RAG",
-    "method": "POST",
-    "url": "http://agent1_student:8000/api/chat",
-    "ret": "obj",
-    "x": 520,
-    "y": 480,
-    "wires": [
-      [
-        "rag_test_compare"
-      ]
-    ]
-  },
-  {
-    "id": "test_rag_without",
-    "type": "inject",
-    "z": "comprehensive_tests_tab",
-    "name": "Test: Query WITHOUT RAG",
-    "payload": "{\"query\":\"Coś co nie ma w bazie\"}",
-    "payloadType": "json",
-    "x": 120,
-    "y": 540,
-    "wires": [
-      [
-        "rag_prepare_without"
-      ]
-    ]
-  },
-  {
-    "id": "rag_prepare_without",
-    "type": "function",
-    "z": "comprehensive_tests_tab",
-    "name": "Prepare No-RAG Query",
-    "func": "let query = msg.payload.query;\nmsg.payload = {messages: [{role: 'user', content: query}], model: 'mistral:7b'};\nreturn msg;",
-    "outputs": 1,
-    "x": 300,
-    "y": 540,
-    "wires": [
-      [
-        "rag_send_without"
-      ]
-    ]
-  },
-  {
-    "id": "rag_send_without",
-    "type": "http request",
-    "z": "comprehensive_tests_tab",
-    "name": "Agent /api/chat WITHOUT RAG",
-    "method": "POST",
-    "url": "http://agent1_student:8000/api/chat",
-    "ret": "obj",
-    "x": 520,
-    "y": 540,
-    "wires": [
-      [
-        "rag_test_compare"
-      ]
-    ]
-  },
-  {
-    "id": "rag_test_compare",
-    "type": "function",
-    "z": "comprehensive_tests_tab",
-    "name": "Compare RAG Impact",
-    "func": "msg.result = {\n    test_name: 'RAG Comparison',\n    has_sources: (msg.payload?.sources?.documents || []).length > 0,\n    rag_score: msg.payload?.sources?.score || 0,\n    has_knowledge: msg.payload?.sources?.has_knowledge || false,\n    response_contains_no_info: (msg.payload?.message?.content || '').includes('Nie mam informacji'),\n    answer_length: msg.payload?.message?.content?.length || 0\n};\nreturn msg;",
-    "outputs": 1,
-    "x": 740,
-    "y": 510,
-    "wires": [
-      [
-        "debug_rag_tests"
-      ]
-    ]
-  },
-  {
-    "id": "test_perf_response_time",
-    "type": "inject",
-    "z": "comprehensive_tests_tab",
-    "name": "Test: Response Time",
-    "payload": "{\"iterations\":3}",
-    "payloadType": "json",
-    "x": 120,
-    "y": 650,
-    "wires": [
-      [
-        "perf_test_measure"
-      ]
-    ]
-  },
-  {
-    "id": "perf_test_measure",
-    "type": "function",
-    "z": "comprehensive_tests_tab",
-    "name": "Measure Performance",
-    "func": "msg.startTime = Date.now();\nmsg.payload = {\n    messages: [{role: 'user', content: 'Jak ubiegać się o stypendium?'}],\n    model: 'mistral:7b'\n};\nreturn msg;",
-    "outputs": 1,
-    "x": 300,
-    "y": 650,
     "wires": [
       [
         "perf_http_request"
@@ -1951,137 +880,111 @@
   {
     "id": "perf_http_request",
     "type": "http request",
-    "z": "comprehensive_tests_tab",
-    "name": "Agent Request",
+    "z": "tab_performance",
+    "name": "POST /api/chat",
     "method": "POST",
+    "ret": "obj",
+    "paytoqs": "ignore",
     "url": "http://agent1_student:8000/api/chat",
-    "ret": "obj",
-    "x": 520,
-    "y": 650,
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 900,
+    "y": 120,
     "wires": [
       [
-        "perf_test_analyze"
+        "perf_timestamp_end"
       ]
     ]
   },
   {
-    "id": "perf_test_analyze",
+    "id": "perf_timestamp_end",
     "type": "function",
-    "z": "comprehensive_tests_tab",
-    "name": "Analyze Performance",
-    "func": "let responseTime = Date.now() - msg.startTime;\nmsg.result = {\n    test_name: 'Response Time Performance',\n    response_time_ms: responseTime,\n    passed: responseTime < 5000,\n    threshold_ms: 5000,\n    answer_length: msg.payload?.message?.content?.length || 0\n};\nreturn msg;",
+    "z": "tab_performance",
+    "name": "Calculate Time",
+    "func": "const endTime = Date.now();\nconst responseTime = endTime - msg.startTime;\n\nmsg.responseTime = responseTime;\nmsg.payload = {\n    test: msg.testName,\n    responseTime: `${responseTime}ms`,\n    responseTimeSec: (responseTime / 1000).toFixed(2) + \"s\",\n    withinLimit: responseTime < 15000,\n    fast: responseTime < 5000,\n    status: responseTime < 5000 ? \"⚡ Fast\" : responseTime < 15000 ? \"👍 OK\" : \"⚠️ Slow\"\n};\n\nconst color = responseTime < 5000 ? \"green\" : responseTime < 15000 ? \"yellow\" : \"red\";\nnode.status({fill: color, shape: \"dot\", text: `${responseTime}ms`});\n\nreturn msg;",
     "outputs": 1,
-    "x": 740,
-    "y": 650,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1130,
+    "y": 120,
     "wires": [
       [
-        "debug_perf_tests"
+        "debug_perf_result"
       ]
     ]
   },
   {
-    "id": "test_embedding_consistency",
-    "type": "inject",
-    "z": "comprehensive_tests_tab",
-    "name": "Test: Embedding Consistency",
-    "props": [
-      {
-        "p": "payload"
-      }
-    ],
-    "payload": "{\"model\":\"nomic-embed-text\",\"prompt\":\"Stypendium dla studentów\"}",
-    "payloadType": "json",
-    "x": 120,
-    "y": 750,
-    "wires": [
-      [
-        "embed_test_ollama"
-      ]
-    ]
-  },
-  {
-    "id": "embed_test_ollama",
-    "type": "http request",
-    "z": "comprehensive_tests_tab",
-    "name": "Get Embedding",
-    "method": "POST",
-    "url": "http://ollama:11434/api/embeddings",
-    "ret": "obj",
-    "x": 320,
-    "y": 750,
-    "wires": [
-      [
-        "embed_test_verify"
-      ]
-    ]
-  },
-  {
-    "id": "embed_test_verify",
-    "type": "function",
-    "z": "comprehensive_tests_tab",
-    "name": "Verify Embeddings",
-    "func": "let embedding = msg.payload?.embedding || [];\nmsg.result = {\n    test_name: 'Embedding Consistency',\n    embedding_dimension: embedding.length,\n    expected_dimension: 768,\n    passed: embedding.length === 768,\n    embedding_type: typeof embedding[0],\n    first_values: embedding.slice(0, 5)\n};\nreturn msg;",
-    "outputs": 1,
-    "x": 560,
-    "y": 750,
-    "wires": [
-      [
-        "debug_embed_tests"
-      ]
-    ]
-  },
-  {
-    "id": "debug_unit_tests",
+    "id": "debug_perf_result",
     "type": "debug",
-    "z": "comprehensive_tests_tab",
-    "name": "Unit Results",
-    "x": 520,
+    "z": "tab_performance",
+    "name": "Performance Result",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1370,
     "y": 120,
     "wires": []
   },
   {
-    "id": "debug_kb_tests",
-    "type": "debug",
-    "z": "comprehensive_tests_tab",
-    "name": "KB Results",
-    "x": 980,
-    "y": 90,
+    "id": "comment_rag_pipeline",
+    "type": "comment",
+    "z": "tab_rag_pipeline",
+    "name": "RAG Pipeline Test Suite - Tests full flow from query categorization to response generation and logging",
+    "info": "**Test Coverage:**\n- TC-INT-003: Full RAG Pipeline\n- Query categorization (detect_category)\n- Vector search in Qdrant (limit=2, score>0.25)\n- Context enrichment (600 chars)\n- LLM generation (mistral:7b, temp=0.3)\n- Response validation\n- Performance monitoring (< 15s)\n\n**Pass Criteria:**\n- Response received in < 15s\n- Message content exists\n- Sources metadata available\n- RAG score >= 0.25 (if KB present)",
+    "x": 340,
+    "y": 20,
     "wires": []
   },
   {
-    "id": "debug_prompt_tests",
-    "type": "debug",
-    "z": "comprehensive_tests_tab",
-    "name": "Prompt Results",
-    "x": 980,
-    "y": 330,
+    "id": "comment_kb_tests",
+    "type": "comment",
+    "z": "tab_knowledge_tests",
+    "name": "Knowledge Base Tests - Validates KB Present vs KB Absent scenarios",
+    "info": "**Test Coverage:**\n- TC-FUNC-001: KB Present (Stypendium)\n- TC-FUNC-002: KB Absent (Philosophy)\n- Additional KB tests for different categories\n\n**Categories Tested:**\n- stypendia (scholarships)\n- egzaminy (exams)\n- urlopy_zwolnienia (leaves)\n- unknown (out-of-scope)\n\n**Pass Criteria:**\n- KB Present: score >= 0.25, correct category\n- KB Absent: \"Nie mam informacji\" message",
+    "x": 270,
+    "y": 20,
     "wires": []
   },
   {
-    "id": "debug_rag_tests",
-    "type": "debug",
-    "z": "comprehensive_tests_tab",
-    "name": "RAG Results",
-    "x": 980,
-    "y": 510,
+    "id": "comment_categorization",
+    "type": "comment",
+    "z": "tab_categorization",
+    "name": "Categorization Tests - TC-UNIT-002: Validates automatic query categorization",
+    "info": "**Test Coverage:**\n- TC-UNIT-002: categorize_query() function\n- Tests 5 categories + unknown\n\n**Categories:**\n- stypendia\n- egzaminy\n- dane_osobowe\n- urlopy_zwolnienia\n- unknown\n\n**Pass Criteria:**\n- >= 80% accuracy\n- Category matches expected value",
+    "x": 300,
+    "y": 20,
     "wires": []
   },
   {
-    "id": "debug_perf_tests",
-    "type": "debug",
-    "z": "comprehensive_tests_tab",
-    "name": "Performance Results",
-    "x": 980,
-    "y": 650,
+    "id": "comment_logging",
+    "type": "comment",
+    "z": "tab_logging",
+    "name": "Logging Tests - TC-INT-004: Validates dual logging to Qdrant (query_logs + qa_logs)",
+    "info": "**Test Coverage:**\n- TC-INT-004: Logging to Qdrant\n- Query logs collection\n- QA pairs collection\n\n**Verification:**\n1. Send test query via /api/chat\n2. Wait 2s for async logging\n3. Check /admin/logs/queries/stats\n4. Check /admin/logs/qa/stats\n\n**Pass Criteria:**\n- Both collections have records\n- Records contain correct metadata",
+    "x": 270,
+    "y": 20,
     "wires": []
   },
   {
-    "id": "debug_embed_tests",
-    "type": "debug",
-    "z": "comprehensive_tests_tab",
-    "name": "Embedding Results",
-    "x": 980,
-    "y": 750,
+    "id": "comment_performance",
+    "type": "comment",
+    "z": "tab_performance",
+    "name": "Performance Tests - TC-PERF: Response time and throughput validation",
+    "info": "**Test Coverage:**\n- TC-PERF-001: Single request response time\n- TC-PERF-002: Burst test (5 concurrent)\n\n**Metrics:**\n- Response time < 5s: ⚡ Fast\n- Response time < 15s: 👍 OK\n- Response time >= 15s: ⚠️ Slow\n\n**Pass Criteria:**\n- Single request: < 15s\n- Average burst time: < 20s\n- No timeouts or errors",
+    "x": 270,
+    "y": 20,
     "wires": []
   }
 ]
