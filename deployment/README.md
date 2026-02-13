@@ -1,5 +1,8 @@
 # 🚀 Wdrożenie na Świeży VPS - Szybki Przewodnik
 
+> ⚠️ **WAŻNE - Breaking Change:** Stare pliki `agents/*/docker-compose.yml` zostały **usunięte**. 
+> Aby wdrożyć system, **musisz używać** `/deployment/setup-new-vps.sh` lub główny `docker-compose.yml` z głównego katalogu!
+
 ## 📖 Struktura Folderu `deployment/`
 
 ```
