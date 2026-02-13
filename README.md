@@ -351,3 +351,4 @@ git push origin main
 
 **Ostatnia aktualizacja:** 10 lutego 2026  
 **Maintainers:** Adam Siehen (@adamsiehen), Paweł Ponikowski (@pponikowski)
+

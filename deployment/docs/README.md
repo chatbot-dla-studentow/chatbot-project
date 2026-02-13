@@ -157,8 +157,8 @@ sudo ./monitoring-alerts.sh
 
 ```bash
 cd /opt/chatbot-project
-sudo ./deploy.sh install_dependencies
-./deploy.sh deploy
+sudo ./deployment/app/deploy.sh install_dependencies
+./deployment/app/deploy.sh deploy
 ```
 
 ---
@@ -173,10 +173,10 @@ chatbot-status
 ### View live logs:
 ```bash
 cd /opt/chatbot-project
-./deploy.sh logs
+./deployment/app/deploy.sh logs
 
 # Lub konkretny serwis:
-./deploy.sh logs agent1_student
+./deployment/app/deploy.sh logs agent1_student
 ```
 
 ### Check fail2ban:
@@ -255,7 +255,7 @@ ping 10.0.0.1
 ### 2. Test SSH connection:
 ```bash
 ssh -p 2222 asiehen@<vps-ip>
-./deploy.sh status
+./deployment/app/deploy.sh status
 ```
 
 ### 3. Test aplikacji:
@@ -273,3 +273,4 @@ crontab -e
 ---
 
 **Gotowe!** VPS jest teraz bezpieczny i pełen funkcjonalny. 🎉
+

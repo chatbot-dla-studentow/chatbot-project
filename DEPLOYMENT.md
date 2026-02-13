@@ -217,62 +217,62 @@ GIT_REPO="https://github.com/your-username/chatbot-project.git"
 
 ### Komendy deployment
 
-**Główny skrypt: `deploy.sh`**
+**Główny skrypt: `./deployment/app/deploy.sh`**
 
 #### Instalacja systemu
 
 ```bash
 # Zainstaluj Docker, Docker Compose i zależności (wymaga sudo)
-sudo ./deploy.sh install_dependencies
+sudo ./deployment/app/deploy.sh install_dependencies
 
 # Pełne wdrożenie (wszystkie kroki)
-./deploy.sh deploy
+./deployment/app/deploy.sh deploy
 ```
 
 #### Zarządzanie serwisami
 
 ```bash
 # Uruchom wszystkie serwisy
-./deploy.sh start
+./deployment/app/deploy.sh start
 
 # Zatrzymaj wszystkie serwisy
-./deploy.sh stop
+./deployment/app/deploy.sh stop
 
 # Restart wszystkich serwisów
-./deploy.sh restart
+./deployment/app/deploy.sh restart
 
 # Sprawdź status serwisów
-./deploy.sh status
+./deployment/app/deploy.sh status
 ```
 
 #### Logi i diagnostyka
 
 ```bash
 # Pokaż logi wszystkich serwisów (live)
-./deploy.sh logs
+./deployment/app/deploy.sh logs
 
 # Pokaż logi konkretnego serwisu
-./deploy.sh logs agent1_student
-./deploy.sh logs qdrant
-./deploy.sh logs ollama
-./deploy.sh logs node-red
+./deployment/app/deploy.sh logs agent1_student
+./deployment/app/deploy.sh logs qdrant
+./deployment/app/deploy.sh logs ollama
+./deployment/app/deploy.sh logs node-red
 ```
 
 #### Zarządzanie bazą wiedzy
 
 ```bash
 # Zainicjalizuj/odśwież bazę wiedzy
-./deploy.sh init-kb
+./deployment/app/deploy.sh init-kb
 
 # Lub użyj dedykowanego skryptu
-./init-knowledge.sh
+./deployment/app/init-knowledge.sh
 ```
 
 #### Czyszczenie systemu
 
 ```bash
 # Usuń wszystkie kontenery i wolumeny (UWAGA: usuwa dane!)
-./deploy.sh cleanup
+./deployment/app/deploy.sh cleanup
 ```
 
 ### Architektura deployment
@@ -318,7 +318,7 @@ ai_network (bridge)
 
 **Problem: Brak Dockera**
 ```bash
-sudo ./deploy.sh install_dependencies
+sudo ./deployment/app/deploy.sh install_dependencies
 ```
 
 **Problem: Port już zajęty**
@@ -345,7 +345,7 @@ sudo swapon /swapfile
 **Problem: Qdrant nie odpowiada**
 ```bash
 # Sprawdź logi
-./deploy.sh logs qdrant
+./deployment/app/deploy.sh logs qdrant
 
 # Restart serwisu
 docker compose restart qdrant
@@ -354,7 +354,7 @@ docker compose restart qdrant
 **Problem: Baza wiedzy pusta**
 ```bash
 # Re-inicjalizuj bazę wiedzy
-./init-knowledge.sh
+./deployment/app/init-knowledge.sh
 
 # Sprawdź kolekcję
 curl http://localhost:6333/collections/agent1_student
@@ -364,7 +364,7 @@ curl http://localhost:6333/collections/agent1_student
 
 **Sprawdzenie stanu wszystkich serwisów:**
 ```bash
-./deploy.sh status
+./deployment/app/deploy.sh status
 ```
 
 **Lub ręcznie:**
@@ -967,3 +967,4 @@ refactor(knowledge): optymalizacja parsowania dokumentów
 3. Czekaj na review dwóch osób
 4. Merge po zatwierddzeniu
 5. Delete branch po merge'u
+

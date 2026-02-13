@@ -16,7 +16,7 @@
 # Restart Services Daily at 4:00 AM (Optional)
 # Use only if you experience memory leaks or stability issues
 # ============================================
-# 0 4 * * * cd /opt/chatbot-project && ./deploy.sh restart >> /var/log/chatbot-restart.log 2>&1
+# 0 4 * * * cd /opt/chatbot-project && ./deployment/app/deploy.sh restart >> /var/log/chatbot-restart.log 2>&1
 
 # ============================================
 # Weekly Cleanup of Old Logs (Sundays at 3:00 AM)
@@ -32,13 +32,13 @@
 # ============================================
 # Check and Restart Failed Containers (Every 5 Minutes)
 # ============================================
-*/5 * * * * cd /opt/chatbot-project && docker compose ps | grep -q "Exit\|unhealthy" && ./deploy.sh restart >> /var/log/chatbot-auto-restart.log 2>&1
+*/5 * * * * cd /opt/chatbot-project && docker compose ps | grep -q "Exit\|unhealthy" && ./deployment/app/deploy.sh restart >> /var/log/chatbot-auto-restart.log 2>&1
 
 # ============================================
 # Update Knowledge Base (Weekly - Sundays at 1:00 AM)
 # Use if you have automated knowledge base updates
 # ============================================
-# 0 1 * * 0 cd /opt/chatbot-project && ./init-knowledge.sh >> /var/log/chatbot-kb-update.log 2>&1
+# 0 1 * * 0 cd /opt/chatbot-project && ./deployment/app/init-knowledge.sh >> /var/log/chatbot-kb-update.log 2>&1
 
 # ============================================
 # Docker System Cleanup (Monthly - 1st of month at 5:00 AM)
@@ -62,7 +62,7 @@
 # Pull latest changes and restart (Sundays at 2:30 AM)
 # Only use in development/staging, NOT in production!
 # ============================================
-# 30 2 * * 0 cd /opt/chatbot-project && git pull origin main && ./deploy.sh restart >> /var/log/chatbot-auto-update.log 2>&1
+# 30 2 * * 0 cd /opt/chatbot-project && git pull origin main && ./deployment/app/deploy.sh restart >> /var/log/chatbot-auto-update.log 2>&1
 
 # ============================================
 # Ollama Model Check (Weekly)

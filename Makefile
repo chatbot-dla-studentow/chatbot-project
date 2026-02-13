@@ -16,35 +16,35 @@ help: ## Show this help message
 
 install: ## Install system dependencies (requires sudo)
 	@echo "Installing dependencies..."
-	@sudo ./deploy.sh install_dependencies
+	@sudo ./deployment/app/deploy.sh install_dependencies
 
 deploy: ## Full deployment of the system
-	@./deploy.sh deploy
+	@./deployment/app/deploy.sh deploy
 
 start: ## Start all services
-	@./deploy.sh start
+	@./deployment/app/deploy.sh start
 
 stop: ## Stop all services
-	@./deploy.sh stop
+	@./deployment/app/deploy.sh stop
 
 restart: ## Restart all services
-	@./deploy.sh restart
+	@./deployment/app/deploy.sh restart
 
 status: ## Show status of all services
-	@./deploy.sh status
+	@./deployment/app/deploy.sh status
 
 logs: ## Show logs (use: make logs SERVICE=agent1_student)
 	@if [ -z "$(SERVICE)" ]; then \
-		./deploy.sh logs; \
+		./deployment/app/deploy.sh logs; \
 	else \
-		./deploy.sh logs $(SERVICE); \
+		./deployment/app/deploy.sh logs $(SERVICE); \
 	fi
 
 init-kb: ## Initialize/refresh knowledge base
-	@./deploy.sh init-kb
+	@./deployment/app/deploy.sh init-kb
 
 clean: ## Remove all containers and volumes (WARNING: deletes data!)
-	@./deploy.sh cleanup
+	@./deployment/app/deploy.sh cleanup
 
 # Convenience aliases
 up: start ## Alias for 'start'
@@ -55,16 +55,16 @@ ps: status ## Alias for 'status'
 
 # Service-specific logs shortcuts
 logs-agent1: ## Show Agent1 logs
-	@./deploy.sh logs agent1_student
+	@./deployment/app/deploy.sh logs agent1_student
 
 logs-qdrant: ## Show Qdrant logs
-	@./deploy.sh logs qdrant
+	@./deployment/app/deploy.sh logs qdrant
 
 logs-ollama: ## Show Ollama logs
-	@./deploy.sh logs ollama
+	@./deployment/app/deploy.sh logs ollama
 
 logs-nodered: ## Show Node-RED logs
-	@./deploy.sh logs node-red
+	@./deployment/app/deploy.sh logs node-red
 
 # Development shortcuts
 dev-agent1: ## Start only Agent1 and dependencies

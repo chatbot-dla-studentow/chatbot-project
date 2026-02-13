@@ -58,7 +58,7 @@ To automatycznie:
 Po zakończeniu sprawdź status:
 
 ```bash
-./deploy.sh status
+./deployment/app/deploy.sh status
 ```
 
 Sprawdź dostępność serwisów:
@@ -140,7 +140,7 @@ sudo netstat -tulpn | grep :8001
 
 # Zmień port w .env
 echo "AGENT1_PORT=8101" >> .env
-./deploy.sh restart
+./deployment/app/deploy.sh restart
 ```
 
 ### Problem: Brak pamięci
@@ -191,15 +191,15 @@ curl http://localhost:6333/collections/agent1_student
 
 ```bash
 # Pokaż wszystkie komendy
-./deploy.sh help
+./deployment/app/deploy.sh help
 
 # Sprawdź logi konkretnego serwisu
-./deploy.sh logs <nazwa_serwisu>
+./deployment/app/deploy.sh logs <nazwa_serwisu>
 
 # Przykłady:
-./deploy.sh logs agent1_student
-./deploy.sh logs qdrant
-./deploy.sh logs ollama
+./deployment/app/deploy.sh logs agent1_student
+./deployment/app/deploy.sh logs qdrant
+./deployment/app/deploy.sh logs ollama
 ```
 
 ## 🧹 Dezinstalacja
@@ -207,9 +207,10 @@ curl http://localhost:6333/collections/agent1_student
 Jeśli chcesz usunąć wszystko (UWAGA: usunie dane!):
 
 ```bash
-./deploy.sh cleanup
+./deployment/app/deploy.sh cleanup
 ```
 
 ---
 
 **Gotowe!** System chatbot jest teraz uruchomiony i gotowy do użycia. 🎉
+

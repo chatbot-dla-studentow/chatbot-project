@@ -55,9 +55,9 @@ sudo chmod +x deployment/monitoring-alerts.sh
 sudo ./deployment/monitoring-alerts.sh
 
 # 4. Wdróż aplikację
-sudo chmod +x deploy.sh
-sudo ./deploy.sh install_dependencies
-./deploy.sh deploy
+sudo chmod +x deployment/app/deploy.sh
+sudo ./deployment/app/deploy.sh install_dependencies
+./deployment/app/deploy.sh deploy
 ```
 
 ---
@@ -397,9 +397,9 @@ sudo ufw reload
 
 ## 🔗 Kolejne Kroki
 
-1. Po uruchomieniu setupów: `./deploy.sh deploy`
-2. Sprawdź status: `./deploy.sh status`
-3. Test zdrowia: `./health-check.sh`
+1. Po uruchomieniu setupów: `./deployment/app/deploy.sh deploy`
+2. Sprawdź status: `./deployment/app/deploy.sh status`
+3. Test zdrowia: `./deployment/app/health-check.sh`
 4. Backup: `/opt/chatbot-project/backup.sh`
 
 ---

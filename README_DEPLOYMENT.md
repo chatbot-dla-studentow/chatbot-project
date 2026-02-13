@@ -145,22 +145,22 @@ make backup
 
 ```bash
 # Deployment i setup
-./deploy.sh install_dependencies  # Zainstaluj Docker i zależności (sudo)
-./deploy.sh deploy               # Pełne wdrożenie systemu
+./deployment/app/deploy.sh install_dependencies  # Zainstaluj Docker i zależności (sudo)
+./deployment/app/deploy.sh deploy               # Pełne wdrożenie systemu
 
 # Zarządzanie
-./deploy.sh start                # Uruchom wszystkie serwisy
-./deploy.sh stop                 # Zatrzymaj wszystkie serwisy
-./deploy.sh restart              # Restart wszystkich serwisów
-./deploy.sh status               # Sprawdź status serwisów
+./deployment/app/deploy.sh start                # Uruchom wszystkie serwisy
+./deployment/app/deploy.sh stop                 # Zatrzymaj wszystkie serwisy
+./deployment/app/deploy.sh restart              # Restart wszystkich serwisów
+./deployment/app/deploy.sh status               # Sprawdź status serwisów
 
 # Diagnostyka
-./deploy.sh logs                 # Pokaż wszystkie logi
-./deploy.sh logs agent1_student  # Logi konkretnego serwisu
+./deployment/app/deploy.sh logs                 # Pokaż wszystkie logi
+./deployment/app/deploy.sh logs agent1_student  # Logi konkretnego serwisu
 
 # Utrzymanie
-./deploy.sh init-kb              # Odśwież bazę wiedzy
-./deploy.sh cleanup              # Usuń wszystko (UWAGA!)
+./deployment/app/deploy.sh init-kb              # Odśwież bazę wiedzy
+./deployment/app/deploy.sh cleanup              # Usuń wszystko (UWAGA!)
 ```
 
 ## 📋 Komendy Makefile
@@ -319,7 +319,7 @@ sudo systemctl stop chatbot
 
 ### Problem: Brak Dockera
 ```bash
-sudo ./deploy.sh install_dependencies
+sudo ./deployment/app/deploy.sh install_dependencies
 ```
 
 ### Problem: Port zajęty
@@ -353,9 +353,9 @@ sudo swapon /swapfile
 # Świeży VPS
 git clone <your-repo>
 cd chatbot-project
-sudo ./deploy.sh install_dependencies
+sudo ./deployment/app/deploy.sh install_dependencies
 # [wyloguj się i zaloguj ponownie]
-./deploy.sh deploy
+./deployment/app/deploy.sh deploy
 ```
 
 ### Codzienne operacje
@@ -378,7 +378,7 @@ make backup
 
 ```bash
 git pull
-./deploy.sh restart
+./deployment/app/deploy.sh restart
 ```
 
 ## 🎨 Customization
@@ -393,7 +393,7 @@ OLLAMA_MODEL=llama2:13b  # zamiast mistral:7b
 ### Dodanie nowego agenta
 
 1. Dodaj service w `docker-compose.yml`
-2. Restart systemem: `./deploy.sh restart`
+2. Restart systemem: `./deployment/app/deploy.sh restart`
 
 ### Customowe porty
 
@@ -426,3 +426,4 @@ QDRANT_PORT=9333
 ---
 
 **Gotowe!** System jest teraz w pełni zautomatyzowany i gotowy do wdrożenia na produkcję. 🎉
+
