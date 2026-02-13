@@ -24,6 +24,6 @@ Pliki są montowane w kontenerze Open WebUI przez docker-compose.yml:
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Mikołaj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
 - Paweł Ponikowski (pponikowski)

@@ -371,6 +371,6 @@ System jest **gotowy do produkcji** i może być wdrożony jako część projekt
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Mikołaj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
 - Paweł Ponikowski (pponikowski)
