@@ -217,16 +217,21 @@ GIT_REPO="https://github.com/your-username/chatbot-project.git"
 
 ### Komendy deployment
 
-**Główny skrypt: `./deployment/app/deploy.sh`**
+**Główny skrypt: `./deployment/app/deploy.sh` (Ubuntu/Debian)**
+**Dla Arch Linux: `./deployment/app/deploy-arch.sh`**
 
 #### Instalacja systemu
 
 ```bash
-# Zainstaluj Docker, Docker Compose i zależności (wymaga sudo)
+# Ubuntu/Debian
 sudo ./deployment/app/deploy.sh install_dependencies
 
+# Arch Linux
+sudo ./deployment/app/deploy-arch.sh install_dependencies
+
 # Pełne wdrożenie (wszystkie kroki)
-./deployment/app/deploy.sh deploy
+./deployment/app/deploy.sh deploy       # Ubuntu/Debian
+./deployment/app/deploy-arch.sh deploy  # Arch Linux
 ```
 
 #### Zarządzanie serwisami
