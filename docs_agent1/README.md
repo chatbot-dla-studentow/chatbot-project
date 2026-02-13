@@ -1,4 +1,4 @@
-# ChatBot dla Studentów – RAG (Agent1 Student)
+﻿# ChatBot dla Studentów – RAG (Agent1 Student)
 
 ## Projekt inżynierski w ramach kierunku Informatyka na Uniwersytecie WSB Merito w Gdańsku
 
@@ -385,6 +385,6 @@ Dokumentacja API (FastAPI): http://localhost:8001/docs
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Miko�aj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Pawe� Ponikowski (pponikowski)
+- Paweł Ponikowski (pponikowski)

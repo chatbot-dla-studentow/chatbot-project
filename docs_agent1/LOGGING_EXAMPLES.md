@@ -1,4 +1,4 @@
-# Przykłady Użycia - System Logowania i Kategoryzacji
+﻿# Przykłady Użycia - System Logowania i Kategoryzacji
 ## Agent1 Student Query & QA Logging
 
 ---
@@ -501,6 +501,6 @@ curl http://localhost:8001/admin/logs/queries/stats | \
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Miko�aj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Pawe� Ponikowski (pponikowski)
+- Paweł Ponikowski (pponikowski)

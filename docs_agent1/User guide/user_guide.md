@@ -1,4 +1,4 @@
-# User Guide – Student Chatbot
+﻿# User Guide – Student Chatbot
 
 ## 1. Wprowadzenie
 Student Chatbot to aplikacja umożliwiająca zadawanie pytań dotyczących spraw studenckich, takich jak stypendia, procedury administracyjne czy organizacja studiów.
@@ -46,6 +46,6 @@ W menu bocznym dostępne są dodatkowe opcje aplikacji.
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Miko�aj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Pawe� Ponikowski (pponikowski)
+- Paweł Ponikowski (pponikowski)

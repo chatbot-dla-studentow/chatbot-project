@@ -1,4 +1,4 @@
-# Instrukcja wdrożenia i dostępu do chatbota
+﻿# Instrukcja wdrożenia i dostępu do chatbota
 
 > **Powiązana dokumentacja:** [README.md](README.md) | [AGENT1_OVERVIEW.md](AGENT1_OVERVIEW.md) | [docs_agent1/ARCHITECTURE.md](docs_agent1/ARCHITECTURE.md) | [docs_agent1/QUICK_START.md](docs_agent1/QUICK_START.md)
 
@@ -980,6 +980,6 @@ refactor(knowledge): optymalizacja parsowania dokumentów
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Miko�aj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Pawe� Ponikowski (pponikowski)
+- Paweł Ponikowski (pponikowski)

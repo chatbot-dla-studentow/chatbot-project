@@ -1,4 +1,4 @@
-# Customizacja Open WebUI - WSB Merito
+﻿# Customizacja Open WebUI - WSB Merito
 
 ## Co zostało dodane?
 
@@ -84,6 +84,6 @@ Jeśli chcesz zmienić kolory, edytuj `custom/custom.css`:
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Miko�aj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Pawe� Ponikowski (pponikowski)
+- Paweł Ponikowski (pponikowski)

@@ -1,4 +1,4 @@
-# TODO - System Benchmarkingu LLM
+﻿# TODO - System Benchmarkingu LLM
 Lista planowanych usprawnień i funkcji do dodania w module benchmarków.
 
 ## Zrealizowane
@@ -30,6 +30,6 @@ Lista planowanych usprawnień i funkcji do dodania w module benchmarków.
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Miko�aj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Pawe� Ponikowski (pponikowski)
+- Paweł Ponikowski (pponikowski)

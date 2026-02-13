@@ -1,4 +1,4 @@
-# Raport Testowy - System Logowania i Kategoryzacji
+ï»¿# Raport Testowy - System Logowania i Kategoryzacji
 ## Agent1 Student - Query & QA Logging
 
 **Data:** 6 lutego 2026  
@@ -376,6 +376,6 @@ Return Response to User
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko³aj Sykucki (zybert)
+- Mikoï¿½aj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Pawe³ Ponikowski (pponikowski)
+- PaweÅ‚ Ponikowski (pponikowski)

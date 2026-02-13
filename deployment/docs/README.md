@@ -1,4 +1,4 @@
-# 🚀 Wdrożenie na Świeży VPS - Szybki Przewodnik
+﻿# 🚀 Wdrożenie na Świeży VPS - Szybki Przewodnik
 
 > ✅ **Aktualizacja:** Dedykowane pliki `agents/*/docker-compose.yml` zostały **przywrócone**.
 > Do pełnego wdrożenia nadal rekomendujemy `/deployment/setup.sh` lub główny `docker-compose.yml`,
@@ -303,6 +303,6 @@ crontab -e
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Miko�aj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Pawe� Ponikowski (pponikowski)
+- Paweł Ponikowski (pponikowski)

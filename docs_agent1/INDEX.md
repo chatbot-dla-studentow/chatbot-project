@@ -1,4 +1,4 @@
-# Dokumentacja Agent1 Student
+﻿# Dokumentacja Agent1 Student
 
 Dokumentacja agenta chatbotowego odpowiadającego na pytania studenckie (stypendia, BOS, harmonogramy, obrony prac).
 
@@ -160,6 +160,6 @@ Dokumentacja agenta chatbotowego odpowiadającego na pytania studenckie (stypend
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Miko�aj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Pawe� Ponikowski (pponikowski)
+- Paweł Ponikowski (pponikowski)

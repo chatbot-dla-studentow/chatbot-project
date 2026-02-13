@@ -1,4 +1,4 @@
-# 🚀 ChatBot Deployment System
+﻿# 🚀 ChatBot Deployment System
 
 ⚠️ **BREAKING CHANGE v2.0 (Feb 2026):** Stare pliki `agents/*/docker-compose.yml` zostały USUNIĘTE. Plik `deploy.ps1` usunięty (tylko Linux/WSL/Ubuntu).
 
@@ -431,6 +431,6 @@ QDRANT_PORT=9333
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Miko�aj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Pawe� Ponikowski (pponikowski)
+- Paweł Ponikowski (pponikowski)

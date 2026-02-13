@@ -1,4 +1,4 @@
-# Raport Implementacji - Agent_1 Student
+﻿# Raport Implementacji - Agent_1 Student
 ## Wymagania Prof. Cezarego Orłowskiego
 
 **Data:** 6 lutego 2026  
@@ -371,6 +371,6 @@ System jest **gotowy do produkcji** i może być wdrożony jako część projekt
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Miko�aj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Pawe� Ponikowski (pponikowski)
+- Paweł Ponikowski (pponikowski)

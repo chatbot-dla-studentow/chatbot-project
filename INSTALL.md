@@ -1,4 +1,4 @@
-# 🚀 Quick Install Guide
+﻿# 🚀 Quick Install Guide
 
 ⚠️ **UWAGA - v2.0 BREAKING CHANGE:** Stare pliki `agents/*/docker-compose.yml` zostały usunięte. Do wdrożenia używaj `/deployment/setup.sh` lub główny `docker-compose.yml`.
 
@@ -218,6 +218,6 @@ Jeśli chcesz usunąć wszystko (UWAGA: usunie dane!):
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Miko�aj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Pawe� Ponikowski (pponikowski)
+- Paweł Ponikowski (pponikowski)

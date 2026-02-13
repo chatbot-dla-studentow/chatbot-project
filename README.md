@@ -1,4 +1,4 @@
-# Chatbot dla Studentów - System Multi-Agentowy
+﻿# Chatbot dla Studentów - System Multi-Agentowy
 
 Inteligentny chatbot dla studentów uczelni wyższej wykorzystujący architekturę multi-agentową, RAG (Retrieval-Augmented Generation) i lokalne modele LLM.
 
@@ -356,6 +356,6 @@ git push origin main
 ## Maintainers
 - Adam Siehen (adamsiehen)
 - Patryk Boguski (ptrBoguski)
-- Miko�aj Sykucki (zybert)
+- Miko�aj Sykucki (zybert)
 - Oskar Jurgielaniec (oskarju1)
-- Pawe� Ponikowski (pponikowski)
+- Paweł Ponikowski (pponikowski)
