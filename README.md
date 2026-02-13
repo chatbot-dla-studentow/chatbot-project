@@ -56,7 +56,7 @@ System składa się z 5 wyspecjalizowanych agentów:
 
 | Członek zespołu | Rola | Zadania (skrót) |
 |---|---|---|
-| Adam Siehen | Project Manager | Deployment i hardening VPS; automatyzacja skryptów wdrożeniowych; integracja Docker Compose i orkiestracja usług; konfiguracja monitoringu i alertów; koordynacja merge i publikacji zmian; diagnostyka i stabilizacja środowisk (main/beta) |
+| Adam Sieheń | Project Manager | Deployment; automatyzacja skryptów wdrożeniowych; integracja Docker Compose i orkiestracja usług; konfiguracja monitoringu i alertów na VPS; koordynacja merge i publikacji zmian; diagnostyka i stabilizacja środowisk (main/beta) |
 | Patryk Boguski | Tech Ops | Arch Linux deployment (deploy-arch.sh + dokumentacja); benchmarking LLM (benchmark_models.py, raporty, wykresy, TODO); aktualizacja DEPLOYMENT.md i deployment/docs/README.md pod nowe instrukcje |
 | Mikołaj Sykucki | Tester/Analityk | Testy RAG (test_rag.py: weryfikacja KB present/absent, metadane sources); test_cases.md (25 przypadków testowych: 6 unit, 4 integration, 5 functional, 4 performance, 3 validation, 3 security); BUG_FIX_TEST_REPORT_2026-02-13.md (raport naprawy NameError, testy przed/po, RCA, metryki); matryca pokrycia testów; harmonogram wykonania testów |
 | Oskar Jurgielaniec | Frontend/Dokumentacja | Reorganizacja docs_agent1 (Test reports/, User guide/); DEPLOYMENT.md (user access, VM specs); rename README_AGENT1 -> AGENT1_OVERVIEW; branding Open WebUI (custom Dockerfile z favicon fix, logo WSB Merito, white theme CSS, custom.js, favicon.ico multi-format, usunięcie starych Open WebUI favikonek, cache-busting); customizacja interfejsu użytkownika |
