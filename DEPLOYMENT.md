@@ -2,10 +2,14 @@
 
 > **Powiązana dokumentacja:** [README.md](README.md) | [AGENT1_OVERVIEW.md](AGENT1_OVERVIEW.md) | [docs_agent1/ARCHITECTURE.md](docs_agent1/ARCHITECTURE.md) | [docs_agent1/QUICK_START.md](docs_agent1/QUICK_START.md)
 
+⚠️ **VPS został zaatakowany i zbanowany. Przenieśliśmy się na nowy serwer.**
+
+> 📘 **Nowa infrastruktura deployment jest gotowa!** Przejdź do [deployment/README.md](deployment/README.md) aby poznać automatyczną procedurę wdrożenia dla **świeżego VPS**.
+
 ## Spis treści
 
 - [🚀 Automatyczne wdrożenie](#-automatyczne-wdrożenie-nowa-maszyna)
-  - [Quick Start - Świeży VPS](#quick-start---świeży-vps)
+  - [Quick Start - Świeży VPS](#quick-start---świeży-vps) ← **START TUTAJ DLA NOWEGO VPS**
   - [Wymagania systemowe](#wymagania-systemowe)
   - [Konfiguracja środowiska](#konfiguracja-środowiska)
   - [Komenda deployment](#komendy-deployment)
@@ -23,30 +27,106 @@
 
 ## 🚀 Automatyczne wdrożenie (nowa maszyna)
 
+> ✅ **Używaj tego dla nowego VPS!** Pełne bezpieczeństwo + wdrożenie w jednym skrypcie interaktywnym.
+
 ### Quick Start - Świeży VPS
 
-Wdrożenie całego systemu na świeżej maszynie wirtualnej lub VPS w **3 krokach**:
+Szybko wdróż całą infrastrukturę na świeżej maszynie VPS/VM w **oneshot command**:
 
 ```bash
-# 1. Sklonuj repozytorium
-git clone https://github.com/yourusername/chatbot-project.git
-cd chatbot-project
+# 1. Zaloguj się do nowego VPS
+ssh root@<new-vps-ip>
 
-# 2. Zainstaluj zależności (wymaga sudo)
-sudo ./deploy.sh install_dependencies
+# 2. Sklonuj repozytorium
+git clone <repo-url> /opt/chatbot-project
+cd /opt/chatbot-project
 
-# 3. Wdróż cały system
-./deploy.sh deploy
+# 3. Uruchom interaktywny wizard (all-in-one setup)
+chmod +x deployment/setup-new-vps.sh
+sudo ./deployment/setup-new-vps.sh
 ```
 
-**Czas wdrożenia:** ~10-15 minut (w zależności od prędkości internetu)
+**Czas całej konfiguracji:** ~20 minut (zabezpieczenia + aplikacja)
 
-Po zakończeniu wszystkie serwisy będą dostępne:
-- 🤖 Agent1 (Student Support): http://localhost:8001
-- 📊 Qdrant (Vector DB): http://localhost:6333
-- 🧠 Ollama (LLM): http://localhost:11434
-- 🔄 Node-RED (Workflows): http://localhost:1880
-- 🌐 Open WebUI: http://localhost:3000
+### Co obejmuje `setup-new-vps.sh` ?
+
+```
+Phase 1: 🔒 Zabezpieczenie systemu (5 min)
+  ├─ fail2ban (ochrona brute-force SSH)
+  ├─ UFW firewall (port whitelisting)
+  ├─ SSH hardening (port 2222, key auth only)
+  ├─ Network security (SYN cookies, IP spoofing protection)
+  └─ Automatic updates (daily security patches)
+
+Phase 2: 🌍 Geo-blocking (2 min)
+  └─ EU-only access (28 krajów, weekly updates)
+
+Phase 3: 📬 Monitoring & Alerts (3 min)
+  ├─ Email alerts do adam.siehen@outlook.com
+  ├─ Health checks (co 4 godziny)
+  ├─ Security audits (codziennie)
+  └─ chatbot-status dashboard
+
+Phase 4: 🚀 Deployment aplikacji (8-10 min)
+  ├─ Docker + Compose installation
+  ├─ Pobieranie modelu Ollama (mistral:7b)
+  ├─ Inicjalizacja bazy wiedzy
+  └─ Start wszystkich serwisów
+```
+
+**Wynik:** Całowicie zabezpieczony system gotowy do produkcji ✓
+
+---
+
+### Przydatne linkii do dokumentacji
+
+| Dokument | Opis |
+|----------|------|
+| [deployment/README.md](deployment/README.md) | 📖 Przewodnik szybkiego startu (czytaj pierwszy!) |
+| [deployment/SECURITY.md](deployment/SECURITY.md) | 🔒 Szczegółowa dokumentacja bezpieczeństwa |
+| [INSTALL.md](INSTALL.md) | 🔧 Instrukcja instalacji krok po kroku |
+| [README_DEPLOYMENT.md](README_DEPLOYMENT.md) | 📚 Pełna dokumentacja deployment'u |
+
+### Po uruchomieniu `setup-new-vps.sh` wszystkie serwisy będą dostępne
+
+**Dostęp wymaga VPN na subnecie:**
+- IPv4: `10.0.0.0/24`
+- IPv6: `fd00::/8`
+- SSH: port **2222** (tylko przez VPN)
+
+**Serwicy aplikacji (przez VPN):**
+- 🤖 Agent1 (Student Support): `http://<vps-ip>:8001`
+- 🤖 Agent2 (Ticket System): `http://<vps-ip>:8002`
+- 🤖 Agent3 (Analytics): `http://<vps-ip>:8003`
+- 🤖 Agent4 (BOS): `http://<vps-ip>:8004`
+- 🤖 Agent5 (Security): `http://<vps-ip>:8005`
+- 📊 Qdrant (Vector DB): `http://<vps-ip>:6333`
+- 🧠 Ollama (LLM): `http://<vps-ip>:11434`
+- 🔄 Node-RED (Workflows): `http://<vps-ip>:1880`
+- 🌐 Open WebUI: `http://<vps-ip>:3000`
+
+**Monitorowanie:**
+- Email alerts wysyłane do: `adam.siehen@outlook.com`
+- Dashboard: `chatbot-status` (dostępna komenda SSH)
+
+---
+
+## 📌 Ważne informacje o starym VPS
+
+Poprzedni serwer został zaatakowany i zbanowany przez dostawcę. **Ta nowa infrastruktura jest trwale zainstalowana na nowym VPS.**
+
+**Główne ulepszenia:**
+- ✅ fail2ban z ochroną brute-force na 1h bany
+- ✅ UFW firewall z dostępem tylko przez VPN
+- ✅ EU-only geo-blocking (28 krajów)
+- ✅ Email monitoring na adam.siehen@outlook.com
+- ✅ SSH na porcie 2222 z key auth only
+- ✅ Automatyczne security patches codziennie
+- ✅ Systemd service dla auto-start
+- ✅ Backup/restore scripts
+- ✅ Health checks i monitoring
+
+---
 
 ### Wymagania systemowe
 
