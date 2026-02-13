@@ -52,7 +52,7 @@ if [ "$confirm" != "yes" ]; then
 fi
 
 echo ""
-sudo "$SCRIPT_DIR/secure.sh"
+sudo "$SCRIPT_DIR/server/secure.sh"
 
 # Step 2: Geo-blocking
 echo ""
@@ -64,7 +64,7 @@ echo "  - Enable weekly updates"
 echo ""
 read -p "Continue? (yes/no): " confirm
 if [ "$confirm" = "yes" ]; then
-    sudo "$SCRIPT_DIR/geo-blocking.sh"
+    sudo "$SCRIPT_DIR/server/geo-blocking.sh"
 else
     log_warning "Geo-blocking skipped"
 fi
@@ -73,13 +73,13 @@ fi
 echo ""
 echo -e "${YELLOW}=== STEP 3: Monitoring & Alerting ===${NC}"
 echo "This will:"
-echo "  - Configure email alerts to adam.siehen@gmail.com"
+echo "  - Configure email alerts to adam.siehen@outlook.com"
 echo "  - Setup health checks (every 4 hours)"
 echo "  - Setup security audits (daily)"
 echo ""
 read -p "Continue? (yes/no): " confirm
 if [ "$confirm" = "yes" ]; then
-    sudo "$SCRIPT_DIR/monitoring-alerts.sh"
+    sudo "$SCRIPT_DIR/server/monitoring-alerts.sh"
 else
     log_warning "Monitoring setup skipped"
 fi
@@ -95,8 +95,11 @@ echo "  - Start all agents"
 echo ""
 read -p "Continue? (yes/no): " confirm
 if [ "$confirm" = "yes" ]; then
+    # Deploy app
     cd "$SCRIPT_DIR/.."
-    sudo ./deploy.sh install_dependencies
+    
+    # Install dependencies
+    sudo "$SCRIPT_DIR/app/deploy.sh" install_dependencies
     
     # Copy .env if needed
     if [ ! -f ".env" ]; then
@@ -104,7 +107,8 @@ if [ "$confirm" = "yes" ]; then
         log_warning "Created .env from .env.example - please review!"
     fi
     
-    ./deploy.sh deploy
+    # Deploy
+    "$SCRIPT_DIR/app/deploy.sh" deploy
 else
     log_warning "Application deployment skipped"
 fi

@@ -24,7 +24,7 @@ cd chatbot-project
 ### Krok 2: Zainstaluj zależności
 
 ```bash
-sudo ./deploy.sh install_dependencies
+sudo ./deployment/app/deploy.sh install_dependencies
 ```
 
 To zainstaluje:
@@ -38,7 +38,7 @@ To zainstaluje:
 ### Krok 3: Wdróż system
 
 ```bash
-./deploy.sh deploy
+./deployment/app/deploy.sh deploy
 ```
 
 To automatycznie:
@@ -79,22 +79,22 @@ Otwórz w przeglądarce:
 
 ```bash
 # Status wszystkich serwisów
-./deploy.sh status
+./deployment/app/deploy.sh status
 
 # Uruchom serwisy
-./deploy.sh start
+./deployment/app/deploy.sh start
 
 # Zatrzymaj serwisy
-./deploy.sh stop
+./deployment/app/deploy.sh stop
 
 # Restart serwisów
-./deploy.sh restart
+./deployment/app/deploy.sh restart
 
 # Logi serwisu
-./deploy.sh logs agent1_student
+./deployment/app/deploy.sh logs agent1_student
 
 # Odśwież bazę wiedzy
-./deploy.sh init-kb
+./deployment/app/deploy.sh init-kb
 ```
 
 ## 📝 Konfiguracja (opcjonalna)

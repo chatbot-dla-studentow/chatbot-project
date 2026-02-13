@@ -7,12 +7,25 @@
 
 ```
 deployment/
-├── setup-new-vps.sh           # Główny skrypt (uruchom pierwszy!)
-├── secure.sh                  # Security hardening
-├── geo-blocking.sh            # EU-only geo-blocking
-├── monitoring-alerts.sh       # Email alerts & monitoring
-├── SECURITY.md                # Dokumentacja szcegółowa
-└── README.md                  # Ten plik
+├── setup-new-vps.sh                 # Główny skrypt (uruchom pierwszy!)
+│
+├── server/                          # Skrypty konfiguracji SERWERA
+│   ├── secure.sh                   # Security hardening
+│   ├── geo-blocking.sh             # EU-only geo-blocking
+│   └── monitoring-alerts.sh        # Email alerts & monitoring
+│
+├── app/                             # Skrypty wdrożenia APLIKACJI
+│   ├── deploy.sh                   # Linux deployment
+│   ├── deploy.ps1                  # Windows PowerShell deployment
+│   ├── health-check.sh             # Monitoring systemu
+│   ├── backup.sh                   # Backup wolumenów Docker
+│   ├── restore.sh                  # Restore z backupów
+│   ├── init-knowledge.sh           # Inicjalizacja bazy wiedzy
+│   └── test-system.sh              # Testy automatyczne
+│
+└── docs/                            # Dokumentacja
+    ├── README.md                   # Ten plik
+    └── SECURITY.md                 # Szczegółowa dokumentacja bezpieczeństwa
 ```
 
 ## ⚡ Quick Start (3 minuty)

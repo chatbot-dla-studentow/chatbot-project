@@ -81,14 +81,16 @@ System składa się z 5 wyspecjalizowanych agentów:
 ```bash
 ssh root@<new-vps-ip>
 git clone <repo-url> /opt/chatbot-project
-cd /opt/chatbot-project/deployment
-chmod +x setup-new-vps.sh
-./setup-new-vps.sh
+cd /opt/chatbot-project
+chmod +x deployment/setup-new-vps.sh
+./deployment/setup-new-vps.sh
 ```
 
-**Co robi:** Security hardening + Geo-blocking + Monitoring + Deployment w jednym skrypcie (~20 min)
+**Co robi:** Security hardening → Geo-blocking → Monitoring → Deployment (~20 min - all-in-one!)
 
-### Lokalna instalacja (Dev/Testing)
+**Alternatywa (manual):** Uruchom poszczególne skrypty z `deployment/server/` i `deployment/app/`
+
+### Lokalna instalacja (Dev/Testing - Windows lub Linux z WSL)
 
 **Wymagane:** aktywny VPN (WireGuard).
 

@@ -8,11 +8,23 @@
 
 ### ⚡ Breaking Change v2.0 (Stycz-2026)
 
-**Stare pliki `agents/*/docker-compose.yml` zostały USUNIĘTE** - były redundantne i mogły powodować konflikty.
+**Stare pliki:**
+- `agents/*/docker-compose.yml` - USUNIĘTE (były redundantne)
+- Deploy skrypty przeniesione do `deployment/app/` i `deployment/server/`
+
+✅ **Noweł struktura /deployment:**
+```
+deployment/
+├── setup-new-vps.sh          ← Uruchom ten!
+├── server/                  ← Bezpieczeństwo serwera
+├── app/                     ← Wdróżenie aplikacji
+└── docs/                    ← Dokumentacja
+```
 
 ✅ **Do wdrożenia teraz używaj:**
-- **Nowy VPS?** → `./deployment/setup-new-vps.sh` (rekomendowane!)
-- **Manualnie?** → główny `docker-compose.yml` w root katalogu
+- **Nowy VPS?** → `./deployment/setup-new-vps.sh` (rekomendowane!) ← ALL-IN-ONE
+- **Manualnie?** → `./deployment/server/secure.sh` + inne skrypty
+- **Aplikacji?** → `./deployment/app/deploy.sh`
 - **Lokalmente na dev?** → `make deploy` (z Makefile'a)
 
 ## Spis treści

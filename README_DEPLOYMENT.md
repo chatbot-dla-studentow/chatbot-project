@@ -9,9 +9,34 @@
 
 Kompletny system automatycznego wdrożenia chatbota na świeżą maszynę wirtualną lub VPS.
 
-## 📦 Co zostało stworzone?
+## 📋 Nowa struktura `deployment/` (v2.0)
 
-### Główne skrypty deployment
+### Główny orchestrator
+
+**`deployment/setup-new-vps.sh`** - ALL-IN-ONE setup dla nowego VPS
+- Sekwencyjnie uruchamia wszystkie fazy
+- Interactive prompts
+- Zalecane dla wdrożenia od zera
+
+### deployment/server/ - Konfiguracja serwera
+
+1. **`secure.sh`** - Security hardening
+   - fail2ban, UFW, SSH hardening
+   - Network security, automatic updates
+   - Trwa: ~5 minut
+
+2. **`geo-blocking.sh`** - EU-only geo-blocking
+   - ipset z IP ranges 28 krajów UE
+   - Weekly automatic updates
+   - Trwa: ~2 minuty
+
+3. **`monitoring-alerts.sh`** - Monitoring i alerty email
+   - Postfix configuration
+   - Health checks (co 4h)
+   - Security audits (daily)
+   - Trwa: ~3 minuty
+
+### deployment/app/ - Wdrożenie aplikacji
 
 1. **`deploy.sh`** - Główny skrypt wdrożenia dla Linux/VPS
    - Instalacja zależności (Docker, Docker Compose, Python)
@@ -58,39 +83,55 @@ Kompletny system automatycznego wdrożenia chatbota na świeżą maszynę wirtua
 
 ### Automatyzacja i system
 
-9. **`chatbot.service`** - Systemd service
-   - Automatyczne uruchamianie przy starcie systemu
-   - Zarządzanie przez systemctl
+10. **`chatbot.service`** - Systemd service (ROOT level)
+    - Automatyczne uruchamianie przy starcie systemu
+    - Zarządzanie przez systemctl
 
-10. **`crontab.example`** - Przykładowe cronjobs
+11. **`crontab.example`** - Przykładowe cronjobs (ROOT level)
     - Codzienne backupy
     - Monitoring zdrowia
     - Automatyczne czyszczenie
 
-11. **`Makefile`** - Skróty komend
+12. **`Makefile`** - Skróty komend (ROOT level)
     - `make deploy`, `make start`, `make stop`
     - `make health`, `make backup`
     - Wygodne skróty do częstych operacji
 
 ### Dokumentacja
 
-12. **`INSTALL.md`** - Szybki przewodnik instalacji
-13. **`DEPLOYMENT.md`** - Zaktualizowany o automatyczne wdrożenie
+13. **`deployment/docs/README.md`** - Szybki przewodnik (NOWA LOKALIZACJA)
+14. **`deployment/docs/SECURITY.md`** - Szczegółowa dokumentacja bezpieczeństwa (NOWA LOKALIZACJA)
+15. **`INSTALL.md`** - Szybki przewodnik instalacji (ROOT level)
+16. **`DEPLOYMENT.md`** - Zaktualizowany o automatyczne wdrożenie (ROOT level)
 
 ## 🎯 Quick Start
 
-### Linux/VPS (3 kroki)
+### Linux/VPS (RECOMMENDED - 1 komenda)
 
 ```bash
 # 1. Sklonuj projekt
 git clone https://github.com/your-username/chatbot-project.git
 cd chatbot-project
 
-# 2. Zainstaluj zależności
-sudo ./deploy.sh install_dependencies
+# 2. Uruchom all-in-one setup
+./deployment/setup-new-vps.sh
+```
 
-# 3. Wdróż system
-./deploy.sh deploy
+**Alternatywnie - Krok po kroku (manual):**
+
+```bash
+# 1. Security
+sudo ./deployment/server/secure.sh
+
+# 2. Geo-blocking
+sudo ./deployment/server/geo-blocking.sh
+
+# 3. Monitoring
+sudo ./deployment/server/monitoring-alerts.sh
+
+# 4. Application
+sudo ./deployment/app/deploy.sh install_dependencies
+./deployment/app/deploy.sh deploy
 ```
 
 ### Windows (3 kroki)
