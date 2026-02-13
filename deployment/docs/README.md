@@ -14,9 +14,8 @@ deployment/
 │   ├── geo-blocking.sh             # EU-only geo-blocking
 │   └── monitoring-alerts.sh        # Email alerts & monitoring
 │
-├── app/                             # Skrypty wdrożenia APLIKACJI
-│   ├── deploy.sh                   # Linux deployment
-│   ├── deploy.ps1                  # Windows PowerShell deployment
+├── app/                             # Skrypty wdrożenia APLIKACJI (Linux/WSL)
+│   ├── deploy.sh                   # Linux deployment orchestrator
 │   ├── health-check.sh             # Monitoring systemu
 │   ├── backup.sh                   # Backup wolumenów Docker
 │   ├── restore.sh                  # Restore z backupów

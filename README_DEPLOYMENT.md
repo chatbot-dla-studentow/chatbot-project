@@ -44,11 +44,7 @@ Kompletny system automatycznego wdrożenia chatbota na świeżą maszynę wirtua
    - Zarządzanie serwisami (start/stop/restart)
    - Diagnostyka i logi
 
-2. **`deploy.ps1`** - Skrypt PowerShell dla Windows
-   - Pełna kompatybilność z systemem Windows
-   - Te same funkcje co wersja Linux
-
-3. **`init-knowledge.sh`** - Inicjalizacja bazy wiedzy
+2. **`init-knowledge.sh`** - Inicjalizacja bazy wiedzy
    - Parsowanie dokumentów
    - Ładowanie do Qdrant
    - Weryfikacja i sprawdzanie jakości
@@ -67,12 +63,7 @@ Kompletny system automatycznego wdrożenia chatbota na świeżą maszynę wirtua
 
 ### Monitoring i utrzymanie
 
-6. **`health-check.sh`** - Sprawdzanie zdrowia systemu
-   - Status wszystkich serwisów
-   - Użycie zasobów (CPU, RAM, dysk)
-   - Sprawdzanie błędów w logach
-
-7. **`backup.sh`** - Automatyczne kopie zapasowe
+4. **`health-check.sh`** - Sprawdzanie zdrowia systemu
    - Backup wolumenów Docker
    - Backup konfiguracji
    - Czyszczenie starych backupów
@@ -84,22 +75,11 @@ Kompletny system automatycznego wdrożenia chatbota na świeżą maszynę wirtua
 ### Automatyzacja i system
 
 10. **`chatbot.service`** - Systemd service (ROOT level)
-    - Automatyczne uruchamianie przy starcie systemu
-    - Zarządzanie przez systemctl
-
-11. **`crontab.example`** - Przykładowe cronjobs (ROOT level)
     - Codzienne backupy
     - Monitoring zdrowia
     - Automatyczne czyszczenie
 
 12. **`Makefile`** - Skróty komend (ROOT level)
-    - `make deploy`, `make start`, `make stop`
-    - `make health`, `make backup`
-    - Wygodne skróty do częstych operacji
-
-### Dokumentacja
-
-13. **`deployment/docs/README.md`** - Szybki przewodnik (NOWA LOKALIZACJA)
 14. **`deployment/docs/SECURITY.md`** - Szczegółowa dokumentacja bezpieczeństwa (NOWA LOKALIZACJA)
 15. **`INSTALL.md`** - Szybki przewodnik instalacji (ROOT level)
 16. **`DEPLOYMENT.md`** - Zaktualizowany o automatyczne wdrożenie (ROOT level)
@@ -134,19 +114,16 @@ sudo ./deployment/app/deploy.sh install_dependencies
 ./deployment/app/deploy.sh deploy
 ```
 
-### Windows (3 kroki)
+### Windows (z WSL - not supported)
 
-```powershell
-# 1. Sklonuj projekt
-git clone https://github.com/your-username/chatbot-project.git
-cd chatbot-project
-
-# 2. Zainstaluj Docker Desktop ręcznie
-# https://www.docker.com/products/docker-desktop
-
-# 3. Wdróż system
-.\deploy.ps1 deploy
+```bash
+# Zamiast natywnego Windows, użyj WSL:
+wsl bash
+cd /home/user/chatbot-project
+./deployment/setup.sh
 ```
+
+**LUB Linux/VPS (recommended)**
 
 ### Użycie Make (opcjonalnie - Linux)
 
