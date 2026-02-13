@@ -281,7 +281,7 @@ cat > /etc/fail2ban/jail.local << 'EOF'
 bantime = 3600
 findtime = 600
 maxretry = 3
-destemail = adam.siehen@gmail.com
+destemail = adam.siehen@outlook.com
 sendername = ChatBot VPS Security
 action = %(action_)s
          %(action_mwl)s

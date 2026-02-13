@@ -98,7 +98,7 @@ chmod +x setup.sh
 | fail2ban Retries | 3 |
 | Updates | Automatic (daily) |
 | Geo-Block | EU countries only |
-| Alerts Email | adam.siehen@gmail.com |
+| Alerts Email | adam.siehen@outlook.com |
 | Alert Frequency | Every 4 hours + daily |
 
 ---
@@ -130,7 +130,7 @@ Wszystkie porty dostępne **tylko z VPN**:
 
 ### Monitoring
 
-Będziesz otrzymywać emaile na `adam.siehen@gmail.com` gdy:
+Będziesz otrzymywać emaile na `adam.siehen@outlook.com` gdy:
 - Dysk > 85%
 - RAM > 90%
 - Docker padł
@@ -228,7 +228,7 @@ ping 10.0.0.1  # Powinno działać
 systemctl status postfix
 
 # Test send email:
-echo "Test" | mail -s "Test" adam.siehen@gmail.com
+echo "Test" | mail -s "Test" adam.siehen@outlook.com
 
 # Pokaż logi:
 tail -f /var/log/mail.log

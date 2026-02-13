@@ -1,6 +1,6 @@
 #!/bin/bash
 # ChatBot Monitoring & Alerting Setup
-# Sends alerts to adam.siehen@gmail.com
+# Sends alerts to adam.siehen@outlook.com
 # Usage: sudo ./monitoring-alerts.sh
 
 set -e
@@ -92,7 +92,7 @@ cat > /usr/local/lib/chatbot-monitors/check-health.sh << 'EOF'
 #!/bin/bash
 
 HOSTNAME=$(hostname)
-ADMIN_EMAIL="adam.siehen@gmail.com"
+ADMIN_EMAIL="adam.siehen@outlook.com"
 ALERT_SUBJECT="⚠️ [$HOSTNAME] Alert"
 
 # Disk usage
@@ -183,7 +183,7 @@ cat > /usr/local/lib/chatbot-monitors/track-services.sh << 'EOF'
 #!/bin/bash
 
 HOSTNAME=$(hostname)
-ADMIN_EMAIL="adam.siehen@gmail.com"
+ADMIN_EMAIL="adam.siehen@outlook.com"
 
 # Check if services were restarted
 LAST_BOOT=$(systemctl show -p ActiveEnterTimestamp --value)
@@ -222,11 +222,11 @@ cat > /etc/fail2ban/action.d/sendmail-alert.conf << 'EOF'
 # Send email alert when IP is banned
 
 [Definition]
-actionstart = echo "Jail %(name)s started on <ip>" | mail -s "[fail2ban] %(name)s started" adam.siehen@gmail.com
-actionstop = echo "Jail %(name)s stopped" | mail -s "[fail2ban] %(name)s stopped" adam.siehen@gmail.com
+actionstart = echo "Jail %(name)s started on <ip>" | mail -s "[fail2ban] %(name)s started" adam.siehen@outlook.com
+actionstop = echo "Jail %(name)s stopped" | mail -s "[fail2ban] %(name)s stopped" adam.siehen@outlook.com
 actioncheck = # placeholder
-actionban = echo "IP banned: <ip>" | mail -s "[fail2ban] Ban alert from %(name)s" adam.siehen@gmail.com
-actionunban = echo "IP unbanned: <ip>" | mail -s "[fail2ban] Unban alert from %(name)s" adam.siehen@gmail.com
+actionban = echo "IP banned: <ip>" | mail -s "[fail2ban] Ban alert from %(name)s" adam.siehen@outlook.com
+actionunban = echo "IP unbanned: <ip>" | mail -s "[fail2ban] Unban alert from %(name)s" adam.siehen@outlook.com
 
 [Init]
 EOF
@@ -265,7 +265,7 @@ cat > /usr/local/lib/chatbot-monitors/security-audit.sh << 'EOF'
 #!/bin/bash
 
 HOSTNAME=$(hostname)
-ADMIN_EMAIL="adam.siehen@gmail.com"
+ADMIN_EMAIL="adam.siehen@outlook.com"
 
 # Check SSH key access
 UNAUTHORIZED_KEYS=$(grep -c "^ssh-rsa\|^ecdsa\|^ssh-ed25519" ~/.ssh/authorized_keys 2>/dev/null || echo 0)

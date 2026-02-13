@@ -353,7 +353,7 @@ sudo systemctl status postfix
 mailq
 
 # Test
-echo "Test" | mail -s "Test" adam.siehen@gmail.com
+echo "Test" | mail -s "Test" adam.siehen@outlook.com
 
 # Logi
 sudo tail -f /var/log/mail.log
@@ -387,7 +387,7 @@ sudo ufw reload
 - [ ] Automatic updates włączone
 - [ ] Geo-blocking skonfigurowany dla UE
 - [ ] Monitoring alerts działają
-- [ ] Otrzymywasz test email na adam.siehen@gmail.com
+- [ ] Otrzymywasz test email na adam.siehen@outlook.com
 - [ ] VPN connection testowana
 - [ ] Backup strategy wdrożona
 - [ ] SSH client skonfigurowany
