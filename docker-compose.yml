@@ -36,28 +36,6 @@ services:
       timeout: 10s
       retries: 3
 
-  # Node-RED - Workflow Automation
-  node-red:
-    image: nodered/node-red:latest
-    container_name: node-red
-    restart: unless-stopped
-    ports:
-      - "${NODERED_PORT:-1880}:1880"
-    volumes:
-      - nodered_data:/data
-    networks:
-      - ai_network
-    depends_on:
-      qdrant:
-        condition: service_healthy
-      ollama:
-        condition: service_healthy
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:1880/"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
-
   # Agent 1 - Student Support Chatbot
   agent1_student:
     build: ./agents/agent1_student
@@ -82,8 +60,6 @@ services:
       qdrant:
         condition: service_healthy
       ollama:
-        condition: service_healthy
-      node-red:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
@@ -162,7 +138,6 @@ services:
 volumes:
   qdrant_data:
   ollama_data:
-  nodered_data:
   open_webui_data:
 
 networks:
