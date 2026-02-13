@@ -15,7 +15,8 @@ deployment/
 │   └── monitoring-alerts.sh        # Email alerts & monitoring
 │
 ├── app/                             # Skrypty wdrożenia APLIKACJI (Linux/WSL)
-│   ├── deploy.sh                   # Linux deployment orchestrator
+│   ├── deploy.sh                   # Linux deployment orchestrator (Ubuntu/Debian)
+│   ├── deploy-arch.sh              # Arch Linux deployment orchestrator
 │   ├── health-check.sh             # Monitoring systemu
 │   ├── backup.sh                   # Backup wolumenów Docker
 │   ├── restore.sh                  # Restore z backupów
@@ -157,8 +158,14 @@ sudo ./monitoring-alerts.sh
 
 ```bash
 cd /opt/chatbot-project
+
+# Ubuntu/Debian
 sudo ./deployment/app/deploy.sh install_dependencies
 ./deployment/app/deploy.sh deploy
+
+# Arch Linux
+sudo ./deployment/app/deploy-arch.sh install_dependencies
+./deployment/app/deploy-arch.sh deploy
 ```
 
 ---

@@ -1,42 +1,6 @@
 version: '3.8'
 
 services:
-  # Qdrant - Vector Database
-  qdrant:
-    image: qdrant/qdrant:latest
-    container_name: qdrant
-    restart: unless-stopped
-    ports:
-      - "${QDRANT_PORT:-6333}:6333"
-      - "6334:6334"
-    volumes:
-      - qdrant_data:/qdrant/storage
-    networks:
-      - ai_network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:6333/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-  # Ollama - LLM Service
-  ollama:
-    image: ollama/ollama:latest
-    container_name: ollama
-    restart: unless-stopped
-    ports:
-      - "${OLLAMA_PORT:-11434}:11434"
-    volumes:
-      - ollama_data:/root/.ollama
-    networks:
-      - ai_network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
-  # Agent 3 - Analytics
   agent3_analytics:
     build: .
     container_name: agent3_analytics
@@ -50,21 +14,12 @@ services:
       - OLLAMA_URL=http://ollama:11434
       - QDRANT_HOST=qdrant
       - QDRANT_PORT=6333
-    depends_on:
-      qdrant:
-        condition: service_healthy
-      ollama:
-        condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 30s
       timeout: 5s
       retries: 3
 
-volumes:
-  qdrant_data:
-  ollama_data:
-
 networks:
   ai_network:
-    driver: bridge
+    external: true
