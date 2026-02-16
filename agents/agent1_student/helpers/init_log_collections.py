@@ -40,7 +40,7 @@ def create_log_collections(client: QdrantClient, vector_size: int):
             # Sprawdź czy kolekcja istnieje
             collections = client.get_collections().collections
             if any(c.name == collection_name for c in collections):
-                print(f"⚠️  Kolekcja '{collection_name}' już istnieje - pomijam")
+                print(f"️  Kolekcja '{collection_name}' już istnieje - pomijam")
                 continue
             
             # Utwórz nową kolekcję
@@ -51,10 +51,10 @@ def create_log_collections(client: QdrantClient, vector_size: int):
                     distance=Distance.COSINE
                 )
             )
-            print(f"✓ Utworzono kolekcję '{collection_name}' - {description}")
+            print(f"Utworzono kolekcję '{collection_name}' - {description}")
             
         except Exception as e:
-            print(f"✗ Błąd tworzenia kolekcji {collection_name}: {e}")
+            print(f"Błąd tworzenia kolekcji {collection_name}: {e}")
 
 def main():
     print("=" * 70)
@@ -66,22 +66,22 @@ def main():
     try:
         test_embedding = get_embedding("test")
         if not test_embedding:
-            print("✗ Błąd: Nie można uzyskać embeddingu z Ollama")
+            print("Błąd: Nie można uzyskać embeddingu z Ollama")
             return
         
         vector_size = len(test_embedding)
-        print(f"✓ Model {EMBEDDING_MODEL} gotowy (wymiar: {vector_size})")
+        print(f"Model {EMBEDDING_MODEL} gotowy (wymiar: {vector_size})")
     except Exception as e:
-        print(f"✗ Błąd: {e}")
+        print(f"Błąd: {e}")
         return
     
     # 2. Połącz z Qdrant
     print(f"\n2. Łączenie z Qdrant ({QDRANT_HOST}:{QDRANT_PORT})...")
     try:
         client = QdrantClient(host=QDRANT_HOST, port=QDRANT_PORT)
-        print("✓ Połączono!")
+        print("Połączono!")
     except Exception as e:
-        print(f"✗ Błąd połączenia: {e}")
+        print(f"Błąd połączenia: {e}")
         return
     
     # 3. Utwórz kolekcje
@@ -94,12 +94,12 @@ def main():
     for collection_name in COLLECTIONS.keys():
         if any(c.name == collection_name for c in collections):
             info = client.get_collection(collection_name)
-            print(f"   ✓ {collection_name}: {info.points_count} punktów")
+            print(f"   {collection_name}: {info.points_count} punktów")
         else:
-            print(f"   ✗ {collection_name}: nie utworzono")
+            print(f"   {collection_name}: nie utworzono")
     
     print("\n" + "=" * 70)
-    print("✓ Inicjalizacja zakończona!")
+    print("Inicjalizacja zakończona!")
     print("=" * 70)
 
 if __name__ == "__main__":

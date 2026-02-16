@@ -35,7 +35,7 @@ def test_knowledge_present():
             
             if "sources" in resp:
                 sources = resp["sources"]
-                print(f"✓ Has 'sources' metadata")
+                print(f"Has 'sources' metadata")
                 print(f"  - has_knowledge: {sources.get('has_knowledge')}")
                 print(f"  - documents count: {len(sources.get('documents', []))}")
                 print(f"  - category: {sources.get('category')}")
@@ -49,17 +49,17 @@ def test_knowledge_present():
                 
                 # Test assertion
                 if sources.get('has_knowledge'):
-                    print("\n✓ TEST PASSED: KB knowledge was used")
+                    print("\nTEST PASSED: KB knowledge was used")
                 else:
-                    print("\n✗ TEST FAILED: KB knowledge was NOT used")
+                    print("\nTEST FAILED: KB knowledge was NOT used")
             else:
-                print(f"✗ No 'sources' in response")
+                print(f"No 'sources' in response")
         else:
-            print(f"✗ Bad status code: {r.status_code}")
+            print(f"Bad status code: {r.status_code}")
             print(f"Error: {r.text[:200]}")
             
     except Exception as e:
-        print(f"✗ Exception: {e}")
+        print(f"Exception: {e}")
 
 def test_knowledge_absent():
     """Test 2: Query that does NOT exist in knowledge base"""
@@ -82,7 +82,7 @@ def test_knowledge_absent():
             
             if "sources" in resp:
                 sources = resp["sources"]
-                print(f"✓ Has 'sources' metadata")
+                print(f"Has 'sources' metadata")
                 print(f"  - has_knowledge: {sources.get('has_knowledge')}")
                 print(f"  - documents count: {len(sources.get('documents', []))}")
                 print(f"  - category: {sources.get('category')}")
@@ -96,17 +96,17 @@ def test_knowledge_absent():
                 
                 # Test assertion
                 if not sources.get('has_knowledge'):
-                    print("\n✓ TEST PASSED: No KB knowledge was used (as expected)")
+                    print("\nTEST PASSED: No KB knowledge was used (as expected)")
                 else:
-                    print("\n⚠ TEST UNCLEAR: KB knowledge was used (unexpected?)")
+                    print("\nTEST UNCLEAR: KB knowledge was used (unexpected?)")
             else:
-                print(f"✗ No 'sources' in response")
+                print(f"No 'sources' in response")
         else:
-            print(f"✗ Bad status code: {r.status_code}")
+            print(f"Bad status code: {r.status_code}")
             print(f"Error: {r.text[:200]}")
             
     except Exception as e:
-        print(f"✗ Exception: {e}")
+        print(f"Exception: {e}")
 
 def verify_collection_usage():
     """Verify that RAG uses agent1_student collection"""

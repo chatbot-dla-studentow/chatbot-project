@@ -1,6 +1,6 @@
 # Instrukcje Konfiguracji: GitHub Actions + WireGuard Deployment
 
-> ⚠️ **UWAGA:** Rzeczywiste wartości IP, kluczy i credentials znajdują się w prywatnym folderze `private/docs/GITHUB_ACTIONS_SETUP.md` (OneDrive backup)
+> ️ **UWAGA:** Rzeczywiste wartości IP, kluczy i credentials znajdują się w prywatnym folderze `private/docs/GITHUB_ACTIONS_SETUP.md` (OneDrive backup)
 
 ## 1. Setup WireGuard na VPS
 
@@ -25,7 +25,7 @@ Private Key: [ZAPISZ TO DO private/configs/]
 Public Key: [ZAPISZ TO DO private/docs/]
 ```
 
-**⚠️ WAŻNE:** Zapisz te klucze w bezpiecznym miejscu (OneDrive private/) - będą potrzebne dla GitHub Actions!
+**️ WAŻNE:** Zapisz te klucze w bezpiecznym miejscu (OneDrive private/) - będą potrzebne dla GitHub Actions!
 
 ### Krok 3: Sprawdzić status WireGuard
 
@@ -167,7 +167,7 @@ sudo ufw status
 
 ---
 
-## 📚 Powiązana dokumentacja
+## Powiązana dokumentacja
 
 - [deployment/docs/SSH_ACCESS.md](SSH_ACCESS.md) - Dostęp SSH (template)
 - [deployment/docs/SECURITY.md](SECURITY.md) - Zabezpieczenia
@@ -180,7 +180,7 @@ sudo ufw status
 - `private/docs/GITHUB_ACTIONS_SETUP.md` (kopia z prawdziwymi danymi)
 - `private/configs/wg-client.conf` (prawdziwa konfiguracja WireGuard)
 
-📦 **Backup:** OneDrive → Praca inżynierska → chatbot-private/
+**Backup:** OneDrive → Praca inżynierska → chatbot-private/
 
 ---
 

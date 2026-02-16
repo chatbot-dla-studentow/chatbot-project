@@ -49,7 +49,7 @@ System składa się z 5 wyspecjalizowanych agentów:
 ├── docs_agent1/            # Dokumentacja Agent1
 ├── DEPLOYMENT.md           # Szczegóły wdrożenia
 ├── AGENT1_OVERVIEW.md      # Dokumentacja Agent1 (szczegółowa)
-└── wg-client.conf          # Konfiguracja VPN
+└── wg-client.conf.example  # Konfiguracja VPN (template, real: private/)
 ```
 
 ## Zespół i zakres prac
@@ -67,16 +67,16 @@ System składa się z 5 wyspecjalizowanych agentów:
 - [AGENT1_OVERVIEW.md](AGENT1_OVERVIEW.md) - pełna dokumentacja Agent1
 - [docs_agent1/knowledge.md](docs_agent1/knowledge.md) - dokumentacja bazy wiedzy
 - [docs_agent1/ARCHITECTURE.md](docs_agent1/ARCHITECTURE.md) - architektura systemu
-- [docs_agent1/QUICK_START.md](docs_agent1/QUICK_START.md) - szybki start (Agent1)
+- [docs_agent1/User guide/QUICK_START.md](docs_agent1/User%20guide/QUICK_START.md) - szybki start (Agent1)
 - [docs_agent1/INDEX.md](docs_agent1/INDEX.md) - indeks dokumentów Agent1
 - [DEPLOYMENT.md](DEPLOYMENT.md) - szczegóły wdrożenia i środowiska
-- [wg-client.conf](wg-client.conf) - konfiguracja WireGuard (plik w repo)
+- [wg-client.conf.example](wg-client.conf.example) - konfiguracja WireGuard (template, real: private/deployment-vps/)
 - [BPMN/agent1_previous.bpmn](BPMN/agent1_previous.bpmn) - diagram procesu pierwotnego
 - [BPMN/agent1_actual.bpmn](BPMN/agent1_actual.bpmn) - diagram procesu rzeczywistego
 
 ## Szybki deploy i uruchomienie
 
-### ⚡ Nowy VPS (Rekomendowane - wszystko automatyczne!)
+### Nowy VPS (Rekomendowane - wszystko automatyczne!)
 
 ```bash
 ssh root@<new-vps-ip>
@@ -99,8 +99,10 @@ chmod +x deployment/setup.sh
 Połączenie VPN jest wymagane, aby uzyskać dostęp do usług.
 
 1. Zainstaluj WireGuard: https://www.wireguard.com/install/
-2. Zaimportuj konfigurację z pliku [wg-client.conf](wg-client.conf)
+2. Zaimportuj konfigurację z pliku `private/deployment-vps/wg-client.conf` (dostęp: OneDrive - dla członków zespołu)
 3. Aktywuj tunel i sprawdź połączenie: `ping 10.0.0.1`
+
+**Uwaga:** Plik [wg-client.conf.example](wg-client.conf.example) w repo to tylko template bez kluczy prywatnych.
 
 ### 1) Połączenie z serwerem
 
@@ -139,7 +141,7 @@ Pełny opis: [docs_agent1/ARCHITECTURE.md](docs_agent1/ARCHITECTURE.md)
 
 Projekt przeszedł ewolucję od pierwotnie zaplanowanej architektury multi-agentowej do zoptymalizowanego systemu RAG skupionego na Agent1.
 
-### 📋 Pierwotny Proces (Planowany)
+### Pierwotny Proces (Planowany)
 
 **Plik:** [BPMN/agent1_previous.bpmn](BPMN/agent1_previous.bpmn)
 
@@ -148,18 +150,18 @@ Pierwotny diagram zakładał pełną orkiestrację 5 agentów z kompleksowym wor
 ![Agent1 - Proces Pierwotny](BPMN/agent1_previous.svg)
 
 **Charakterystyka pierwotnego procesu:**
-- ✅ **Agent1-5** - pełna integracja wszystkich 5 agentów
-- ✅ **Ankiety** - moduł zbierania feedbacku (Agent3 Analytics)
-- ✅ **Zgłoszenia BOS** - formularze zgłoszeń do Biura Obsługi Studenta (Agent4)
-- ✅ **Weryfikacja RODO** - kontrola zgód na przetwarzanie danych (Agent5 Security)
-- ✅ **Node-RED orchestration** - centralna orkiestracja przepływu między agentami
-- ✅ **Złożone gateways** - wielopoziomowe decyzje użytkownika
+- **Agent1-5** - pełna integracja wszystkich 5 agentów
+- **Ankiety** - moduł zbierania feedbacku (Agent3 Analytics)
+- **Zgłoszenia BOS** - formularze zgłoszeń do Biura Obsługi Studenta (Agent4)
+- **Weryfikacja RODO** - kontrola zgód na przetwarzanie danych (Agent5 Security)
+- **Node-RED orchestration** - centralna orkiestracja przepływu między agentami
+- **Złożone gateways** - wielopoziomowe decyzje użytkownika
 
 **Status:** Planowany, częściowo zaimplementowany (tylko Agent1 w pełni)
 
 ---
 
-### 🚀 Rzeczywisty Proces (Zaimplementowany)
+### Rzeczywisty Proces (Zaimplementowany)
 
 **Plik:** [BPMN/agent1_actual.bpmn](BPMN/agent1_actual.bpmn)
 
@@ -168,20 +170,20 @@ Zoptymalizowany pipeline RAG skupiony na Agent1 Student z pełnym logowaniem:
 ![Agent1 - Proces Rzeczywisty](BPMN/agent1_actual.svg)
 
 **Charakterystyka rzeczywistego procesu:**
-- ✅ **RAG Pipeline** - Retrieval-Augmented Generation (Qdrant + Ollama)
-- ✅ **Kategoryzacja automatyczna** - `detect_category()` dla każdego zapytania
-- ✅ **Dual Logging** - równoległe logowanie do `query_logs` i `qa_logs` w Qdrant
-- ✅ **Vector Search** - embedding przez `nomic-embed-text`, search limit=2, score>0.25
-- ✅ **Context Enrichment** - wzbogacanie prompt o 600 znaków kontekstu z dokumentów
-- ✅ **Ollama Optimization** - temperature=0.3, num_predict=80, num_ctx=1024
-- ✅ **Sources Metadata** - zwracanie źródeł dokumentów w odpowiedzi JSON
-- ✅ **Open WebUI Integration** - endpoint `/api/chat` kompatybilny z Ollama API
+- **RAG Pipeline** - Retrieval-Augmented Generation (Qdrant + Ollama)
+- **Kategoryzacja automatyczna** - `detect_category()` dla każdego zapytania
+- **Dual Logging** - równoległe logowanie do `query_logs` i `qa_logs` w Qdrant
+- **Vector Search** - embedding przez `nomic-embed-text`, search limit=2, score>0.25
+- **Context Enrichment** - wzbogacanie prompt o 600 znaków kontekstu z dokumentów
+- **Ollama Optimization** - temperature=0.3, num_predict=80, num_ctx=1024
+- **Sources Metadata** - zwracanie źródeł dokumentów w odpowiedzi JSON
+- **Open WebUI Integration** - endpoint `/api/chat` kompatybilny z Ollama API
 
 **Status:** W pełni funkcjonalny, produkcja (luty 2026)
 
 ---
 
-### 🔄 Kluczowe Różnice
+### Kluczowe Różnice
 
 | Aspekt | Pierwotny Plan | Rzeczywista Implementacja |
 |--------|----------------|---------------------------|
@@ -323,7 +325,7 @@ git push origin main
 - **Serwer VPS:** <VPS_HOSTNAME> (<VPS_PUBLIC_IP>)
 - **Projekt na VPS:** `/opt/chatbot-project`
 
-> 📦 **Rzeczywiste wartości IP i credentials:** `private/` folder (OneDrive backup)
+> **Rzeczywiste wartości IP i credentials:** `private/` folder (OneDrive backup)
 
 ## Metryki Projektu
 

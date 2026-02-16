@@ -137,7 +137,7 @@ def main():
             return
         
         vector_size = len(test_embedding)
-        print(f"   ✓ Model {EMBEDDING_MODEL} gotowy (wymiar: {vector_size})")
+        print(f"   Model {EMBEDDING_MODEL} gotowy (wymiar: {vector_size})")
     except Exception as e:
         print(f"   BŁĄD: {e}")
         return
@@ -154,7 +154,7 @@ def main():
             print(f"   Użyj najpierw 'load_knowledge_base.py' aby stworzyć kolekcję.")
             return
         
-        print(f"   ✓ Połączono z kolekcją '{COLLECTION_NAME}'")
+        print(f"   Połączono z kolekcją '{COLLECTION_NAME}'")
     except Exception as e:
         print(f"   BŁĄD: {e}")
         return
@@ -182,7 +182,7 @@ def main():
     print(f"   Pominięto {skipped_count} istniejących dokumentów")
     
     if not new_documents:
-        print("\n✓ Baza wiedzy jest aktualna - brak nowych dokumentów do dodania!")
+        print("\nBaza wiedzy jest aktualna - brak nowych dokumentów do dodania!")
         return
     
     # 6. Dodaj nowe dokumenty
@@ -196,7 +196,7 @@ def main():
             # Generuj embedding
             embedding = get_embedding(doc["content"])
             if not embedding:
-                print(f"   ✗ Błąd embeddingu dla dokumentu {idx}/{len(new_documents)}")
+                print(f"   Błąd embeddingu dla dokumentu {idx}/{len(new_documents)}")
                 failed_count += 1
                 continue
             
@@ -226,7 +226,7 @@ def main():
                 print(f"   Postęp: {idx}/{len(new_documents)} ({progress:.1f}%) - dodano: {added_count}, błędy: {failed_count}", end='\r')
         
         except Exception as e:
-            print(f"\n   ✗ Błąd dodawania dokumentu {idx}: {e}")
+            print(f"\n   Błąd dodawania dokumentu {idx}: {e}")
             failed_count += 1
     
     print()  # Nowa linia po progress bar
@@ -238,8 +238,8 @@ def main():
     print(f"Dokumenty w JSON:           {len(all_documents)}")
     print(f"Istniejące w Qdrant:        {len(existing_hashes)}")
     print(f"Nowe do dodania:            {len(new_documents)}")
-    print(f"✓ Pomyślnie dodane:         {added_count}")
-    print(f"✗ Błędy:                    {failed_count}")
+    print(f"Pomyślnie dodane:         {added_count}")
+    print(f"Błędy:                    {failed_count}")
     
     # Sprawdź finalny stan kolekcji
     try:
@@ -251,9 +251,9 @@ def main():
     print("=" * 70)
     
     if failed_count > 0:
-        print(f"\n⚠️  UWAGA: {failed_count} dokumentów nie zostało dodanych z powodu błędów")
+        print(f"\n️  UWAGA: {failed_count} dokumentów nie zostało dodanych z powodu błędów")
     else:
-        print("\n✓ Aktualizacja zakończona sukcesem!")
+        print("\nAktualizacja zakończona sukcesem!")
 
 if __name__ == "__main__":
     main()

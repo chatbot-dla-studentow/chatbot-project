@@ -40,8 +40,8 @@ python init_log_collections.py
 
 **Wynik:**
 ```
-✓ Utworzono kolekcję 'agent1_query_logs' - Logi zapytań użytkowników
-✓ Utworzono kolekcję 'agent1_qa_logs' - Logi par pytanie-odpowiedź
+Utworzono kolekcję 'agent1_query_logs' - Logi zapytań użytkowników
+Utworzono kolekcję 'agent1_qa_logs' - Logi par pytanie-odpowiedź
 
 Inicjalizacja zakończona pomyślnie!
 Utworzono 2 kolekcje do logowania.

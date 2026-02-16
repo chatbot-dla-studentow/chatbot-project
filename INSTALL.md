@@ -1,10 +1,10 @@
-﻿# 🚀 Quick Install Guide
+﻿# Quick Install Guide
 
-⚠️ **UWAGA - v2.0 BREAKING CHANGE:** Stare pliki `agents/*/docker-compose.yml` zostały usunięte. Do wdrożenia używaj `/deployment/setup.sh` lub główny `docker-compose.yml`.
+️ **UWAGA - v2.0 BREAKING CHANGE:** Stare pliki `agents/*/docker-compose.yml` zostały usunięte. Do wdrożenia używaj `/deployment/setup.sh` lub główny `docker-compose.yml`.
 
 Szybki przewodnik instalacji systemu chatbot na nowej maszynie.
 
-## 📋 Przed rozpoczęciem
+## Przed rozpoczęciem
 
 **Wymagania:**
 - Ubuntu 22.04+ / Debian 11+ (lub WSL2 na Windows)
@@ -12,7 +12,7 @@ Szybki przewodnik instalacji systemu chatbot na nowej maszynie.
 - 30 GB wolnego miejsca
 - Uprawnienia sudo
 
-## ⚡ 3-krokowa instalacja
+## 3-krokowa instalacja
 
 ### Krok 1: Sklonuj repozytorium
 
@@ -28,10 +28,10 @@ sudo ./deployment/app/deploy.sh install_dependencies
 ```
 
 To zainstaluje:
-- ✅ Docker Engine
-- ✅ Docker Compose V2
-- ✅ Git, Python3, curl
-- ✅ Inne wymagane pakiety
+- Docker Engine
+- Docker Compose V2
+- Git, Python3, curl
+- Inne wymagane pakiety
 
 **UWAGA:** Po instalacji może być konieczne wylogowanie i ponowne zalogowanie, aby zmiany w grupie docker zaczęły działać.
 
@@ -42,18 +42,18 @@ To zainstaluje:
 ```
 
 To automatycznie:
-- ✅ Utworzy sieć Docker
-- ✅ Uruchomi Qdrant (vector DB)
-- ✅ Uruchomi Ollama (LLM)
-- ✅ Pobierze model mistral:7b
-- ✅ Uruchomi Node-RED
-- ✅ Zainicjalizuje bazę wiedzy
-- ✅ Uruchomi wszystkich agentów
-- ✅ Uruchomi Open WebUI
+- Utworzy sieć Docker
+- Uruchomi Qdrant (vector DB)
+- Uruchomi Ollama (LLM)
+- Pobierze model mistral:7b
+- Uruchomi Node-RED
+- Zainicjalizuje bazę wiedzy
+- Uruchomi wszystkich agentów
+- Uruchomi Open WebUI
 
 **Czas wdrożenia:** ~10-15 minut
 
-## ✅ Sprawdzenie instalacji
+## Sprawdzenie instalacji
 
 Po zakończeniu sprawdź status:
 
@@ -75,7 +75,7 @@ Otwórz w przeglądarce:
 - **Node-RED:** http://localhost:1880
 - **Open WebUI:** http://localhost:3000
 
-## 🔧 Podstawowe komendy
+## Podstawowe komendy
 
 ```bash
 # Status wszystkich serwisów
@@ -97,7 +97,7 @@ Otwórz w przeglądarce:
 ./deployment/app/deploy.sh init-kb
 ```
 
-## 📝 Konfiguracja (opcjonalna)
+## Konfiguracja (opcjonalna)
 
 Jeśli chcesz zmienić domyślne ustawienia:
 
@@ -115,7 +115,7 @@ Możesz zmienić:
 - Limity zasobów
 - Klucze API
 
-## 🎯 Test działania
+## Test działania
 
 Wyślij testowe zapytanie do Agent1:
 
@@ -181,13 +181,13 @@ sudo usermod -aG docker $USER
 curl http://localhost:6333/collections/agent1_student
 ```
 
-## 📚 Pełna dokumentacja
+## Pełna dokumentacja
 
 - **[DEPLOYMENT.md](DEPLOYMENT.md)** - Pełna dokumentacja wdrożenia
 - **[README.md](README.md)** - Przegląd projektu
 - **[docs_agent1/](docs_agent1/)** - Dokumentacja Agent1
 
-## 🆘 Potrzebujesz pomocy?
+## Potrzebujesz pomocy?
 
 ```bash
 # Pokaż wszystkie komendy
@@ -202,7 +202,7 @@ curl http://localhost:6333/collections/agent1_student
 ./deployment/app/deploy.sh logs ollama
 ```
 
-## 🧹 Dezinstalacja
+## Dezinstalacja
 
 Jeśli chcesz usunąć wszystko (UWAGA: usunie dane!):
 
@@ -212,9 +212,6 @@ Jeśli chcesz usunąć wszystko (UWAGA: usunie dane!):
 
 ---
 
-**Gotowe!** System chatbot jest teraz uruchomiony i gotowy do użycia. 🎉
-
-
-## Maintainers
+**Gotowe!** System chatbot jest teraz uruchomiony i gotowy do użycia. ## Maintainers
 - Patryk Boguski (ptrBoguski)
 - Adam Siehen (adamsiehen)

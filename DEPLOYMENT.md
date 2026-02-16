@@ -1,18 +1,18 @@
 ﻿# Instrukcja wdrożenia i dostępu do chatbota
 
-> **Powiązana dokumentacja:** [README.md](README.md) | [AGENT1_OVERVIEW.md](AGENT1_OVERVIEW.md) | [docs_agent1/ARCHITECTURE.md](docs_agent1/ARCHITECTURE.md) | [docs_agent1/QUICK_START.md](docs_agent1/QUICK_START.md)
+> **Powiązana dokumentacja:** [README.md](README.md) | [AGENT1_OVERVIEW.md](AGENT1_OVERVIEW.md) | [docs_agent1/ARCHITECTURE.md](docs_agent1/ARCHITECTURE.md) | [docs_agent1/User guide/QUICK_START.md](docs_agent1/User%20guide/QUICK_START.md)
 
-⚠️ **VPS został zaatakowany i zbanowany. Przenieśliśmy się na nowy serwer.**
+️ **VPS został zaatakowany i zbanowany. Przenieśliśmy się na nowy serwer.**
 
-> 📘 **Nowa infrastruktura deployment jest gotowa!** Przejdź do [deployment/README.md](deployment/README.md) aby poznać automatyczną procedurę wdrożenia dla **świeżego VPS**.
+> **Nowa infrastruktura deployment jest gotowa!** Przejdź do [deployment/README.md](deployment/README.md) aby poznać automatyczną procedurę wdrożenia dla **świeżego VPS**.
 
-### ⚡ Breaking Change v2.0 (Stycz-2026)
+### Breaking Change v2.0 (Stycz-2026)
 
 **Zmiany:**
 - `agents/*/docker-compose.yml` - PRZYWRÓCONE (do uruchamiania pojedynczych agentów)
 - Deploy skrypty przeniesione do `deployment/app/` i `deployment/server/`
 
-✅ **Noweł struktura /deployment:**
+**Noweł struktura /deployment:**
 ```
 deployment/
 ├── setup.sh                  ← Uruchom ten! (ALL-IN-ONE)
@@ -21,18 +21,18 @@ deployment/
 └── docs/                    ← Dokumentacja
 ```
 
-✅ **Do wdrożenia teraz używaj:**
+**Do wdrożenia teraz używaj:**
 - **Nowy VPS?** → `./deployment/setup.sh` (rekomendowane!) ← ALL-IN-ONE
 - **Manualnie?** → `./deployment/server/secure.sh` + inne skrypty
 - **Aplikacji?** → `./deployment/app/deploy.sh`
 - **Lokalmente na dev?** → `make deploy` (z Makefile'a)
 
-✅ **Uruchamianie pojedynczych agentów (opcjonalnie):**
+**Uruchamianie pojedynczych agentów (opcjonalnie):**
 - `agents/*/docker-compose.yml` (wymaga uruchomionych `qdrant` i `ollama` w sieci `ai_network`)
 
 ## Spis treści
 
-- [🚀 Automatyczne wdrożenie](#-automatyczne-wdrożenie-nowa-maszyna)
+- [Automatyczne wdrożenie](#-automatyczne-wdrożenie-nowa-maszyna)
   - [Quick Start - Świeży VPS](#quick-start---świeży-vps) ← **START TUTAJ DLA NOWEGO VPS**
   - [Wymagania systemowe](#wymagania-systemowe)
   - [Konfiguracja środowiska](#konfiguracja-środowiska)
@@ -50,9 +50,9 @@ deployment/
 
 ---
 
-## 🚀 Automatyczne wdrożenie (nowa maszyna)
+## Automatyczne wdrożenie (nowa maszyna)
 
-> ✅ **Używaj tego dla nowego VPS!** Pełne bezpieczeństwo + wdrożenie w jednym skrypcie interaktywnym.
+> **Używaj tego dla nowego VPS!** Pełne bezpieczeństwo + wdrożenie w jednym skrypcie interaktywnym.
 
 ### Quick Start - Świeży VPS
 
@@ -76,41 +76,39 @@ sudo ./deployment/setup.sh
 ### Co obejmuje `setup.sh` ?
 
 ```
-Phase 1: 🔒 Zabezpieczenie systemu (5 min)
+Phase 1: Zabezpieczenie systemu (5 min)
   ├─ fail2ban (ochrona brute-force SSH)
   ├─ UFW firewall (port whitelisting)
   ├─ SSH hardening (port 2222, key auth only)
   ├─ Network security (SYN cookies, IP spoofing protection)
   └─ Automatic updates (daily security patches)
 
-Phase 2: 🌍 Geo-blocking (2 min)
+Phase 2: Geo-blocking (2 min)
   └─ EU-only access (28 krajów, weekly updates)
 
-Phase 3: 📬 Monitoring & Alerts (3 min)
+Phase 3: Monitoring & Alerts (3 min)
   ├─ Email alerts do <ADMIN_EMAIL>
   ├─ Health checks (co 4 godziny)
   ├─ Security audits (codziennie)
   └─ chatbot-status dashboard
 
-Phase 4: 🚀 Deployment aplikacji (8-10 min)
+Phase 4: Deployment aplikacji (8-10 min)
   ├─ Docker + Compose installation
   ├─ Pobieranie modelu Ollama (mistral:7b)
   ├─ Inicjalizacja bazy wiedzy
   └─ Start wszystkich serwisów
 ```
 
-**Wynik:** Całowicie zabezpieczony system gotowy do produkcji ✓
-
----
+**Wynik:** Całowicie zabezpieczony system gotowy do produkcji ---
 
 ### Przydatne linkii do dokumentacji
 
 | Dokument | Opis |
 |----------|------|
-| [deployment/README.md](deployment/README.md) | 📖 Przewodnik szybkiego startu (czytaj pierwszy!) |
-| [deployment/SECURITY.md](deployment/SECURITY.md) | 🔒 Szczegółowa dokumentacja bezpieczeństwa |
-| [INSTALL.md](INSTALL.md) | 🔧 Instrukcja instalacji krok po kroku |
-| [README_DEPLOYMENT.md](README_DEPLOYMENT.md) | 📚 Pełna dokumentacja deployment'u |
+| [deployment/docs/README.md](deployment/docs/README.md) | Przewodnik szybkiego startu (czytaj pierwszy!) |
+| [deployment/docs/SECURITY.md](deployment/docs/SECURITY.md) | Szczegółowa dokumentacja bezpieczeństwa |
+| [INSTALL.md](INSTALL.md) | Instrukcja instalacji krok po kroku |
+| [README_DEPLOYMENT.md](README_DEPLOYMENT.md) | Pełna dokumentacja deployment'u |
 
 ### Po uruchomieniu `setup.sh` wszystkie serwisy będą dostępne
 
@@ -120,15 +118,15 @@ Phase 4: 🚀 Deployment aplikacji (8-10 min)
 - SSH: port **2222** (tylko przez VPN)
 
 **Serwicy aplikacji (przez VPN):**
-- 🤖 Agent1 (Student Support): `http://<vps-ip>:8001`
-- 🤖 Agent2 (Ticket System): `http://<vps-ip>:8002`
-- 🤖 Agent3 (Analytics): `http://<vps-ip>:8003`
-- 🤖 Agent4 (BOS): `http://<vps-ip>:8004`
-- 🤖 Agent5 (Security): `http://<vps-ip>:8005`
-- 📊 Qdrant (Vector DB): `http://<vps-ip>:6333`
-- 🧠 Ollama (LLM): `http://<vps-ip>:11434`
-- 🔄 Node-RED (Workflows): `http://<vps-ip>:1880`
-- 🌐 Open WebUI: `http://<vps-ip>:3000`
+- Agent1 (Student Support): `http://<vps-ip>:8001`
+- Agent2 (Ticket System): `http://<vps-ip>:8002`
+- Agent3 (Analytics): `http://<vps-ip>:8003`
+- Agent4 (BOS): `http://<vps-ip>:8004`
+- Agent5 (Security): `http://<vps-ip>:8005`
+- Qdrant (Vector DB): `http://<vps-ip>:6333`
+- Ollama (LLM): `http://<vps-ip>:11434`
+- Node-RED (Workflows): `http://<vps-ip>:1880`
+- Open WebUI: `http://<vps-ip>:3000`
 
 **Monitorowanie:**
 - Email alerts wysyłane do: `<ADMIN_EMAIL>`
@@ -138,7 +136,7 @@ Phase 4: 🚀 Deployment aplikacji (8-10 min)
 
 ## GitHub Actions + WireGuard Deployment
 
-> ⭐ **Zautomatyzowana wdrażanie bez ręcznego SSH dostępu!**
+> **Zautomatyzowana wdrażanie bez ręcznego SSH dostępu!**
 
 Po uruchomieniu `setup.sh` na VPS, możesz skonfigurować **automatyczne wdrażanie** przy każdym push do gałęzi `main`.
 
@@ -234,26 +232,26 @@ ssh -i $env:USERPROFILE\.ssh\github_deploy <USER>@10.0.0.1
 
 ### Pełna dokumentacja
 
-📖 **Szczegółowe instrukcje:** [deployment/docs/GITHUB_ACTIONS_SETUP.md](deployment/docs/GITHUB_ACTIONS_SETUP.md)
+**Szczegółowe instrukcje:** [deployment/docs/GITHUB_ACTIONS_SETUP.md](deployment/docs/GITHUB_ACTIONS_SETUP.md)
 
 ---
 
 ---
 
-## 📌 Ważne informacje o starym VPS
+## Ważne informacje o starym VPS
 
 Poprzedni serwer został zaatakowany i zbanowany przez dostawcę. **Ta nowa infrastruktura jest trwale zainstalowana na nowym VPS.**
 
 **Główne ulepszenia:**
-- ✅ fail2ban z ochroną brute-force na 1h bany
-- ✅ UFW firewall z dostępem tylko przez VPN
-- ✅ EU-only geo-blocking (28 krajów)
-- ✅ Email monitoring na <ADMIN_EMAIL>
-- ✅ SSH na porcie 2222 z key auth only
-- ✅ Automatyczne security patches codziennie
-- ✅ Systemd service dla auto-start
-- ✅ Backup/restore scripts
-- ✅ Health checks i monitoring
+- fail2ban z ochroną brute-force na 1h bany
+- UFW firewall z dostępem tylko przez VPN
+- EU-only geo-blocking (28 krajów)
+- Email monitoring na <ADMIN_EMAIL>
+- SSH na porcie 2222 z key auth only
+- Automatyczne security patches codziennie
+- Systemd service dla auto-start
+- Backup/restore scripts
+- Health checks i monitoring
 
 ---
 
@@ -608,7 +606,7 @@ curl http://10.0.0.1:6333/collections  # Qdrant
 - Port: `22` (SSH) lub `2222` (po security hardening)
 - System: **Ubuntu 24.10 LTS**
 
-> 📦 **Rzeczywiste IP, usernames i credentials:** `private/docs/` (OneDrive backup)
+> **Rzeczywiste IP, usernames i credentials:** `private/docs/` (OneDrive backup)
 
 **Uprawnieni użytkownicy (grupa `chatbot-devs`):**
 
@@ -871,7 +869,7 @@ docker stats --no-stream
 - System: **Ubuntu 24.10 LTS**
 - Właściciel: `<PROJECT_OWNER>`
 
-> 📦 **Rzeczywiste wartości:** `private/docs/DEPLOYMENT.md` (OneDrive backup)
+> **Rzeczywiste wartości:** `private/docs/DEPLOYMENT.md` (OneDrive backup)
 
 ## Konfiguracja serwera
 

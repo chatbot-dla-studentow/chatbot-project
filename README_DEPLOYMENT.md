@@ -1,15 +1,15 @@
-﻿# 🚀 ChatBot Deployment System
+﻿# ChatBot Deployment System
 
-⚠️ **BREAKING CHANGE v2.0 (Feb 2026):** Stare pliki `agents/*/docker-compose.yml` zostały USUNIĘTE. Plik `deploy.ps1` usunięty (tylko Linux/WSL/Ubuntu).
+️ **BREAKING CHANGE v2.0 (Feb 2026):** Stare pliki `agents/*/docker-compose.yml` zostały USUNIĘTE. Plik `deploy.ps1` usunięty (tylko Linux/WSL/Ubuntu).
 
-✅ **Teraz wykorzystuj:**
+**Teraz wykorzystuj:**
 - Nowy VPS? → `./deployment/setup.sh` ← **REKOMENDOWANE!**
 - Manualnie? → główny `docker-compose.yml` w root katalogu
 - Dev lokalne? → `make deploy` z Makefile
 
 Kompletny system automatycznego wdrożenia chatbota na świeżą maszynę wirtualną lub VPS.
 
-## 📋 Nowa struktura `deployment/` (v2.0)
+## Nowa struktura `deployment/` (v2.0)
 
 ### Główny orchestrator
 
@@ -84,7 +84,7 @@ Kompletny system automatycznego wdrożenia chatbota na świeżą maszynę wirtua
 15. **`INSTALL.md`** - Szybki przewodnik instalacji (ROOT level)
 16. **`DEPLOYMENT.md`** - Zaktualizowany o automatyczne wdrożenie (ROOT level)
 
-## 🎯 Quick Start
+## Quick Start
 
 ### Linux/VPS (RECOMMENDED - 1 komenda)
 
@@ -141,7 +141,7 @@ make status
 make backup
 ```
 
-## 📋 Komendy deploy.sh
+## Komendy deploy.sh
 
 ```bash
 # Deployment i setup
@@ -163,7 +163,7 @@ make backup
 ./deployment/app/deploy.sh cleanup              # Usuń wszystko (UWAGA!)
 ```
 
-## 📋 Komendy Makefile
+## Komendy Makefile
 
 ```bash
 make help          # Pokaż wszystkie komendy
@@ -178,7 +178,7 @@ make test-query    # Testowe zapytanie
 make logs-agent1   # Logi Agent1
 ```
 
-## 🛠️ Struktura Systemu
+## ️ Struktura Systemu
 
 ```
 chatbot-project/
@@ -201,7 +201,7 @@ chatbot-project/
 └── README_DEPLOYMENT.md        # Ten plik
 ```
 
-## 🔄 Architektura Deployment
+## Architektura Deployment
 
 ### Kolejność uruchamiania
 
@@ -238,7 +238,7 @@ chatbot-project/
 - **1880** - Node-RED
 - **3000** - Open WebUI
 
-## 🔧 Konfiguracja
+## Konfiguracja
 
 ### 1. Zmień URL repozytorium
 
@@ -268,7 +268,7 @@ SECRET_KEY=<wygeneruj-bezpieczny>
 openssl rand -base64 32
 ```
 
-## 📊 Monitoring
+## Monitoring
 
 ### Health Check
 
@@ -300,7 +300,7 @@ openssl rand -base64 32
 ./restore.sh /opt/chatbot-backups 20260213-143022
 ```
 
-## 🚀 Systemd (autostart przy boot)
+## Systemd (autostart przy boot)
 
 ```bash
 # Zainstaluj service
@@ -315,7 +315,7 @@ sudo systemctl restart chatbot
 sudo systemctl stop chatbot
 ```
 
-## 🆘 Troubleshooting
+## Troubleshooting
 
 ### Problem: Brak Dockera
 ```bash
@@ -345,7 +345,7 @@ sudo swapon /swapfile
 ./init-knowledge.sh
 ```
 
-## 📝 Przykładowe użycie
+## Przykładowe użycie
 
 ### Pierwsze wdrożenie
 
@@ -381,7 +381,7 @@ git pull
 ./deployment/app/deploy.sh restart
 ```
 
-## 🎨 Customization
+## Customization
 
 ### Zmiana modelu Ollama
 
@@ -403,14 +403,14 @@ AGENT1_PORT=9001
 QDRANT_PORT=9333
 ```
 
-## 📚 Dokumentacja
+## Dokumentacja
 
 - **[INSTALL.md](INSTALL.md)** - Quick start guide
 - **[DEPLOYMENT.md](DEPLOYMENT.md)** - Pełna dokumentacja deployment
 - **[README.md](README.md)** - Przegląd projektu
 - **[docs_agent1/](docs_agent1/)** - Dokumentacja Agent1
 
-## ✅ Checklist pre-production
+## Checklist pre-production
 
 - [ ] Zmieniony URL repozytorium w `deploy.sh`
 - [ ] Skopiowany i dostosowany `.env` z `.env.example`
@@ -425,9 +425,6 @@ QDRANT_PORT=9333
 
 ---
 
-**Gotowe!** System jest teraz w pełni zautomatyzowany i gotowy do wdrożenia na produkcję. 🎉
-
-
-## Maintainers
+**Gotowe!** System jest teraz w pełni zautomatyzowany i gotowy do wdrożenia na produkcję. ## Maintainers
 - Patryk Boguski (ptrBoguski)
 - Adam Siehen (adamsiehen)

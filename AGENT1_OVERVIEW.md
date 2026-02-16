@@ -216,7 +216,7 @@ agents/agent1_student/
 ├── knowledge_manager.py                # CLI do zarządzania bazą wiedzy
 ├── agent1_flow.json                    # Workflow Node-RED
 | 
-| 📌 Uwaga: docker-compose.yml usunięty (v2.0)
+| Uwaga: docker-compose.yml usunięty (v2.0)
 |    → Użyj głównego /docker-compose.yml lub /deployment/setup.sh
 │
 ├── chatbot-baza-wiedzy-nowa/           # Źródłowe pliki (TXT, DOCX, PDF)
@@ -730,7 +730,7 @@ BATCH_SIZE = 20
 
 ### Docker Compose - Centralna konfiguracja
 
-📌 **Od v2.0:** Stary `agents/agent1_student/docker-compose.yml` został usunięty.
+**Od v2.0:** Stary `agents/agent1_student/docker-compose.yml` został usunięty.
 
 Używaj **głównego `/docker-compose.yml`** w katalogu root:
 
@@ -787,19 +787,19 @@ Dokumentacja znajduje się w katalogu `docs_agent1/`:
 **[docs_agent1/README.md](docs_agent1/README.md)**
 Pełna dokumentacja techniczna z przykładami kodu.
 
-**[docs_agent1/QUICK_START.md](docs_agent1/QUICK_START.md)**
+**[docs_agent1/User guide/QUICK_START.md](docs_agent1/User%20guide/QUICK_START.md)**
 Przewodnik szybkiego startu z przykładami.
 
 **[docs_agent1/LOGGING_EXAMPLES.md](docs_agent1/LOGGING_EXAMPLES.md)**
 Przykłady użycia systemu logowania.
 
-**[docs_agent1/LOGGING_TEST_REPORT.md](docs_agent1/LOGGING_TEST_REPORT.md)**
+**[docs_agent1/Test reports/LOGGING_TEST_REPORT.md](docs_agent1/Test%20reports/LOGGING_TEST_REPORT.md)**
 Raport testowy systemu logowania.
 
-**[docs_agent1/AGENT1_IMPLEMENTATION_REPORT.md](docs_agent1/AGENT1_IMPLEMENTATION_REPORT.md)**
+**[docs_agent1/Test reports/AGENT1_IMPLEMENTATION_REPORT.md](docs_agent1/Test%20reports/AGENT1_IMPLEMENTATION_REPORT.md)**
 Raport implementacji zgodny z wymaganiami promotora.
 
-**[docs_agent1/TEST_REPORT.md](docs_agent1/TEST_REPORT.md)**
+**[docs_agent1/Test reports/TEST_REPORT.md](docs_agent1/Test%20reports/TEST_REPORT.md)**
 Raport testów ogólnych aplikacji.
 
 **[docs_agent1/INDEX.md](docs_agent1/INDEX.md)**

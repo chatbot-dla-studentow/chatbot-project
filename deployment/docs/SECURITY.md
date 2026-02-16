@@ -1,10 +1,10 @@
-﻿# 🛡️ ChatBot VPS Security Configuration
+﻿# ️ ChatBot VPS Security Configuration
 
 ## Quick Security Setup
 
 Kompleksowe zabezpieczenie świeżego VPS przed atakami i zagrożeniami.
 
-### 📋 Co jest konfigurowane?
+### Co jest konfigurowane?
 
 1. **fail2ban** - Ochrona przed brute-force atakami SSH
 2. **UFW Firewall** - Zapora sieciowa z dostępem tylko przez VPN
@@ -17,7 +17,7 @@ Kompleksowe zabezpieczenie świeżego VPS przed atakami i zagrożeniami.
 
 ---
 
-## 🚀 Instalacja na Świeżym VPS
+## Instalacja na Świeżym VPS
 
 ### Krok 1: Połącz się z VPS
 
@@ -62,7 +62,7 @@ sudo ./deployment/app/deploy.sh install_dependencies
 
 ---
 
-## 📊 Szczegółowa Konfiguracja
+## Szczegółowa Konfiguracja
 
 ### 1. fail2ban - SSH Brute Force Protection
 
@@ -121,17 +121,17 @@ sudo ufw allow from 10.0.0.0/24 to any port 8001 proto tcp
 **Nowy SSH port:** 2222
 
 **Wyłączone:**
-- ✗ Root login
-- ✗ Password authentication
-- ✗ Empty passwords
-- ✗ X11 forwarding
+- Root login
+- Password authentication
+- Empty passwords
+- X11 forwarding
 
 **Włączone:**
-- ✓ Public key authentication
-- ✓ Ed25519 keys
-- ✓ Secure ciphers (chacha20-poly1305, aes256-gcm)
-- ✓ Secure key exchange
-- ✓ Login banner
+- Public key authentication
+- Ed25519 keys
+- Secure ciphers (chacha20-poly1305, aes256-gcm)
+- Secure key exchange
+- Login banner
 
 **Aktualizuj SSH client config:**
 
@@ -246,7 +246,7 @@ sudo /usr/local/lib/chatbot-monitors/security-audit.sh
 
 ---
 
-## 🔐 Best Practices
+## Best Practices
 
 ### 1. SSH Keys
 
@@ -313,7 +313,7 @@ sudo tar czf /tmp/security-backup.tar.gz \
 
 ---
 
-## ⚠️ Częste Problemy
+## ️ Częste Problemy
 
 ### Problem: "Connection refused" na porcie 2222
 
@@ -378,7 +378,7 @@ sudo ufw reload
 
 ---
 
-## 📋 Checklist Bezpieczeństwa
+## Checklist Bezpieczeństwa
 
 - [ ] fail2ban zainstalowany i aktywny
 - [ ] UFW firewall zainstalowany i aktywny
@@ -395,7 +395,7 @@ sudo ufw reload
 
 ---
 
-## 🔗 Kolejne Kroki
+## Kolejne Kroki
 
 1. Po uruchomieniu setupów: `./deployment/app/deploy.sh deploy`
 2. Sprawdź status: `./deployment/app/deploy.sh status`
@@ -404,7 +404,7 @@ sudo ufw reload
 
 ---
 
-## 📞 Support
+## Support
 
 Jeśli coś nie działa:
 
@@ -424,7 +424,7 @@ sudo sshd -T
 
 ---
 
-**Gotowe!** VPS jest teraz zabezpieczony. 🛡️
+**Gotowe!** VPS jest teraz zabezpieczony. ️
 
 ## Maintainers
 - Patryk Boguski (ptrBoguski)
