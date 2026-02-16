@@ -4,7 +4,7 @@
 
 ️ **VPS został zaatakowany i zbanowany. Przenieśliśmy się na nowy serwer.**
 
-> **Nowa infrastruktura deployment jest gotowa!** Przejdź do [deployment/README.md](deployment/README.md) aby poznać automatyczną procedurę wdrożenia dla **świeżego VPS**.
+> **Nowa infrastruktura deployment jest gotowa!** Przejdź do [deployment/docs/README.md](deployment/docs/README.md) aby poznać automatyczną procedurę wdrożenia dla **świeżego VPS**.
 
 ### Breaking Change v2.0 (Stycz-2026)
 
@@ -118,11 +118,11 @@ Phase 4: Deployment aplikacji (8-10 min)
 - SSH: port **2222** (tylko przez VPN)
 
 **Serwicy aplikacji (przez VPN):**
-- Agent1 (Student Support): `http://<vps-ip>:8001`
-- Agent2 (Ticket System): `http://<vps-ip>:8002`
-- Agent3 (Analytics): `http://<vps-ip>:8003`
-- Agent4 (BOS): `http://<vps-ip>:8004`
-- Agent5 (Security): `http://<vps-ip>:8005`
+- Agent1 (Student Support): `http://<vps-ip>:8001` - DZIAŁAJĄCY
+- Agent2 (Ticket System): `http://<vps-ip>:8002` - [w rozwoju]
+- Agent3 (Analytics): `http://<vps-ip>:8003` - [w rozwoju]
+- Agent4 (BOS): `http://<vps-ip>:8004` - [w rozwoju]
+- Agent5 (Security): `http://<vps-ip>:8005` - [w rozwoju]
 - Qdrant (Vector DB): `http://<vps-ip>:6333`
 - Ollama (LLM): `http://<vps-ip>:11434`
 - Node-RED (Workflows): `http://<vps-ip>:1880`
@@ -587,7 +587,7 @@ curl http://10.0.0.1:6333/collections  # Qdrant
 ```
 
 **Struktura katalogów:**
-- `/opt/chatbot-project/agents/` - kod agentów (agent1-5)
+- `/opt/chatbot-project/agents/` - kod agentów (agent1 działający, agent2-5 w rozwoju)
 - `/opt/chatbot-project/nodered/` - konfiguracja Node-RED
 - `/opt/chatbot-project/qdrant/` - konfiguracja Qdrant
 - `/opt/chatbot-project/Open_WebUI/` - konfiguracja Open WebUI
