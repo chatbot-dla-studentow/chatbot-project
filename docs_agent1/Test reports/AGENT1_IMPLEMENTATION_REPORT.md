@@ -102,8 +102,8 @@ python init_log_collections.py
 
 **Wynik:**
 ```
-✓ Utworzono kolekcję 'agent1_query_logs'
-✓ Utworzono kolekcję 'agent1_qa_logs'
+Utworzono kolekcję 'agent1_query_logs'
+Utworzono kolekcję 'agent1_qa_logs'
 Utworzono 2 kolekcje do logowania.
 ```
 
@@ -344,8 +344,8 @@ curl "http://localhost:8001/admin/logs/queries/search?query=stypendium&limit=3"
 - Dashboard wizualizujący statystyki
 - Retention policy dla starych logów
 - Stemming/lemmatyzacja w keyword matching
-- 📧 Alerty przy niskim RAG score
-- 📈 Export logów do CSV/Excel
+- Alerty przy niskim RAG score
+- Export logów do CSV/Excel
 
 ---
 

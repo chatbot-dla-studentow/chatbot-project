@@ -181,7 +181,7 @@ def main():
         missed_file = "./missed.txt"
         with open(missed_file, "w") as f:
             f.write("\n".join(missed))
-        print(f"\n⚠ Pominięto {len(missed)} dokumentów → {missed_file}")
+        print(f"\nPominięto {len(missed)} dokumentów → {missed_file}")
     
     # 6. Statystyki
     print(f"\n\n6. Statystyki kolekcji:")
@@ -219,7 +219,7 @@ def main():
         print()
     
     print("=" * 60)
-    print(f"✓ Baza wiedzy załadowana pomyślnie!")
+    print(f"Baza wiedzy załadowana pomyślnie!")
     print(f"   Załadowano {doc_id} dokumentów do kolekcji '{COLLECTION_NAME}'")
     print("=" * 60)
 

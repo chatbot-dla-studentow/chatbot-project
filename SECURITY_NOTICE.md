@@ -1,21 +1,21 @@
-# 🔒 Security Notice
+# Security Notice
 
 ## Wrażliwe Dane
 
 To repozytorium jest publiczne i **NIE ZAWIERA** wrażliwych danych takich jak:
 
-- ❌ Klucze prywatne (WireGuard, SSH)
-- ❌ Adresy IP serwerów produkcyjnych
-- ❌ Dane osobowe (emaile, usernames)
-- ❌ Credentials i hasła
-- ❌ GitHub Secrets wartości
+- Klucze prywatne (WireGuard, SSH)
+- Adresy IP serwerów produkcyjnych
+- Dane osobowe (emaile, usernames)
+- Credentials i hasła
+- GitHub Secrets wartości
 
 ## Gdzie są rzeczywiste wartości?
 
 Wszystkie wrażliwe dane znajdują się w **prywatnym folderze** poza tym repozytorium:
 
 ```
-private/                     # ⚠️ NIGDY nie commitowany do Git
+private/                     # ️ NIGDY nie commitowany do Git
 ├── README.md               # Instrukcje użycia
 ├── configs/
 │   └── wg-client.conf     # Prawdziwa konfiguracja WireGuard
@@ -73,9 +73,9 @@ W plikach tego repo używamy placeholderów:
 
 Przykładowe pliki konfiguracyjne (bez wrażliwych danych):
 
-- ✅ `.env.example` - przykład zmiennych środowiskowych
-- ✅ `wg-client.conf.example` - przykład konfiguracji WireGuard
-- ✅ `crontab.example` - przykład zadań cron
+- `.env.example` - przykład zmiennych środowiskowych
+- `wg-client.conf.example` - przykład konfiguracji WireGuard
+- `crontab.example` - przykład zadań cron
 
 **Aby użyć:**
 ```bash
@@ -87,11 +87,11 @@ cp .env.example .env
 
 ### Co jest zabezpieczone:
 
-- ✅ `.gitignore` ignoruje folder `private/`
-- ✅ `.gitignore` ignoruje pliki `*.conf` (WireGuard configs)
-- ✅ `.gitignore` ignoruje pliki `*_secret*` i `*_private.md`
-- ✅ Wszystkie IP i credentials zastąpione placeholderami
-- ✅ GitHub Actions używa GitHub Secrets (nie są w repo)
+- `.gitignore` ignoruje folder `private/`
+- `.gitignore` ignoruje pliki `*.conf` (WireGuard configs)
+- `.gitignore` ignoruje pliki `*_secret*` i `*_private.md`
+- Wszystkie IP i credentials zastąpione placeholderami
+- GitHub Actions używa GitHub Secrets (nie są w repo)
 
 ### Commit Guidelines dla Contributors:
 
@@ -110,10 +110,10 @@ git diff --staged
 
 Dla bezpieczeństwa, zespół rotuje klucze co **3-6 miesięcy**:
 
-- 🔑 Klucze WireGuard
-- 🔑 Klucze SSH
-- 🔑 API Keys
-- 🔑 GitHub Secrets
+- Klucze WireGuard
+- Klucze SSH
+- API Keys
+- GitHub Secrets
 
 **Po rotacji:**
 - Stare klucze są unieważniane
@@ -124,11 +124,11 @@ Dla bezpieczeństwa, zespół rotuje klucze co **3-6 miesięcy**:
 
 W przypadku pytań dotyczących bezpieczeństwa lub dostępu do wrażliwych danych:
 
-- 📧 Team Lead: (sprawdź `private/README.md` po otrzymaniu dostępu)
-- 🔒 Zgłoszenia bezpieczeństwa: poprzez GitHub Issues (tylko dla publicznych problemów)
-- ⚠️ Krytyczne problemy: bezpośrednio do team leadera (email w prywatnym folderze)
+- Team Lead: (sprawdź `private/README.md` po otrzymaniu dostępu)
+- Zgłoszenia bezpieczeństwa: poprzez GitHub Issues (tylko dla publicznych problemów)
+- ️ Krytyczne problemy: bezpośrednio do team leadera (email w prywatnym folderze)
 
 ---
 
 **Ostatnia aktualizacja:** 16 lutego 2026  
-**Status:** ✅ Repo bezpieczne dla publikacji
+**Status:** Repo bezpieczne dla publikacji

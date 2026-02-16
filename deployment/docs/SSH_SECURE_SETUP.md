@@ -1,6 +1,6 @@
 # SSH Super Bezpieczne Setup
 
-> 🔒 SSH dostępny TYLKO z VPN, port 2222, key-based auth, fail2ban protection
+> SSH dostępny TYLKO z VPN, port 2222, key-based auth, fail2ban protection
 
 ## Architektura Bezpieczeństwa
 
@@ -9,7 +9,7 @@ Internet (39.128.212.194)
      ↓ X - port 22,2222 DENY
      ↓
 VPN Network (10.0.0.0/24)
-     ↓ ✅ - port 2222 ALLOW
+     ↓ - port 2222 ALLOW
      ↓
 SSH @ 10.0.0.1:2222
   - Key-based auth only
@@ -26,11 +26,11 @@ sudo bash deployment/server/ssh-secure-setup.sh
 ```
 
 To automatycznie:
-- ✅ Włączy SSH na porcie 2222
-- ✅ Skonfiguruje sshd_config (VPN only)
-- ✅ Zainstaluje fail2ban
-- ✅ Otworzy UFW rules
-- ✅ Sprawdzi config
+- Włączy SSH na porcie 2222
+- Skonfiguruje sshd_config (VPN only)
+- Zainstaluje fail2ban
+- Otworzy UFW rules
+- Sprawdzi config
 
 ---
 
@@ -76,14 +76,13 @@ nano ~/.ssh/authorized_keys
 # Port 2222, user ubuntu, z WireGuard VPN
 ssh -i $env:USERPROFILE\.ssh\chatbot_vps_new -p 2222 ubuntu@10.0.0.1
 
-# Powinno być: ubuntu@chatbot-vps:~$ ✅
-```
+# Powinno być: ubuntu@chatbot-vps:~$ ```
 
 ---
 
 ## SSH Config - co jest bezpieczne?
 
-### ✅ Secured
+### Secured
 
 - **Port 2222** - niestandardowy, ukryty
 - **ListenAddress 10.0.0.1** - tylko VPN

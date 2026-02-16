@@ -1,22 +1,22 @@
-﻿# 🔐 SSH Access - Dokumentacja
+﻿# SSH Access - Dokumentacja
 
-> ⚠️ **UWAGA:** Rzeczywiste wartości IP, hostname i użytkowników znajdują się w `private/docs/SSH_ACCESS.md` (OneDrive backup)
+> ️ **UWAGA:** Rzeczywiste wartości IP, hostname i użytkowników znajdują się w `private/docs/SSH_ACCESS.md` (OneDrive backup)
 
 > **VPS:** `<VPS_IP>` | **User:** `<USER>` | **Hostname:** `<VPS_HOSTNAME>`
 
 ---
 
-## 📍 Klucze SSH (Lokalizacja)
+## Klucze SSH (Lokalizacja)
 
 ```
 $HOME\.ssh\
-├── chatbot_vps       ← 🔒 PRYWATNY (NIGDY NIE UDOSTĘPNIAJ!)
-└── chatbot_vps.pub   ← 🔓 PUBLICZNY (bezpieczny do udostępnienia)
+├── chatbot_vps       ← PRYWATNY (NIGDY NIE UDOSTĘPNIAJ!)
+└── chatbot_vps.pub   ← PUBLICZNY (bezpieczny do udostępnienia)
 ```
 
 ---
 
-## 🚀 Logowanie do VPS
+## Logowanie do VPS
 
 ### Metoda 1: Z kluczem SSH (rekomendowane)
 
@@ -54,7 +54,7 @@ ssh vps-name         # Szybkie logowanie przez hostname
 
 ---
 
-## 👥 Jak Dać Dostęp Innej Osobie
+## Jak Dać Dostęp Innej Osobie
 
 ### Krok 1: Osoba generuje swój klucz SSH (u siebie)
 
@@ -96,18 +96,18 @@ ssh <USER>@<VPS_IP>
 
 ---
 
-## 🔐 Bezpieczeństwo
+## Bezpieczeństwo
 
-### ✅ Bezpieczne Praktyki
+### Bezpieczne Praktyki
 
 | Co | Czy bezpieczne? | Dlaczego? |
 |----|----------------|-----------|
-| 🔓 Wysłać `chatbot_vps_new.pub` | ✅ TAK | To klucz publiczny - jak kłódka |
-| 🔒 Wysłać `chatbot_vps_new` | ❌ **NIGDY!** | To klucz prywatny - jak hasło! |
-| 💾 Backup klucza prywatnego | ✅ TAK | Ale tylko na bezpiecznym nośniku (USB, sejf) |
-| 📧 Email z kluczem prywatnym | ❌ **NIGDY!** | Niezabezpieczone |
+| Wysłać `chatbot_vps_new.pub` | TAK | To klucz publiczny - jak kłódka |
+| Wysłać `chatbot_vps_new` | **NIGDY!** | To klucz prywatny - jak hasło! |
+| Backup klucza prywatnego | TAK | Ale tylko na bezpiecznym nośniku (USB, sejf) |
+| Email z kluczem prywatnym | **NIGDY!** | Niezabezpieczone |
 
-### ⚠️ Jeśli Klucz Prywatny Wyciekł
+### ️ Jeśli Klucz Prywatny Wyciekł
 
 ```bash
 # 1. Zaloguj się hasłem (jeśli masz) lub przez KVM w panelu OVH
@@ -126,11 +126,11 @@ type $HOME\.ssh\chatbot_vps_emergency.pub | ssh ubuntu@51.68.151.45 "cat >> ~/.s
 
 ---
 
-## 🛠️ Konfiguracja Zaawansowana
+## ️ Konfiguracja Zaawansowana
 
 ### Wyłączenie Logowania Hasłem (zwiększone bezpieczeństwo)
 
-**⚠️ Zrób to TYLKO gdy klucz SSH działa!**
+**️ Zrób to TYLKO gdy klucz SSH działa!**
 
 ```bash
 # Zaloguj się do VPS
@@ -174,7 +174,7 @@ ssh -i $HOME\.ssh\chatbot_vps -p 2222 <USER>@<VPS_IP>
 
 ---
 
-## 📋 Troubleshooting
+## Troubleshooting
 
 ### Problem: "Permission denied (publickey)"
 
@@ -208,7 +208,7 @@ sudo passwd <USER>
 
 ---
 
-## 📞 Kontakt VPS
+## Kontakt VPS
 
 - **Panel:** Link do panelu VPS providera
 - **IP:** `<VPS_IP>`
@@ -216,11 +216,11 @@ sudo passwd <USER>
 - **VPS Name:** `<VPS_HOSTNAME>`
 - **System:** Ubuntu 24.04 LTS (lub inna wersja)
 
-> 📦 **Rzeczywiste wartości:** `private/docs/SSH_ACCESS.md` (OneDrive backup)
+> **Rzeczywiste wartości:** `private/docs/SSH_ACCESS.md` (OneDrive backup)
 
 ---
 
-## 🔗 Powiązane Dokumenty
+## Powiązane Dokumenty
 
 - [deployment/docs/README.md](README.md) - Quick start guide
 - [deployment/docs/SECURITY.md](SECURITY.md) - Security configuration

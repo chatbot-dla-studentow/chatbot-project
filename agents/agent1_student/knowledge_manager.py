@@ -15,17 +15,17 @@ def print_menu():
     print("\n" + "=" * 70)
     print("KNOWLEDGE MANAGER - Agent1 Student")
     print("=" * 70)
-    print("\n📚 ZARZĄDZANIE BAZĄ WIEDZY:")
+    print("\nZARZĄDZANIE BAZĄ WIEDZY:")
     print("  1. Parse  - Parsuj pliki źródłowe (txt, docx, pdf) → JSON")
     print("  2. Load   - Załaduj dokumenty JSON do Qdrant + embeddingi (pełne)")
     print("  3. Update - Aktualizuj bazę (dodaj tylko nowe dokumenty)")
     print("  4. Verify - Weryfikuj strukturę i zawartość bazy wiedzy")
     print("  5. Check  - Sprawdź jakość danych w Qdrant (duplikaty)")
     print("  6. Add QA - Dodaj pary pytanie-odpowiedź")
-    print("\n🔧 ZARZĄDZANIE KOLEKCJAMI:")
+    print("\nZARZĄDZANIE KOLEKCJAMI:")
     print("  7. Init Logs - Inicjalizuj kolekcje logów (query_logs, qa_logs)")
     print("  8. Delete - Usuń kolekcję z Qdrant")
-    print("\n📊 INFORMACJE:")
+    print("\nINFORMACJE:")
     print("  9. Status - Pokaż status wszystkich kolekcji")
     print("  h. Help - Pokaż szczegółową pomoc")
     print("  0. Exit - Wyjdź")
@@ -37,7 +37,7 @@ def run_script(script_name: str):
     script_path = helpers_dir / script_name
     
     if not script_path.exists():
-        print(f"❌ Błąd: Skrypt {script_name} nie istnieje!")
+        print(f"Błąd: Skrypt {script_name} nie istnieje!")
         return
     
     print(f"\n▶️  Uruchamiam: {script_name}")
@@ -49,13 +49,13 @@ def run_script(script_name: str):
     
     print("-" * 70)
     if result.returncode == 0:
-        print(f"✅ {script_name} zakończony sukcesem")
+        print(f"{script_name} zakończony sukcesem")
     else:
-        print(f"❌ {script_name} zakończony z błędem (kod: {result.returncode})")
+        print(f"{script_name} zakończony z błędem (kod: {result.returncode})")
 
 def show_status():
     """Wyświetla status kolekcji w Qdrant"""
-    print("\n📊 STATUS KOLEKCJI QDRANT")
+    print("\nSTATUS KOLEKCJI QDRANT")
     print("=" * 70)
     
     try:
@@ -64,16 +64,16 @@ def show_status():
         qdrant_host = os.getenv("QDRANT_HOST", "localhost")
         qdrant_port = int(os.getenv("QDRANT_PORT", "6333"))
         
-        print(f"🔗 Łączenie z Qdrant ({qdrant_host}:{qdrant_port})...")
+        print(f"Łączenie z Qdrant ({qdrant_host}:{qdrant_port})...")
         client = QdrantClient(host=qdrant_host, port=qdrant_port)
         
         collections = client.get_collections().collections
         
         if not collections:
-            print("\n⚠️  Brak kolekcji w Qdrant")
+            print("\n️  Brak kolekcji w Qdrant")
             return
         
-        print(f"\n📦 Znaleziono {len(collections)} kolekcji:\n")
+        print(f"\nZnaleziono {len(collections)} kolekcji:\n")
         
         for collection in collections:
             info = client.get_collection(collection.name)
@@ -84,7 +84,7 @@ def show_status():
             print()
         
     except Exception as e:
-        print(f"\n❌ Błąd: {e}")
+        print(f"\nBłąd: {e}")
         print("Upewnij się, że Qdrant jest uruchomiony i dostępny.")
 
 def show_help():
@@ -94,7 +94,7 @@ def show_help():
     print("=" * 70)
     
     help_text = """
-📚 WORKFLOW ZARZĄDZANIA BAZĄ WIEDZY:
+WORKFLOW ZARZĄDZANIA BAZĄ WIEDZY:
 
 1️⃣  PARSE (parse_knowledge_base.py)
    ├─ Parsuje pliki źródłowe z chatbot-baza-wiedzy-nowa/
@@ -143,17 +143,17 @@ def show_help():
    ├─ UWAGA: Operacja nieodwracalna!
    └─ Przydatne przy ponownym ładowaniu danych
 
-🔧 ZMIENNE ŚRODOWISKOWE:
+ZMIENNE ŚRODOWISKOWE:
    QDRANT_HOST      - Host Qdrant (default: localhost)
    QDRANT_PORT      - Port Qdrant (default: 6333)
    OLLAMA_URL       - URL Ollama API (default: http://localhost:11434)
 
-📁 STRUKTURA KATALOGÓW:
+STRUKTURA KATALOGÓW:
    chatbot-baza-wiedzy-nowa/  - Pliki źródłowe (txt, docx, pdf)
    knowledge/                 - Sparsowane dokumenty JSON
    helpers/                   - Skrypty zarządzania
 
-💡 PRZYKŁADOWY WORKFLOW:
+PRZYKŁADOWY WORKFLOW:
    
    PIERWSZA INSTALACJA:
    1. Dodaj pliki do chatbot-baza-wiedzy-nowa/
@@ -169,7 +169,7 @@ def show_help():
    3. Uruchom UPDATE aby dodać tylko nowe (szybsze!)
    4. Uruchom CHECK aby sprawdzić kompletność
    
-   ⚡ RÓŻNICA LOAD vs UPDATE:
+   RÓŻNICA LOAD vs UPDATE:
       • LOAD  - Usuwa całą kolekcję i tworzy nową (wolniejszy)
       • UPDATE - Dodaje tylko nowe dokumenty (szybszy, bezpieczniejszy)
     """
@@ -183,10 +183,10 @@ def main():
         print_menu()
         
         try:
-            choice = input("\n👉 Wybierz opcję (0-9, h): ").strip().lower()
+            choice = input("\nWybierz opcję (0-9, h): ").strip().lower()
             
             if choice == "0":
-                print("\n👋 Do widzenia!")
+                print("\nDo widzenia!")
                 break
             
             elif choice == "1":
@@ -211,12 +211,12 @@ def main():
                 run_script("init_log_collections.py")
             
             elif choice == "8":
-                print("\n⚠️  UWAGA: Ta operacja jest nieodwracalna!")
+                print("\n️  UWAGA: Ta operacja jest nieodwracalna!")
                 confirm = input("Czy na pewno chcesz usunąć kolekcję? (tak/nie): ").strip().lower()
                 if confirm == "tak":
                     run_script("delete_qdrant_collection.py")
                 else:
-                    print("❌ Operacja anulowana")
+                    print("Operacja anulowana")
             
             elif choice == "9":
                 show_status()
@@ -225,25 +225,25 @@ def main():
                 show_help()
             
             else:
-                print("❌ Nieprawidłowa opcja. Wybierz 0-9 lub h.")
+                print("Nieprawidłowa opcja. Wybierz 0-9 lub h.")
             
             input("\n⏎ Naciśnij Enter aby kontynuować...")
             
         except KeyboardInterrupt:
-            print("\n\n👋 Przerwano przez użytkownika")
+            print("\n\nPrzerwano przez użytkownika")
             break
         except Exception as e:
-            print(f"\n❌ Błąd: {e}")
+            print(f"\nBłąd: {e}")
             input("\n⏎ Naciśnij Enter aby kontynuować...")
 
 if __name__ == "__main__":
-    print("\n🚀 Knowledge Manager dla Agent1 Student")
-    print("📍 Katalog roboczy:", Path(__file__).parent)
+    print("\nKnowledge Manager dla Agent1 Student")
+    print("Katalog roboczy:", Path(__file__).parent)
     
     # Sprawdź czy folder helpers istnieje
     helpers_dir = Path(__file__).parent / "helpers"
     if not helpers_dir.exists():
-        print(f"\n❌ Błąd: Folder helpers nie istnieje!")
+        print(f"\nBłąd: Folder helpers nie istnieje!")
         print(f"   Oczekiwana ścieżka: {helpers_dir}")
         sys.exit(1)
     

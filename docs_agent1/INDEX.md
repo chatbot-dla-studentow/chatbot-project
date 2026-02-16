@@ -118,7 +118,7 @@ Dokumentacja agenta chatbotowego odpowiadającego na pytania studenckie (stypend
 
 ---
 
-## 📖 Jak Korzystać z Dokumentacji
+## Jak Korzystać z Dokumentacji
 
 ### Jestem nowy w projekcie
 1. Przeczytaj [README.md](README.md) - zrozumiesz architekturę
@@ -152,7 +152,7 @@ Dokumentacja agenta chatbotowego odpowiadającego na pytania studenckie (stypend
 - **Repozytorium:** https://github.com/chatbot-dla-studentow/chatbot-project
 - **Serwer produkcyjny:** <VPS_HOSTNAME> (<VPS_PUBLIC_IP>)
 
-> 📦 **Rzeczywiste wartości:** `private/` folder (OneDrive)
+> **Rzeczywiste wartości:** `private/` folder (OneDrive)
 
 ---
 

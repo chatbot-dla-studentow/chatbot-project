@@ -1,6 +1,6 @@
-# 📦 Instrukcje Przeniesienia Wrażliwych Danych na OneDrive
+# Instrukcje Przeniesienia Wrażliwych Danych na OneDrive
 
-## ✅ Co zostało zrobione?
+## Co zostało zrobione?
 
 ### 1. Utworzona struktura `private/`
 ```
@@ -11,7 +11,7 @@ private/
 ├── docs/                  # Wrażliwa dokumentacja (stare kopie - można usunąć)
 │   ├── GITHUB_ACTIONS_SETUP.md
 │   └── SSH_ACCESS.md
-└── deployment-vps/        # 🆕 GŁÓWNY FOLDER - VPS deployment
+└── deployment-vps/        # GŁÓWNY FOLDER - VPS deployment
     ├── README.md          # Pełna dokumentacja deployment
     ├── wg-client.conf     # Prawdziwa konfiguracja WireGuard
     ├── server/            # Skrypty konfiguracji serwera
@@ -40,12 +40,12 @@ Dodano:
 ### 4. Zastąpiono wrażliwe dane placeholderami
 
 **Pliki zaktualizowane:**
-- ✅ `README.md` - IP i hostname serwera
-- ✅ `DEPLOYMENT.md` - IP, usernames, emaile członków zespołu
-- ✅ `deployment/docs/GITHUB_ACTIONS_SETUP.md` - IP, klucze, credentials
-- ✅ `deployment/docs/SSH_ACCESS.md` - IP, usernames, ścieżki
-- ✅ `deployment/docs/README.md` - email alertów, IP
-- ✅ `docs_agent1/INDEX.md` - IP serwera produkcyjnego
+- `README.md` - IP i hostname serwera
+- `DEPLOYMENT.md` - IP, usernames, emaile członków zespołu
+- `deployment/docs/GITHUB_ACTIONS_SETUP.md` - IP, klucze, credentials
+- `deployment/docs/SSH_ACCESS.md` - IP, usernames, ścieżki
+- `deployment/docs/README.md` - email alertów, IP
+- `docs_agent1/INDEX.md` - IP serwera produkcyjnego
 
 **Placeholdery użyte:**
 - `<VPS_PUBLIC_IP>` - zamiast 57.128.212.194
@@ -57,7 +57,7 @@ Dodano:
 
 ---
 
-## 🚀 Kroki do Wykonania - Przeniesienie na OneDrive
+## Kroki do Wykonania - Przeniesienie na OneDrive
 
 ### Krok 1: Przygotuj folder na OneDrive
 
@@ -138,7 +138,7 @@ git log --all --full-history --oneline -- wg-client.conf
 
 ---
 
-## 🔄 Synchronizacja (na nowym komputerze lub po zmianach)
+## Synchronizacja (na nowym komputerze lub po zmianach)
 
 ### Z OneDrive → Lokalne repo
 
@@ -171,9 +171,9 @@ robocopy ".\private" `
 
 ---
 
-## 🔒 Najlepsze Praktyki Bezpieczeństwa
+## Najlepsze Praktyki Bezpieczeństwa
 
-### ✅ DO:
+### DO:
 
 1. **Zawsze sprawdzaj przed commit:**
    ```powershell
@@ -193,7 +193,7 @@ robocopy ".\private" `
    - SSH keys
    - API keys
 
-### ❌ NIE:
+### NIE:
 
 1. **NIGDY nie commit plików z private/ do Git**
 2. **NIGDY nie udostępniaj publicznie linków OneDrive do chatbot-private**
@@ -202,7 +202,7 @@ robocopy ".\private" `
 
 ---
 
-## 🆘 Co zrobić jeśli przypadkowo push'owałeś wrażliwe dane?
+## Co zrobić jeśli przypadkowo push'owałeś wrażliwe dane?
 
 ### Natychmiastowe kroki:
 
@@ -240,7 +240,7 @@ robocopy ".\private" `
 
 ---
 
-## 📝 Checklist przed publikacją repo
+## Checklist przed publikacją repo
 
 - [ ] Folder `private/` jest w `.gitignore`
 - [ ] `git status` NIE pokazuje plików z `private/`
@@ -255,7 +255,7 @@ robocopy ".\private" `
 
 ---
 
-## 👥 Dla Nowych Członków Zespołu
+## Dla Nowych Członków Zespołu
 
 **Jeśli jesteś nowym członkiem:**
 

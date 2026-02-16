@@ -1,10 +1,10 @@
-# 🔐 VPS Server Configuration Scripts
+# VPS Server Configuration Scripts
 
-> ⚠️ **UWAGA:** To są **template/przykładowe** wersje skryptów. Prawdziwe skrypty z konkretnymi danymi produkcyjnymi znajdują się w `private/deployment-vps/server/`
+> ️ **UWAGA:** To są **template/przykładowe** wersje skryptów. Prawdziwe skrypty z konkretnymi danymi produkcyjnymi znajdują się w `private/deployment-vps/server/`
 
-## 📁 Dostępne skrypty
+## Dostępne skrypty
 
-### 🛡️ secure.sh
+### ️ secure.sh
 Kompleksowe zabezpieczenie VPS:
 - fail2ban (ochrona SSH brute-force)
 - UFW firewall
@@ -14,7 +14,7 @@ Kompleksowe zabezpieczenie VPS:
 
 **Lokalizacja prawdziwej wersji:** `private/deployment-vps/server/secure.sh`
 
-### 🔐 ssh-secure-setup.sh
+### ssh-secure-setup.sh
 Szybkie zabezpieczenie SSH:
 - Key-only authentication
 - Zmiana portu SSH
@@ -22,7 +22,7 @@ Szybkie zabezpieczenie SSH:
 
 **Lokalizacja prawdziwej wersji:** `private/deployment-vps/server/ssh-secure-setup.sh`
 
-### 🌐 wireguard-setup.sh
+### wireguard-setup.sh
 Automatyczna instalacja i konfiguracja WireGuard VPN:
 - Instalacja WireGuard
 - Generowanie kluczy
@@ -31,7 +31,7 @@ Automatyczna instalacja i konfiguracja WireGuard VPN:
 
 **Lokalizacja prawdziwej wersji:** `private/deployment-vps/server/wireguard-setup.sh`
 
-### 🌍 geo-blocking.sh
+### geo-blocking.sh
 Blokowanie dostępu spoza EU:
 - Lista EU countries
 - Automatyczne aktualizacje IP list
@@ -39,7 +39,7 @@ Blokowanie dostępu spoza EU:
 
 **Lokalizacja prawdziwej wersji:** `private/deployment-vps/server/geo-blocking.sh`
 
-### 📊 monitoring-alerts.sh
+### monitoring-alerts.sh
 Monitoring i email alerts:
 - CPU, RAM, disk usage monitoring
 - Docker containers health
@@ -48,7 +48,7 @@ Monitoring i email alerts:
 
 **Lokalizacja prawdziwej wersji:** `private/deployment-vps/server/monitoring-alerts.sh`
 
-## 🚀 Jak używać
+## Jak używać
 
 ### Dla członków zespołu z dostępem do private/:
 
@@ -77,7 +77,7 @@ Jeśli nie masz dostępu do `private/`:
 2. Skontaktuj się z team leaderem o dostęp do pełnych wersji
 3. Lub użyj instrukcji z [../DEPLOYMENT.md](../../DEPLOYMENT.md) aby stworzyć własne
 
-## 📦 Dlaczego skrypty są w private/?
+## Dlaczego skrypty są w private/?
 
 Skrypty zawierają wrażliwe informacje specyficzne dla naszego VPS:
 - Konkretne porty aplikacji (8001-8005)
@@ -87,17 +87,17 @@ Skrypty zawierają wrażliwe informacje specyficzne dla naszego VPS:
 - Endpoint IP serwera
 
 Umieszczenie ich w publicznym repo mogłoby:
-- ❌ Ujawnić architekturę naszego systemu
-- ❌ Ułatwić ataki na konkretne porty
-- ❌ Ujawnić dane osobowe (email)
+- Ujawnić architekturę naszego systemu
+- Ułatwić ataki na konkretne porty
+- Ujawnić dane osobowe (email)
 
-## 🔗 Powiązane dokumenty
+## Powiązane dokumenty
 
 - [../docs/README.md](../docs/README.md) - Quick start guide (publiczny)
 - [../../DEPLOYMENT.md](../../DEPLOYMENT.md) - Główna dokumentacja deployment
 - [../../private/deployment-vps/README.md](../../private/deployment-vps/README.md) - Pełna dokumentacja VPS (wymagany dostęp)
 
-## 🆕 Nowy członek zespołu?
+## Nowy członek zespołu?
 
 Aby otrzymać dostęp do pełnych skryptów:
 1. Poproś team leadera o dostęp do folderu `private/`

@@ -1,23 +1,23 @@
-﻿# 🚀 Wdrożenie na Świeży VPS - Szybki Przewodnik
+﻿# Wdrożenie na Świeży VPS - Szybki Przewodnik
 
-> ⚠️ **UWAGA:** To jest **publiczna/template** wersja dokumentacji. Prawdziwe skrypty i dokumentacja z konkretnymi danymi produkcyjnymi (IP, credentials, email) znajdują się w `private/deployment-vps/` (dostęp tylko dla członków zespołu, backup: OneDrive).
+> ️ **UWAGA:** To jest **publiczna/template** wersja dokumentacji. Prawdziwe skrypty i dokumentacja z konkretnymi danymi produkcyjnymi (IP, credentials, email) znajdują się w `private/deployment-vps/` (dostęp tylko dla członków zespołu, backup: OneDrive).
 
-> ✅ **Aktualizacja:** Dedykowane pliki `agents/*/docker-compose.yml` zostały **przywrócone**.
+> **Aktualizacja:** Dedykowane pliki `agents/*/docker-compose.yml` zostały **przywrócone**.
 > Do pełnego wdrożenia nadal rekomendujemy `/deployment/setup.sh` lub główny `docker-compose.yml`,
 > ale możesz też uruchamiać pojedynczych agentów z ich katalogów.
 
-## 📖 Struktura Folderu `deployment/`
+## Struktura Folderu `deployment/`
 
 ```
 deployment/
 ├── setup.sh                         # Główny skrypt (uruchom pierwszy!) - ALL-IN-ONE
 │
 ├── server/                          # Skrypty konfiguracji SERWERA
-│   ├── README.md                   # ⚠️ Info o private/deployment-vps
+│   ├── README.md                   # ️ Info o private/deployment-vps
 │   ├── secure.sh                   # Security hardening (template)
 │   ├── geo-blocking.sh             # EU-only geo-blocking (template)
 │   └── monitoring-alerts.sh        # Email alerts & monitoring (template)
-│   # ⚠️ Prawdziwe wersje: private/deployment-vps/server/
+│   # ️ Prawdziwe wersje: private/deployment-vps/server/
 │
 ├── app/                             # Skrypty wdrożenia APLIKACJI (Linux/WSL)
 │   ├── deploy.sh                   # Linux deployment orchestrator (Ubuntu/Debian)
@@ -33,7 +33,7 @@ deployment/
     └── SECURITY.md                 # Szczegółowa dokumentacja bezpieczeństwa
 ```
 
-## ⚡ Quick Start (3 minuty)
+## Quick Start (3 minuty)
 
 ### Na świeżym VPS (Ubuntu 24.04 LTS):
 
@@ -54,45 +54,45 @@ chmod +x setup.sh
 
 ---
 
-## 📋 Co setup robi
+## Co setup robi
 
 ### Phase 1: Security Hardening (`secure.sh`)
-- ✅ Instalacja `fail2ban` - ochrona przed brute-force
-- ✅ Konfiguracja `UFW` - firewall z dostępem tylko przez VPN
-- ✅ SSH hardening - port 2222, key auth only, no root
-- ✅ Network security - SYN cookies, IP spoofing protection
-- ✅ Automatic updates - security patches codziennie
-- ✅ Logging - centralizowane logowanie zdarzeń
+- Instalacja `fail2ban` - ochrona przed brute-force
+- Konfiguracja `UFW` - firewall z dostępem tylko przez VPN
+- SSH hardening - port 2222, key auth only, no root
+- Network security - SYN cookies, IP spoofing protection
+- Automatic updates - security patches codziennie
+- Logging - centralizowane logowanie zdarzeń
 
 **Czas:** ~5 minut
 
 ### Phase 2: Geo-Blocking (`geo-blocking.sh`)
-- ✅ EU-only IP ranges - blokuje dostęp spoza UE
-- ✅ Weekly updates - IP ranges aktualizowane co tydzień
-- ✅ ipset integration - efektywne filtrowanie
+- EU-only IP ranges - blokuje dostęp spoza UE
+- Weekly updates - IP ranges aktualizowane co tydzień
+- ipset integration - efektywne filtrowanie
 
 **Czas:** ~2 minuty
 
 ### Phase 3: Monitoring (`monitoring-alerts.sh`)
-- ✅ Email alerts - alerts na <ADMIN_EMAIL>
-- ✅ Health monitoring - CPU, RAM, disk, Docker
-- ✅ Security audits - szczegółowy dzienny raport
-- ✅ fail2ban integration - alerty przy ban/unban
+- Email alerts - alerts na <ADMIN_EMAIL>
+- Health monitoring - CPU, RAM, disk, Docker
+- Security audits - szczegółowy dzienny raport
+- fail2ban integration - alerty przy ban/unban
 
 **Czas:** ~3 minuty
 
 ### Phase 4: Application Deployment (`deploy.sh`)
-- ✅ Docker installation
-- ✅ Infrastructure (Qdrant, Ollama, Node-RED)
-- ✅ Model download (mistral:7b)
-- ✅ Knowledge base loading
-- ✅ All 5 agents start
+- Docker installation
+- Infrastructure (Qdrant, Ollama, Node-RED)
+- Model download (mistral:7b)
+- Knowledge base loading
+- All 5 agents start
 
 **Czas:** ~8-10 minut
 
 ---
 
-## 🔐 Security Settings
+## Security Settings
 
 | Ustawienie | Wartość |
 |-----------|---------|
@@ -109,7 +109,7 @@ chmod +x setup.sh
 
 ---
 
-## 📌 Ważne Informacje
+## Ważne Informacje
 
 ### Dostęp SSH zmienia się:
 
@@ -147,7 +147,7 @@ Będziesz otrzymywać emaile na `<ADMIN_EMAIL>` gdy:
 
 ---
 
-## 🛠️ Ręczne Kroki (jeśli chcesz wybrać co instalować)
+## ️ Ręczne Kroki (jeśli chcesz wybrać co instalować)
 
 ### Tylko security (bez deployment):
 
@@ -192,7 +192,7 @@ docker-compose up -d
 
 ---
 
-## 📊 Monitorowanie
+## Monitorowanie
 
 ### View system status:
 ```bash
@@ -221,7 +221,7 @@ sudo ufw status verbose
 
 ---
 
-## ⚠️ Common Issues
+## ️ Common Issues
 
 ### Issue: Can't SSH after setup
 
@@ -265,7 +265,7 @@ tail -f /var/log/mail.log
 
 ---
 
-## 📚 Dodatkowa Dokumentacja
+## Dodatkowa Dokumentacja
 
 - [SECURITY.md](SECURITY.md) - Szczegółowe ustawienia bezpieczeństwa
 - [../DEPLOYMENT.md](../DEPLOYMENT.md) - Pełna dokumentacja deployment
@@ -273,7 +273,7 @@ tail -f /var/log/mail.log
 
 ---
 
-## 🎯 Po Instalacji
+## Po Instalacji
 
 ### 1. Sprawdź dostęp przez VPN:
 ```bash
@@ -301,9 +301,6 @@ crontab -e
 
 ---
 
-**Gotowe!** VPS jest teraz bezpieczny i pełen funkcjonalny. 🎉
-
-
-## Maintainers
+**Gotowe!** VPS jest teraz bezpieczny i pełen funkcjonalny. ## Maintainers
 - Patryk Boguski (ptrBoguski)
 - Adam Siehen (adamsiehen)

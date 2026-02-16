@@ -256,7 +256,7 @@ async with httpx.AsyncClient() as client:
 
 **Port**: 3000
 
-## 🔄 Przepływ Danych
+## Przepływ Danych
 
 ### Scenariusz 1: Zapytanie Bezpośrednie (Open WebUI → Agent1)
 
@@ -354,7 +354,7 @@ async with httpx.AsyncClient() as client:
    }
 ```
 
-## 🌐 Networking
+## Networking
 
 ### Docker Network: ai_network
 
@@ -488,7 +488,7 @@ cd Open_WebUI && docker compose up -d
 - TODO: Backup strategy dla Qdrant
 - TODO: Model versioning dla Ollama
 
-## 📈 Skalowanie
+## Skalowanie
 
 ### Vertical Scaling (Agent1)
 
@@ -560,7 +560,7 @@ Dodać Redis dla cache'owania:
    - Retry: 3 attempts
    - Fallback: Basic response bez RAG
 
-## 📝 Best Practices
+## Best Practices
 
 ### Dla Agent1
 
@@ -631,7 +631,7 @@ docker logs agent1_student | grep "RAG:"
 2. Zmniejsz context length (600 → 400)
 3. Optymalizuj Ollama options (num_ctx, temperature)
 
-## 📅 Roadmap
+## Roadmap
 
 - [ ] Agent1: Implementacja cache (Redis)
 - [ ] Agent1: Streaming responses z sources

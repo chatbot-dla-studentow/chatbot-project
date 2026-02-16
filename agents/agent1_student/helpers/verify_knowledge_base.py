@@ -24,7 +24,7 @@ def validate_knowledge_base(knowledge_dir: str) -> Dict:
     # Wczytaj all_documents.json
     all_docs_path = knowledge_path / "all_documents.json"
     if all_docs_path.exists():
-        print(f"✓ Znaleziono all_documents.json")
+        print(f"Znaleziono all_documents.json")
         try:
             with open(all_docs_path, 'r', encoding='utf-8') as f:
                 all_docs = json.load(f)
@@ -86,14 +86,14 @@ def print_validation_report(stats: Dict):
     print("RAPORT WERYFIKACJI BAZY WIEDZY")
     print("=" * 70)
     
-    print(f"\n📊 STATYSTYKI OGÓLNE:")
+    print(f"\nSTATYSTYKI OGÓLNE:")
     print(f"   Łączna liczba dokumentów: {stats['total_documents']}")
     print(f"   Łączna liczba QA pair: {stats['total_qa_pairs']}")
     print(f"   Liczba kategorii: {len(stats['categories'])}")
     
-    print(f"\n📂 KATEGORII ZNALEZIONE: {', '.join(sorted(stats['categories_found']))}")
+    print(f"\nKATEGORII ZNALEZIONE: {', '.join(sorted(stats['categories_found']))}")
     
-    print(f"\n📋 SZCZEGÓŁY PO KATEGORII:")
+    print(f"\nSZCZEGÓŁY PO KATEGORII:")
     for category in sorted(stats['categories'].keys()):
         cat_stats = stats['categories'][category]
         print(f"\n   {category.upper()}")
@@ -102,18 +102,18 @@ def print_validation_report(stats: Dict):
         print(f"   └─ Pliki: {', '.join(cat_stats['files'])}")
     
     if stats['format_issues']:
-        print(f"\n⚠️  POTENCJALNE PROBLEMY:")
+        print(f"\n️  POTENCJALNE PROBLEMY:")
         for issue in stats['format_issues']:
             print(f"   - {issue}")
     else:
-        print(f"\n✅ BRAK PROBLEMÓW - BAZA WIEDZY JEST POPRAWNIE SFORMATOWANA!")
+        print(f"\nBRAK PROBLEMÓW - BAZA WIEDZY JEST POPRAWNIE SFORMATOWANA!")
     
     print("\n" + "=" * 70)
     print("PODSUMOWANIE DLA QDRANT:")
     print("=" * 70)
     print(f"Format: JSON z polami 'id', 'content', 'category', 'metadata'")
-    print(f"Kompatybilność: ✓ Polska obsługa znaków (UTF-8)")
-    print(f"Gotowość do wczytania: ✓ TAK")
+    print(f"Kompatybilność: Polska obsługa znaków (UTF-8)")
+    print(f"Gotowość do wczytania: TAK")
     print(f"Łącznie chunków do wektoryzacji: {stats['total_documents']}")
     print("=" * 70 + "\n")
 

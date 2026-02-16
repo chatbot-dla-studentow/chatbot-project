@@ -129,8 +129,7 @@ SYSTEM_PROMPT = """..."""              # ← OSTATNI
 
 **Kroki**:
 ```bash
-# 1. Edycja współzalności w lokalnym pliku ✓
-# 2. Kopowanie do kontenera
+# 1. Edycja współzalności w lokalnym pliku # 2. Kopowanie do kontenera
 docker cp "path/to/app.py" agent1_student:/app/app.py
 
 # 3. Restart kontenera

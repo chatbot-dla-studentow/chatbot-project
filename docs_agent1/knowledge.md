@@ -202,10 +202,10 @@ Dodaje tylko nowe dokumenty bez usuwania istniejących
   RAZEM: 220 dokumentów do sprawdzenia
 
 2. Sprawdzanie Ollama (http://localhost:11434)...
-   ✓ Model nomic-embed-text gotowy (wymiar: 768)
+   Model nomic-embed-text gotowy (wymiar: 768)
 
 3. Łączenie z Qdrant (localhost:6333)...
-   ✓ Połączono z kolekcją 'agent1_student'
+   Połączono z kolekcją 'agent1_student'
 
 4. Pobieranie istniejących dokumentów...
   Pobrano: 215 dokumentów...
@@ -398,7 +398,7 @@ CATEGORIES = {
 }
 ```
 
-## 🖥️ Knowledge Manager CLI
+## ️ Knowledge Manager CLI
 
 **Uruchomienie**:
 ```bash
@@ -433,7 +433,7 @@ INFORMACJE:
 - **Status** (opcja 9): Wyświetla wszystkie kolekcje w Qdrant z liczbą punktów
 - **Help** (opcja h): Szczegółowa pomoc z workflow i przykładami
 
-## 🔄 Workflow Zarządzania Bazą Wiedzy
+## Workflow Zarządzania Bazą Wiedzy
 
 ### Inicjalne Ładowanie (Pierwsza Instalacja)
 
@@ -505,7 +505,7 @@ docker exec agent1_student python knowledge_manager.py  # opcja 5
 curl http://10.0.0.1:6333/collections/agent1_query_logs
 ```
 
-## 🔌 Integracja z RAG
+## Integracja z RAG
 
 ### Podstawowe Query
 
@@ -612,7 +612,7 @@ environment:
   - OLLAMA_URL=http://ollama:11434
 ```
 
-## 🚨 Troubleshooting
+## Troubleshooting
 
 ### Problem: "Cannot connect to Ollama"
 
@@ -664,7 +664,7 @@ docker exec agent1_student python helpers/check_knowledge_quality.py
 docker exec agent1_student python helpers/load_knowledge_base.py
 ```
 
-## 📝 Best Practices
+## Best Practices
 
 ### 1. Organizacja Plików Źródłowych
 
@@ -713,7 +713,7 @@ docker exec agent1_student python helpers/load_knowledge_base.py
 - [mobile_tests.md](./Test reports/mobile_tests.md) - Testy mobilne
 - [app.py](../app.py) - Główna aplikacja FastAPI
 
-## 📅 Historia Zmian
+## Historia Zmian
 
 | Data | Wersja | Zmiany |
 |------|--------|--------|
