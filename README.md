@@ -16,12 +16,13 @@ Inteligentny chatbot dla studentów uczelni wyższej wykorzystujący architektur
 
 ## Opis projektu
 
-System składa się z 5 wyspecjalizowanych agentów:
-- **Agent1 (Student)** - pytania studenckie (stypendia, BOS, harmonogramy)
-- **Agent2 (Ticket)** - zarządzanie zgłoszeniami
-- **Agent3 (Analytics)** - analityka i statystyki
-- **Agent4 (BOS)** - integracja z Biurem Obsługi Studenta
-- **Agent5 (Security)** - bezpieczeństwo i autoryzacja
+System oparty na architekturze multi-agentowej. **Aktualnie w pełni zaimplementowany jest Agent1 Student**, który realizuje główną funkcjonalność RAG. Agent2-5 znajdują się w fazie planowania/rozwoju:
+
+- **Agent1 (Student)** - pytania studenckie (stypendia, BOS, harmonogramy) - ZAIMPLEMENTOWANY
+- **Agent2 (Ticket)** - zarządzanie zgłoszeniami [w rozwoju]
+- **Agent3 (Analytics)** - analityka i statystyki [w rozwoju]
+- **Agent4 (BOS)** - integracja z Biurem Obsługi Studenta [w rozwoju]
+- **Agent5 (Security)** - bezpieczeństwo i autoryzacja [w rozwoju]
 
 **Główne funkcjonalności:**
 - konwersacje w języku naturalnym (mistral:7b)
@@ -133,7 +134,9 @@ Szczegóły: [DEPLOYMENT.md](DEPLOYMENT.md#połączenie-vpn-wymagane)
 
 ## Architektura w skrócie
 
-Centralnym komponentem jest **Agent1 Student**, który realizuje RAG (Qdrant + Ollama) i udostępnia wiedzę agentom 2-5. Orkiestrację przepływu zapewnia Node-RED.
+Centralnym komponentem jest **Agent1 Student**, który realizuje RAG (Qdrant + Ollama) i będzie udostępniał wiedzę przyszłym agentom 2-5. Orkiestrację przepływu zapewnia Node-RED.
+
+**Status implementacji:** Agent1 jest w pełni funkcjonalny w produkcji. Agent2-5 mają przygotowaną strukturę katalogów i podstawowe pliki jako fundament pod przyszły rozwój.
 
 Pełny opis: [docs_agent1/ARCHITECTURE.md](docs_agent1/ARCHITECTURE.md)
 
