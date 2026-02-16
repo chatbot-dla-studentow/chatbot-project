@@ -87,7 +87,7 @@ Phase 2: 🌍 Geo-blocking (2 min)
   └─ EU-only access (28 krajów, weekly updates)
 
 Phase 3: 📬 Monitoring & Alerts (3 min)
-  ├─ Email alerts do adam.siehen@outlook.com
+  ├─ Email alerts do <ADMIN_EMAIL>
   ├─ Health checks (co 4 godziny)
   ├─ Security audits (codziennie)
   └─ chatbot-status dashboard
@@ -131,7 +131,7 @@ Phase 4: 🚀 Deployment aplikacji (8-10 min)
 - 🌐 Open WebUI: `http://<vps-ip>:3000`
 
 **Monitorowanie:**
-- Email alerts wysyłane do: `adam.siehen@outlook.com`
+- Email alerts wysyłane do: `<ADMIN_EMAIL>`
 - Dashboard: `chatbot-status` (dostępna komenda SSH)
 
 ---
@@ -190,7 +190,7 @@ sudo bash deployment/server/wireguard-setup.sh
 ssh-keygen -t ed25519 -f "$env:USERPROFILE\.ssh\github_deploy" -C "github-actions" -N ""
 
 # Dodaj public key na VPS
-ssh ubuntu@<vps-public-ip> 
+ssh <USER>@<vps-public-ip> 
 echo "$(Get-Content $env:USERPROFILE\.ssh\github_deploy.pub)" >> ~/.ssh/authorized_keys
 ```
 
@@ -229,7 +229,7 @@ Ze swoją maszyną dev:
 # Test VPN connection (przede wszystkim)
 # Załaduj WireGuard Client z wg-client.conf
 # Potem:
-ssh -i $env:USERPROFILE\.ssh\github_deploy ubuntu@10.0.0.1
+ssh -i $env:USERPROFILE\.ssh\github_deploy <USER>@10.0.0.1
 ```
 
 ### Pełna dokumentacja
@@ -248,7 +248,7 @@ Poprzedni serwer został zaatakowany i zbanowany przez dostawcę. **Ta nowa infr
 - ✅ fail2ban z ochroną brute-force na 1h bany
 - ✅ UFW firewall z dostępem tylko przez VPN
 - ✅ EU-only geo-blocking (28 krajów)
-- ✅ Email monitoring na adam.siehen@outlook.com
+- ✅ Email monitoring na <ADMIN_EMAIL>
 - ✅ SSH na porcie 2222 z key auth only
 - ✅ Automatyczne security patches codziennie
 - ✅ Systemd service dla auto-start
@@ -596,7 +596,7 @@ curl http://10.0.0.1:6333/collections  # Qdrant
 - `/opt/chatbot-project/ollama/` - konfiguracja Ollama
 
 **Uprawnienia:**
-- Właściciel: `asiehen`
+- Właściciel: `<PROJECT_OWNER>`
 - Grupa: `chatbot-devs`
 - Uprawnienia grupy: `rwX` (odczyt, zapis, wykonywanie)
 - Wszyscy członkowie grupy `chatbot-devs` mają pełny dostęp
@@ -604,30 +604,32 @@ curl http://10.0.0.1:6333/collections  # Qdrant
 ## Dostęp SSH
 
 **Serwer produkcyjny:**
-- Adres: `57.128.212.194`
-- Port: `22` (SSH)
+- Adres: `<VPS_PUBLIC_IP>`
+- Port: `22` (SSH) lub `2222` (po security hardening)
 - System: **Ubuntu 24.10 LTS**
+
+> 📦 **Rzeczywiste IP, usernames i credentials:** `private/docs/` (OneDrive backup)
 
 **Uprawnieni użytkownicy (grupa `chatbot-devs`):**
 
-| Login | Email | Rola | Dostęp |
-|-------|-------|------|--------|
-| asiehen | adam.siehen@outlook.com | Admin | Full (sudo, git, docker, config) |
-| pboguski | pboguski@pboguski.pl | Admin | Full (sudo, git, docker, config) |
-| msykucki | msykucki@msykucki.pl | Admin | Full (sudo, git, docker, config) |
-| ojurgielaniec | ojurgielaniec@ojurgielaniec.pl | Admin | Full (sudo, git, docker, config) |
-| pponikowski | pponikowski@pponikowski.pl | Admin | Full (sudo, git, docker, config) |
+| Login | Rola | Dostęp |
+|-------|------|--------|
+| <USER_1> | Admin | Full (sudo, git, docker, config) |
+| <USER_2> | Admin | Full (sudo, git, docker, config) |
+| <USER_3> | Admin | Full (sudo, git, docker, config) |
+| <USER_4> | Admin | Full (sudo, git, docker, config) |
+| <USER_5> | Admin | Full (sudo, git, docker, config) |
 
 **Łączenie się z serwerem:**
 ```bash
 # Podstawowe połączenie
-ssh <login>@57.128.212.194
+ssh <login>@<VPS_PUBLIC_IP>
 
 # Przykład
-ssh pboguski@57.128.212.194
+ssh <USER>@<VPS_PUBLIC_IP>
 
 # Z kluczem SSH (jeśli skonfigurowany)
-ssh -i ~/.ssh/chatbot-key <login>@57.128.212.194
+ssh -i ~/.ssh/chatbot-key <login>@<VPS_PUBLIC_IP>
 ```
 
 **Symlink dla wygody:**
@@ -783,7 +785,7 @@ ping -c 4 10.0.0.1
 ### Sprawdzenie statusu usług (na serwerze)
 ```bash
 # SSH do serwera
-ssh asiehen@57.128.212.194
+ssh <USER>@<VPS_PUBLIC_IP>
 
 # Status kontenerów
 docker ps
@@ -864,10 +866,12 @@ docker stats --no-stream
 ### Konfiguracja serwera produkcyjnego
 
 **Dane dostępowe:**
-- Adres publiczny: `57.128.212.194`
-- Hostname: `vps-5f2a574b.vps.ovh.net`
+- Adres publiczny: `<VPS_PUBLIC_IP>`
+- Hostname: `<VPS_HOSTNAME>`
 - System: **Ubuntu 24.10 LTS**
-- Właściciel: `asiehen`
+- Właściciel: `<PROJECT_OWNER>`
+
+> 📦 **Rzeczywiste wartości:** `private/docs/DEPLOYMENT.md` (OneDrive backup)
 
 ## Konfiguracja serwera
 

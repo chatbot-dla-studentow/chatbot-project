@@ -56,7 +56,7 @@ System składa się z 5 wyspecjalizowanych agentów:
 
 | Członek zespołu | Rola | Zadania (skrót) |
 |---|---|---|
-| Adam Siehen | Project Manager | Deployment i hardening VPS; automatyzacja skryptów wdrożeniowych; integracja Docker Compose i orkiestracja usług; konfiguracja monitoringu i alertów; koordynacja merge i publikacji zmian; diagnostyka i stabilizacja środowisk (main/beta) |
+| Adam Sieheń | Project Manager | Deployment; automatyzacja skryptów wdrożeniowych; integracja Docker Compose i orkiestracja usług; konfiguracja monitoringu i alertów na VPS; koordynacja merge i publikacji zmian; diagnostyka i stabilizacja środowisk (main/beta) |
 | Patryk Boguski | Tech Ops | Arch Linux deployment (deploy-arch.sh + dokumentacja); benchmarking LLM (benchmark_models.py, raporty, wykresy, TODO); aktualizacja DEPLOYMENT.md i deployment/docs/README.md pod nowe instrukcje |
 | Mikołaj Sykucki | Tester/Analityk | Testy RAG (test_rag.py: weryfikacja KB present/absent, metadane sources); test_cases.md (25 przypadków testowych: 6 unit, 4 integration, 5 functional, 4 performance, 3 validation, 3 security); BUG_FIX_TEST_REPORT_2026-02-13.md (raport naprawy NameError, testy przed/po, RCA, metryki); matryca pokrycia testów; harmonogram wykonania testów |
 | Oskar Jurgielaniec | Frontend/Dokumentacja | Reorganizacja docs_agent1 (Test reports/, User guide/); DEPLOYMENT.md (user access, VM specs); rename README_AGENT1 -> AGENT1_OVERVIEW; branding Open WebUI (custom Dockerfile z favicon fix, logo WSB Merito, white theme CSS, custom.js, favicon.ico multi-format, usunięcie starych Open WebUI favikonek, cache-busting); customizacja interfejsu użytkownika |
@@ -88,7 +88,7 @@ chmod +x deployment/setup.sh
 
 **Co robi:** Security hardening → Geo-blocking → Monitoring → Deployment (~20 min - all-in-one!)
 
-**Alternatywa (manual):** Uruchom poszczególne skrypty z `deployment/server/` i `deployment/app/`
+**Alternatywa (manual):** Uruchom poszczególne skrypty z `deployment/app/` (aplikacja) i `private/deployment-vps/server/` (security - wymagany dostęp) 
 
 ### Lokalna instalacja (Dev/Testing - Windows lub Linux z WSL)
 
@@ -105,7 +105,7 @@ Połączenie VPN jest wymagane, aby uzyskać dostęp do usług.
 ### 1) Połączenie z serwerem
 
 ```bash
-ssh <user>@57.128.212.194
+ssh <USER>@<VPS_PUBLIC_IP>
 cd /opt/chatbot-project
 ```
 
@@ -244,11 +244,7 @@ docker ps | grep node-red
 
 ## Dokumentacja
 
-### Główne Dokumenty
 - **[DEPLOYMENT.md](DEPLOYMENT.md)** - Instrukcja wdrożenia i dostępu
-- **[TEAM_TASKS.md](TEAM_TASKS.md)** - Podział zadań zespołu
-
-### Dokumentacja Agentów
 - **[AGENT1_OVERVIEW.md](AGENT1_OVERVIEW.md)** - Kompletna dokumentacja Agent1 Student
   - Architektura RAG, API, instalacja, konfiguracja
   - Baza wiedzy (220 dokumentów, 5 kategorii)
@@ -324,8 +320,10 @@ git push origin main
 ## Linki
 
 - **Repozytorium:** https://github.com/chatbot-dla-studentow/chatbot-project
-- **Serwer VPS:** vps-5f2a574b.vps.ovh.net (57.128.212.194)
+- **Serwer VPS:** <VPS_HOSTNAME> (<VPS_PUBLIC_IP>)
 - **Projekt na VPS:** `/opt/chatbot-project`
+
+> 📦 **Rzeczywiste wartości IP i credentials:** `private/` folder (OneDrive backup)
 
 ## Metryki Projektu
 
