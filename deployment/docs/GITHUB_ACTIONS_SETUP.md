@@ -1,34 +1,36 @@
 # Instrukcje Konfiguracji: GitHub Actions + WireGuard Deployment
 
+> ⚠️ **UWAGA:** Rzeczywiste wartości IP, kluczy i credentials znajdują się w prywatnym folderze `private/docs/GITHUB_ACTIONS_SETUP.md` (OneDrive backup)
+
 ## 1. Setup WireGuard na VPS
 
 ### Krok 1: Uruchomić setup skrypt
 
 ```bash
-ssh ubuntu@51.68.151.45
+ssh <USER>@<VPS_IP>
 sudo bash -c "$(curl -s https://raw.githubusercontent.com/chatbot-dla-studentow/chatbot-project/main/deployment/server/wireguard-setup.sh)"
 ```
 
 Lub lokalnie z repo:
 ```bash
-scp deployment/server/wireguard-setup.sh ubuntu@51.68.151.45:~/
-ssh ubuntu@51.68.151.45 'sudo bash ~/wireguard-setup.sh'
+scp deployment/server/wireguard-setup.sh <USER>@<VPS_IP>:~/
+ssh <USER>@<VPS_IP> 'sudo bash ~/wireguard-setup.sh'
 ```
 
 ### Krok 2: Zapisać wygenerowane klucze z outputu
 
 Skrypt wygeneruje:
 ```
-Private Key: [ZAPISZ TO]
-Public Key: [ZAPISZ TO]
+Private Key: [ZAPISZ TO DO private/configs/]
+Public Key: [ZAPISZ TO DO private/docs/]
 ```
 
-**⚠️ WAŻNE:** Zapisz te klucze - będą potrzebne dla GitHub Actions!
+**⚠️ WAŻNE:** Zapisz te klucze w bezpiecznym miejscu (OneDrive private/) - będą potrzebne dla GitHub Actions!
 
 ### Krok 3: Sprawdzić status WireGuard
 
 ```bash
-ssh ubuntu@51.68.151.45
+ssh <USER>@<VPS_IP>
 sudo wg show
 ```
 
@@ -38,7 +40,7 @@ interface: wg0
   public key: [klucz serwera]
   listen port: 51820
 
-peer: di0wRfrPoUGMBY46n5f8/1VGsZ9bhAPSab3tmiLTzXc=
+peer: [PEER_PUBLIC_KEY]
   endpoint: X.X.X.X:XXXXX
   allowed ips: 10.0.0.2/32
   latest handshake: ...
@@ -62,7 +64,7 @@ Get-Content "$env:USERPROFILE\.ssh\github_deploy.pub"
 ### Na VPS - dodaj public key do authorized_keys:
 
 ```bash
-ssh ubuntu@51.68.151.45
+ssh <USER>@<VPS_IP>
 echo "[WKLEJ_PUBLIC_KEY_Z_GÓRY]" >> ~/.ssh/authorized_keys
 ```
 
@@ -74,21 +76,26 @@ W ustawieniach repozytorium GitHub (Settings → Secrets and variables → Actio
 
 ### Dodaj te Secrets:
 
-| Secret Name | Wartość |
-|-------------|---------|
-| `SSH_PRIVATE_KEY` | Zawartość `github_deploy` (cały plik, include BEGIN/END) |
-| `DEPLOY_USER` | `ubuntu` |
-| `DEPLOY_HOST` | `10.0.0.1` (VPN IP serwera) |
-| `WIREGUARD_PRIVATEKEY` | Private Key z `wireguard-setup.sh` output |
-| `WIREGUARD_PUBLICKEY` | Public Key z serwera **wg0.conf** |
-| `WIREGUARD_ENDPOINT` | `57.128.212.194:51820` |
+| Secret Name | Wartość | Gdzie znaleźć |
+|-------------|---------|---------------|
+| `SSH_PRIVATE_KEY` | Zawartość `github_deploy` (cały plik, include BEGIN/END) | Wygenerowane w kroku 2 |
+| `DEPLOY_USER` | Nazwa użytkownika SSH | Zazwyczaj `ubuntu` lub `root` |
+| `DEPLOY_HOST` | `10.0.0.1` (VPN IP serwera) | IP wewnętrzne VPN |
+| `WIREGUARD_PRIVATEKEY` | Private Key z `wireguard-setup.sh` output | Z kroku 1 |
+| `WIREGUARD_PUBLICKEY` | Public Key z serwera **wg0.conf** | Zobacz poniżej |
+| `WIREGUARD_ENDPOINT` | `<VPS_PUBLIC_IP>:51820` | Publiczny IP VPS + port 51820 |
 
 ### Gdzie znaleźć wartości:
 
 **WIREGUARD_PUBLICKEY** - na serwerze:
 ```bash
-ssh ubuntu@51.68.151.45
+ssh <USER>@<VPS_IP>
 cat /etc/wireguard/publickey
+```
+
+**VPS_PUBLIC_IP** - znajdź w panelu VPS lub:
+```bash
+curl ifconfig.me
 ```
 
 ---
@@ -108,7 +115,7 @@ ListenAddress 10.0.0.1
 Port 22
 
 # Restrict to VPN network only
-AllowUsers ubuntu@10.0.0.0/24
+AllowUsers <USER>@10.0.0.0/24
 
 # Security best practices
 PermitRootLogin no
@@ -146,7 +153,7 @@ git push origin main
 
 ```bash
 # Na serwerze - sprawdzić czy SSH działa z VPN IP
-ssh -i ~/.ssh/github_deploy ubuntu@10.0.0.1
+ssh -i ~/.ssh/github_deploy <USER>@10.0.0.1
 
 # Check WireGuard status
 sudo wg show
@@ -160,10 +167,20 @@ sudo ufw status
 
 ---
 
-## Maintainers
+## 📚 Powiązana dokumentacja
 
-- **Adam Siehen** - GitHub Actions workflow, deployment automation, VPN integration
-- **Patryk Boguski** - VPS security, WireGuard setup, deployment infrastructure
+- [deployment/docs/SSH_ACCESS.md](SSH_ACCESS.md) - Dostęp SSH (template)
+- [deployment/docs/SECURITY.md](SECURITY.md) - Zabezpieczenia
+- [README.md](../../README.md) - Główna dokumentacja
+- [DEPLOYMENT.md](../../DEPLOYMENT.md) - Instrukcje deployment
+
+---
+
+**Rzeczywiste wartości (IP, klucze, credentials) znajdują się w:**
+- `private/docs/GITHUB_ACTIONS_SETUP.md` (kopia z prawdziwymi danymi)
+- `private/configs/wg-client.conf` (prawdziwa konfiguracja WireGuard)
+
+📦 **Backup:** OneDrive → Praca inżynierska → chatbot-private/
 
 ---
 
@@ -177,7 +194,7 @@ Jeśli chcesz deployować ręcznie przez VPN:
 # - Connect do VPN
 
 # Potem SSH będzie dostępny na 10.0.0.1
-ssh -i $env:USERPROFILE\.ssh\github_deploy ubuntu@10.0.0.1
+ssh -i $env:USERPROFILE\.ssh\github_deploy <USER>@10.0.0.1
 
 # Na VPS - deployment
 cd ~/chatbot-project

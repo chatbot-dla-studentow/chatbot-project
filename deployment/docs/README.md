@@ -1,5 +1,7 @@
 ﻿# 🚀 Wdrożenie na Świeży VPS - Szybki Przewodnik
 
+> ⚠️ **UWAGA:** To jest **publiczna/template** wersja dokumentacji. Prawdziwe skrypty i dokumentacja z konkretnymi danymi produkcyjnymi (IP, credentials, email) znajdują się w `private/deployment-vps/` (dostęp tylko dla członków zespołu, backup: OneDrive).
+
 > ✅ **Aktualizacja:** Dedykowane pliki `agents/*/docker-compose.yml` zostały **przywrócone**.
 > Do pełnego wdrożenia nadal rekomendujemy `/deployment/setup.sh` lub główny `docker-compose.yml`,
 > ale możesz też uruchamiać pojedynczych agentów z ich katalogów.
@@ -11,9 +13,11 @@ deployment/
 ├── setup.sh                         # Główny skrypt (uruchom pierwszy!) - ALL-IN-ONE
 │
 ├── server/                          # Skrypty konfiguracji SERWERA
-│   ├── secure.sh                   # Security hardening
-│   ├── geo-blocking.sh             # EU-only geo-blocking
-│   └── monitoring-alerts.sh        # Email alerts & monitoring
+│   ├── README.md                   # ⚠️ Info o private/deployment-vps
+│   ├── secure.sh                   # Security hardening (template)
+│   ├── geo-blocking.sh             # EU-only geo-blocking (template)
+│   └── monitoring-alerts.sh        # Email alerts & monitoring (template)
+│   # ⚠️ Prawdziwe wersje: private/deployment-vps/server/
 │
 ├── app/                             # Skrypty wdrożenia APLIKACJI (Linux/WSL)
 │   ├── deploy.sh                   # Linux deployment orchestrator (Ubuntu/Debian)
@@ -70,7 +74,7 @@ chmod +x setup.sh
 **Czas:** ~2 minuty
 
 ### Phase 3: Monitoring (`monitoring-alerts.sh`)
-- ✅ Email alerts - alerts na adam.siehen@outlook.com
+- ✅ Email alerts - alerts na <ADMIN_EMAIL>
 - ✅ Health monitoring - CPU, RAM, disk, Docker
 - ✅ Security audits - szczegółowy dzienny raport
 - ✅ fail2ban integration - alerty przy ban/unban
@@ -100,7 +104,7 @@ chmod +x setup.sh
 | fail2ban Retries | 3 |
 | Updates | Automatic (daily) |
 | Geo-Block | EU countries only |
-| Alerts Email | adam.siehen@outlook.com |
+| Alerts Email | <ADMIN_EMAIL> |
 | Alert Frequency | Every 4 hours + daily |
 
 ---
@@ -111,12 +115,12 @@ chmod +x setup.sh
 
 **Przed:**
 ```bash
-ssh root@57.128.212.194
+ssh root@<VPS_PUBLIC_IP>
 ```
 
 **Po (port 2222, key auth):**
 ```bash
-ssh -p 2222 asiehen@<new-vps-ip>
+ssh -p 2222 <USER>@<VPS_PUBLIC_IP>
 # lub jeśli dodane do ~/.ssh/config
 ssh chatbot-vps
 ```
@@ -132,7 +136,7 @@ Wszystkie porty dostępne **tylko z VPN**:
 
 ### Monitoring
 
-Będziesz otrzymywać emaile na `adam.siehen@outlook.com` gdy:
+Będziesz otrzymywać emaile na `<ADMIN_EMAIL>` gdy:
 - Dysk > 85%
 - RAM > 90%
 - Docker padł

@@ -88,7 +88,7 @@ chmod +x deployment/setup.sh
 
 **Co robi:** Security hardening → Geo-blocking → Monitoring → Deployment (~20 min - all-in-one!)
 
-**Alternatywa (manual):** Uruchom poszczególne skrypty z `deployment/server/` i `deployment/app/`
+**Alternatywa (manual):** Uruchom poszczególne skrypty z `deployment/app/` (aplikacja) i `private/deployment-vps/server/` (security - wymagany dostęp) 
 
 ### Lokalna instalacja (Dev/Testing - Windows lub Linux z WSL)
 
@@ -105,7 +105,7 @@ Połączenie VPN jest wymagane, aby uzyskać dostęp do usług.
 ### 1) Połączenie z serwerem
 
 ```bash
-ssh <user>@57.128.212.194
+ssh <USER>@<VPS_PUBLIC_IP>
 cd /opt/chatbot-project
 ```
 
@@ -320,8 +320,10 @@ git push origin main
 ## Linki
 
 - **Repozytorium:** https://github.com/chatbot-dla-studentow/chatbot-project
-- **Serwer VPS:** vps-5f2a574b.vps.ovh.net (57.128.212.194)
+- **Serwer VPS:** <VPS_HOSTNAME> (<VPS_PUBLIC_IP>)
 - **Projekt na VPS:** `/opt/chatbot-project`
+
+> 📦 **Rzeczywiste wartości IP i credentials:** `private/` folder (OneDrive backup)
 
 ## Metryki Projektu
 

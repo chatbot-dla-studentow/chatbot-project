@@ -150,7 +150,9 @@ Dokumentacja agenta chatbotowego odpowiadającego na pytania studenckie (stypend
 - **Główny README projektu:** [../README.md](../README.md)
 - **Deployment:** [../DEPLOYMENT.md](../DEPLOYMENT.md)
 - **Repozytorium:** https://github.com/chatbot-dla-studentow/chatbot-project
-- **Serwer produkcyjny:** vps-5f2a574b.vps.ovh.net (57.128.212.194)
+- **Serwer produkcyjny:** <VPS_HOSTNAME> (<VPS_PUBLIC_IP>)
+
+> 📦 **Rzeczywiste wartości:** `private/` folder (OneDrive)
 
 ---
 

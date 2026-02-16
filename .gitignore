@@ -10,6 +10,13 @@ venv/
 env/
 ENV/
 
+# Private/Sensitive Data (OneDrive backup)
+private/
+wg-client.conf
+**/wg-*.conf
+**/*_private.md
+**/*_secret*
+
 # Docker
 **/docker-compose.override.yml
 **/volumes/

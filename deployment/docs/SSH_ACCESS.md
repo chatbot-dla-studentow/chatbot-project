@@ -1,15 +1,17 @@
 ﻿# 🔐 SSH Access - Dokumentacja
 
-> **VPS:** `51.68.151.45` | **User:** `ubuntu` | **Hostname:** `vps-fcbe5571.vps.ovh.net`
+> ⚠️ **UWAGA:** Rzeczywiste wartości IP, hostname i użytkowników znajdują się w `private/docs/SSH_ACCESS.md` (OneDrive backup)
+
+> **VPS:** `<VPS_IP>` | **User:** `<USER>` | **Hostname:** `<VPS_HOSTNAME>`
 
 ---
 
 ## 📍 Klucze SSH (Lokalizacja)
 
 ```
-C:\Users\adams\.ssh\
-├── chatbot_vps_new       ← 🔒 PRYWATNY (NIGDY NIE UDOSTĘPNIAJ!)
-└── chatbot_vps_new.pub   ← 🔓 PUBLICZNY (bezpieczny do udostępnienia)
+$HOME\.ssh\
+├── chatbot_vps       ← 🔒 PRYWATNY (NIGDY NIE UDOSTĘPNIAJ!)
+└── chatbot_vps.pub   ← 🔓 PUBLICZNY (bezpieczny do udostępnienia)
 ```
 
 ---
@@ -20,7 +22,7 @@ C:\Users\adams\.ssh\
 
 ```powershell
 # Pełna ścieżka
-ssh -i $HOME\.ssh\chatbot_vps_new ubuntu@51.68.151.45
+ssh -i $HOME\.ssh\chatbot_vps <USER>@<VPS_IP>
 
 # Lub z config (patrz poniżej)
 ssh vps
@@ -28,19 +30,19 @@ ssh vps
 
 ### Metoda 2: Alias SSH (najwygodniejsze)
 
-**Utwórz plik:** `C:\Users\adams\.ssh\config`
+**Utwórz plik:** `$HOME\.ssh\config`
 
 ```ssh-config
 Host vps
-    HostName 51.68.151.45
-    User ubuntu
-    IdentityFile ~/.ssh/chatbot_vps_new
+    HostName <VPS_IP>
+    User <USER>
+    IdentityFile ~/.ssh/chatbot_vps
     Port 22
 
 Host vps-name
-    HostName vps-fcbe5571.vps.ovh.net
-    User ubuntu
-    IdentityFile ~/.ssh/chatbot_vps_new
+    HostName <VPS_HOSTNAME>
+    User <USER>
+    IdentityFile ~/.ssh/chatbot_vps
     Port 22
 ```
 
@@ -89,7 +91,7 @@ chmod 600 ~/.ssh/authorized_keys
 ### Krok 4: Osoba może się zalogować
 
 ```bash
-ssh ubuntu@51.68.151.45
+ssh <USER>@<VPS_IP>
 ```
 
 ---
@@ -167,7 +169,7 @@ sudo systemctl restart sshd
 
 **Logowanie:**
 ```powershell
-ssh -i $HOME\.ssh\chatbot_vps_new -p 2222 ubuntu@51.68.151.45
+ssh -i $HOME\.ssh\chatbot_vps -p 2222 <USER>@<VPS_IP>
 ```
 
 ---
@@ -192,27 +194,29 @@ ssh vps "ls -la ~/.ssh/"
 **Rozwiązanie:**
 ```powershell
 # Podaj klucz explicite
-ssh -o IdentitiesOnly=yes -i $HOME\.ssh\chatbot_vps_new ubuntu@51.68.151.45
+ssh -o IdentitiesOnly=yes -i $HOME\.ssh\chatbot_vps <USER>@<VPS_IP>
 ```
 
-### Problem: Zapomniałem hasła ubuntu
+### Problem: Zapomniałem hasła <USER>
 
 **Rozwiązanie:**
-1. Zaloguj się przez **KVM** w panelu OVH
+1. Zaloguj się przez **KVM** w panelu VPS provider
 2. Zresetuj hasło:
 ```bash
-sudo passwd ubuntu
+sudo passwd <USER>
 ```
 
 ---
 
 ## 📞 Kontakt VPS
 
-- **Panel:** https://www.ovh.com/manager/
-- **IP:** `51.68.151.45`
-- **IPv6:** `2001:41d0:601:1100::8533`
-- **VPS Name:** `vps-fcbe5571.vps.ovh.net`
-- **System:** Ubuntu 24.04 LTS
+- **Panel:** Link do panelu VPS providera
+- **IP:** `<VPS_IP>`
+- **IPv6:** `<VPS_IPv6>`
+- **VPS Name:** `<VPS_HOSTNAME>`
+- **System:** Ubuntu 24.04 LTS (lub inna wersja)
+
+> 📦 **Rzeczywiste wartości:** `private/docs/SSH_ACCESS.md` (OneDrive backup)
 
 ---
 
