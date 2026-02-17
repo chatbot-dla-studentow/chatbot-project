@@ -93,7 +93,48 @@ chmod +x deployment/setup.sh
 
 ### Lokalna instalacja (Dev/Testing - Windows lub Linux z WSL)
 
-**Wymagane:** aktywny VPN (WireGuard).
+**Wymagane:** Docker Desktop (WSL2), Git, min. 8 GB RAM.
+
+### Szybki deploy lokalny (bez VPN)
+
+1) Sklonuj repozytorium i przejdz do katalogu:
+
+```bash
+git clone <repo-url>
+cd chatbot-project
+```
+
+2) Utworz siec Dockera (wspolna dla uslug):
+
+```bash
+docker network create ai_network
+```
+
+3) Uruchom kluczowe uslugi:
+
+```bash
+cd qdrant && docker compose up -d
+cd ../ollama && docker compose up -d
+cd ../agents/agent1_student && docker compose up -d --build
+cd ../../Open_WebUI && docker compose up -d
+cd ../nodered && docker compose up -d
+```
+
+4) Pobierz modele w Ollama (pierwsze uruchomienie):
+
+```bash
+docker exec -it ollama ollama pull mistral:7b
+docker exec -it ollama ollama pull nomic-embed-text
+```
+
+5) Dostep do uslug lokalnie:
+
+- Open WebUI: http://localhost:3000
+- Node-RED: http://localhost:1880
+- Qdrant Dashboard: http://localhost:6333/dashboard
+- Agent1 API: http://localhost:8001/docs
+
+**Uwaga:** VPN jest wymagany tylko dla dostepu do srodowiska VPS.
 
 ## VPN i plik konfiguracyjny
 
