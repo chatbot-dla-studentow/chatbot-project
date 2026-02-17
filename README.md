@@ -18,7 +18,7 @@ Inteligentny chatbot dla studentów uczelni wyższej wykorzystujący architektur
 
 System oparty na architekturze multi-agentowej. **Agent1 Student** realizuje główną funkcjonalność RAG. Chatbot oparty na technologii RAG (Retrieval-Augmented Generation) dla studentów. Odpowiada na pytania dotyczące ochrony danych osobowych, egzaminów, rekrutacji, stypendii, urlopów i nieobecności.
 
-## Link do prezentacji:
+**Link do prezentacji:**
 https://m365ht-my.sharepoint.com/:p:/r/personal/gdx131362_student_gdansk_merito_pl/Documents/chatbot-dokumentacja/Projekt%20wdro%C5%BCeniowy%20%E2%80%93%20grupa%201%20WSB%20MERITO%20Adam%20Siehe%C5%84%20i%20inni.pptx?d=w8c2c301c0dc74c12a1e76dd4e8f53c3b&csf=1&web=1&e=AWMtNp
 
 - **Agent1 (Student)** - pytania studenckie (baza wiedzy na temat ochrony danych osobowych, egzaminów, rekrutacji, stypendii, urlopów i nieobecności) - ZAIMPLEMENTOWANY
