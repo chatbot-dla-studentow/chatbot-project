@@ -1,6 +1,6 @@
 ﻿# ChatBot Deployment System
 
-️ **BREAKING CHANGE v2.0 (Feb 2026):** Stare pliki `agents/*/docker-compose.yml` zostały USUNIĘTE. Plik `deploy.ps1` usunięty (tylko Linux/WSL/Ubuntu).
+️ **BREAKING CHANGE v2.0 (Feb 2026):** Dedykowane pliki `agents/*/docker-compose.yml` zostaly przywrocone. `deploy.ps1` nie jest uzywany (tylko Linux/WSL/Ubuntu).
 
 **Teraz wykorzystuj:**
 - Nowy VPS? → `./deployment/setup.sh` ← **REKOMENDOWANE!**
@@ -186,7 +186,6 @@ chatbot-project/
 ├── .env.example                # Przykładowa konfiguracja
 │
 ├── deploy.sh                   # Deployment Linux
-├── deploy.ps1                  # Deployment Windows
 ├── init-knowledge.sh           # Init bazy wiedzy
 ├── backup.sh                   # Backup
 ├── restore.sh                  # Restore

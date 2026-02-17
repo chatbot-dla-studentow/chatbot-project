@@ -86,7 +86,7 @@ chmod +x setup.sh
 - Infrastructure (Qdrant, Ollama, Node-RED)
 - Model download (mistral:7b)
 - Knowledge base loading
-- All 5 agents start
+- Start Agent1 (pozostale agenty: mockupy innych grup)
 
 **Czas:** ~8-10 minut
 

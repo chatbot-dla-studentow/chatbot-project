@@ -91,7 +91,6 @@ cp .env.example .env
 - `.gitignore` ignoruje pliki `*.conf` (WireGuard configs)
 - `.gitignore` ignoruje pliki `*_secret*` i `*_private.md`
 - Wszystkie IP i credentials zastąpione placeholderami
-- GitHub Actions używa GitHub Secrets (nie są w repo)
 
 ### Commit Guidelines dla Contributors:
 

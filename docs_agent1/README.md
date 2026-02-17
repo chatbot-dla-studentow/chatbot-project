@@ -48,10 +48,10 @@ https://moodle2.e-wsb.pl/course/view.php?id=208534
 ## Zrzuty ekranu
 
 Ekran chatu (Open WebUI):
-![alt text](images/image-1.png)
+![alt text](img/user_guide/chat.png)
 
 Qdrant Dashboard:
-![alt text](images/image-7.png)
+![alt text](img/user_guide/home.png)
 
 ## Wymagania
 

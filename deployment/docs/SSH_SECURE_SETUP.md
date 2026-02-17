@@ -163,19 +163,6 @@ ping 10.0.0.1
 
 ---
 
-## Dodatkowe Zabezpieczenie (opcjonalnie)
-
-### Whitelist GitHub Actions IP (jeśli będziesz używać)
-
-GitHub Actions runners mają publiczne IP. Możesz:
-
-```bash
-# Dodaj rule dla GitHub IPs (opcjonalnie)
-sudo ufw allow from 140.82.112.0/20 to 10.0.0.1 port 2222 comment "GitHub Actions"
-```
-
----
-
 ## Maintainers
 
 - **Adam Siehen** - SSH hardening, security configuration
