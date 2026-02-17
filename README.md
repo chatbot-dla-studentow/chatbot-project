@@ -16,7 +16,7 @@ Inteligentny chatbot dla studentów uczelni wyższej wykorzystujący architektur
 
 ## Opis projektu
 
-System oparty na architekturze multi-agentowej. **Aktualnie w pełni zaimplementowany jest Agent1 Student**, który realizuje główną funkcjonalność RAG. Agent2-5 znajdują się w fazie planowania/rozwoju:
+System oparty na architekturze multi-agentowej. **Agent1 Student** realizuje główną funkcjonalność RAG. Chatbot oparty na technologii RAG (Retrieval-Augmented Generation) dla studentów. Odpowiada na pytania dotyczące ochrony danych osobowych, egzaminów, rekrutacji, stypendii, urlopów i nieobecności.
 
 - **Agent1 (Student)** - pytania studenckie (baza wiedzy na temat ochrony danych osobowych, egzaminów, rekrutacji, stypendii, urlopów i nieobecności) - ZAIMPLEMENTOWANY
 - **Agent2 (Ticket)** - zarządzanie zgłoszeniami
